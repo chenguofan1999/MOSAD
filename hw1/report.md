@@ -151,7 +151,7 @@ Except action method, other methods of interface Hero using polymorphism:
 
 ### 2.3 OO design
 
-You simply can't manage to write code without OO design in your mind.
+You simply can't manage to write OBJC code without OO design in mind.
 Here's about mine:
 
 1. Encapsulation : for each kind of data in Hero interface and its subInterfaces, a getter was provided, and all data enquiries, apart from enquiring oneself, are through those getters.
