@@ -1,0 +1,596 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		56540DF92558E97C0093EE13 /* budapest.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD72558E97B0093EE13 /* budapest.png */; };
+		56540DFA2558E97C0093EE13 /* us-capitol.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD82558E97B0093EE13 /* us-capitol.png */; };
+		56540DFB2558E97C0093EE13 /* pagoda-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD92558E97B0093EE13 /* pagoda-2.png */; };
+		56540DFC2558E97C0093EE13 /* tiananmen.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDA2558E97B0093EE13 /* tiananmen.png */; };
+		56540DFD2558E97C0093EE13 /* taipei-towers.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDB2558E97B0093EE13 /* taipei-towers.png */; };
+		56540DFE2558E97C0093EE13 /* brandenburg-gate.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDC2558E97B0093EE13 /* brandenburg-gate.png */; };
+		56540DFF2558E97C0093EE13 /* brandenburg-gate-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDD2558E97B0093EE13 /* brandenburg-gate-color.png */; };
+		56540E002558E97C0093EE13 /* tower-of-pisa.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDE2558E97B0093EE13 /* tower-of-pisa.png */; };
+		56540E012558E97C0093EE13 /* pagoda.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDF2558E97B0093EE13 /* pagoda.png */; };
+		56540E022558E97C0093EE13 /* shanghai-pearl-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */; };
+		56540E032558E97C0093EE13 /* taj-mahal.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE12558E97B0093EE13 /* taj-mahal.png */; };
+		56540E042558E97C0093EE13 /* tower-of-pisa-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE22558E97B0093EE13 /* tower-of-pisa-color.png */; };
+		56540E052558E97C0093EE13 /* us-capitol-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE32558E97B0093EE13 /* us-capitol-color.png */; };
+		56540E062558E97C0093EE13 /* statue-of-liberty-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */; };
+		56540E072558E97C0093EE13 /* great-wall-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE52558E97C0093EE13 /* great-wall-color.png */; };
+		56540E082558E97C0093EE13 /* great-wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE62558E97C0093EE13 /* great-wall.png */; };
+		56540E092558E97C0093EE13 /* icons8-bike-parking-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE72558E97C0093EE13 /* icons8-bike-parking-50.png */; };
+		56540E0A2558E97C0093EE13 /* downtown.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE82558E97C0093EE13 /* downtown.png */; };
+		56540E0B2558E97C0093EE13 /* big-ben.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE92558E97C0093EE13 /* big-ben.png */; };
+		56540E0C2558E97C0093EE13 /* berlin-tv-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DEA2558E97C0093EE13 /* berlin-tv-tower.png */; };
+		56540E0D2558E97C0093EE13 /* colosseum-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DEB2558E97C0093EE13 /* colosseum-color.png */; };
+		56540E0E2558E97C0093EE13 /* icons8-search-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DEC2558E97C0093EE13 /* icons8-search-50.png */; };
+		56540E0F2558E97C0093EE13 /* 25-de-abril-bridge-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DED2558E97C0093EE13 /* 25-de-abril-bridge-color.png */; };
+		56540E102558E97C0093EE13 /* taj-mahal-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DEE2558E97C0093EE13 /* taj-mahal-color.png */; };
+		56540E112558E97C0093EE13 /* 25-de-abril-bridge.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DEF2558E97C0093EE13 /* 25-de-abril-bridge.png */; };
+		56540E122558E97C0093EE13 /* venice-canal-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF02558E97C0093EE13 /* venice-canal-color.png */; };
+		56540E132558E97C0093EE13 /* big-ben-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF12558E97C0093EE13 /* big-ben-color.png */; };
+		56540E152558E97C0093EE13 /* statue-of-liberty.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF32558E97C0093EE13 /* statue-of-liberty.png */; };
+		56540E162558E97C0093EE13 /* orthodox-church.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF42558E97C0093EE13 /* orthodox-church.png */; };
+		56540E172558E97C0093EE13 /* colosseum.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF52558E97C0093EE13 /* colosseum.png */; };
+		56540E182558E97C0093EE13 /* orthodox-church-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF62558E97C0093EE13 /* orthodox-church-color.png */; };
+		56540E192558E97C0093EE13 /* taipei-towers-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF72558E97C0093EE13 /* taipei-towers-color.png */; };
+		56540E1A2558E97C0093EE13 /* cn-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF82558E97C0093EE13 /* cn-tower.png */; };
+		56540E21255975870093EE13 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56540E20255975870093EE13 /* DetailViewController.m */; };
+		56540E2A255A7A840093EE13 /* icons8-donald-trump-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */; };
+		56540E2B255A7A840093EE13 /* icons8-edvard-munch-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */; };
+		56540E2C255A7A840093EE13 /* icons8-william-shakespeare-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */; };
+		56540E2D255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */; };
+		56540E2E255A7A840093EE13 /* icons8-venus-de-milo-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */; };
+		56540E32255A89220093EE13 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E31255A89220093EE13 /* me.png */; };
+		565EBCF62548619C0056E565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBCF52548619C0056E565 /* AppDelegate.m */; };
+		565EBCF92548619C0056E565 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBCF82548619C0056E565 /* ViewController.m */; };
+		565EBCFE2548619D0056E565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565EBCFD2548619D0056E565 /* Assets.xcassets */; };
+		565EBD012548619D0056E565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565EBCFF2548619D0056E565 /* LaunchScreen.storyboard */; };
+		565EBD042548619D0056E565 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD032548619D0056E565 /* main.m */; };
+		565EBD13254865FF0056E565 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD12254865FF0056E565 /* TabBarController.m */; };
+		565EBD15254929D90056E565 /* FirstTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD14254929D90056E565 /* FirstTestController.m */; };
+		565EBD17254929F00056E565 /* SecondTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD16254929F00056E565 /* SecondTestController.m */; };
+		565EBD19254929FD0056E565 /* ThirdTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD18254929FD0056E565 /* ThirdTestController.m */; };
+		565EBD352549619F0056E565 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD342549619F0056E565 /* FindViewController.m */; };
+		565EBD4225496D2A0056E565 /* user-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3825496D2A0056E565 /* user-off@2x.png */; };
+		565EBD4325496D2A0056E565 /* user-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3925496D2A0056E565 /* user-on@2x.png */; };
+		565EBD4425496D2A0056E565 /* edvard-munch-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */; };
+		565EBD4525496D2A0056E565 /* edvard-munch-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */; };
+		565EBD4625496D2A0056E565 /* eiffel-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3C25496D2A0056E565 /* eiffel-off.png */; };
+		565EBD4725496D2A0056E565 /* search-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3D25496D2A0056E565 /* search-off@2x.png */; };
+		565EBD4825496D2A0056E565 /* mark-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3E25496D2A0056E565 /* mark-on@2x.png */; };
+		565EBD4925496D2A0056E565 /* search-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3F25496D2A0056E565 /* search-on@2x.png */; };
+		565EBD4A25496D2A0056E565 /* eiffel-on.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD4025496D2A0056E565 /* eiffel-on.png */; };
+		565EBD4B25496D2A0056E565 /* mark-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD4125496D2A0056E565 /* mark-off@2x.png */; };
+		565EBD53254972F50056E565 /* InsertViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD52254972F50056E565 /* InsertViewController.m */; };
+		565EBD562549B3730056E565 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD552549B3730056E565 /* LogInViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		56540DD72558E97B0093EE13 /* budapest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budapest.png; sourceTree = "<group>"; };
+		56540DD82558E97B0093EE13 /* us-capitol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "us-capitol.png"; sourceTree = "<group>"; };
+		56540DD92558E97B0093EE13 /* pagoda-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pagoda-2.png"; sourceTree = "<group>"; };
+		56540DDA2558E97B0093EE13 /* tiananmen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiananmen.png; sourceTree = "<group>"; };
+		56540DDB2558E97B0093EE13 /* taipei-towers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taipei-towers.png"; sourceTree = "<group>"; };
+		56540DDC2558E97B0093EE13 /* brandenburg-gate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brandenburg-gate.png"; sourceTree = "<group>"; };
+		56540DDD2558E97B0093EE13 /* brandenburg-gate-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brandenburg-gate-color.png"; sourceTree = "<group>"; };
+		56540DDE2558E97B0093EE13 /* tower-of-pisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tower-of-pisa.png"; sourceTree = "<group>"; };
+		56540DDF2558E97B0093EE13 /* pagoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagoda.png; sourceTree = "<group>"; };
+		56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shanghai-pearl-tower.png"; sourceTree = "<group>"; };
+		56540DE12558E97B0093EE13 /* taj-mahal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taj-mahal.png"; sourceTree = "<group>"; };
+		56540DE22558E97B0093EE13 /* tower-of-pisa-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tower-of-pisa-color.png"; sourceTree = "<group>"; };
+		56540DE32558E97B0093EE13 /* us-capitol-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "us-capitol-color.png"; sourceTree = "<group>"; };
+		56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statue-of-liberty-color.png"; sourceTree = "<group>"; };
+		56540DE52558E97C0093EE13 /* great-wall-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "great-wall-color.png"; sourceTree = "<group>"; };
+		56540DE62558E97C0093EE13 /* great-wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "great-wall.png"; sourceTree = "<group>"; };
+		56540DE72558E97C0093EE13 /* icons8-bike-parking-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-bike-parking-50.png"; sourceTree = "<group>"; };
+		56540DE82558E97C0093EE13 /* downtown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downtown.png; sourceTree = "<group>"; };
+		56540DE92558E97C0093EE13 /* big-ben.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-ben.png"; sourceTree = "<group>"; };
+		56540DEA2558E97C0093EE13 /* berlin-tv-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "berlin-tv-tower.png"; sourceTree = "<group>"; };
+		56540DEB2558E97C0093EE13 /* colosseum-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "colosseum-color.png"; sourceTree = "<group>"; };
+		56540DEC2558E97C0093EE13 /* icons8-search-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-search-50.png"; sourceTree = "<group>"; };
+		56540DED2558E97C0093EE13 /* 25-de-abril-bridge-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-de-abril-bridge-color.png"; sourceTree = "<group>"; };
+		56540DEE2558E97C0093EE13 /* taj-mahal-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taj-mahal-color.png"; sourceTree = "<group>"; };
+		56540DEF2558E97C0093EE13 /* 25-de-abril-bridge.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "25-de-abril-bridge.png"; sourceTree = "<group>"; };
+		56540DF02558E97C0093EE13 /* venice-canal-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "venice-canal-color.png"; sourceTree = "<group>"; };
+		56540DF12558E97C0093EE13 /* big-ben-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-ben-color.png"; sourceTree = "<group>"; };
+		56540DF32558E97C0093EE13 /* statue-of-liberty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statue-of-liberty.png"; sourceTree = "<group>"; };
+		56540DF42558E97C0093EE13 /* orthodox-church.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orthodox-church.png"; sourceTree = "<group>"; };
+		56540DF52558E97C0093EE13 /* colosseum.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = colosseum.png; sourceTree = "<group>"; };
+		56540DF62558E97C0093EE13 /* orthodox-church-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "orthodox-church-color.png"; sourceTree = "<group>"; };
+		56540DF72558E97C0093EE13 /* taipei-towers-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taipei-towers-color.png"; sourceTree = "<group>"; };
+		56540DF82558E97C0093EE13 /* cn-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cn-tower.png"; sourceTree = "<group>"; };
+		56540E1F255975710093EE13 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		56540E20255975870093EE13 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-donald-trump-96.png"; sourceTree = "<group>"; };
+		56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-edvard-munch-96.png"; sourceTree = "<group>"; };
+		56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-william-shakespeare-100.png"; sourceTree = "<group>"; };
+		56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-kawaii-dinosaur-96.png"; sourceTree = "<group>"; };
+		56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-venus-de-milo-96.png"; sourceTree = "<group>"; };
+		56540E31255A89220093EE13 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
+		565EBCF12548619C0056E565 /* hw2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hw2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		565EBCF42548619C0056E565 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		565EBCF52548619C0056E565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		565EBCF72548619C0056E565 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		565EBCF82548619C0056E565 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		565EBCFD2548619D0056E565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		565EBD002548619D0056E565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		565EBD022548619D0056E565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		565EBD032548619D0056E565 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		565EBD11254865E60056E565 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
+		565EBD12254865FF0056E565 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
+		565EBD14254929D90056E565 /* FirstTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstTestController.m; sourceTree = "<group>"; };
+		565EBD16254929F00056E565 /* SecondTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SecondTestController.m; sourceTree = "<group>"; };
+		565EBD18254929FD0056E565 /* ThirdTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdTestController.m; sourceTree = "<group>"; };
+		565EBD1A25492A1A0056E565 /* FirstTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstTestController.h; sourceTree = "<group>"; };
+		565EBD1E254931F60056E565 /* SecondTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SecondTestController.h; sourceTree = "<group>"; };
+		565EBD1F254932100056E565 /* ThirdTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdTestController.h; sourceTree = "<group>"; };
+		565EBD342549619F0056E565 /* FindViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FindViewController.m; sourceTree = "<group>"; };
+		565EBD36254961B40056E565 /* FindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
+		565EBD3825496D2A0056E565 /* user-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-off@2x.png"; sourceTree = "<group>"; };
+		565EBD3925496D2A0056E565 /* user-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-on@2x.png"; sourceTree = "<group>"; };
+		565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edvard-munch-off@2x.png"; sourceTree = "<group>"; };
+		565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edvard-munch-on@2x.png"; sourceTree = "<group>"; };
+		565EBD3C25496D2A0056E565 /* eiffel-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eiffel-off.png"; sourceTree = "<group>"; };
+		565EBD3D25496D2A0056E565 /* search-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-off@2x.png"; sourceTree = "<group>"; };
+		565EBD3E25496D2A0056E565 /* mark-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark-on@2x.png"; sourceTree = "<group>"; };
+		565EBD3F25496D2A0056E565 /* search-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-on@2x.png"; sourceTree = "<group>"; };
+		565EBD4025496D2A0056E565 /* eiffel-on.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eiffel-on.png"; sourceTree = "<group>"; };
+		565EBD4125496D2A0056E565 /* mark-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark-off@2x.png"; sourceTree = "<group>"; };
+		565EBD52254972F50056E565 /* InsertViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InsertViewController.m; sourceTree = "<group>"; };
+		565EBD54254973030056E565 /* InsertViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InsertViewController.h; sourceTree = "<group>"; };
+		565EBD552549B3730056E565 /* LogInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		565EBD572549B3850056E565 /* LogInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		565EBCEE2548619C0056E565 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		565EBCE82548619C0056E565 = {
+			isa = PBXGroup;
+			children = (
+				565EBCF32548619C0056E565 /* hw2 */,
+				565EBCF22548619C0056E565 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		565EBCF22548619C0056E565 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				565EBCF12548619C0056E565 /* hw2.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		565EBCF32548619C0056E565 /* hw2 */ = {
+			isa = PBXGroup;
+			children = (
+				565EBD3725496D2A0056E565 /* icons */,
+				565EBD1B25492A220056E565 /* Test */,
+				565EBD0A254862C90056E565 /* Controller */,
+				565EBCF42548619C0056E565 /* AppDelegate.h */,
+				565EBCF52548619C0056E565 /* AppDelegate.m */,
+				565EBCF72548619C0056E565 /* ViewController.h */,
+				565EBCF82548619C0056E565 /* ViewController.m */,
+				565EBCFD2548619D0056E565 /* Assets.xcassets */,
+				565EBCFF2548619D0056E565 /* LaunchScreen.storyboard */,
+				565EBD022548619D0056E565 /* Info.plist */,
+				565EBD032548619D0056E565 /* main.m */,
+			);
+			path = hw2;
+			sourceTree = "<group>";
+		};
+		565EBD0A254862C90056E565 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				565EBD11254865E60056E565 /* TabBarController.h */,
+				565EBD12254865FF0056E565 /* TabBarController.m */,
+				565EBD342549619F0056E565 /* FindViewController.m */,
+				565EBD36254961B40056E565 /* FindViewController.h */,
+				565EBD52254972F50056E565 /* InsertViewController.m */,
+				565EBD54254973030056E565 /* InsertViewController.h */,
+				565EBD552549B3730056E565 /* LogInViewController.m */,
+				565EBD572549B3850056E565 /* LogInViewController.h */,
+				56540E1F255975710093EE13 /* DetailViewController.h */,
+				56540E20255975870093EE13 /* DetailViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		565EBD1B25492A220056E565 /* Test */ = {
+			isa = PBXGroup;
+			children = (
+				565EBD14254929D90056E565 /* FirstTestController.m */,
+				565EBD16254929F00056E565 /* SecondTestController.m */,
+				565EBD18254929FD0056E565 /* ThirdTestController.m */,
+				565EBD1A25492A1A0056E565 /* FirstTestController.h */,
+				565EBD1E254931F60056E565 /* SecondTestController.h */,
+				565EBD1F254932100056E565 /* ThirdTestController.h */,
+			);
+			path = Test;
+			sourceTree = "<group>";
+		};
+		565EBD3725496D2A0056E565 /* icons */ = {
+			isa = PBXGroup;
+			children = (
+				56540E31255A89220093EE13 /* me.png */,
+				56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */,
+				56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */,
+				56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */,
+				56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */,
+				56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */,
+				56540DED2558E97C0093EE13 /* 25-de-abril-bridge-color.png */,
+				56540DEF2558E97C0093EE13 /* 25-de-abril-bridge.png */,
+				56540DEA2558E97C0093EE13 /* berlin-tv-tower.png */,
+				56540DF12558E97C0093EE13 /* big-ben-color.png */,
+				56540DE92558E97C0093EE13 /* big-ben.png */,
+				56540DE72558E97C0093EE13 /* icons8-bike-parking-50.png */,
+				56540DDD2558E97B0093EE13 /* brandenburg-gate-color.png */,
+				56540DDC2558E97B0093EE13 /* brandenburg-gate.png */,
+				56540DD72558E97B0093EE13 /* budapest.png */,
+				56540DF82558E97C0093EE13 /* cn-tower.png */,
+				56540DEB2558E97C0093EE13 /* colosseum-color.png */,
+				56540DF52558E97C0093EE13 /* colosseum.png */,
+				56540DE82558E97C0093EE13 /* downtown.png */,
+				56540DE52558E97C0093EE13 /* great-wall-color.png */,
+				56540DE62558E97C0093EE13 /* great-wall.png */,
+				56540DF62558E97C0093EE13 /* orthodox-church-color.png */,
+				56540DF42558E97C0093EE13 /* orthodox-church.png */,
+				56540DD92558E97B0093EE13 /* pagoda-2.png */,
+				56540DDF2558E97B0093EE13 /* pagoda.png */,
+				56540DEC2558E97C0093EE13 /* icons8-search-50.png */,
+				56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */,
+				56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */,
+				56540DF32558E97C0093EE13 /* statue-of-liberty.png */,
+				56540DF72558E97C0093EE13 /* taipei-towers-color.png */,
+				56540DDB2558E97B0093EE13 /* taipei-towers.png */,
+				56540DEE2558E97C0093EE13 /* taj-mahal-color.png */,
+				56540DE12558E97B0093EE13 /* taj-mahal.png */,
+				56540DDA2558E97B0093EE13 /* tiananmen.png */,
+				56540DE22558E97B0093EE13 /* tower-of-pisa-color.png */,
+				56540DDE2558E97B0093EE13 /* tower-of-pisa.png */,
+				56540DE32558E97B0093EE13 /* us-capitol-color.png */,
+				56540DD82558E97B0093EE13 /* us-capitol.png */,
+				56540DF02558E97C0093EE13 /* venice-canal-color.png */,
+				565EBD3825496D2A0056E565 /* user-off@2x.png */,
+				565EBD3925496D2A0056E565 /* user-on@2x.png */,
+				565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */,
+				565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */,
+				565EBD3C25496D2A0056E565 /* eiffel-off.png */,
+				565EBD3D25496D2A0056E565 /* search-off@2x.png */,
+				565EBD3E25496D2A0056E565 /* mark-on@2x.png */,
+				565EBD3F25496D2A0056E565 /* search-on@2x.png */,
+				565EBD4025496D2A0056E565 /* eiffel-on.png */,
+				565EBD4125496D2A0056E565 /* mark-off@2x.png */,
+			);
+			path = icons;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		565EBCF02548619C0056E565 /* hw2 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 565EBD072548619D0056E565 /* Build configuration list for PBXNativeTarget "hw2" */;
+			buildPhases = (
+				565EBCED2548619C0056E565 /* Sources */,
+				565EBCEE2548619C0056E565 /* Frameworks */,
+				565EBCEF2548619C0056E565 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = hw2;
+			productName = hw2;
+			productReference = 565EBCF12548619C0056E565 /* hw2.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		565EBCE92548619C0056E565 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = itlab;
+				TargetAttributes = {
+					565EBCF02548619C0056E565 = {
+						CreatedOnToolsVersion = 10.1;
+					};
+				};
+			};
+			buildConfigurationList = 565EBCEC2548619C0056E565 /* Build configuration list for PBXProject "hw2" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 565EBCE82548619C0056E565;
+			productRefGroup = 565EBCF22548619C0056E565 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				565EBCF02548619C0056E565 /* hw2 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		565EBCEF2548619C0056E565 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				56540E192558E97C0093EE13 /* taipei-towers-color.png in Resources */,
+				56540E062558E97C0093EE13 /* statue-of-liberty-color.png in Resources */,
+				565EBD4525496D2A0056E565 /* edvard-munch-on@2x.png in Resources */,
+				56540E132558E97C0093EE13 /* big-ben-color.png in Resources */,
+				56540E1A2558E97C0093EE13 /* cn-tower.png in Resources */,
+				56540E052558E97C0093EE13 /* us-capitol-color.png in Resources */,
+				565EBD012548619D0056E565 /* LaunchScreen.storyboard in Resources */,
+				56540E2B255A7A840093EE13 /* icons8-edvard-munch-96.png in Resources */,
+				56540E002558E97C0093EE13 /* tower-of-pisa.png in Resources */,
+				565EBD4225496D2A0056E565 /* user-off@2x.png in Resources */,
+				565EBCFE2548619D0056E565 /* Assets.xcassets in Resources */,
+				56540E042558E97C0093EE13 /* tower-of-pisa-color.png in Resources */,
+				56540E092558E97C0093EE13 /* icons8-bike-parking-50.png in Resources */,
+				56540E0B2558E97C0093EE13 /* big-ben.png in Resources */,
+				565EBD4325496D2A0056E565 /* user-on@2x.png in Resources */,
+				565EBD4A25496D2A0056E565 /* eiffel-on.png in Resources */,
+				56540E022558E97C0093EE13 /* shanghai-pearl-tower.png in Resources */,
+				56540E082558E97C0093EE13 /* great-wall.png in Resources */,
+				56540E032558E97C0093EE13 /* taj-mahal.png in Resources */,
+				565EBD4B25496D2A0056E565 /* mark-off@2x.png in Resources */,
+				56540E2A255A7A840093EE13 /* icons8-donald-trump-96.png in Resources */,
+				565EBD4625496D2A0056E565 /* eiffel-off.png in Resources */,
+				56540E122558E97C0093EE13 /* venice-canal-color.png in Resources */,
+				56540E182558E97C0093EE13 /* orthodox-church-color.png in Resources */,
+				56540E2E255A7A840093EE13 /* icons8-venus-de-milo-96.png in Resources */,
+				56540DFC2558E97C0093EE13 /* tiananmen.png in Resources */,
+				56540E0F2558E97C0093EE13 /* 25-de-abril-bridge-color.png in Resources */,
+				56540E0A2558E97C0093EE13 /* downtown.png in Resources */,
+				56540E012558E97C0093EE13 /* pagoda.png in Resources */,
+				56540E2C255A7A840093EE13 /* icons8-william-shakespeare-100.png in Resources */,
+				56540E32255A89220093EE13 /* me.png in Resources */,
+				56540DFF2558E97C0093EE13 /* brandenburg-gate-color.png in Resources */,
+				56540E172558E97C0093EE13 /* colosseum.png in Resources */,
+				56540E162558E97C0093EE13 /* orthodox-church.png in Resources */,
+				56540DF92558E97C0093EE13 /* budapest.png in Resources */,
+				56540E072558E97C0093EE13 /* great-wall-color.png in Resources */,
+				56540E152558E97C0093EE13 /* statue-of-liberty.png in Resources */,
+				565EBD4825496D2A0056E565 /* mark-on@2x.png in Resources */,
+				56540E0E2558E97C0093EE13 /* icons8-search-50.png in Resources */,
+				56540DFD2558E97C0093EE13 /* taipei-towers.png in Resources */,
+				56540E102558E97C0093EE13 /* taj-mahal-color.png in Resources */,
+				565EBD4425496D2A0056E565 /* edvard-munch-off@2x.png in Resources */,
+				56540DFA2558E97C0093EE13 /* us-capitol.png in Resources */,
+				56540E0C2558E97C0093EE13 /* berlin-tv-tower.png in Resources */,
+				56540E2D255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png in Resources */,
+				565EBD4925496D2A0056E565 /* search-on@2x.png in Resources */,
+				565EBD4725496D2A0056E565 /* search-off@2x.png in Resources */,
+				56540E0D2558E97C0093EE13 /* colosseum-color.png in Resources */,
+				56540E112558E97C0093EE13 /* 25-de-abril-bridge.png in Resources */,
+				56540DFE2558E97C0093EE13 /* brandenburg-gate.png in Resources */,
+				56540DFB2558E97C0093EE13 /* pagoda-2.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		565EBCED2548619C0056E565 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				565EBD352549619F0056E565 /* FindViewController.m in Sources */,
+				565EBD19254929FD0056E565 /* ThirdTestController.m in Sources */,
+				565EBD15254929D90056E565 /* FirstTestController.m in Sources */,
+				565EBD13254865FF0056E565 /* TabBarController.m in Sources */,
+				565EBCF92548619C0056E565 /* ViewController.m in Sources */,
+				565EBD53254972F50056E565 /* InsertViewController.m in Sources */,
+				565EBD562549B3730056E565 /* LogInViewController.m in Sources */,
+				56540E21255975870093EE13 /* DetailViewController.m in Sources */,
+				565EBD042548619D0056E565 /* main.m in Sources */,
+				565EBCF62548619C0056E565 /* AppDelegate.m in Sources */,
+				565EBD17254929F00056E565 /* SecondTestController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		565EBCFF2548619D0056E565 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				565EBD002548619D0056E565 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		565EBD052548619D0056E565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		565EBD062548619D0056E565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		565EBD082548619D0056E565 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = hw2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lab123.hw2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		565EBD092548619D0056E565 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = hw2/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = lab123.hw2;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		565EBCEC2548619C0056E565 /* Build configuration list for PBXProject "hw2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				565EBD052548619D0056E565 /* Debug */,
+				565EBD062548619D0056E565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		565EBD072548619D0056E565 /* Build configuration list for PBXNativeTarget "hw2" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				565EBD082548619D0056E565 /* Debug */,
+				565EBD092548619D0056E565 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 565EBCE92548619C0056E565 /* Project object */;
+}
