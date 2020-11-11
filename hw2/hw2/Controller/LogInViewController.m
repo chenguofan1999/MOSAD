@@ -63,7 +63,6 @@
     // 清除之前的子控件
     [self.view.subviews makeObjectsPerformSelector:@selector(removeFromSuperview)];
     
-    
     // 登录后的界面
     int w = self.view.bounds.size.width;
     int h = self.view.bounds.size.height;

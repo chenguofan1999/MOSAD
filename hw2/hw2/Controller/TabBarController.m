@@ -8,9 +8,6 @@
 
 #import <Foundation/Foundation.h>
 #import "TabBarController.h"
-#import "FirstTestController.h"
-#import "SecondTestController.h"
-#import "ThirdTestController.h"
 #import "FindViewController.h"
 #import "InsertViewController.h"
 #import "LogInViewController.h"

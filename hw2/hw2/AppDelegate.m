@@ -100,18 +100,12 @@
         "By chance, or nature's changing course, untrimmed;\n"
         "But thy eternal summer shall not fade,\n"
         "Nor lose possession of that fair thou ow'st,\n"
-        "Nor shall death brag thou wand’rest in his shade,\n"
-        "When in eternal lines to Time thou grow'st.\n"
-        "So long as men can breathe, or eyes can see,\n"
-        "So long lives this, and this gives life to thee.\n";
+        "Nor shall death brag thou wand’rest in his shade...\n";
         
         NSMutableArray *pics = [[NSMutableArray alloc] init];
-        [pics addObject:imageList[rand]];
-        [pics addObject:imageList[rand]];
-        [pics addObject:imageList[rand]];
-        [pics addObject:imageList[rand]];
-        [pics addObject:imageList[rand]];
-        
+        for(int j = 0; j < 5; j++)
+            [pics addObject:imageList[rand]];
+
         Item *thisItem = [[Item alloc] initWithDate:date
                                         andLocation:location
                                             andSpot:spot
@@ -204,9 +198,5 @@
     return [NSString stringWithFormat:@"%@: %@ of %@", _date, _spot, _location];
 }
 
--(NSString*)getDetailedInfo
-{
-    return [NSString stringWithFormat:@"%@\n\n%@ of %@\n\n%@", _date, _spot, _location, _thoughts];
-}
 
 @end

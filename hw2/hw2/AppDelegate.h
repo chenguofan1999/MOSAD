@@ -33,7 +33,6 @@
                  andThoughts:(NSString*)thoughts
                      andPics:(NSMutableArray*)pics
                      andIcon:(UIImage*)icon;
--(NSString*)getDetailedInfo;
 -(NSString*)getBriefInfo;
 
 
