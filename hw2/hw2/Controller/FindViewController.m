@@ -45,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"打卡清单"]];
+    [self.navigationItem setTitle:@"打卡清单"];
     // 延迟加载搜索框
     [self.view addSubview:self.searchBar];
     self.tableView.tableHeaderView = self.searchBar;

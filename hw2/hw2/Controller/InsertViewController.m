@@ -135,7 +135,12 @@
         
         [self.view addSubview:_picView];
         
-
+        
+        
+        // imagePicker 的初始化
+        _imagePicker = [[UIImagePickerController alloc] init];
+        _imagePicker.delegate = self;
+        _imagePicker.allowsEditing = YES;
     }
     return self;
 }
@@ -218,10 +223,6 @@
 #pragma mark 选择图片
 -(void)choosePic
 {
-    self.imagePicker = [[UIImagePickerController alloc] init];
-    self.imagePicker.delegate = self;
-    self.imagePicker.allowsEditing = YES;
-    
     UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
     
     
@@ -238,7 +239,6 @@
     [actionSheet addAction:cancelAction];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
-    [self presentViewController:_imagePicker animated:YES completion:nil];
 }
 
 // 对选中图片的处理

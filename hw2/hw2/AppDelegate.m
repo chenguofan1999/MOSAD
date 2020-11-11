@@ -19,8 +19,9 @@
 @implementation AppDelegate
 
 
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+
     [self initializeData];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
     
@@ -63,21 +64,28 @@
                               @"Paris",
                               @"The US"];
     
-    NSArray *imageList = @[[UIImage imageNamed:@"venice-canal-color.png"],
-                           [UIImage imageNamed:@"brandenburg-gate-color.png"],
-                           [UIImage imageNamed:@"statue-of-liberty-color.png"],
-                           [UIImage imageNamed:@"big-ben-color.png"],
-                           [UIImage imageNamed:@"us-capitol-color.png"],
-                           [UIImage imageNamed:@"orthodox-church-color.png"],
-                           [UIImage imageNamed:@"colosseum-color.png"],
-                           [UIImage imageNamed:@"25-de-abril-bridge-color.png"],
-                           [UIImage imageNamed:@"tower-of-pisa-color.png"],
-                           [UIImage imageNamed:@"taipei-towers-color.png"],
-                           [UIImage imageNamed:@"eiffel-tower-color.png"],
-                           [UIImage imageNamed:@"yellowstone.png"]];
+    NSArray *iconList = @[[UIImage imageNamed:@"venice-canal-color.png"],
+                          [UIImage imageNamed:@"brandenburg-gate-color.png"],
+                          [UIImage imageNamed:@"statue-of-liberty-color.png"],
+                          [UIImage imageNamed:@"big-ben-color.png"],
+                          [UIImage imageNamed:@"us-capitol-color.png"],
+                          [UIImage imageNamed:@"orthodox-church-color.png"],
+                          [UIImage imageNamed:@"colosseum-color.png"],
+                          [UIImage imageNamed:@"25-de-abril-bridge-color.png"],
+                          [UIImage imageNamed:@"tower-of-pisa-color.png"],
+                          [UIImage imageNamed:@"taipei-towers-color.png"],
+                          [UIImage imageNamed:@"eiffel-tower-color.png"],
+                          [UIImage imageNamed:@"yellowstone.png"]];
+    
+    NSArray *imgList = @[[UIImage imageNamed:@"visa-stamp-96.png"],
+                         [UIImage imageNamed:@"airplane-landing-96.png"],
+                         [UIImage imageNamed:@"suitcase-96.png"],
+                         [UIImage imageNamed:@"hotel-building-96.png"],
+                         [UIImage imageNamed:@"hamburger-96.png"]];
     
     NSArray *monthList = @[@"Jan", @"Feb", @"Mar", @"Apr", @"May", @"Jun",
                            @"Jul", @"Aug", @"Sep", @"Oct", @"Nov", @"Dec"];
+    
     
     _items = [[NSMutableArray alloc] init];
     
@@ -104,14 +112,14 @@
         
         NSMutableArray *pics = [[NSMutableArray alloc] init];
         for(int j = 0; j < 5; j++)
-            [pics addObject:imageList[rand]];
+            [pics addObject:imgList[j]];
 
         Item *thisItem = [[Item alloc] initWithDate:date
                                         andLocation:location
                                             andSpot:spot
                                         andThoughts:thoughts
                                             andPics:pics
-                                            andIcon:imageList[rand]];
+                                            andIcon:iconList[rand]];
         [_items addObject:thisItem];
     }
     
