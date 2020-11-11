@@ -14,7 +14,7 @@
 
 @property (strong, nonatomic) UIWindow *window;
 @property (nonatomic) NSMutableArray *items;
-
+-(void)sortItems;
 @end
 
 
@@ -35,5 +35,6 @@
                      andIcon:(UIImage*)icon;
 -(NSString*)getDetailedInfo;
 -(NSString*)getBriefInfo;
+
 
 @end

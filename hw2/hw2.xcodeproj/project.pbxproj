@@ -47,8 +47,10 @@
 		56540E2D255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */; };
 		56540E2E255A7A840093EE13 /* icons8-venus-de-milo-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */; };
 		56540E32255A89220093EE13 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E31255A89220093EE13 /* me.png */; };
+		56540E39255BC82F0093EE13 /* yellowstone.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E36255BC82F0093EE13 /* yellowstone.png */; };
+		56540E3A255BC82F0093EE13 /* rheinturm.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E37255BC82F0093EE13 /* rheinturm.png */; };
+		56540E3B255BC82F0093EE13 /* eiffel-tower-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E38255BC82F0093EE13 /* eiffel-tower-color.png */; };
 		565EBCF62548619C0056E565 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBCF52548619C0056E565 /* AppDelegate.m */; };
-		565EBCF92548619C0056E565 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBCF82548619C0056E565 /* ViewController.m */; };
 		565EBCFE2548619D0056E565 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 565EBCFD2548619D0056E565 /* Assets.xcassets */; };
 		565EBD012548619D0056E565 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 565EBCFF2548619D0056E565 /* LaunchScreen.storyboard */; };
 		565EBD042548619D0056E565 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD032548619D0056E565 /* main.m */; };
@@ -113,11 +115,12 @@
 		56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-kawaii-dinosaur-96.png"; sourceTree = "<group>"; };
 		56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-venus-de-milo-96.png"; sourceTree = "<group>"; };
 		56540E31255A89220093EE13 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
+		56540E36255BC82F0093EE13 /* yellowstone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowstone.png; sourceTree = "<group>"; };
+		56540E37255BC82F0093EE13 /* rheinturm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rheinturm.png; sourceTree = "<group>"; };
+		56540E38255BC82F0093EE13 /* eiffel-tower-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eiffel-tower-color.png"; sourceTree = "<group>"; };
 		565EBCF12548619C0056E565 /* hw2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = hw2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		565EBCF42548619C0056E565 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		565EBCF52548619C0056E565 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		565EBCF72548619C0056E565 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		565EBCF82548619C0056E565 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		565EBCFD2548619D0056E565 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		565EBD002548619D0056E565 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		565EBD022548619D0056E565 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -183,8 +186,6 @@
 				565EBD0A254862C90056E565 /* Controller */,
 				565EBCF42548619C0056E565 /* AppDelegate.h */,
 				565EBCF52548619C0056E565 /* AppDelegate.m */,
-				565EBCF72548619C0056E565 /* ViewController.h */,
-				565EBCF82548619C0056E565 /* ViewController.m */,
 				565EBCFD2548619D0056E565 /* Assets.xcassets */,
 				565EBCFF2548619D0056E565 /* LaunchScreen.storyboard */,
 				565EBD022548619D0056E565 /* Info.plist */,
@@ -226,6 +227,9 @@
 		565EBD3725496D2A0056E565 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				56540E38255BC82F0093EE13 /* eiffel-tower-color.png */,
+				56540E37255BC82F0093EE13 /* rheinturm.png */,
+				56540E36255BC82F0093EE13 /* yellowstone.png */,
 				56540E31255A89220093EE13 /* me.png */,
 				56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */,
 				56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */,
@@ -350,11 +354,13 @@
 				56540E042558E97C0093EE13 /* tower-of-pisa-color.png in Resources */,
 				56540E092558E97C0093EE13 /* icons8-bike-parking-50.png in Resources */,
 				56540E0B2558E97C0093EE13 /* big-ben.png in Resources */,
+				56540E3B255BC82F0093EE13 /* eiffel-tower-color.png in Resources */,
 				565EBD4325496D2A0056E565 /* user-on@2x.png in Resources */,
 				565EBD4A25496D2A0056E565 /* eiffel-on.png in Resources */,
 				56540E022558E97C0093EE13 /* shanghai-pearl-tower.png in Resources */,
 				56540E082558E97C0093EE13 /* great-wall.png in Resources */,
 				56540E032558E97C0093EE13 /* taj-mahal.png in Resources */,
+				56540E39255BC82F0093EE13 /* yellowstone.png in Resources */,
 				565EBD4B25496D2A0056E565 /* mark-off@2x.png in Resources */,
 				56540E2A255A7A840093EE13 /* icons8-donald-trump-96.png in Resources */,
 				565EBD4625496D2A0056E565 /* eiffel-off.png in Resources */,
@@ -375,6 +381,7 @@
 				56540E152558E97C0093EE13 /* statue-of-liberty.png in Resources */,
 				565EBD4825496D2A0056E565 /* mark-on@2x.png in Resources */,
 				56540E0E2558E97C0093EE13 /* icons8-search-50.png in Resources */,
+				56540E3A255BC82F0093EE13 /* rheinturm.png in Resources */,
 				56540DFD2558E97C0093EE13 /* taipei-towers.png in Resources */,
 				56540E102558E97C0093EE13 /* taj-mahal-color.png in Resources */,
 				565EBD4425496D2A0056E565 /* edvard-munch-off@2x.png in Resources */,
@@ -401,7 +408,6 @@
 				565EBD19254929FD0056E565 /* ThirdTestController.m in Sources */,
 				565EBD15254929D90056E565 /* FirstTestController.m in Sources */,
 				565EBD13254865FF0056E565 /* TabBarController.m in Sources */,
-				565EBCF92548619C0056E565 /* ViewController.m in Sources */,
 				565EBD53254972F50056E565 /* InsertViewController.m in Sources */,
 				565EBD562549B3730056E565 /* LogInViewController.m in Sources */,
 				56540E21255975870093EE13 /* DetailViewController.m in Sources */,

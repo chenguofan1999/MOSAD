@@ -25,23 +25,25 @@
     Item *thisItem = [myDelegate.items objectAtIndex:i];
     
     // 上半部分，文字view
-    _textView = [[UIView alloc] initWithFrame:CGRectMake(60, 120, w - 40, h / 2 - 120)];
-    UILabel *info = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, w - 60, h / 2 - 140)];
+    _textView = [[UIView alloc] initWithFrame:CGRectMake(40, 120, w - 60, h / 2 - 30)];
+    UILabel *info = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w - 60, h / 2 - 30)];
     info.text = [thisItem getDetailedInfo];
     info.textAlignment = NSTextAlignmentNatural;
-    info.numberOfLines = 15;
+    info.numberOfLines = 22;
     [_textView addSubview:info];
-    //info.backgroundColor = [UIColor brownColor];
-    //_textView.backgroundColor = [UIColor redColor];
+//    info.backgroundColor = [UIColor brownColor];
+//    _textView.backgroundColor = [UIColor redColor];
     [self.view addSubview:_textView];
     
-    _picView = [[UIView alloc]initWithFrame:CGRectMake(40, h / 2 + 10, w - 40, h / 2 - 120)];
-    NSArray *picFrames = @[[NSValue valueWithCGRect:CGRectMake(20, 20, 70, 70)],
-                   [NSValue valueWithCGRect:CGRectMake(130, 20, 70, 70)],
-                   [NSValue valueWithCGRect:CGRectMake(240, 20, 70, 70)],
-                   [NSValue valueWithCGRect:CGRectMake(20, 130, 70, 70)],
-                   [NSValue valueWithCGRect:CGRectMake(130, 130, 70, 70)],
-                   [NSValue valueWithCGRect:CGRectMake(240, 130, 70, 70)]];
+    int a = 40; // 图片间隔
+    int d = (w - 160) / 3; // 图片边长
+    _picView = [[UIView alloc]initWithFrame:CGRectMake(a, h / 2 + 105, w - 2 * a, h / 2 - 110)];
+    NSArray *picFrames = @[[NSValue valueWithCGRect:CGRectMake(0, 0, d, d)],
+                   [NSValue valueWithCGRect:CGRectMake(a + d, 0, d, d)],
+                   [NSValue valueWithCGRect:CGRectMake(2*(a+d), 0, d, d)],
+                   [NSValue valueWithCGRect:CGRectMake(0, a + d, d, d)],
+                   [NSValue valueWithCGRect:CGRectMake(a+d, a + d, d, d)],
+                   [NSValue valueWithCGRect:CGRectMake(2*(a+d), a + d, d, d)]];
     
     // 下半部分，图片view
     for(int j = 0; j < [thisItem.pics count]; j++)

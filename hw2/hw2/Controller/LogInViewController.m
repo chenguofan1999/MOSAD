@@ -24,12 +24,10 @@
         
         // 设置 tab 栏样式
         self.tabBarItem.title = @"我的";
-        UIImage *icon1 = [UIImage imageNamed:@"user-off@2x.png"];
-        self.tabBarItem.image = icon1;
-        UIImage *icon2 = [UIImage imageNamed:@"user-on@2x.png"];
-        self.tabBarItem.selectedImage = icon2;
+        self.tabBarItem.image = [UIImage imageNamed:@"user-off@2x.png"];
+        self.tabBarItem.selectedImage = [UIImage imageNamed:@"user-on@2x.png"];
         
-        // 登录界面样式
+        // 未登录时的样式
         self.view.backgroundColor = [UIColor whiteColor];
         
         UIView *unlogedView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, w, h)];
@@ -39,6 +37,7 @@
 
         logInButton.layer.cornerRadius = 80;
         logInButton.backgroundColor = [UIColor lightGrayColor];
+        
         // 用阴影做渐变色
         logInButton.layer.shadowColor = [UIColor blackColor].CGColor;
         logInButton.layer.shadowOffset =  CGSizeMake(0, 0);
@@ -53,7 +52,6 @@
         
         [unlogedView addSubview:logInButton];
         [self.view addSubview:unlogedView];
-
 
     }
     return self;
@@ -86,15 +84,6 @@
 }
 
 
-
-//- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-//{
-//    [super touchesBegan:touches withEvent:event];
-//
-//    NSLog(@"开始触摸");
-//}
-
-
 #pragma mark - UITableViewDataSource
 // 返回 section 的个数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -105,14 +94,14 @@
 // 返回每个 Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return section == 0 ? 3 : 4;
+    if(section == 0)return 3;
+    else return 4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                                    reuseIdentifier:nil];
-    //cell.textLabel.text = [NSString stringWithFormat:@"row %ld",indexPath.row];
     switch(indexPath.section)
     {
         case 0:
@@ -172,11 +161,12 @@
     return 40;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger i = 3 * indexPath.section + indexPath.row;
     switch (i) {
         case 4:
-            [self Alert:@"我们并不关心你的隐私"];
+            [self Alert:@"我们不关心你的隐私"];
             break;
         case 5:
             [self Alert:@"已清除缓存"];
@@ -190,7 +180,8 @@
     }
 }
 
-- (void)Alert:(NSString *)msg {
+- (void)Alert:(NSString *)msg
+{
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
                                                                    message:msg
                                                             preferredStyle:UIAlertControllerStyleAlert];

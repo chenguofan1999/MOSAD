@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "InsertViewController.h"
 #import "FindViewController.h"
+#import "DetailViewController.h"
 #import "AppDelegate.h"
 
 @interface InsertViewController()
@@ -151,9 +152,14 @@
 {
     // 读取文本框数据
     NSString *date = [_timeTextField text];
-    if([date isEqualToString:@""])
+    NSArray *legal = @[@"Jan ", @"Feb ", @"Mar ", @"Apr ", @"May ", @"Jun ",
+                       @"Jul ", @"Aug ", @"Sep ", @"Oct ", @"Nov ", @"Dec "];
+    if([date length] < 5
+       || [date length] > 6
+       || ![legal containsObject:[date substringWithRange:NSMakeRange(0, 4)]]
+       || ([date length] == 6 && [[date substringWithRange:NSMakeRange(4, 2)] intValue] > 31))
     {
-        [self Alert:@"请输入日期"];
+        [self Alert:@"请输入正确格式的日期, 如：Jan 21"];
         return;
     }
     
@@ -163,8 +169,8 @@
         [self Alert:@"请输入地点（城市、国家、地区）"];
         return;
     }
-    NSString *spot = [_siteTextField text];
     
+    NSString *spot = [_siteTextField text];
     if([spot isEqualToString:@""])
     {
         [self Alert:@"请输入地点（景点、场所）"];
@@ -177,24 +183,37 @@
     
     // 提交数据
     AppDelegate *myDelegate = (AppDelegate*)[UIApplication sharedApplication].delegate;
-    [myDelegate.items insertObject:[[Item alloc]initWithDate:date
-                                                 andLocation:location
-                                                     andSpot:spot
-                                                 andThoughts:thoughts
-                                                     andPics:_picCache
-                                                     andIcon:displayedInFindView] atIndex:0];
-    
+    [myDelegate.items addObject:[[Item alloc]initWithDate:date
+                                              andLocation:location
+                                                  andSpot:spot
+                                              andThoughts:thoughts
+                                                  andPics:_picCache
+                                                  andIcon:displayedInFindView]];
+    // 按时间倒序排序
+    [myDelegate sortItems];
     
     // 清空图片缓存
     _picCache = [[NSMutableArray alloc]init];
     
     // 提示已发布
-    [self Alert:@"已发布"];
+    [self Alert:@"发布成功"];
     
     // 跳到 find 页面
     [self.tabBarController setSelectedIndex:0];
     
+    
 }
+
+- (void)Alert:(NSString *)msg {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
+}
+
 
 #pragma mark 选择图片
 -(void)choosePic
@@ -226,6 +245,7 @@
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<UIImagePickerControllerInfoKey,id> *)info
 {
     [picker dismissViewControllerAnimated:YES completion:nil];
+    
     // selectedImage 即为选中的照片
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
     NSInteger n = [_picCache count];
@@ -243,17 +263,4 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
-
-
-- (void)Alert:(NSString *)msg {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
-                                                                   message:msg
-                                                            preferredStyle:UIAlertControllerStyleAlert];
-    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
-    
-    // 显示对话框
-    [self presentViewController:alert animated:true completion:nil];
-}
-
-
 @end

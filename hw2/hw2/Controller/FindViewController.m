@@ -35,7 +35,6 @@
         self.tabBarItem.selectedImage = icon2;
         
         // 设置 table 样式
-        
         self.tableView.estimatedRowHeight = 70.0;
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.navigationItem.hidesSearchBarWhenScrolling = YES;
@@ -46,7 +45,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    [self.navigationItem setTitle:[NSString stringWithFormat:@"打卡清单"]];
     // 延迟加载搜索框
     [self.view addSubview:self.searchBar];
     self.tableView.tableHeaderView = self.searchBar;
@@ -55,11 +54,17 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.navigationItem setTitle:[NSString stringWithFormat:@"打卡清单"]];
+    
+//    AppDelegate *myDelegate = (AppDelegate *)[UIApplication sharedApplication].delegate;
+//    [myDelegate sortItems];
+    
+    // 注意 每一次显示发现页面时需要重新加载数据源
     [self.tableView reloadData];
 }
 
-// 延迟加载
+
+#pragma mark 搜索栏样式
+// 延迟加载搜索栏
 - (UISearchBar *)searchBar
 {
     if(!_searchBar)
@@ -74,6 +79,31 @@
     return _searchBar;
 }
 
+/**
+ *  生成图片
+ *
+ *  @param color  图片颜色
+ *  @param height 图片高度
+ *
+ *  @return 生成的图片
+ *  （这里用于生成透明背景图，去掉搜索框的背景色）
+ */
++ (UIImage*) GetImageWithColor:(UIColor*)color Height:(CGFloat)height
+{
+    CGRect r= CGRectMake(0.0f, 0.0f, 1.0f, height);
+    UIGraphicsBeginImageContext(r.size);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, r);
+    
+    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return img;
+}
+
+#pragma mark 搜索栏功能
 // 按下搜索时
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -82,8 +112,7 @@
     NSInteger n = [myDelegate.items count];
     for(int i = 0; i < n; i++)
     {
-        Item *thisItem = [myDelegate.items objectAtIndex:i];
-        NSString *brief = [thisItem getBriefInfo];
+        NSString *brief = [[myDelegate.items objectAtIndex:i] getBriefInfo];
         if([brief rangeOfString:input].location != NSNotFound)
         {
             [self foundAt:i withBrief:brief];
@@ -121,29 +150,7 @@
     [self presentViewController:alert animated:true completion:nil];
 }
 
-/**
- *  生成图片
- *
- *  @param color  图片颜色
- *  @param height 图片高度
- *
- *  @return 生成的图片
- *  （这里用于生成透明背景图，去掉搜索框的背景色）
- */
-+ (UIImage*) GetImageWithColor:(UIColor*)color Height:(CGFloat)height
-{
-    CGRect r= CGRectMake(0.0f, 0.0f, 1.0f, height);
-    UIGraphicsBeginImageContext(r.size);
-    CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [color CGColor]);
-    CGContextFillRect(context, r);
-    
-    UIImage *img = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return img;
-}
+
 
 
 #pragma mark - UITableViewDataSource
@@ -187,5 +194,23 @@
     DetailViewController *dvc = [[DetailViewController alloc] initWithIndex:(int)i];
     [self.navigationController pushViewController:dvc animated:YES];
 }
+
+#pragma mark 动画 和 边框
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//
+//    // 一开始比较小
+//    cell.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1);
+//
+//    // 动画时间为0.5秒,缩放回正常大小
+//    [UIView animateWithDuration:0.5 animations:^{cell.layer.transform = CATransform3DMakeScale(1, 1, 1);}];
+//
+//
+//    // 边框
+//    [cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+//    [cell.contentView.layer setBorderWidth:0.5];
+//    cell.contentView.layer.cornerRadius = 10;
+//    cell.contentView.layer.masksToBounds = YES;
+//}
 
 @end
