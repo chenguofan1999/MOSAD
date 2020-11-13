@@ -14,8 +14,8 @@
             filePath = "hw2/Controller/InsertViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "192"
-            endingLineNumber = "192"
+            startingLineNumber = "197"
+            endingLineNumber = "197"
             landmarkName = "-releaseData"
             landmarkType = "7">
          </BreakpointContent>
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "-getDetailedInfo"
+            landmarkName = "-getBriefInfo"
             landmarkType = "6">
          </BreakpointContent>
       </BreakpointProxy>

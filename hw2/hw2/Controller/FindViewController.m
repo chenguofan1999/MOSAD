@@ -195,13 +195,11 @@
 #pragma mark 动画 和 边框
 //- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//
 //    // 一开始比较小
 //    cell.layer.transform = CATransform3DMakeScale(0.4, 0.4, 1);
 //
 //    // 动画时间为0.5秒,缩放回正常大小
 //    [UIView animateWithDuration:0.5 animations:^{cell.layer.transform = CATransform3DMakeScale(1, 1, 1);}];
-//
 //
 //    // 边框
 //    [cell.contentView.layer setBorderColor:[UIColor lightGrayColor].CGColor];

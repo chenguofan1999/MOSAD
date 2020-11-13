@@ -7,22 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		562A513E255C4C7B0035EB76 /* hamburger-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 562A5139255C4C7A0035EB76 /* hamburger-96.png */; };
+		562A513F255C4C7B0035EB76 /* visa-stamp-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 562A513A255C4C7A0035EB76 /* visa-stamp-96.png */; };
+		562A5140255C4C7B0035EB76 /* hotel-building-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 562A513B255C4C7A0035EB76 /* hotel-building-96.png */; };
+		562A5141255C4C7B0035EB76 /* suitcase-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 562A513C255C4C7B0035EB76 /* suitcase-96.png */; };
+		562A5142255C4C7B0035EB76 /* airplane-landing-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 562A513D255C4C7B0035EB76 /* airplane-landing-96.png */; };
 		56540DF92558E97C0093EE13 /* budapest.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD72558E97B0093EE13 /* budapest.png */; };
 		56540DFA2558E97C0093EE13 /* us-capitol.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD82558E97B0093EE13 /* us-capitol.png */; };
-		56540DFB2558E97C0093EE13 /* pagoda-2.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DD92558E97B0093EE13 /* pagoda-2.png */; };
 		56540DFC2558E97C0093EE13 /* tiananmen.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDA2558E97B0093EE13 /* tiananmen.png */; };
 		56540DFD2558E97C0093EE13 /* taipei-towers.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDB2558E97B0093EE13 /* taipei-towers.png */; };
 		56540DFE2558E97C0093EE13 /* brandenburg-gate.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDC2558E97B0093EE13 /* brandenburg-gate.png */; };
 		56540DFF2558E97C0093EE13 /* brandenburg-gate-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDD2558E97B0093EE13 /* brandenburg-gate-color.png */; };
 		56540E002558E97C0093EE13 /* tower-of-pisa.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDE2558E97B0093EE13 /* tower-of-pisa.png */; };
-		56540E012558E97C0093EE13 /* pagoda.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DDF2558E97B0093EE13 /* pagoda.png */; };
 		56540E022558E97C0093EE13 /* shanghai-pearl-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */; };
 		56540E032558E97C0093EE13 /* taj-mahal.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE12558E97B0093EE13 /* taj-mahal.png */; };
 		56540E042558E97C0093EE13 /* tower-of-pisa-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE22558E97B0093EE13 /* tower-of-pisa-color.png */; };
 		56540E052558E97C0093EE13 /* us-capitol-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE32558E97B0093EE13 /* us-capitol-color.png */; };
 		56540E062558E97C0093EE13 /* statue-of-liberty-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */; };
-		56540E072558E97C0093EE13 /* great-wall-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE52558E97C0093EE13 /* great-wall-color.png */; };
-		56540E082558E97C0093EE13 /* great-wall.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE62558E97C0093EE13 /* great-wall.png */; };
 		56540E092558E97C0093EE13 /* icons8-bike-parking-50.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE72558E97C0093EE13 /* icons8-bike-parking-50.png */; };
 		56540E0A2558E97C0093EE13 /* downtown.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE82558E97C0093EE13 /* downtown.png */; };
 		56540E0B2558E97C0093EE13 /* big-ben.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DE92558E97C0093EE13 /* big-ben.png */; };
@@ -41,11 +42,7 @@
 		56540E192558E97C0093EE13 /* taipei-towers-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF72558E97C0093EE13 /* taipei-towers-color.png */; };
 		56540E1A2558E97C0093EE13 /* cn-tower.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540DF82558E97C0093EE13 /* cn-tower.png */; };
 		56540E21255975870093EE13 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56540E20255975870093EE13 /* DetailViewController.m */; };
-		56540E2A255A7A840093EE13 /* icons8-donald-trump-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */; };
-		56540E2B255A7A840093EE13 /* icons8-edvard-munch-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */; };
 		56540E2C255A7A840093EE13 /* icons8-william-shakespeare-100.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */; };
-		56540E2D255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */; };
-		56540E2E255A7A840093EE13 /* icons8-venus-de-milo-96.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */; };
 		56540E32255A89220093EE13 /* me.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E31255A89220093EE13 /* me.png */; };
 		56540E39255BC82F0093EE13 /* yellowstone.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E36255BC82F0093EE13 /* yellowstone.png */; };
 		56540E3A255BC82F0093EE13 /* rheinturm.png in Resources */ = {isa = PBXBuildFile; fileRef = 56540E37255BC82F0093EE13 /* rheinturm.png */; };
@@ -58,8 +55,6 @@
 		565EBD352549619F0056E565 /* FindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565EBD342549619F0056E565 /* FindViewController.m */; };
 		565EBD4225496D2A0056E565 /* user-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3825496D2A0056E565 /* user-off@2x.png */; };
 		565EBD4325496D2A0056E565 /* user-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3925496D2A0056E565 /* user-on@2x.png */; };
-		565EBD4425496D2A0056E565 /* edvard-munch-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */; };
-		565EBD4525496D2A0056E565 /* edvard-munch-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */; };
 		565EBD4625496D2A0056E565 /* eiffel-off.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3C25496D2A0056E565 /* eiffel-off.png */; };
 		565EBD4725496D2A0056E565 /* search-off@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3D25496D2A0056E565 /* search-off@2x.png */; };
 		565EBD4825496D2A0056E565 /* mark-on@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 565EBD3E25496D2A0056E565 /* mark-on@2x.png */; };
@@ -77,22 +72,23 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		562A5139255C4C7A0035EB76 /* hamburger-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hamburger-96.png"; sourceTree = "<group>"; };
+		562A513A255C4C7A0035EB76 /* visa-stamp-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "visa-stamp-96.png"; sourceTree = "<group>"; };
+		562A513B255C4C7A0035EB76 /* hotel-building-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "hotel-building-96.png"; sourceTree = "<group>"; };
+		562A513C255C4C7B0035EB76 /* suitcase-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "suitcase-96.png"; sourceTree = "<group>"; };
+		562A513D255C4C7B0035EB76 /* airplane-landing-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "airplane-landing-96.png"; sourceTree = "<group>"; };
 		56540DD72558E97B0093EE13 /* budapest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = budapest.png; sourceTree = "<group>"; };
 		56540DD82558E97B0093EE13 /* us-capitol.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "us-capitol.png"; sourceTree = "<group>"; };
-		56540DD92558E97B0093EE13 /* pagoda-2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pagoda-2.png"; sourceTree = "<group>"; };
 		56540DDA2558E97B0093EE13 /* tiananmen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tiananmen.png; sourceTree = "<group>"; };
 		56540DDB2558E97B0093EE13 /* taipei-towers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taipei-towers.png"; sourceTree = "<group>"; };
 		56540DDC2558E97B0093EE13 /* brandenburg-gate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brandenburg-gate.png"; sourceTree = "<group>"; };
 		56540DDD2558E97B0093EE13 /* brandenburg-gate-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "brandenburg-gate-color.png"; sourceTree = "<group>"; };
 		56540DDE2558E97B0093EE13 /* tower-of-pisa.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tower-of-pisa.png"; sourceTree = "<group>"; };
-		56540DDF2558E97B0093EE13 /* pagoda.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pagoda.png; sourceTree = "<group>"; };
 		56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "shanghai-pearl-tower.png"; sourceTree = "<group>"; };
 		56540DE12558E97B0093EE13 /* taj-mahal.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "taj-mahal.png"; sourceTree = "<group>"; };
 		56540DE22558E97B0093EE13 /* tower-of-pisa-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tower-of-pisa-color.png"; sourceTree = "<group>"; };
 		56540DE32558E97B0093EE13 /* us-capitol-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "us-capitol-color.png"; sourceTree = "<group>"; };
 		56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statue-of-liberty-color.png"; sourceTree = "<group>"; };
-		56540DE52558E97C0093EE13 /* great-wall-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "great-wall-color.png"; sourceTree = "<group>"; };
-		56540DE62558E97C0093EE13 /* great-wall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "great-wall.png"; sourceTree = "<group>"; };
 		56540DE72558E97C0093EE13 /* icons8-bike-parking-50.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-bike-parking-50.png"; sourceTree = "<group>"; };
 		56540DE82558E97C0093EE13 /* downtown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = downtown.png; sourceTree = "<group>"; };
 		56540DE92558E97C0093EE13 /* big-ben.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "big-ben.png"; sourceTree = "<group>"; };
@@ -112,11 +108,7 @@
 		56540DF82558E97C0093EE13 /* cn-tower.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "cn-tower.png"; sourceTree = "<group>"; };
 		56540E1F255975710093EE13 /* DetailViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
 		56540E20255975870093EE13 /* DetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
-		56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-donald-trump-96.png"; sourceTree = "<group>"; };
-		56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-edvard-munch-96.png"; sourceTree = "<group>"; };
 		56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-william-shakespeare-100.png"; sourceTree = "<group>"; };
-		56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-kawaii-dinosaur-96.png"; sourceTree = "<group>"; };
-		56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icons8-venus-de-milo-96.png"; sourceTree = "<group>"; };
 		56540E31255A89220093EE13 /* me.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = me.png; sourceTree = "<group>"; };
 		56540E36255BC82F0093EE13 /* yellowstone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = yellowstone.png; sourceTree = "<group>"; };
 		56540E37255BC82F0093EE13 /* rheinturm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = rheinturm.png; sourceTree = "<group>"; };
@@ -133,8 +125,6 @@
 		565EBD36254961B40056E565 /* FindViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FindViewController.h; sourceTree = "<group>"; };
 		565EBD3825496D2A0056E565 /* user-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-off@2x.png"; sourceTree = "<group>"; };
 		565EBD3925496D2A0056E565 /* user-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user-on@2x.png"; sourceTree = "<group>"; };
-		565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edvard-munch-off@2x.png"; sourceTree = "<group>"; };
-		565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "edvard-munch-on@2x.png"; sourceTree = "<group>"; };
 		565EBD3C25496D2A0056E565 /* eiffel-off.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "eiffel-off.png"; sourceTree = "<group>"; };
 		565EBD3D25496D2A0056E565 /* search-off@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-off@2x.png"; sourceTree = "<group>"; };
 		565EBD3E25496D2A0056E565 /* mark-on@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mark-on@2x.png"; sourceTree = "<group>"; };
@@ -210,14 +200,15 @@
 		565EBD3725496D2A0056E565 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				562A513D255C4C7B0035EB76 /* airplane-landing-96.png */,
+				562A5139255C4C7A0035EB76 /* hamburger-96.png */,
+				562A513B255C4C7A0035EB76 /* hotel-building-96.png */,
+				562A513C255C4C7B0035EB76 /* suitcase-96.png */,
+				562A513A255C4C7A0035EB76 /* visa-stamp-96.png */,
 				56540E38255BC82F0093EE13 /* eiffel-tower-color.png */,
 				56540E37255BC82F0093EE13 /* rheinturm.png */,
 				56540E36255BC82F0093EE13 /* yellowstone.png */,
 				56540E31255A89220093EE13 /* me.png */,
-				56540E25255A7A840093EE13 /* icons8-donald-trump-96.png */,
-				56540E26255A7A840093EE13 /* icons8-edvard-munch-96.png */,
-				56540E28255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png */,
-				56540E29255A7A840093EE13 /* icons8-venus-de-milo-96.png */,
 				56540E27255A7A840093EE13 /* icons8-william-shakespeare-100.png */,
 				56540DED2558E97C0093EE13 /* 25-de-abril-bridge-color.png */,
 				56540DEF2558E97C0093EE13 /* 25-de-abril-bridge.png */,
@@ -232,12 +223,8 @@
 				56540DEB2558E97C0093EE13 /* colosseum-color.png */,
 				56540DF52558E97C0093EE13 /* colosseum.png */,
 				56540DE82558E97C0093EE13 /* downtown.png */,
-				56540DE52558E97C0093EE13 /* great-wall-color.png */,
-				56540DE62558E97C0093EE13 /* great-wall.png */,
 				56540DF62558E97C0093EE13 /* orthodox-church-color.png */,
 				56540DF42558E97C0093EE13 /* orthodox-church.png */,
-				56540DD92558E97B0093EE13 /* pagoda-2.png */,
-				56540DDF2558E97B0093EE13 /* pagoda.png */,
 				56540DEC2558E97C0093EE13 /* icons8-search-50.png */,
 				56540DE02558E97B0093EE13 /* shanghai-pearl-tower.png */,
 				56540DE42558E97B0093EE13 /* statue-of-liberty-color.png */,
@@ -254,8 +241,6 @@
 				56540DF02558E97C0093EE13 /* venice-canal-color.png */,
 				565EBD3825496D2A0056E565 /* user-off@2x.png */,
 				565EBD3925496D2A0056E565 /* user-on@2x.png */,
-				565EBD3A25496D2A0056E565 /* edvard-munch-off@2x.png */,
-				565EBD3B25496D2A0056E565 /* edvard-munch-on@2x.png */,
 				565EBD3C25496D2A0056E565 /* eiffel-off.png */,
 				565EBD3D25496D2A0056E565 /* search-off@2x.png */,
 				565EBD3E25496D2A0056E565 /* mark-on@2x.png */,
@@ -325,58 +310,53 @@
 			files = (
 				56540E192558E97C0093EE13 /* taipei-towers-color.png in Resources */,
 				56540E062558E97C0093EE13 /* statue-of-liberty-color.png in Resources */,
-				565EBD4525496D2A0056E565 /* edvard-munch-on@2x.png in Resources */,
 				56540E132558E97C0093EE13 /* big-ben-color.png in Resources */,
 				56540E1A2558E97C0093EE13 /* cn-tower.png in Resources */,
 				56540E052558E97C0093EE13 /* us-capitol-color.png in Resources */,
 				565EBD012548619D0056E565 /* LaunchScreen.storyboard in Resources */,
-				56540E2B255A7A840093EE13 /* icons8-edvard-munch-96.png in Resources */,
 				56540E002558E97C0093EE13 /* tower-of-pisa.png in Resources */,
+				562A5142255C4C7B0035EB76 /* airplane-landing-96.png in Resources */,
 				565EBD4225496D2A0056E565 /* user-off@2x.png in Resources */,
 				565EBCFE2548619D0056E565 /* Assets.xcassets in Resources */,
 				56540E042558E97C0093EE13 /* tower-of-pisa-color.png in Resources */,
+				562A5140255C4C7B0035EB76 /* hotel-building-96.png in Resources */,
 				56540E092558E97C0093EE13 /* icons8-bike-parking-50.png in Resources */,
+				562A513F255C4C7B0035EB76 /* visa-stamp-96.png in Resources */,
 				56540E0B2558E97C0093EE13 /* big-ben.png in Resources */,
 				56540E3B255BC82F0093EE13 /* eiffel-tower-color.png in Resources */,
 				565EBD4325496D2A0056E565 /* user-on@2x.png in Resources */,
 				565EBD4A25496D2A0056E565 /* eiffel-on.png in Resources */,
 				56540E022558E97C0093EE13 /* shanghai-pearl-tower.png in Resources */,
-				56540E082558E97C0093EE13 /* great-wall.png in Resources */,
 				56540E032558E97C0093EE13 /* taj-mahal.png in Resources */,
 				56540E39255BC82F0093EE13 /* yellowstone.png in Resources */,
 				565EBD4B25496D2A0056E565 /* mark-off@2x.png in Resources */,
-				56540E2A255A7A840093EE13 /* icons8-donald-trump-96.png in Resources */,
 				565EBD4625496D2A0056E565 /* eiffel-off.png in Resources */,
 				56540E122558E97C0093EE13 /* venice-canal-color.png in Resources */,
+				562A5141255C4C7B0035EB76 /* suitcase-96.png in Resources */,
 				56540E182558E97C0093EE13 /* orthodox-church-color.png in Resources */,
-				56540E2E255A7A840093EE13 /* icons8-venus-de-milo-96.png in Resources */,
 				56540DFC2558E97C0093EE13 /* tiananmen.png in Resources */,
 				56540E0F2558E97C0093EE13 /* 25-de-abril-bridge-color.png in Resources */,
 				56540E0A2558E97C0093EE13 /* downtown.png in Resources */,
-				56540E012558E97C0093EE13 /* pagoda.png in Resources */,
 				56540E2C255A7A840093EE13 /* icons8-william-shakespeare-100.png in Resources */,
 				56540E32255A89220093EE13 /* me.png in Resources */,
 				56540DFF2558E97C0093EE13 /* brandenburg-gate-color.png in Resources */,
 				56540E172558E97C0093EE13 /* colosseum.png in Resources */,
 				56540E162558E97C0093EE13 /* orthodox-church.png in Resources */,
 				56540DF92558E97C0093EE13 /* budapest.png in Resources */,
-				56540E072558E97C0093EE13 /* great-wall-color.png in Resources */,
+				562A513E255C4C7B0035EB76 /* hamburger-96.png in Resources */,
 				56540E152558E97C0093EE13 /* statue-of-liberty.png in Resources */,
 				565EBD4825496D2A0056E565 /* mark-on@2x.png in Resources */,
 				56540E0E2558E97C0093EE13 /* icons8-search-50.png in Resources */,
 				56540E3A255BC82F0093EE13 /* rheinturm.png in Resources */,
 				56540DFD2558E97C0093EE13 /* taipei-towers.png in Resources */,
 				56540E102558E97C0093EE13 /* taj-mahal-color.png in Resources */,
-				565EBD4425496D2A0056E565 /* edvard-munch-off@2x.png in Resources */,
 				56540DFA2558E97C0093EE13 /* us-capitol.png in Resources */,
 				56540E0C2558E97C0093EE13 /* berlin-tv-tower.png in Resources */,
-				56540E2D255A7A840093EE13 /* icons8-kawaii-dinosaur-96.png in Resources */,
 				565EBD4925496D2A0056E565 /* search-on@2x.png in Resources */,
 				565EBD4725496D2A0056E565 /* search-off@2x.png in Resources */,
 				56540E0D2558E97C0093EE13 /* colosseum-color.png in Resources */,
 				56540E112558E97C0093EE13 /* 25-de-abril-bridge.png in Resources */,
 				56540DFE2558E97C0093EE13 /* brandenburg-gate.png in Resources */,
-				56540DFB2558E97C0093EE13 /* pagoda-2.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
