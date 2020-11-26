@@ -1,4 +1,4 @@
-# Course labs of MOSAD 2020 of SYSU
+# Course labs of SYSU MOSAD 2020
 
 - HW1 : a simple project for Objective-C grammer learning
     - [Requests](https://gitee.com/code_sysu/mosad_hw1)
