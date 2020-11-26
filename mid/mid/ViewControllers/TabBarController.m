@@ -6,7 +6,7 @@
 //
 
 #import "TabBarController.h"
-#import "MyPageViewController.h"
+#import "MainPageViewController.h"
 #import "DiscoverViewController.h"
 #import "SettingViewController.h"
 
@@ -19,7 +19,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    MyPageViewController *myPage = [[MyPageViewController alloc]init];
+    MainPageViewController *myPage = [[MainPageViewController alloc]init];
     UINavigationController *myPageNav = [[UINavigationController alloc]initWithRootViewController:myPage];
     
     DiscoverViewController *discoverPage = [[DiscoverViewController alloc]init];

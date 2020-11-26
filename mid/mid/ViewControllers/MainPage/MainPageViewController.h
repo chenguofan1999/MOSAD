@@ -14,7 +14,7 @@ typedef enum{
     Following
 } Mode;
 
-@interface MyPageViewController : UITableViewController
+@interface MainPageViewController : UITableViewController
 
 @end
 

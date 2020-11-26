@@ -7,13 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5651091E256BA6C300163966 /* TabBarController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F4256B9FAF00163966 /* TabBarController.h */; };
-		5651091F256BA6C300163966 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F5256B9FAF00163966 /* TabBarController.m */; };
-		56510926256BA6C300163966 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C4256B5851007B92B2 /* AppDelegate.h */; };
-		56510927256BA6C300163966 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C5256B5851007B92B2 /* AppDelegate.m */; };
-		56510928256BA6C300163966 /* SceneDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C7256B5851007B92B2 /* SceneDelegate.h */; };
-		56510929256BA6C300163966 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
-		5651092D256BA6C300163966 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
 		5651094C256BC9F100163966 /* search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510946256BC9F100163966 /* search@2x.png */; };
 		5651094D256BC9F100163966 /* setting-filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510947256BC9F100163966 /* setting-filled@2x.png */; };
 		5651094E256BC9F100163966 /* setting@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510948256BC9F100163966 /* setting@2x.png */; };
@@ -23,8 +16,6 @@
 		56510955256BD14F00163966 /* Trump.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510954256BD14F00163966 /* Trump.png */; };
 		56510959256BDB8D00163966 /* me@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510957256BDB8D00163966 /* me@2x.png */; };
 		5651095A256BDB8D00163966 /* people@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510958256BDB8D00163966 /* people@2x.png */; };
-		56510963256BEAB100163966 /* MyPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F8256BA50B00163966 /* MyPageViewController.h */; };
-		56510964256BEAB100163966 /* MyPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F9256BA50B00163966 /* MyPageViewController.m */; };
 		56510968256BEB1400163966 /* add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510967256BEB1400163966 /* add@2x.png */; };
 		5651096D256BEB6100163966 /* edvard-munch.png in Resources */ = {isa = PBXBuildFile; fileRef = 5651096C256BEB6100163966 /* edvard-munch.png */; };
 		56510972256BED0700163966 /* user-filled@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510970256BED0700163966 /* user-filled@2x.png */; };
@@ -35,22 +26,38 @@
 		565109A3256C205800163966 /* comment.png in Resources */ = {isa = PBXBuildFile; fileRef = 5651099D256C205800163966 /* comment.png */; };
 		565109A4256C205800163966 /* fav.png in Resources */ = {isa = PBXBuildFile; fileRef = 5651099E256C205800163966 /* fav.png */; };
 		565109A5256C205800163966 /* like-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 5651099F256C205800163966 /* like-filled.png */; };
-		565109AB256CDCEC00163966 /* WritingPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109AA256CDCEC00163966 /* WritingPostViewController.m */; };
-		565109AD256CDD1E00163966 /* WritingPostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565109A9256CDCEC00163966 /* WritingPostViewController.h */; };
 		565109B3256CE4C600163966 /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56510996256C1DD200163966 /* PostCell.xib */; };
-		565109BC256CE57800163966 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
-		565109BD256CE57800163966 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
-		565109C6256CEF3E00163966 /* SettingViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510900256BA52B00163966 /* SettingViewController.h */; };
-		565109C7256CEF3E00163966 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510901256BA52B00163966 /* SettingViewController.m */; };
-		565109C8256CEF3E00163966 /* DiscoverViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108FC256BA51F00163966 /* DiscoverViewController.h */; };
-		565109C9256CEF3E00163966 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108FD256BA52000163966 /* DiscoverViewController.m */; };
+		565109CD256D1B3500163966 /* SettingViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510900256BA52B00163966 /* SettingViewController.h */; };
+		565109CE256D1B3500163966 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510901256BA52B00163966 /* SettingViewController.m */; };
+		565109CF256D1B3500163966 /* DiscoverViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108FC256BA51F00163966 /* DiscoverViewController.h */; };
+		565109D0256D1B3500163966 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108FD256BA52000163966 /* DiscoverViewController.m */; };
+		565109D1256D1B3500163966 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
+		565109D2256D1B3500163966 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
+		565109D5256D1B3500163966 /* MainPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F8256BA50B00163966 /* MainPageViewController.h */; };
+		565109D6256D1B3500163966 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F9256BA50B00163966 /* MainPageViewController.m */; };
+		565109D7256D1B3500163966 /* TabBarController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F4256B9FAF00163966 /* TabBarController.h */; };
+		565109D8256D1B3500163966 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F5256B9FAF00163966 /* TabBarController.m */; };
+		565109D9256D1B3500163966 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C4256B5851007B92B2 /* AppDelegate.h */; };
+		565109DA256D1B3500163966 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C5256B5851007B92B2 /* AppDelegate.m */; };
+		565109DB256D1B3500163966 /* SceneDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C7256B5851007B92B2 /* SceneDelegate.h */; };
+		565109DC256D1B3500163966 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
+		565109DD256D1B3500163966 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
+		565109E6256D3C4E00163966 /* ImageSenderTapGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109E5256D3C4E00163966 /* ImageSenderTapGestureRecognizer.m */; };
+		56510A02256D6C6F00163966 /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510A01256D6C6F00163966 /* BigImageViewController.m */; };
+		56510A08256D7A1500163966 /* 7285.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56510A07256D7A1500163966 /* 7285.jpg */; };
+		56510A0B256E22A500163966 /* chen.png in Resources */ = {isa = PBXBuildFile; fileRef = 56510A0A256E22A500163966 /* chen.png */; };
+		56510A0F256E4B6400163966 /* WritingPostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565109A9256CDCEC00163966 /* WritingPostViewController.h */; };
+		56510A10256E4B6400163966 /* WritingPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109AA256CDCEC00163966 /* WritingPostViewController.m */; };
+		56529228256FC7630007C033 /* testImg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 56529227256FC7630007C033 /* testImg.jpeg */; };
+		56529236256FCEE50007C033 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529234256FCEE50007C033 /* ProfilePageViewController.m */; };
+		56529237256FCEE50007C033 /* ProfilePageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56529235256FCEE50007C033 /* ProfilePageViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		565108F4256B9FAF00163966 /* TabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TabBarController.h; sourceTree = "<group>"; };
 		565108F5256B9FAF00163966 /* TabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TabBarController.m; sourceTree = "<group>"; };
-		565108F8256BA50B00163966 /* MyPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyPageViewController.h; sourceTree = "<group>"; };
-		565108F9256BA50B00163966 /* MyPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MyPageViewController.m; sourceTree = "<group>"; };
+		565108F8256BA50B00163966 /* MainPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainPageViewController.h; sourceTree = "<group>"; };
+		565108F9256BA50B00163966 /* MainPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainPageViewController.m; sourceTree = "<group>"; };
 		565108FC256BA51F00163966 /* DiscoverViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DiscoverViewController.h; sourceTree = "<group>"; };
 		565108FD256BA52000163966 /* DiscoverViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DiscoverViewController.m; sourceTree = "<group>"; };
 		56510900256BA52B00163966 /* SettingViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
@@ -79,6 +86,16 @@
 		5651099F256C205800163966 /* like-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-filled.png"; sourceTree = "<group>"; };
 		565109A9256CDCEC00163966 /* WritingPostViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WritingPostViewController.h; sourceTree = "<group>"; };
 		565109AA256CDCEC00163966 /* WritingPostViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WritingPostViewController.m; sourceTree = "<group>"; };
+		565109E4256D3C4E00163966 /* ImageTapGestureRecognizer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageTapGestureRecognizer.h; sourceTree = "<group>"; };
+		565109E5256D3C4E00163966 /* ImageSenderTapGestureRecognizer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageSenderTapGestureRecognizer.m; sourceTree = "<group>"; };
+		56510A00256D6C6F00163966 /* BigImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BigImageViewController.h; sourceTree = "<group>"; };
+		56510A01256D6C6F00163966 /* BigImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BigImageViewController.m; sourceTree = "<group>"; };
+		56510A07256D7A1500163966 /* 7285.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7285.jpg; sourceTree = "<group>"; };
+		56510A0A256E22A500163966 /* chen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = chen.png; sourceTree = "<group>"; };
+		56529227256FC7630007C033 /* testImg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testImg.jpeg; sourceTree = "<group>"; };
+		56529233256FCEE50007C033 /* ProfilePageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ProfilePageViewController.h; sourceTree = "<group>"; };
+		56529234256FCEE50007C033 /* ProfilePageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ProfilePageViewController.m; sourceTree = "<group>"; };
+		56529235256FCEE50007C033 /* ProfilePageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePageViewController.xib; sourceTree = "<group>"; };
 		5656D2C1256B5851007B92B2 /* mid.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mid.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5656D2C4256B5851007B92B2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		5656D2C5256B5851007B92B2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -102,6 +119,7 @@
 		56510904256BA55F00163966 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5652922A256FC92D0007C033 /* PersonalPage */,
 				565109C1256CEF1700163966 /* UserCenterPage */,
 				565109C0256CEF0A00163966 /* DiscoverPage */,
 				565109B1256CE4A300163966 /* PostCell */,
@@ -148,6 +166,9 @@
 		56510953256BD14700163966 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				56529227256FC7630007C033 /* testImg.jpeg */,
+				56510A0A256E22A500163966 /* chen.png */,
+				56510A07256D7A1500163966 /* 7285.jpg */,
 				5651096C256BEB6100163966 /* edvard-munch.png */,
 				56510954256BD14F00163966 /* Trump.png */,
 			);
@@ -159,8 +180,8 @@
 			children = (
 				565109A9256CDCEC00163966 /* WritingPostViewController.h */,
 				565109AA256CDCEC00163966 /* WritingPostViewController.m */,
-				565108F8256BA50B00163966 /* MyPageViewController.h */,
-				565108F9256BA50B00163966 /* MyPageViewController.m */,
+				565108F8256BA50B00163966 /* MainPageViewController.h */,
+				565108F9256BA50B00163966 /* MainPageViewController.m */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -171,6 +192,10 @@
 				56510994256C1DD200163966 /* PostCell.h */,
 				56510995256C1DD200163966 /* PostCell.m */,
 				56510996256C1DD200163966 /* PostCell.xib */,
+				565109E4256D3C4E00163966 /* ImageTapGestureRecognizer.h */,
+				565109E5256D3C4E00163966 /* ImageSenderTapGestureRecognizer.m */,
+				56510A00256D6C6F00163966 /* BigImageViewController.h */,
+				56510A01256D6C6F00163966 /* BigImageViewController.m */,
 			);
 			path = PostCell;
 			sourceTree = "<group>";
@@ -191,6 +216,16 @@
 				56510901256BA52B00163966 /* SettingViewController.m */,
 			);
 			path = UserCenterPage;
+			sourceTree = "<group>";
+		};
+		5652922A256FC92D0007C033 /* PersonalPage */ = {
+			isa = PBXGroup;
+			children = (
+				56529233256FCEE50007C033 /* ProfilePageViewController.h */,
+				56529234256FCEE50007C033 /* ProfilePageViewController.m */,
+				56529235256FCEE50007C033 /* ProfilePageViewController.xib */,
+			);
+			path = PersonalPage;
 			sourceTree = "<group>";
 		};
 		5656D2B8256B5851007B92B2 = {
@@ -282,6 +317,7 @@
 			files = (
 				565109B3256CE4C600163966 /* PostCell.xib in Resources */,
 				565109A5256C205800163966 /* like-filled.png in Resources */,
+				56510A08256D7A1500163966 /* 7285.jpg in Resources */,
 				56510959256BDB8D00163966 /* me@2x.png in Resources */,
 				56510955256BD14F00163966 /* Trump.png in Resources */,
 				565109A4256C205800163966 /* fav.png in Resources */,
@@ -294,10 +330,13 @@
 				56510972256BED0700163966 /* user-filled@2x.png in Resources */,
 				56510973256BED0700163966 /* user@2x.png in Resources */,
 				5651094D256BC9F100163966 /* setting-filled@2x.png in Resources */,
+				56510A0B256E22A500163966 /* chen.png in Resources */,
 				565109A2256C205800163966 /* fav-filled.png in Resources */,
 				565109A3256C205800163966 /* comment.png in Resources */,
 				565109A0256C205800163966 /* like.png in Resources */,
+				56529237256FCEE50007C033 /* ProfilePageViewController.xib in Resources */,
 				5651096D256BEB6100163966 /* edvard-munch.png in Resources */,
+				56529228256FC7630007C033 /* testImg.jpeg in Resources */,
 				56510951256BC9F100163966 /* search-filled@2x.png in Resources */,
 				5651094E256BC9F100163966 /* setting@2x.png in Resources */,
 			);
@@ -310,23 +349,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565109C6256CEF3E00163966 /* SettingViewController.h in Sources */,
-				565109C7256CEF3E00163966 /* SettingViewController.m in Sources */,
-				565109C8256CEF3E00163966 /* DiscoverViewController.h in Sources */,
-				565109C9256CEF3E00163966 /* DiscoverViewController.m in Sources */,
-				565109BC256CE57800163966 /* PostCell.h in Sources */,
-				565109BD256CE57800163966 /* PostCell.m in Sources */,
-				565109AD256CDD1E00163966 /* WritingPostViewController.h in Sources */,
-				56510963256BEAB100163966 /* MyPageViewController.h in Sources */,
-				56510964256BEAB100163966 /* MyPageViewController.m in Sources */,
-				5651091E256BA6C300163966 /* TabBarController.h in Sources */,
-				5651091F256BA6C300163966 /* TabBarController.m in Sources */,
-				56510926256BA6C300163966 /* AppDelegate.h in Sources */,
-				56510927256BA6C300163966 /* AppDelegate.m in Sources */,
-				56510928256BA6C300163966 /* SceneDelegate.h in Sources */,
-				56510929256BA6C300163966 /* SceneDelegate.m in Sources */,
-				5651092D256BA6C300163966 /* main.m in Sources */,
-				565109AB256CDCEC00163966 /* WritingPostViewController.m in Sources */,
+				56510A0F256E4B6400163966 /* WritingPostViewController.h in Sources */,
+				56510A10256E4B6400163966 /* WritingPostViewController.m in Sources */,
+				56510A02256D6C6F00163966 /* BigImageViewController.m in Sources */,
+				565109CD256D1B3500163966 /* SettingViewController.h in Sources */,
+				565109CE256D1B3500163966 /* SettingViewController.m in Sources */,
+				565109CF256D1B3500163966 /* DiscoverViewController.h in Sources */,
+				565109D0256D1B3500163966 /* DiscoverViewController.m in Sources */,
+				565109D1256D1B3500163966 /* PostCell.h in Sources */,
+				565109D2256D1B3500163966 /* PostCell.m in Sources */,
+				565109D5256D1B3500163966 /* MainPageViewController.h in Sources */,
+				565109D6256D1B3500163966 /* MainPageViewController.m in Sources */,
+				565109D7256D1B3500163966 /* TabBarController.h in Sources */,
+				565109D8256D1B3500163966 /* TabBarController.m in Sources */,
+				565109D9256D1B3500163966 /* AppDelegate.h in Sources */,
+				565109DA256D1B3500163966 /* AppDelegate.m in Sources */,
+				56529236256FCEE50007C033 /* ProfilePageViewController.m in Sources */,
+				565109E6256D3C4E00163966 /* ImageSenderTapGestureRecognizer.m in Sources */,
+				565109DB256D1B3500163966 /* SceneDelegate.h in Sources */,
+				565109DC256D1B3500163966 /* SceneDelegate.m in Sources */,
+				565109DD256D1B3500163966 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
