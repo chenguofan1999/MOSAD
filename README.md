@@ -9,5 +9,5 @@
     - [Report.md](hw2/Report.md)
     - [View code online](https://sourcegraph.com/github.com/chenguofan1999/MOSAD/-/tree/hw2)
 
-- HW_MID : 期中项目 --校园社交App
+- HW_MID : 校园社交App
     - [Requests](https://gitee.com/code_sysu/mosad_hw_mid)
