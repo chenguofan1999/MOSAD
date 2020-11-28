@@ -52,7 +52,7 @@
     _userNameLable.text = @"Edward";
     _textContentLable.text = @"Music has always played an important role in my life—and that was especially true during my presidency. In honor of my book hitting shelves tomorrow, I put together this playlist featuring some memorable songs from my administration. Hope you enjoy it.";
     
-    [_portraitButton setImage:[UIImage imageNamed:@"testImg.jpeg"] forState:UIControlStateNormal];
+    [_portraitButton setImage:[UIImage imageNamed:@"testPortrait.jpg"] forState:UIControlStateNormal];
     [_commentButton setImage:[UIImage imageNamed:@"comment.png"] forState:UIControlStateNormal];
     [_likeButton setImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
     [_favButton setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
@@ -155,7 +155,7 @@
     // 进入个人页面
     
     // test only
-    [self addPic:[UIImage imageNamed:@"7285.jpg"]];
+    [self addPic:[UIImage imageNamed:@"testPic.jpg"]];
 }
 
 
@@ -180,7 +180,6 @@
     UIColor *backgroundColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
     [_insidePicView setBackgroundColor:backgroundColor];
     [_picView setBackgroundColor:backgroundColor];
-    
     
     _picNum = 0;
 }
@@ -217,7 +216,6 @@
     {
         self.actionBlock(sender.image);
     }
-    
 }
 
 - (CGRect)frameAtIndex:(int)i

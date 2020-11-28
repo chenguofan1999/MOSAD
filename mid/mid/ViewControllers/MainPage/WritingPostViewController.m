@@ -24,12 +24,14 @@
 
 @implementation WritingPostViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     // 加载此页面时隐藏 tabBar
     self.tabBarController.tabBar.hidden=YES;
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
     // 计算无遮挡页面尺寸
     UIWindow *window = UIApplication.sharedApplication.windows[0];
@@ -52,7 +54,7 @@
     [self.navigationItem setRightBarButtonItem:postButton];
     
     // 上方的文本框
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(_x, _y, _w, _h - 120)];
+    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, _w, _h - 120)];
     [textView setFont:[UIFont systemFontOfSize:20]];
     [self.view addSubview:textView];
     
@@ -64,6 +66,8 @@
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
 }
+
+
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -80,7 +84,7 @@
 - (void)loadPicZone
 {
     // imageView 是下方整个添加和显示图片的区域
-    _imageView = [[UIScrollView alloc] initWithFrame:CGRectMake(_x, _y + _h - 120, _w, 120)];
+    _imageView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _h - 120, _w, 120)];
     [_imageView setBackgroundColor:[UIColor lightGrayColor]];
     
     // innerImageView 是 imageView 的内部视图，应将图片和按钮添加到此视图

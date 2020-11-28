@@ -28,6 +28,7 @@
     SettingViewController *settingPage = [[SettingViewController alloc]init];
     UINavigationController *settingNav = [[UINavigationController alloc]initWithRootViewController:settingPage];
     
+    
     self.viewControllers = @[myPageNav, discoverNav, settingNav];
 }
 

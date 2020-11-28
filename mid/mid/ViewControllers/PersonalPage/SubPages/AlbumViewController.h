@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.h
+//  PhotoViewController.h
 //  mid
 //
 //  Created by itlab on 11/26/20.
@@ -9,8 +9,8 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ProfilePageViewController : UIViewController
-
+@interface AlbumViewController : UIViewController
+- (void)addImage:(UIImage *)img;
 @end
 
 NS_ASSUME_NONNULL_END

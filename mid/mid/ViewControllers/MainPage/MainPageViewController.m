@@ -9,6 +9,7 @@
 #import "WritingPostViewController.h"
 #import "BigImageViewController.h"
 #import "PostCell.h"
+#import "ProfilePageViewController.h"
 
 @interface MainPageViewController ()<UISearchBarDelegate>
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -58,7 +59,6 @@
     // 加载分类栏
     self.tableView.tableHeaderView = [self categoryView];
     
-    
     // 注册 nib 文件
     UINib *nib = [UINib nibWithNibName:@"PostCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PostCell"];
@@ -67,6 +67,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
     // 隐藏navbar下面的黑线
     UIView *backgroundView = [self.navigationController.navigationBar subviews].firstObject;
     UIView *navBottomLine;
@@ -77,8 +78,11 @@
     }
     navBottomLine.hidden = YES;
     
+    // 设置导航栏不透明，一劳永逸解决排布问题
+    self.navigationController.navigationBar.translucent = NO;
+    
     // 页面设置背景颜色
-    [self.tableView setBackgroundColor:[UIColor colorWithWhite:0.f alpha:0.03]];
+    [self.tableView setBackgroundColor:[UIColor whiteColor]];
 }
 
 
@@ -234,7 +238,7 @@
     };
     
     // for test use
-    [cell addPic:[UIImage imageNamed:@"7285.jpg"]];
+    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
     return cell;
 }
@@ -273,7 +277,7 @@
 
 - (void)toMyPage
 {
-    
+    [[self navigationController]pushViewController:[[ProfilePageViewController alloc]init] animated:YES];
 }
 
 #pragma mark 创建post
