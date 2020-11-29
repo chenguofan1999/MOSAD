@@ -8,7 +8,7 @@
 #import "InfoSettingViewController.h"
 
 @interface InfoSettingViewController ()
-
+@property (nonatomic, strong) UITextField *textField;
 @end
 
 @implementation InfoSettingViewController
@@ -75,15 +75,53 @@
     return 60;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+//                                                   reuseIdentifier:nil];
+//    switch (indexPath.row)
+//    {
+//        case 0:
+//            cell.textLabel.text = @"用户名";
+//            cell.detailTextLabel.text = @"Chen";
+//            break;
+//        case 1:
+//            cell.textLabel.text = @"邮箱";
+//            cell.detailTextLabel.text = @"chen2027@gmail.com";
+//            break;
+//        case 2:
+//            cell.textLabel.text = @"Bio";
+//            cell.detailTextLabel.text = @"Na";
+//            break;
+//        case 3:
+//            cell.textLabel.text = @"性别";
+//            cell.detailTextLabel.text = @"0";
+//            break;
+//        case 4:
+//            cell.textLabel.text = @"Nick Name";
+//            cell.detailTextLabel.text = @"None";
+//            break;
+//    }
+    NSInteger i = indexPath.row;
+    NSArray *array = @[@"用户名",@"邮箱",@"Bio",@"性别",@"Nick Name"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@",array[i]] message:[NSString stringWithFormat:@"输入新的%@", array[i]] preferredStyle:UIAlertControllerStyleAlert];
     
-    // Configure the cell...
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"不要太长";
+        textField.textColor = [UIColor blueColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        NSArray *textfields = alertController.textFields;
+        UITextField * namefield = textfields[0];
+        NSLog(@"%@",namefield.text);
+    }]];
     
-    return cell;
+    [self presentViewController:alertController animated:YES completion:nil];
+    
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

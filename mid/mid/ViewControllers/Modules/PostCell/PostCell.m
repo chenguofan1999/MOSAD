@@ -90,7 +90,6 @@
 # pragma mark 点击 comment button
 - (IBAction)pressCommentButton:(id)sender
 {
-    NSLog(@"...");
     if(self.showCommentsBlock)
     {
         self.showCommentsBlock(@"testID");
@@ -160,9 +159,11 @@
 {
     NSLog(@"for test use");
     // 进入个人页面
+    if(self.showPersonalPageBlock)
+    {
+        self.showPersonalPageBlock(@"testUserID");
+    }
     
-    // test only
-    [self addPic:[UIImage imageNamed:@"testPic.jpg"]];
 }
 
 

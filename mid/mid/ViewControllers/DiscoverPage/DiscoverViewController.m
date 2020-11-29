@@ -9,6 +9,7 @@
 #import "PostCell.h"
 #import "BigImageViewController.h"
 #import "CommentTableViewController.h"
+#import "ProfilePageViewController.h"
 
 @interface DiscoverViewController ()
 @end
@@ -98,6 +99,11 @@
     cell.showCommentsBlock = ^(NSString *contentID){
         NSLog(@"%@ & %@", contentID, contentID);
         [self presentViewController:[[CommentTableViewController alloc]init] animated:YES completion:nil];
+    };
+    
+    cell.showPersonalPageBlock = ^(NSString  *userID){
+        NSLog(@"%@", userID);
+        [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:YES];
     };
     
     // for test use

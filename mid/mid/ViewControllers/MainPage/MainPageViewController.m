@@ -12,6 +12,7 @@
 #import "PostViewController.h"
 #import "ProfilePageViewController.h"
 #import "CommentTableViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface MainPageViewController ()<UISearchBarDelegate>
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -27,7 +28,7 @@
     self = [super initWithStyle:UITableViewStyleGrouped];
     
     // 页面样式
-    self.view.backgroundColor = [UIColor whiteColor];
+    //self.view.backgroundColor = [UIColor whiteColor];
     
     // TabBar项中的样式 (有必要在 init 时加载)
     [[self tabBarItem] setTitle:@"主页"];
@@ -61,6 +62,8 @@
     
     // 加载分类栏
     self.tableView.tableHeaderView = [self categoryView];
+
+    
     
     // 注册 nib 文件
     UINib *nib = [UINib nibWithNibName:@"PostCell" bundle:nil];
@@ -86,8 +89,6 @@
         navBottomLine = backgroundView.subviews.firstObject;
     }
     navBottomLine.hidden = YES;
-    
-    
     
     // 页面设置背景颜色
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
@@ -254,6 +255,11 @@
         
     };
     
+    cell.showPersonalPageBlock = ^(NSString  *userID){
+        NSLog(@"%@", userID);
+        [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+    };
+    
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
@@ -294,7 +300,7 @@
 
 - (void)toMyPage
 {
-    [[self navigationController]pushViewController:[[ProfilePageViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
 }
 
 

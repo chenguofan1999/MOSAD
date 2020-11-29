@@ -35,7 +35,6 @@
     
     
     self.viewControllers = @[mainPageNav, discoverNav, settingNav];
-    self.tabBarController.delegate = self;
     
     [self addButton];
 }
@@ -65,6 +64,5 @@
     [self presentViewController:[[WritingPostViewController alloc]init] animated:YES completion:nil];
 }
 
-#pragma mark UITabBarDelegate
 
 @end
