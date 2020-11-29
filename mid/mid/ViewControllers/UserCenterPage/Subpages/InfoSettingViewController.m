@@ -1,59 +1,20 @@
 //
-//  infoTableViewController.m
+//  SettingTableViewController.m
 //  mid
 //
-//  Created by itlab on 11/28/20.
+//  Created by itlab on 11/29/20.
 //
 
-#import "InfoViewController.h"
+#import "InfoSettingViewController.h"
 
-@interface InfoViewController ()<UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) UIView *avatorView;
-@property (nonatomic, strong) UITableView *infoView;
-@property (nonatomic) CGFloat w;
-@property (nonatomic) CGFloat h;
+@interface InfoSettingViewController ()
+
 @end
 
-@implementation InfoViewController
+@implementation InfoSettingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor whiteColor]];
-    
-    // 计算无遮挡页面尺寸
-    UIWindow *window = UIApplication.sharedApplication.windows[0];
-    CGRect safe = window.safeAreaLayoutGuide.layoutFrame;
-    _w = safe.size.width;
-    _h = safe.size.height;
-    
-    [self.view addSubview:self.avatorView];
-    [self.view addSubview:self.infoView];
-}
-
-- (UIView *)avatorView
-{
-    if(_avatorView == nil)
-    {
-        _avatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _w, 160)];
-        UIImageView *avator = [[UIImageView alloc] initWithFrame:CGRectMake(_w/2 - 35, 45, 70, 70)];
-        avator.image = [UIImage imageNamed:@"chen.png"];
-        avator.layer.cornerRadius = 35;
-        avator.layer.masksToBounds = YES;
-        avator.layer.borderWidth = 1;
-        [_avatorView addSubview:avator];
-    }
-    return _avatorView;
-}
-
-- (UITableView *)infoView
-{
-    if(_infoView == nil)
-    {
-        _infoView = [[UITableView alloc]initWithFrame:CGRectMake(0, 160, _w, _h - 160)];
-        _infoView.delegate = self;
-        _infoView.dataSource = self;
-    }
-    return _infoView;
 }
 
 #pragma mark - Table view data source
@@ -68,7 +29,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                    reuseIdentifier:nil];
     
     switch (indexPath.row)
@@ -113,6 +74,7 @@
 {
     return 60;
 }
+
 /*
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];

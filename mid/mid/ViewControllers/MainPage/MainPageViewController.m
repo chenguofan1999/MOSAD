@@ -9,6 +9,7 @@
 #import "WritingPostViewController.h"
 #import "BigImageViewController.h"
 #import "PostCell.h"
+#import "PostViewController.h"
 #import "ProfilePageViewController.h"
 #import "CommentTableViewController.h"
 
@@ -46,16 +47,17 @@
      * 中间是搜索框
      * 左侧按钮是头像，点击进入个人页面
      */
+    
     // 延迟加载搜索框, 放在 navBar 的中间
     [self.navigationItem setTitleView:[self searchBar]];
     // 左侧按钮
     [self setPortraitButtonWithImage:[UIImage imageNamed:@"chen.png"]];
     // 右侧按钮
-    UIBarButtonItem *rightButton =
-        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
-                                                     target:self
-                                                     action:@selector(post)];
-    [self.navigationItem setRightBarButtonItem:rightButton];
+//    UIBarButtonItem *rightButton =
+//        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
+//                                                     target:self
+//                                                     action:@selector(post)];
+//    [self.navigationItem setRightBarButtonItem:rightButton];
     
     // 加载分类栏
     self.tableView.tableHeaderView = [self categoryView];
@@ -72,6 +74,9 @@
 {
     [super viewWillAppear:animated];
     
+    // 设置导航栏不透明，一劳永逸解决排布问题
+    // self.navigationController.navigationBar.translucent = NO;
+    
     // 隐藏navbar下面的黑线
     UIView *backgroundView = [self.navigationController.navigationBar subviews].firstObject;
     UIView *navBottomLine;
@@ -82,8 +87,7 @@
     }
     navBottomLine.hidden = YES;
     
-    // 设置导航栏不透明，一劳永逸解决排布问题
-    self.navigationController.navigationBar.translucent = NO;
+    
     
     // 页面设置背景颜色
     [self.tableView setBackgroundColor:[UIColor whiteColor]];
@@ -130,6 +134,17 @@
 - (void)tapSec:(UITapGestureRecognizer *)sender
 {
     NSInteger target = sender.view.tag;
+    
+    // 样式改变
+    for(int i = 0; i < [_categories count]; i++)
+    {
+        if(i == target)
+            [_categories[i] setTextColor:[UIColor blackColor]];
+        else
+            [_categories[i] setTextColor:[UIColor lightGrayColor]];
+    }
+    
+    // 定义功能
 //    switch (i) {
 //        case 0:
 //            NSLog(@"tag: 0");
@@ -143,13 +158,7 @@
 //        default:
 //            break;
 //    }
-    for(int i = 0; i < [_categories count]; i++)
-    {
-        if(i == target)
-            [_categories[i] setTextColor:[UIColor blackColor]];
-        else
-            [_categories[i] setTextColor:[UIColor lightGrayColor]];
-    }
+    
 }
 
 
@@ -288,11 +297,6 @@
     [[self navigationController]pushViewController:[[ProfilePageViewController alloc]init] animated:YES];
 }
 
-#pragma mark 创建post
-- (void)post
-{
-    [self.navigationController pushViewController:[[WritingPostViewController alloc]init] animated:YES];
-}
 
 
 @end

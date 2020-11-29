@@ -9,7 +9,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface DiscoverViewController : UIViewController
+@interface DiscoverViewController : UITableViewController
 
 @end
 

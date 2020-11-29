@@ -6,9 +6,14 @@
 //
 
 #import "SettingViewController.h"
+#import "InfoSettingViewController.h"
+#import "MessageViewController.h"
+#import "SystemSettingController.h"
 
 @interface SettingViewController ()
-
+@property (nonatomic, strong) InfoSettingViewController *ivc;
+@property (nonatomic, strong) MessageViewController *mvc;
+@property (nonatomic, strong) SystemSettingController *svc;
 @end
 
 @implementation SettingViewController
@@ -29,7 +34,46 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    NSArray *segmentedData = @[@"用户信息",@"通知",@"设置"];
+    UISegmentedControl *segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
+    [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = segmentBar;
+    
+    _ivc = [InfoSettingViewController new];
+    _mvc = [MessageViewController new];
+    _svc = [SystemSettingController new];
+    
+    _ivc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;
+    _mvc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;
+    _svc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;
+    
+    [self.view addSubview:_svc.view];
+    [self.view addSubview:_mvc.view];
+    [self.view addSubview:_ivc.view];
+    
+    [segmentBar setSelectedSegmentIndex:0];
+    
 }
 
-
+- (void)choose:(UISegmentedControl *)seg
+{
+    NSInteger Index = seg.selectedSegmentIndex;
+    switch (Index) {
+        case 0:
+            [_ivc.view setHidden:NO];
+            [_mvc.view setHidden:YES];
+            [_svc.view setHidden:YES];
+            break;
+        case 1:
+            [_ivc.view setHidden:YES];
+            [_mvc.view setHidden:NO];
+            [_svc.view setHidden:YES];
+            break;
+        case 2:
+            [_ivc.view setHidden:YES];
+            [_mvc.view setHidden:YES];
+            [_svc.view setHidden:NO];
+            break;
+    }
+}
 @end
