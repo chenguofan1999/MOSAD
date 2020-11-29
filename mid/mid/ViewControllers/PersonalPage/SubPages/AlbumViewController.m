@@ -38,7 +38,8 @@
 {
     [super viewDidLoad];
     [_scrollView setBackgroundColor:[UIColor darkGrayColor]];
-    // childViewController默认关闭这一自动排布功能
+    
+    // childViewController 默认关闭这一自动排布功能
     [self.navigationController.view setNeedsLayout];
     
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;

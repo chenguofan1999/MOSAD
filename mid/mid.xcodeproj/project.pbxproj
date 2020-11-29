@@ -56,8 +56,6 @@
 		565292D6257290560007C033 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
 		565292D9257290560007C033 /* BigImageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510A00256D6C6F00163966 /* BigImageViewController.h */; };
 		565292DA257290560007C033 /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510A01256D6C6F00163966 /* BigImageViewController.m */; };
-		565292DB257290560007C033 /* PostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529243256FF9850007C033 /* PostViewController.h */; };
-		565292DC257290560007C033 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529244256FF9850007C033 /* PostViewController.m */; };
 		565292DD257290560007C033 /* AlbumViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529248256FF9910007C033 /* AlbumViewController.h */; };
 		565292DE257290560007C033 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529249256FF9910007C033 /* AlbumViewController.m */; };
 		565292DF257290560007C033 /* InfoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565292A72572066A0007C033 /* InfoViewController.h */; };
@@ -81,6 +79,8 @@
 		565292F1257290560007C033 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
 		565292FA2572955A0007C033 /* ImageSender.h in Sources */ = {isa = PBXBuildFile; fileRef = 565109E4256D3C4E00163966 /* ImageSender.h */; };
 		565292FB2572955A0007C033 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109E5256D3C4E00163966 /* ImageSender.m */; };
+		565293012573375F0007C033 /* PostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529243256FF9850007C033 /* PostViewController.h */; };
+		565293022573375F0007C033 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529244256FF9850007C033 /* PostViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -244,14 +244,16 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
-		565109B1256CE4A300163966 /* PostCell */ = {
+		565109B1256CE4A300163966 /* PostPage */ = {
 			isa = PBXGroup;
 			children = (
+				56529243256FF9850007C033 /* PostViewController.h */,
+				56529244256FF9850007C033 /* PostViewController.m */,
 				56510994256C1DD200163966 /* PostCell.h */,
 				56510995256C1DD200163966 /* PostCell.m */,
 				56510996256C1DD200163966 /* PostCell.xib */,
 			);
-			path = PostCell;
+			path = PostPage;
 			sourceTree = "<group>";
 		};
 		565109C0256CEF0A00163966 /* DiscoverPage */ = {
@@ -285,8 +287,6 @@
 		56529242256FF9420007C033 /* SubPages */ = {
 			isa = PBXGroup;
 			children = (
-				56529243256FF9850007C033 /* PostViewController.h */,
-				56529244256FF9850007C033 /* PostViewController.m */,
 				56529248256FF9910007C033 /* AlbumViewController.h */,
 				56529249256FF9910007C033 /* AlbumViewController.m */,
 				565292A72572066A0007C033 /* InfoViewController.h */,
@@ -331,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				565292C225727FF40007C033 /* CommentPage */,
-				565109B1256CE4A300163966 /* PostCell */,
+				565109B1256CE4A300163966 /* PostPage */,
 				565292BD25727F840007C033 /* BigImage */,
 			);
 			path = Modules;
@@ -498,6 +498,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				565293012573375F0007C033 /* PostViewController.h in Sources */,
+				565293022573375F0007C033 /* PostViewController.m in Sources */,
 				565292FA2572955A0007C033 /* ImageSender.h in Sources */,
 				565292FB2572955A0007C033 /* ImageSender.m in Sources */,
 				565292D1257290560007C033 /* CommentTableViewController.h in Sources */,
@@ -508,8 +510,6 @@
 				565292D6257290560007C033 /* PostCell.m in Sources */,
 				565292D9257290560007C033 /* BigImageViewController.h in Sources */,
 				565292DA257290560007C033 /* BigImageViewController.m in Sources */,
-				565292DB257290560007C033 /* PostViewController.h in Sources */,
-				565292DC257290560007C033 /* PostViewController.m in Sources */,
 				565292DD257290560007C033 /* AlbumViewController.h in Sources */,
 				565292DE257290560007C033 /* AlbumViewController.m in Sources */,
 				565292DF257290560007C033 /* InfoViewController.h in Sources */,

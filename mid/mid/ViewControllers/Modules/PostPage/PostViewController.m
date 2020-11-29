@@ -18,7 +18,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 #pragma mark - UITableViewDataSource
@@ -66,9 +65,8 @@
     };
     
     cell.showCommentsBlock = ^(NSString *contentID){
-        NSLog(@"%@", contentID);
-        [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
-        
+        NSLog(@"%@ & %@", contentID, contentID);
+        [self presentViewController:[[CommentTableViewController alloc]init] animated:YES completion:nil];
     };
     
     // for test use
