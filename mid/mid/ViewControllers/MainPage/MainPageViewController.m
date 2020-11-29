@@ -226,9 +226,6 @@
 //    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
 //    PostCell *cell = [topLevelObjects objectAtIndex:0];
     
-    // 如果没有图片，用以下方法去掉显示图片的区域
-//    [cell dontShowPicView];
-    
     // 设置数据
 //    [cell setVal:..];
 
@@ -239,6 +236,13 @@
         bivc.image = img;
         //[self.navigationController pushViewController:bivc animated:YES];
         [self presentViewController:bivc animated:YES completion:nil];
+    };
+    
+    // 设置Block (点击评论事件)
+    cell.showCommentsBlock = ^(NSString *contentID){
+        NSLog(@"%@", contentID);
+        [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
+        
     };
     
     // for test use
@@ -287,7 +291,7 @@
 #pragma mark 创建post
 - (void)post
 {
-    [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[WritingPostViewController alloc]init] animated:YES];
 }
 
 

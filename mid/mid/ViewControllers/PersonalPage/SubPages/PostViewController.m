@@ -8,6 +8,7 @@
 #import "PostViewController.h"
 #import "BigImageViewController.h"
 #import "PostCell.h"
+#import "CommentTableViewController.h"
 
 @interface PostViewController ()
 
@@ -52,9 +53,6 @@
 //    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
 //    PostCell *cell = [topLevelObjects objectAtIndex:0];
     
-    // 如果没有图片，用以下方法去掉显示图片的区域
-    // [cell dontShowPicView];
-    
     // 设置数据
     // [cell setVal:..];
 
@@ -65,6 +63,12 @@
         bivc.image = img;
         //[self.navigationController pushViewController:bivc animated:YES];
         [self presentViewController:bivc animated:YES completion:nil];
+    };
+    
+    cell.showCommentsBlock = ^(NSString *contentID){
+        NSLog(@"%@", contentID);
+        [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
+        
     };
     
     // for test use
