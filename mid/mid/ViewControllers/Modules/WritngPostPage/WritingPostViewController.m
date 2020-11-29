@@ -53,6 +53,9 @@
                                                                   action:@selector(postIt)];
     [self.navigationItem setRightBarButtonItem:postButton];
     
+    // 手动设置返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
+    
     // 上方的文本框
     UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, _w, _h - 120)];
     [textView setFont:[UIFont systemFontOfSize:20]];
@@ -172,5 +175,12 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     [picker dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+- (void)backTapped:(UIBarButtonItem *)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
+}
+
 
 @end

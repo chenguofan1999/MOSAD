@@ -44,6 +44,9 @@
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //test
 //    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithTitle:@"add" style:UIBarButtonItemStylePlain target:self action:@selector(testAddPic)]];
+    
+    // 手动设置返回按钮
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
 }
 
 - (void)choose:(UISegmentedControl *)seg
@@ -66,6 +69,11 @@
             [_avc.view setHidden:NO];
             break;
     }
+}
+
+- (void)backTapped:(UIBarButtonItem *)sender
+{
+    [self.navigationController popViewControllerAnimated:NO];
 }
 
 - (void)testAddPic

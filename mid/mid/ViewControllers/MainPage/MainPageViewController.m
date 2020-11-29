@@ -54,11 +54,11 @@
     // 左侧按钮
     [self setPortraitButtonWithImage:[UIImage imageNamed:@"chen.png"]];
     // 右侧按钮
-//    UIBarButtonItem *rightButton =
-//        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
-//                                                     target:self
-//                                                     action:@selector(post)];
-//    [self.navigationItem setRightBarButtonItem:rightButton];
+    UIBarButtonItem *rightButton =
+        [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
+                                                     target:self
+                                                     action:@selector(post)];
+    [self.navigationItem setRightBarButtonItem:rightButton];
     
     // 加载分类栏
     self.tableView.tableHeaderView = [self categoryView];
@@ -303,6 +303,10 @@
     [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
 }
 
+- (void)post
+{
+    [self.navigationController pushViewController:[WritingPostViewController new] animated:NO];
+}
 
 
 @end

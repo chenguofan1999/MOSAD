@@ -50,8 +50,6 @@
 		565292A42571FE990007C033 /* test208.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5652929B2571FE990007C033 /* test208.jpg */; };
 		565292CC25728C7F0007C033 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565292CA25728C7F0007C033 /* CommentCell.xib */; };
 		565292F1257290560007C033 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
-		565729C325737F6900AE33D9 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
-		565729C425737F6900AE33D9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
 		565729C525737F6900AE33D9 /* PostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529243256FF9850007C033 /* PostViewController.h */; };
 		565729C625737F6900AE33D9 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529244256FF9850007C033 /* PostViewController.m */; };
 		565729C725737F6900AE33D9 /* AlbumViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529248256FF9910007C033 /* AlbumViewController.h */; };
@@ -90,6 +88,12 @@
 		565729E825737F6900AE33D9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
 		565729EC2573879900AE33D9 /* testAvator1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565729EA2573879900AE33D9 /* testAvator1.jpg */; };
 		565729ED2573879900AE33D9 /* testAvator2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565729EB2573879900AE33D9 /* testAvator2.jpg */; };
+		565729FB2573AAC000AE33D9 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565729F92573AAC000AE33D9 /* LogInViewController.xib */; };
+		565729FE2573AE6900AE33D9 /* LogInViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565729F72573AAC000AE33D9 /* LogInViewController.h */; };
+		565729FF2573AE6900AE33D9 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729F82573AAC000AE33D9 /* LogInViewController.m */; };
+		56572A022573B0F600AE33D9 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
+		56572A032573B0F600AE33D9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
+		56572A072573CDCA00AE33D9 /* UIResponder+Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -178,6 +182,11 @@
 		565729BF25737EF600AE33D9 /* SystemSettingController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SystemSettingController.m; sourceTree = "<group>"; };
 		565729EA2573879900AE33D9 /* testAvator1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testAvator1.jpg; sourceTree = "<group>"; };
 		565729EB2573879900AE33D9 /* testAvator2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = testAvator2.jpg; sourceTree = "<group>"; };
+		565729F72573AAC000AE33D9 /* LogInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
+		565729F82573AAC000AE33D9 /* LogInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
+		565729F92573AAC000AE33D9 /* LogInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
+		56572A052573CDCA00AE33D9 /* UIResponder+Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Scene.h"; sourceTree = "<group>"; };
+		56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Scene.m"; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -349,6 +358,7 @@
 		565292BC25727F690007C033 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				565729F02573A99C00AE33D9 /* LogInPage */,
 				565729A525737AA000AE33D9 /* PostCell */,
 				5652922A256FC92D0007C033 /* PersonalPage */,
 				5652930425735B560007C033 /* WritngPostPage */,
@@ -419,6 +429,8 @@
 				5656D2C8256B5851007B92B2 /* SceneDelegate.m */,
 				5656D2D5256B5853007B92B2 /* Info.plist */,
 				5656D2D6256B5853007B92B2 /* main.m */,
+				56572A052573CDCA00AE33D9 /* UIResponder+Scene.h */,
+				56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */,
 			);
 			path = mid;
 			sourceTree = "<group>";
@@ -444,6 +456,16 @@
 				565729BF25737EF600AE33D9 /* SystemSettingController.m */,
 			);
 			path = Subpages;
+			sourceTree = "<group>";
+		};
+		565729F02573A99C00AE33D9 /* LogInPage */ = {
+			isa = PBXGroup;
+			children = (
+				565729F72573AAC000AE33D9 /* LogInViewController.h */,
+				565729F82573AAC000AE33D9 /* LogInViewController.m */,
+				565729F92573AAC000AE33D9 /* LogInViewController.xib */,
+			);
+			path = LogInPage;
 			sourceTree = "<group>";
 		};
 		E189D338F4D7A86268C23908 /* Pods */ = {
@@ -541,6 +563,7 @@
 				565729EC2573879900AE33D9 /* testAvator1.jpg in Resources */,
 				5651094D256BC9F100163966 /* setting-filled@2x.png in Resources */,
 				56510A0B256E22A500163966 /* chen.png in Resources */,
+				565729FB2573AAC000AE33D9 /* LogInViewController.xib in Resources */,
 				565109A2256C205800163966 /* fav-filled.png in Resources */,
 				5652929E2571FE990007C033 /* test204.jpg in Resources */,
 				56529262256FFFA50007C033 /* test105.jpg in Resources */,
@@ -608,11 +631,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				565729C325737F6900AE33D9 /* PostCell.h in Sources */,
-				565729C425737F6900AE33D9 /* PostCell.m in Sources */,
+				56572A022573B0F600AE33D9 /* PostCell.h in Sources */,
+				56572A032573B0F600AE33D9 /* PostCell.m in Sources */,
+				565729FE2573AE6900AE33D9 /* LogInViewController.h in Sources */,
+				565729FF2573AE6900AE33D9 /* LogInViewController.m in Sources */,
 				565729C525737F6900AE33D9 /* PostViewController.h in Sources */,
 				565729C625737F6900AE33D9 /* PostViewController.m in Sources */,
 				565729C725737F6900AE33D9 /* AlbumViewController.h in Sources */,
+				56572A072573CDCA00AE33D9 /* UIResponder+Scene.m in Sources */,
 				565729C825737F6900AE33D9 /* AlbumViewController.m in Sources */,
 				565729C925737F6900AE33D9 /* InfoViewController.h in Sources */,
 				565729CA25737F6900AE33D9 /* InfoViewController.m in Sources */,

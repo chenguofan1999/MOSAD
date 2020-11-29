@@ -38,7 +38,7 @@
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
                                                    reuseIdentifier:nil];
     
-    NSInteger sec = indexPath.section;
+//    NSInteger sec = indexPath.section;
     [cell.textLabel setText:@"Tom __ed you"];
     [cell.imageView setImage:[UIImage imageNamed:@"edvard-munch.png"]];
     

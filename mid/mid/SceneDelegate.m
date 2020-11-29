@@ -8,6 +8,7 @@
 #import "SceneDelegate.h"
 #import "AppDelegate.h"
 #import "TabBarController.h"
+#import "LogInViewController.h"
 @interface SceneDelegate ()
 
 @end
@@ -22,10 +23,11 @@
     UIWindowScene *windowScene = (UIWindowScene *)scene;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
     self.window = [[UIWindow alloc] initWithWindowScene:windowScene];
-    self.window.rootViewController = [[TabBarController alloc] init];
+    self.window.rootViewController = [[LogInViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     NSLog(@"init in sceneDelegate");
     [self.window makeKeyAndVisible];
+    
 }
 
 

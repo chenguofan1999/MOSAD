@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController">
+            <connections>
+                <outlet property="header" destination="Hpm-h0-JAg" id="dDQ-vy-Cci"/>
+                <outlet property="logInOrSignUpButton" destination="iHu-gE-pny" id="Mr1-bu-m9F"/>
+                <outlet property="passwordField" destination="XOF-Ip-PIw" id="V1E-Mg-Lfb"/>
+                <outlet property="switchLabel" destination="Rha-tB-EXE" id="1aR-vg-Ii6"/>
+                <outlet property="usernameField" destination="jjB-jQ-dcA" id="Avs-by-x7s"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAP-Eu-Ezd">
+                    <rect key="frame" x="62" y="204" width="290" height="400"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHu-gE-pny">
+                            <rect key="frame" x="33" y="238" width="224" height="37"/>
+                            <color key="backgroundColor" systemColor="systemBlueColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="37" id="cWO-fs-v5c"/>
+                                <constraint firstAttribute="height" constant="37" id="eAa-yc-ldF"/>
+                            </constraints>
+                            <state key="normal" title="登录">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="logInOrSignUp:" destination="-1" eventType="touchUpInside" id="MfT-WO-SU5"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有账号？立即创建一个。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-tB-EXE">
+                            <rect key="frame" x="33" y="290" width="208" height="30"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="TOH-cm-734"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" systemColor="systemBlueColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-jQ-dcA">
+                            <rect key="frame" x="33" y="113" width="224" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="224" id="708-HD-iku"/>
+                                <constraint firstAttribute="height" constant="34" id="OKM-uW-tGw"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOF-Ip-PIw">
+                            <rect key="frame" x="33" y="174" width="224" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="mcm-8r-Hgz"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请登录。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpm-h0-JAg">
+                            <rect key="frame" x="33" y="46" width="130" height="39"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstItem="iHu-gE-pny" firstAttribute="centerX" secondItem="BAP-Eu-Ezd" secondAttribute="centerX" id="2u9-GK-EMd"/>
+                        <constraint firstAttribute="bottom" secondItem="Rha-tB-EXE" secondAttribute="bottom" constant="80" id="5Fb-hM-S6w"/>
+                        <constraint firstItem="jjB-jQ-dcA" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="8JS-DB-IkX"/>
+                        <constraint firstAttribute="height" constant="400" id="8xt-01-0Ct"/>
+                        <constraint firstItem="iHu-gE-pny" firstAttribute="top" secondItem="XOF-Ip-PIw" secondAttribute="bottom" constant="30" id="JQI-bt-wd1"/>
+                        <constraint firstItem="iHu-gE-pny" firstAttribute="trailing" secondItem="jjB-jQ-dcA" secondAttribute="trailing" id="R0H-6u-IEs"/>
+                        <constraint firstItem="iHu-gE-pny" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="REa-33-JfD"/>
+                        <constraint firstItem="jjB-jQ-dcA" firstAttribute="top" secondItem="Hpm-h0-JAg" secondAttribute="bottom" constant="28" id="SS8-gT-jbl"/>
+                        <constraint firstItem="Rha-tB-EXE" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="Ujd-eX-VUa"/>
+                        <constraint firstItem="Rha-tB-EXE" firstAttribute="top" secondItem="iHu-gE-pny" secondAttribute="bottom" constant="15" id="WuO-hM-c5P"/>
+                        <constraint firstItem="XOF-Ip-PIw" firstAttribute="top" secondItem="jjB-jQ-dcA" secondAttribute="bottom" constant="27" id="cmk-IS-MXr"/>
+                        <constraint firstItem="iHu-gE-pny" firstAttribute="trailing" secondItem="XOF-Ip-PIw" secondAttribute="trailing" id="hCN-co-pku"/>
+                        <constraint firstItem="XOF-Ip-PIw" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="z7w-to-bmE"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="Q5M-cg-NOt"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="BAP-Eu-Ezd" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="J8G-96-7fB"/>
+                <constraint firstItem="BAP-Eu-Ezd" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="UTo-my-r9u"/>
+                <constraint firstItem="BAP-Eu-Ezd" firstAttribute="leading" secondItem="Q5M-cg-NOt" secondAttribute="leading" constant="62" id="fud-5Z-PwU"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+            <point key="canvasLocation" x="211.59420289855075" y="174.77678571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
