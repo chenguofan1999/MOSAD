@@ -7,7 +7,7 @@
 
 
 #import "AlbumViewController.h"
-#import "ImageTapGestureRecognizer.h"
+#import "ImageSender.h"
 #import "BigImageViewController.h"
 
 
@@ -106,7 +106,7 @@
     
     // 增加点击事件
     [newImageView setUserInteractionEnabled:YES];
-    ImageTapGestureRecognizer *gesture = [[ImageTapGestureRecognizer alloc]initWithTarget:self action:@selector(showBigImage:)];
+    ImageSender *gesture = [[ImageSender alloc]initWithTarget:self action:@selector(showBigImage:)];
     gesture.image = img;
     [newImageView addGestureRecognizer:gesture];
     
@@ -114,7 +114,7 @@
     _picNum ++;
 }
 
-- (void)showBigImage:(ImageTapGestureRecognizer *)sender
+- (void)showBigImage:(ImageSender *)sender
 {
     BigImageViewController *bivc = [[BigImageViewController alloc] init];
     bivc.view.backgroundColor = [UIColor blackColor];

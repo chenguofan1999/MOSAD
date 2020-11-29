@@ -6,7 +6,8 @@
 //
 
 #import "PostCell.h"
-#import "ImageTapGestureRecognizer.h"
+#import "ImageSender.h"
+#import "CommentTableViewController.h"
 
 @interface PostCell()
 @property (nonatomic, strong) IBOutlet UIButton *portraitButton;
@@ -19,6 +20,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *commentNumberLable;
 @property (nonatomic, strong) IBOutlet UILabel *likeNumberLable;
 @property (nonatomic, strong) IBOutlet UILabel *favNumberLable;
+
 
 @property (nonatomic, strong) UIView *insidePicView;
 @property (nonatomic, strong) IBOutlet UIScrollView *picView;
@@ -46,6 +48,13 @@
     _faved = false;
 }
 
+- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
+    [super setSelected:selected animated:animated];
+
+}
+
+
+# pragma mark 测试
 - (void)initWithTestData
 {
     _timeLable.text = @"2020 11 12";
@@ -63,10 +72,7 @@
     [_favNumberLable setText:@"4"];
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
 
-}
 
 # pragma mark 赋值函数
 - (void)setVal
@@ -79,6 +85,16 @@
 {
     _portraitButton.layer.cornerRadius = 3;
     _portraitButton.layer.masksToBounds = YES;
+}
+
+# pragma mark 点击 comment button
+- (IBAction)pressCommentButton:(id)sender
+{
+    NSLog(@"...");
+    if(self.showCommentsBlock)
+    {
+        self.showCommentsBlock(@"testID");
+    }
 }
 
 # pragma mark 点击 like button
@@ -96,7 +112,7 @@
 
 - (void)like
 {
-    [_likeButton setBackgroundImage:[UIImage imageNamed:@"like-filled.png"] forState:UIControlStateNormal];
+    [_likeButton setImage:[UIImage imageNamed:@"like-filled.png"] forState:UIControlStateNormal];
     _liked = YES;
     // HTTP POST and GET
     
@@ -104,7 +120,7 @@
 
 - (void)cancelLike
 {
-    [_likeButton setBackgroundImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
+    [_likeButton setImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
     _liked = NO;
     // HTTP POST and GET
     
@@ -125,7 +141,7 @@
 
 - (void)fav
 {
-    [_favButton setBackgroundImage:[UIImage imageNamed:@"fav-filled.png"] forState:UIControlStateNormal];
+    [_favButton setImage:[UIImage imageNamed:@"fav-filled.png"] forState:UIControlStateNormal];
     _faved = YES;
     // HTTP POST and GET
     
@@ -133,19 +149,10 @@
 
 - (void)cancelFav
 {
-    [_favButton setBackgroundImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
+    [_favButton setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
     _faved = NO;
     // HTTP POST and GET
     
-}
-
-# pragma mark 点击 comment button
-- (IBAction)pressCommentButton:(id)sender
-{
-    NSLog(@"comment button pressed");
-    // 展开回复框
-    
-    // test only
 }
 
 # pragma mark 头像
@@ -200,7 +207,7 @@
     [newPicView.layer setMasksToBounds:YES];
     
     // 添加点击放大的功能(继承UITapGestureRecognizer来夹带消息)
-    ImageTapGestureRecognizer *tapGesture = [[ImageTapGestureRecognizer alloc] initWithTarget:self
+    ImageSender *tapGesture = [[ImageSender alloc] initWithTarget:self
                                                                    action:@selector(showFullImage:)];
     tapGesture.image = img;
     [newPicView setUserInteractionEnabled: YES];
@@ -210,11 +217,11 @@
     _picNum ++;
 }
 
-- (void)showFullImage:(ImageTapGestureRecognizer *)sender
+- (void)showFullImage:(ImageSender *)sender
 {
-    if(self.actionBlock)
+    if(self.showImageBlock)
     {
-        self.actionBlock(sender.image);
+        self.showImageBlock(sender.image);
     }
 }
 

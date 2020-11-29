@@ -8,7 +8,8 @@
 #import "DiscoverViewController.h"
 
 @interface DiscoverViewController ()
-
+@property (nonatomic, strong) UITableView *postView;
+//@property (nonatomic, strong) 
 @end
 
 @implementation DiscoverViewController

@@ -59,7 +59,7 @@
     // [cell setVal:..];
 
     // 设置Block（点击略缩图事件）
-    cell.actionBlock = ^(UIImage *img){
+    cell.showImageBlock = ^(UIImage *img){
         BigImageViewController *bivc = [[BigImageViewController alloc] init];
         bivc.view.backgroundColor = [UIColor blackColor];
         bivc.image = img;

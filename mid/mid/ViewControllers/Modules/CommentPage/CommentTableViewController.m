@@ -7,7 +7,7 @@
 
 #import "CommentTableViewController.h"
 
-@interface CommentTableViewController ()
+@interface CommentTableViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @end
 
@@ -21,6 +21,9 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
 }
 
 #pragma mark - Table view data source
@@ -33,15 +36,12 @@
    return 10;
 }
 
-/*
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
-    
-    // Configure the cell...
-    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+
     return cell;
 }
-*/
 
 /*
 // Override to support conditional editing of the table view.

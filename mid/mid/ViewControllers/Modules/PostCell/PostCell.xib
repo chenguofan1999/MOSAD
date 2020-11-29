@@ -29,7 +29,7 @@
                         <color key="highlightedColor" systemColor="systemGray2Color"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="textContent" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDf-Ll-0HQ">
-                        <rect key="frame" x="66" y="60.5" width="446" height="473.5"/>
+                        <rect key="frame" x="64" y="60.5" width="448" height="473.5"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="100" constant="20" id="ros-0V-b8r"/>
                         </constraints>
@@ -45,7 +45,7 @@
                         </constraints>
                         <state key="normal" title="comment" backgroundImage="comment.png"/>
                         <connections>
-                            <action selector="pressCommentButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="WQh-BX-Dop"/>
+                            <action selector="pressCommentButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Zgx-Mt-TjN"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pdg-fM-rxR">
@@ -130,7 +130,7 @@
                     <constraint firstItem="1fh-02-Zg1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="G26-jz-Ped"/>
                     <constraint firstItem="mmh-NS-o07" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="Iab-j4-YVE"/>
                     <constraint firstItem="8bs-EB-w4f" firstAttribute="leading" secondItem="VXc-Th-XTY" secondAttribute="trailing" constant="5" id="ON6-zz-DAG"/>
-                    <constraint firstItem="FDf-Ll-0HQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="46" id="SVo-hI-XPs"/>
+                    <constraint firstItem="FDf-Ll-0HQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="44" id="SVo-hI-XPs"/>
                     <constraint firstItem="mmh-NS-o07" firstAttribute="top" secondItem="FDf-Ll-0HQ" secondAttribute="bottom" constant="8" id="TA6-yf-j0F"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zpc-9H-IGT" secondAttribute="bottom" constant="5" id="TXB-oQ-9Uq"/>
                     <constraint firstItem="1fh-02-Zg1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WOu-Wq-co8"/>

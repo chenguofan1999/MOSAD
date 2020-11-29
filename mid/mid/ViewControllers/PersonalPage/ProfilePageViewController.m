@@ -41,6 +41,7 @@
     
     [segmentBar setSelectedSegmentIndex:0];
     
+    self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     //test
 //    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithTitle:@"add" style:UIBarButtonItemStylePlain target:self action:@selector(testAddPic)]];
 }

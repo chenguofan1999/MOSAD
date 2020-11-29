@@ -10,7 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface PostCell : UITableViewCell
-@property (nonatomic, copy) void (^actionBlock)(UIImage *image);
+@property (nonatomic, copy) void (^showImageBlock)(UIImage *image);
+@property (nonatomic, copy) void (^showCommentsBlock)(NSString *contentID);
 - (void)setVal;
 - (void)dontShowPicView;
 - (void)addPic:(UIImage *)image;

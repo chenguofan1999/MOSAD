@@ -10,6 +10,7 @@
 #import "BigImageViewController.h"
 #import "PostCell.h"
 #import "ProfilePageViewController.h"
+#import "CommentTableViewController.h"
 
 @interface MainPageViewController ()<UISearchBarDelegate>
 @property (strong, nonatomic) UISearchBar *searchBar;
@@ -62,6 +63,9 @@
     // 注册 nib 文件
     UINib *nib = [UINib nibWithNibName:@"PostCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PostCell"];
+    
+    // 一些样式
+    [self.tableView setBounces:NO];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -155,7 +159,7 @@
 {
     if(!_searchBar)
     {
-        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 50)];
+        _searchBar = [[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, 40)];
         // 消除搜索框的不必要的背景颜色
         UIImage* clearColor = [MainPageViewController GetImageWithColor:[UIColor clearColor] Height:35];
         _searchBar.delegate = self;
@@ -223,13 +227,13 @@
 //    PostCell *cell = [topLevelObjects objectAtIndex:0];
     
     // 如果没有图片，用以下方法去掉显示图片的区域
-    // [cell dontShowPicView];
+//    [cell dontShowPicView];
     
     // 设置数据
-    // [cell setVal:..];
+//    [cell setVal:..];
 
     // 设置Block（点击略缩图事件）
-    cell.actionBlock = ^(UIImage *img){
+    cell.showImageBlock = ^(UIImage *img){
         BigImageViewController *bivc = [[BigImageViewController alloc] init];
         bivc.view.backgroundColor = [UIColor blackColor];
         bivc.image = img;
@@ -283,7 +287,7 @@
 #pragma mark 创建post
 - (void)post
 {
-    [self.navigationController pushViewController:[[WritingPostViewController alloc]init] animated:YES];
+    [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
 }
 
 
