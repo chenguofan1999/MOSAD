@@ -10,24 +10,17 @@
 #import "CommentTableViewController.h"
 
 @interface PostCell()
-@property (nonatomic, strong) IBOutlet UIButton *portraitButton;
 @property (nonatomic, strong) IBOutlet UILabel *timeLable;
 @property (nonatomic, strong) IBOutlet UILabel *userNameLable;
 @property (nonatomic, strong) IBOutlet UILabel *textContentLable;
-@property (nonatomic, strong) IBOutlet UIButton *commentButton;
-@property (nonatomic, strong) IBOutlet UIButton *likeButton;
-@property (nonatomic, strong) IBOutlet UIButton *favButton;
 @property (nonatomic, strong) IBOutlet UILabel *commentNumberLable;
 @property (nonatomic, strong) IBOutlet UILabel *likeNumberLable;
 @property (nonatomic, strong) IBOutlet UILabel *favNumberLable;
-
 
 @property (nonatomic, strong) UIView *insidePicView;
 @property (nonatomic, strong) IBOutlet UIScrollView *picView;
 
 @property (nonatomic) int picNum;
-@property (nonatomic) bool liked;
-@property (nonatomic) bool faved;
 @end
 
 
@@ -74,26 +67,12 @@
 
 
 
-# pragma mark 赋值函数
-- (void)setVal
-{
-    
-}
 
 # pragma mark 设置样式
 - (void)initStyle
 {
     _portraitButton.layer.cornerRadius = 3;
     _portraitButton.layer.masksToBounds = YES;
-}
-
-# pragma mark 点击 comment button
-- (IBAction)pressCommentButton:(id)sender
-{
-    if(self.showCommentsBlock)
-    {
-        self.showCommentsBlock(@"testID");
-    }
 }
 
 # pragma mark 点击 like button
@@ -113,16 +92,12 @@
 {
     [_likeButton setImage:[UIImage imageNamed:@"like-filled.png"] forState:UIControlStateNormal];
     _liked = YES;
-    // HTTP POST and GET
-    
 }
 
 - (void)cancelLike
 {
     [_likeButton setImage:[UIImage imageNamed:@"like.png"] forState:UIControlStateNormal];
     _liked = NO;
-    // HTTP POST and GET
-    
 }
 
 # pragma mark 点击 fav button
@@ -142,7 +117,6 @@
 {
     [_favButton setImage:[UIImage imageNamed:@"fav-filled.png"] forState:UIControlStateNormal];
     _faved = YES;
-    // HTTP POST and GET
     
 }
 
@@ -150,21 +124,19 @@
 {
     [_favButton setImage:[UIImage imageNamed:@"fav.png"] forState:UIControlStateNormal];
     _faved = NO;
-    // HTTP POST and GET
     
 }
 
-# pragma mark 头像
-- (IBAction)pressPortrait:(id)sender
-{
-    NSLog(@"for test use");
-    // 进入个人页面
-    if(self.showPersonalPageBlock)
-    {
-        self.showPersonalPageBlock(@"testUserID");
-    }
-    
-}
+//# pragma mark 头像
+//- (IBAction)pressPortrait:(id)sender
+//{
+//    NSLog(@"for test use");
+//    // 进入个人页面
+//    if(self.showPersonalPageBlock)
+//    {
+//        self.showPersonalPageBlock(@"testUserID");
+//    }
+//}
 
 
 # pragma mark 图片区域
@@ -230,6 +202,8 @@
 {
     return CGRectMake(10 + 110 * i, 10, 100, 100);
 }
+
+
 
 @end
 

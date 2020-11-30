@@ -8,7 +8,6 @@
 #import "LogInViewController.h"
 #import "TabBarController.h"
 #import "SceneDelegate.h"
-#import "UIResponder+Scene.h"
 
 @interface LogInViewController ()
 @property (nonatomic,strong) IBOutlet UILabel *header;

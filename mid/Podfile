@@ -9,3 +9,4 @@ target 'mid' do
 
 end
 pod ‘Masonry’
+pod 'AFNetworking'

@@ -52,7 +52,7 @@
     // 延迟加载搜索框, 放在 navBar 的中间
     [self.navigationItem setTitleView:[self searchBar]];
     // 左侧按钮
-    [self setPortraitButtonWithImage:[UIImage imageNamed:@"chen.png"]];
+    [self setPortraitButtonWithImage:[UIImage imageNamed:@"testPortrait.jpg"]];
     // 右侧按钮
     UIBarButtonItem *rightButton =
         [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
@@ -247,44 +247,97 @@
         //[self.navigationController pushViewController:bivc animated:YES];
         [self presentViewController:bivc animated:YES completion:nil];
     };
-    
-    // 设置Block (点击评论事件)
-    cell.showCommentsBlock = ^(NSString *contentID){
-        NSLog(@"%@", contentID);
-        [self.navigationController pushViewController:[[CommentTableViewController alloc]init] animated:YES];
-        
-    };
-    
-    cell.showPersonalPageBlock = ^(NSString  *userID){
-        NSLog(@"%@", userID);
-        [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
-    };
+
+    // 为buttons设置事件
+    [cell.likeButton addTarget:self action:@selector(likePost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.portraitButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.favButton addTarget:self action:@selector(favPost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.deleteButton addTarget:self action:@selector(deletePost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
     
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
+    [cell addPic:[UIImage imageNamed:@"test100.jpg"]];
+    [cell addPic:[UIImage imageNamed:@"test101.jpg"]];
+    [cell addPic:[UIImage imageNamed:@"test102.jpg"]];
     
     return cell;
 }
 
-
-
 // 选中 cell 的效果
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{}
 
 // 取消选中 cell 的效果
 //- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//
-//}
+//{}
+#pragma mark 喜欢button
+- (void)favPost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press fav button at row %ld", indexPath.row);
+}
 
-#pragma mark 头像按键
+#pragma mark 头像button
+- (void)toUserPage:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press avator button at row %ld", indexPath.row);
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+}
+
+#pragma mark 点赞button
+- (void)likePost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press like button at row %ld", indexPath.row);
+}
+
+#pragma mark 删除button
+- (void)deletePost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press delete button at row %ld", indexPath.row);
+}
+
+#pragma mark 评论区button
+- (void)showCommentPage:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press comment button at row %ld", indexPath.row);
+//    [self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
+    [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
+}
+
+
+#pragma mark 导航栏两个button
 - (void)setPortraitButtonWithImage:(UIImage *)image
 {
     int r = 35;
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, r, r)];
     [button setImage:image forState:UIControlStateNormal];
     button.layer.cornerRadius = r/2;
-    button.imageView.contentMode = UIViewContentModeScaleAspectFit; // 头像将等比例缩放
+    button.imageView.contentMode = UIViewContentModeScaleAspectFill; // 头像截取而不缩放
     button.layer.masksToBounds = YES;                               // 头像将只显示在圆圈内
     
     // 以下两句约束了button的控件大小
@@ -297,12 +350,10 @@
     [button addTarget:self action:@selector(toMyPage) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:button]];
 }
-
 - (void)toMyPage
 {
     [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
 }
-
 - (void)post
 {
     [self.navigationController pushViewController:[WritingPostViewController new] animated:NO];

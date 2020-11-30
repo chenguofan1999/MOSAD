@@ -36,9 +36,9 @@
     if(_avatorView == nil)
     {
         _avatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _w, 160)];
-        UIImageView *avator = [[UIImageView alloc] initWithFrame:CGRectMake(_w/2 - 35, 45, 70, 70)];
-        avator.image = [UIImage imageNamed:@"chen.png"];
-        avator.layer.cornerRadius = 35;
+        UIImageView *avator = [[UIImageView alloc] initWithFrame:CGRectMake(_w/2 - 45, 35, 90, 90)];
+        avator.image = [UIImage imageNamed:@"testPortrait.jpg"];
+        avator.layer.cornerRadius = 45;
         avator.layer.masksToBounds = YES;
         avator.layer.borderWidth = 1;
         [_avatorView addSubview:avator];

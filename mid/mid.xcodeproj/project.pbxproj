@@ -93,7 +93,6 @@
 		565729FF2573AE6900AE33D9 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729F82573AAC000AE33D9 /* LogInViewController.m */; };
 		56572A022573B0F600AE33D9 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
 		56572A032573B0F600AE33D9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
-		56572A072573CDCA00AE33D9 /* UIResponder+Scene.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,8 +184,6 @@
 		565729F72573AAC000AE33D9 /* LogInViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LogInViewController.h; sourceTree = "<group>"; };
 		565729F82573AAC000AE33D9 /* LogInViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LogInViewController.m; sourceTree = "<group>"; };
 		565729F92573AAC000AE33D9 /* LogInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
-		56572A052573CDCA00AE33D9 /* UIResponder+Scene.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIResponder+Scene.h"; sourceTree = "<group>"; };
-		56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIResponder+Scene.m"; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -429,8 +426,6 @@
 				5656D2C8256B5851007B92B2 /* SceneDelegate.m */,
 				5656D2D5256B5853007B92B2 /* Info.plist */,
 				5656D2D6256B5853007B92B2 /* main.m */,
-				56572A052573CDCA00AE33D9 /* UIResponder+Scene.h */,
-				56572A062573CDCA00AE33D9 /* UIResponder+Scene.m */,
 			);
 			path = mid;
 			sourceTree = "<group>";
@@ -638,7 +633,6 @@
 				565729C525737F6900AE33D9 /* PostViewController.h in Sources */,
 				565729C625737F6900AE33D9 /* PostViewController.m in Sources */,
 				565729C725737F6900AE33D9 /* AlbumViewController.h in Sources */,
-				56572A072573CDCA00AE33D9 /* UIResponder+Scene.m in Sources */,
 				565729C825737F6900AE33D9 /* AlbumViewController.m in Sources */,
 				565729C925737F6900AE33D9 /* InfoViewController.h in Sources */,
 				565729CA25737F6900AE33D9 /* InfoViewController.m in Sources */,

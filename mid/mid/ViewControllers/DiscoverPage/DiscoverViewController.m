@@ -36,7 +36,7 @@
     [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = segmentBar;
     
-
+    [segmentBar setSelectedSegmentIndex:0];
 }
 
 - (void)choose:(UISegmentedControl *)seg
@@ -85,7 +85,7 @@
 //    PostCell *cell = [topLevelObjects objectAtIndex:0];
     
     // 设置数据
-    // [cell setVal:..];
+//    [cell setVal:..];
 
     // 设置Block（点击略缩图事件）
     cell.showImageBlock = ^(UIImage *img){
@@ -95,21 +95,83 @@
         //[self.navigationController pushViewController:bivc animated:YES];
         [self presentViewController:bivc animated:YES completion:nil];
     };
-    
-    cell.showCommentsBlock = ^(NSString *contentID){
-        NSLog(@"%@ & %@", contentID, contentID);
-        [self presentViewController:[[CommentTableViewController alloc]init] animated:YES completion:nil];
-    };
-    
-    cell.showPersonalPageBlock = ^(NSString  *userID){
-        NSLog(@"%@", userID);
-        [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:YES];
-    };
+
+    // 为buttons设置事件
+    [cell.likeButton addTarget:self action:@selector(likePost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.portraitButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.favButton addTarget:self action:@selector(favPost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.deleteButton addTarget:self action:@selector(deletePost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
     
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
     return cell;
+}
+
+// 选中 cell 的效果
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{}
+
+// 取消选中 cell 的效果
+//- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+//{}
+#pragma mark 喜欢button
+- (void)favPost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press fav button at row %ld", indexPath.row);
+}
+
+#pragma mark 头像button
+- (void)toUserPage:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press avator button at row %ld", indexPath.row);
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+}
+
+#pragma mark 点赞button
+- (void)likePost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press like button at row %ld", indexPath.row);
+}
+
+#pragma mark 删除button
+- (void)deletePost:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press delete button at row %ld", indexPath.row);
+}
+
+#pragma mark 评论区button
+- (void)showCommentPage:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    PostCell *cell = (PostCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press comment button at row %ld", indexPath.row);
+    //[self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
+    [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
 }
 
 @end
