@@ -100,9 +100,8 @@
     [cell.likeButton addTarget:self action:@selector(likePost:) forControlEvents:UIControlEventTouchUpInside];
     [cell.portraitButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
     [cell.favButton addTarget:self action:@selector(favPost:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.deleteButton addTarget:self action:@selector(deletePost:) forControlEvents:UIControlEventTouchUpInside];
     [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
-    
+    [cell.deleteButton setHidden:YES];
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
@@ -148,17 +147,6 @@
     
     // 已经得到indexPath
     NSLog(@"press like button at row %ld", indexPath.row);
-}
-
-#pragma mark 删除button
-- (void)deletePost:(UIButton *)btn
-{
-    UIView *contentView = [btn superview];
-    PostCell *cell = (PostCell *)[contentView superview];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    // 已经得到indexPath
-    NSLog(@"press delete button at row %ld", indexPath.row);
 }
 
 #pragma mark 评论区button

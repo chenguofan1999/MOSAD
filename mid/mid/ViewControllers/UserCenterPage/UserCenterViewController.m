@@ -5,18 +5,18 @@
 //  Created by itlab on 2020/11/23.
 //
 
-#import "SettingViewController.h"
+#import "UserCenterViewController.h"
 #import "InfoSettingViewController.h"
 #import "MessageViewController.h"
 #import "SystemSettingController.h"
 
-@interface SettingViewController ()
+@interface UserCenterViewController ()
 @property (nonatomic, strong) InfoSettingViewController *ivc;
 @property (nonatomic, strong) MessageViewController *mvc;
 @property (nonatomic, strong) SystemSettingController *svc;
 @end
 
-@implementation SettingViewController
+@implementation UserCenterViewController
 
 - (instancetype)init
 {

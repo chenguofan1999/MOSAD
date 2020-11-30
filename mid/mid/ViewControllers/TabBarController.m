@@ -8,7 +8,7 @@
 #import "TabBarController.h"
 #import "MainPageViewController.h"
 #import "DiscoverViewController.h"
-#import "SettingViewController.h"
+#import "UserCenterViewController.h"
 #import "WritingPostViewController.h"
 #import <Masonry/Masonry.h>
 
@@ -17,6 +17,7 @@
 @end
 
 @implementation TabBarController
+
 
 - (void)viewDidLoad
 {
@@ -29,7 +30,7 @@
     UINavigationController *discoverNav = [[UINavigationController alloc]initWithRootViewController:discoverPage];
     discoverNav.navigationBar.translucent = NO;
     
-    SettingViewController *settingPage = [[SettingViewController alloc]init];
+    UserCenterViewController *settingPage = [[UserCenterViewController alloc]init];
     UINavigationController *settingNav = [[UINavigationController alloc]initWithRootViewController:settingPage];
     settingNav.navigationBar.translucent = NO;
     

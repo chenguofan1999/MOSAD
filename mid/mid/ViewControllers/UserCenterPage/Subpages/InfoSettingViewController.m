@@ -6,15 +6,23 @@
 //
 
 #import "InfoSettingViewController.h"
-
+#import "TabBarController.h"
+#import "UserInfo.h"
 @interface InfoSettingViewController ()
 @property (nonatomic, strong) UITextField *textField;
 @end
 
 @implementation InfoSettingViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
@@ -24,35 +32,39 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UserInfo *userInfo = [UserInfo sharedUser];
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                    reuseIdentifier:nil];
-    
     switch (indexPath.row)
     {
         case 0:
             cell.textLabel.text = @"用户名";
-            cell.detailTextLabel.text = @"Chen";
+            cell.detailTextLabel.text = userInfo.name;
             break;
         case 1:
             cell.textLabel.text = @"邮箱";
-            cell.detailTextLabel.text = @"chen2027@gmail.com";
+            cell.detailTextLabel.text = userInfo.email;
             break;
         case 2:
             cell.textLabel.text = @"Bio";
-            cell.detailTextLabel.text = @"Na";
+            cell.detailTextLabel.text = @"none";
             break;
         case 3:
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = @"0";
+            cell.detailTextLabel.text = @"unknown";
             break;
         case 4:
             cell.textLabel.text = @"Nick Name";
             cell.detailTextLabel.text = @"None";
+            break;
+        case 5:
+            cell.textLabel.text = @"班级";
+            cell.detailTextLabel.text = @"unknown";
             break;
     }
 
