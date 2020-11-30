@@ -27,6 +27,7 @@ static UserInfo *userInfo = nil;
     sharedInfo.email = dict[@"Email"];
     sharedInfo.userId = dict[@"ID"];
     sharedInfo.bio = dict[@"Info"][@"Bio"];
-    
+    sharedInfo.classNum = [dict[@"Class"] intValue];
+    sharedInfo.gender = [dict[@"Info"][@"Gender"] intValue];
 }
 @end

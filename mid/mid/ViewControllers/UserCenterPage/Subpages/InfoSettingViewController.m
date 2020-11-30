@@ -52,11 +52,11 @@
             break;
         case 2:
             cell.textLabel.text = @"Bio";
-            cell.detailTextLabel.text = @"none";
+            cell.detailTextLabel.text = userInfo.bio;
             break;
         case 3:
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = @"unknown";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",userInfo.gender];
             break;
         case 4:
             cell.textLabel.text = @"Nick Name";
@@ -64,11 +64,10 @@
             break;
         case 5:
             cell.textLabel.text = @"班级";
-            cell.detailTextLabel.text = @"unknown";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",userInfo.classNum];
             break;
     }
 
-    
     return cell;
 }
 

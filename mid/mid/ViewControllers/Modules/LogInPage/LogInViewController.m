@@ -12,11 +12,14 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface LogInViewController ()
-@property (nonatomic,strong) IBOutlet UILabel *header;
-@property (nonatomic,strong) IBOutlet UITextField *usernameField;
+@property (nonatomic,strong) IBOutlet UILabel *logInHeader;
+@property (nonatomic,strong) IBOutlet UITextField *emailField;
 @property (nonatomic,strong) IBOutlet UITextField *passwordField;
 @property (nonatomic,strong) IBOutlet UIButton *logInOrSignUpButton;
 @property (nonatomic,strong) IBOutlet UILabel *switchLabel;
+
+@property (nonatomic,strong) IBOutlet UILabel *signUpHeader;
+@property (nonatomic,strong) IBOutlet UITextField *usernameField;
 @property (nonatomic) bool isLogIn;
 @end
 
@@ -24,9 +27,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [_header setText:@"请登录。"];
+    [_passwordField setSecureTextEntry:YES];
+    
+    [_logInHeader setHidden:NO];
+    [_signUpHeader setHidden:YES];
+    [_usernameField setHidden:YES];
     [_logInOrSignUpButton setTitle:@"登录" forState:UIControlStateNormal];
-    [_switchLabel setText:@"没有账号？立即创建一个。"];
     
     [_logInOrSignUpButton.layer setCornerRadius:5];
     
@@ -42,23 +48,24 @@
 - (IBAction)logInOrSignUp:(id)sender
 {
     NSString *username = [_usernameField text];
+    NSString *email = [_emailField text];
     NSString *password = [_passwordField text];
     if(_isLogIn)
     {
-        [self logInWithUsername:username AndPassword:password];
+        [self logInWithEmail:email AndPassword:password];
     }
     else
     {
-        
+        [self signUpWithUsername:username andEmail:email andPassword:password];
     }
 }
 
-- (void)logInWithUsername:(NSString *)username
-              AndPassword:(NSString *)password
+- (void)logInWithEmail:(NSString *)email
+           AndPassword:(NSString *)password
 {
     NSString *URL = @"http://172.18.178.56/api/user/login/pass";
     NSDictionary *body = @{
-        @"name":username,
+        @"name":email,
         @"password":password
     };
     
@@ -70,7 +77,7 @@
         NSLog(@"\nRequest success with responce %@", responseObject);
         NSDictionary *response = (NSDictionary *)responseObject;
         
-        // 验证是否登录成功
+        // 如果登录成功
         if([[response valueForKey:@"State"] isEqualToString:@"success"])
         {
             NSLog(@"LogIn success");
@@ -104,8 +111,14 @@
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"Get self info failed somehow");
             }];
-            
-            
+        }
+        else if([[response valueForKey:@"State"] isEqualToString:@"not found"])
+        {
+            [self Alert:@"没有这个账号"];
+        }
+        else if([[response valueForKey:@"State"] isEqualToString:@"crypto/bcrypt: hashedPassword is not the hash of the given password"])
+        {
+            [self Alert:@"密码错误"];
         }
 
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -117,9 +130,39 @@
 
 
 - (void)signUpWithUsername:(NSString *)username
+                  andEmail:(NSString *)email
                andPassword:(NSString *)password
 {
+    NSString *URL = @"http://172.18.178.56/api/user/register";
+    NSDictionary *body = @{
+        @"name":username,
+        @"password":password,
+        @"email":email
+    };
     
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"State"] isEqualToString:@"success"])
+        {
+            [self Alert:@"注册成功"];
+            [self switchMode];
+            [self.emailField setText:email];
+            [self.passwordField setText:password];
+        }
+        else
+        {
+            [self Alert:@"注册失败"];
+        }
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        // 请求失败
+        NSLog(@"request failure");
+    }];
 }
 
 # pragma mark 切换
@@ -127,23 +170,40 @@
 {
     if(_isLogIn)
     {
-        [_header setText:@"请注册。"];
+        [_logInHeader setHidden:YES];
+        [_signUpHeader setHidden:NO];
+        [_usernameField setHidden:NO];
         [_logInOrSignUpButton setTitle:@"注册" forState:UIControlStateNormal];
         [_switchLabel setText:@"又想起来了？立即登录。"];
-        [_usernameField setText:@""];
+        [_emailField setText:@""];
         [_passwordField setText:@""];
         _isLogIn = NO;
     }
     else
     {
-        [_header setText:@"请登录。"];
+        [_logInHeader setHidden:NO];
+        [_signUpHeader setHidden:YES];
+        [_usernameField setHidden:YES];
         [_logInOrSignUpButton setTitle:@"登录" forState:UIControlStateNormal];
         [_switchLabel setText:@"没有账号？立即创建一个。"];
-        [_usernameField setText:@""];
+        [_emailField setText:@""];
         [_passwordField setText:@""];
         _isLogIn = YES;
     }
 }
+
+# pragma mark 提示
+- (void)Alert:(NSString *)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
+}
+
 /*
 #pragma mark - Navigation
 

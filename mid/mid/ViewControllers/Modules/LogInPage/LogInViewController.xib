@@ -10,11 +10,13 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LogInViewController">
             <connections>
-                <outlet property="header" destination="Hpm-h0-JAg" id="dDQ-vy-Cci"/>
+                <outlet property="emailField" destination="jjB-jQ-dcA" id="Avs-by-x7s"/>
+                <outlet property="logInHeader" destination="Hpm-h0-JAg" id="dDQ-vy-Cci"/>
                 <outlet property="logInOrSignUpButton" destination="iHu-gE-pny" id="Mr1-bu-m9F"/>
                 <outlet property="passwordField" destination="XOF-Ip-PIw" id="V1E-Mg-Lfb"/>
+                <outlet property="signUpHeader" destination="eDC-mG-Rxc" id="pUS-ch-GOl"/>
                 <outlet property="switchLabel" destination="Rha-tB-EXE" id="1aR-vg-Ii6"/>
-                <outlet property="usernameField" destination="jjB-jQ-dcA" id="Avs-by-x7s"/>
+                <outlet property="usernameField" destination="hZe-CX-W5T" id="HSX-wY-zFB"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -24,10 +26,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BAP-Eu-Ezd">
-                    <rect key="frame" x="62" y="204" width="290" height="400"/>
+                    <rect key="frame" x="62" y="179" width="290" height="450"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iHu-gE-pny">
-                            <rect key="frame" x="33" y="238" width="224" height="37"/>
+                            <rect key="frame" x="33" y="278" width="224" height="37"/>
                             <color key="backgroundColor" systemColor="systemBlueColor"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="37" id="cWO-fs-v5c"/>
@@ -41,7 +43,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="没有账号？立即创建一个。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rha-tB-EXE">
-                            <rect key="frame" x="33" y="290" width="208" height="30"/>
+                            <rect key="frame" x="33" y="330" width="208" height="30"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="30" id="TOH-cm-734"/>
                             </constraints>
@@ -50,7 +52,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="邮箱" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jjB-jQ-dcA">
-                            <rect key="frame" x="33" y="113" width="224" height="34"/>
+                            <rect key="frame" x="33" y="153" width="224" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="224" id="708-HD-iku"/>
                                 <constraint firstAttribute="height" constant="34" id="OKM-uW-tGw"/>
@@ -59,7 +61,7 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="密码" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XOF-Ip-PIw">
-                            <rect key="frame" x="33" y="174" width="224" height="34"/>
+                            <rect key="frame" x="33" y="214" width="224" height="34"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="34" id="mcm-8r-Hgz"/>
                             </constraints>
@@ -67,7 +69,22 @@
                             <textInputTraits key="textInputTraits"/>
                         </textField>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请登录。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hpm-h0-JAg">
-                            <rect key="frame" x="33" y="46" width="130" height="39"/>
+                            <rect key="frame" x="33" y="86" width="130" height="39"/>
+                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="用户名" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hZe-CX-W5T">
+                            <rect key="frame" x="33" y="92" width="224" height="34"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="34" id="NYT-GS-WAt"/>
+                                <constraint firstAttribute="width" constant="224" id="bwW-vh-YD1"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="请注册。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDC-mG-Rxc">
+                            <rect key="frame" x="33" y="19" width="130" height="39"/>
                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="32"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
@@ -76,16 +93,20 @@
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <constraints>
                         <constraint firstItem="iHu-gE-pny" firstAttribute="centerX" secondItem="BAP-Eu-Ezd" secondAttribute="centerX" id="2u9-GK-EMd"/>
-                        <constraint firstAttribute="bottom" secondItem="Rha-tB-EXE" secondAttribute="bottom" constant="80" id="5Fb-hM-S6w"/>
+                        <constraint firstAttribute="bottom" secondItem="Rha-tB-EXE" secondAttribute="bottom" constant="90" id="5Fb-hM-S6w"/>
                         <constraint firstItem="jjB-jQ-dcA" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="8JS-DB-IkX"/>
-                        <constraint firstAttribute="height" constant="400" id="8xt-01-0Ct"/>
+                        <constraint firstAttribute="height" constant="450" id="8xt-01-0Ct"/>
+                        <constraint firstItem="Hpm-h0-JAg" firstAttribute="top" secondItem="eDC-mG-Rxc" secondAttribute="bottom" constant="28" id="ARa-R7-9zf"/>
                         <constraint firstItem="iHu-gE-pny" firstAttribute="top" secondItem="XOF-Ip-PIw" secondAttribute="bottom" constant="30" id="JQI-bt-wd1"/>
+                        <constraint firstItem="jjB-jQ-dcA" firstAttribute="top" secondItem="hZe-CX-W5T" secondAttribute="bottom" constant="27" id="Ly3-b9-OZC"/>
                         <constraint firstItem="iHu-gE-pny" firstAttribute="trailing" secondItem="jjB-jQ-dcA" secondAttribute="trailing" id="R0H-6u-IEs"/>
                         <constraint firstItem="iHu-gE-pny" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="REa-33-JfD"/>
                         <constraint firstItem="jjB-jQ-dcA" firstAttribute="top" secondItem="Hpm-h0-JAg" secondAttribute="bottom" constant="28" id="SS8-gT-jbl"/>
                         <constraint firstItem="Rha-tB-EXE" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="Ujd-eX-VUa"/>
                         <constraint firstItem="Rha-tB-EXE" firstAttribute="top" secondItem="iHu-gE-pny" secondAttribute="bottom" constant="15" id="WuO-hM-c5P"/>
                         <constraint firstItem="XOF-Ip-PIw" firstAttribute="top" secondItem="jjB-jQ-dcA" secondAttribute="bottom" constant="27" id="cmk-IS-MXr"/>
+                        <constraint firstItem="Hpm-h0-JAg" firstAttribute="leading" secondItem="eDC-mG-Rxc" secondAttribute="leading" id="eEf-om-DNr"/>
+                        <constraint firstItem="hZe-CX-W5T" firstAttribute="leading" secondItem="eDC-mG-Rxc" secondAttribute="leading" id="fI8-S6-kTd"/>
                         <constraint firstItem="iHu-gE-pny" firstAttribute="trailing" secondItem="XOF-Ip-PIw" secondAttribute="trailing" id="hCN-co-pku"/>
                         <constraint firstItem="XOF-Ip-PIw" firstAttribute="leading" secondItem="Hpm-h0-JAg" secondAttribute="leading" id="z7w-to-bmE"/>
                     </constraints>
