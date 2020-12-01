@@ -34,7 +34,7 @@
     UINavigationController *settingNav = [[UINavigationController alloc]initWithRootViewController:settingPage];
     settingNav.navigationBar.translucent = NO;
     
-    
+    self.tabBar.translucent = NO;
     self.viewControllers = @[mainPageNav, discoverNav, settingNav];
     
     //[self addButton];

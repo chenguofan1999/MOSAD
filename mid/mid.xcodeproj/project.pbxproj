@@ -95,7 +95,8 @@
 		56572A3D2574E8E600AE33D9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
 		56572A3F2574E97900AE33D9 /* UserInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 56572A0F2574DF9200AE33D9 /* UserInfo.h */; };
 		56572A402574E97900AE33D9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A102574DF9200AE33D9 /* UserInfo.m */; };
-		56572A452575E4CC00AE33D9 /* PostItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A442575E4CC00AE33D9 /* PostItem.m */; };
+		56572A452575E4CC00AE33D9 /* ContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A442575E4CC00AE33D9 /* ContentItem.m */; };
+		56572A4A25763CA800AE33D9 /* FullDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4925763CA800AE33D9 /* FullDataItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -189,8 +190,10 @@
 		565729F92573AAC000AE33D9 /* LogInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LogInViewController.xib; sourceTree = "<group>"; };
 		56572A0F2574DF9200AE33D9 /* UserInfo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		56572A102574DF9200AE33D9 /* UserInfo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
-		56572A432575E4CC00AE33D9 /* PostItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostItem.h; sourceTree = "<group>"; };
-		56572A442575E4CC00AE33D9 /* PostItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostItem.m; sourceTree = "<group>"; };
+		56572A432575E4CC00AE33D9 /* ContentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ContentItem.h; sourceTree = "<group>"; };
+		56572A442575E4CC00AE33D9 /* ContentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentItem.m; sourceTree = "<group>"; };
+		56572A4825763CA800AE33D9 /* FullDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullDataItem.h; sourceTree = "<group>"; };
+		56572A4925763CA800AE33D9 /* FullDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullDataItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -476,8 +479,10 @@
 			children = (
 				56572A0F2574DF9200AE33D9 /* UserInfo.h */,
 				56572A102574DF9200AE33D9 /* UserInfo.m */,
-				56572A432575E4CC00AE33D9 /* PostItem.h */,
-				56572A442575E4CC00AE33D9 /* PostItem.m */,
+				56572A432575E4CC00AE33D9 /* ContentItem.h */,
+				56572A442575E4CC00AE33D9 /* ContentItem.m */,
+				56572A4825763CA800AE33D9 /* FullDataItem.h */,
+				56572A4925763CA800AE33D9 /* FullDataItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -650,6 +655,7 @@
 				56572A162574E8E600AE33D9 /* LogInViewController.h in Sources */,
 				56572A172574E8E600AE33D9 /* LogInViewController.m in Sources */,
 				56572A182574E8E600AE33D9 /* PostCell.h in Sources */,
+				56572A4A25763CA800AE33D9 /* FullDataItem.m in Sources */,
 				56572A192574E8E600AE33D9 /* PostCell.m in Sources */,
 				56572A1A2574E8E600AE33D9 /* PostViewController.h in Sources */,
 				56572A1B2574E8E600AE33D9 /* PostViewController.m in Sources */,
@@ -675,7 +681,7 @@
 				56572A2F2574E8E600AE33D9 /* MessageViewController.m in Sources */,
 				56572A302574E8E600AE33D9 /* SystemSettingController.h in Sources */,
 				56572A312574E8E600AE33D9 /* SystemSettingController.m in Sources */,
-				56572A452575E4CC00AE33D9 /* PostItem.m in Sources */,
+				56572A452575E4CC00AE33D9 /* ContentItem.m in Sources */,
 				56572A322574E8E600AE33D9 /* UserCenterViewController.h in Sources */,
 				56572A332574E8E600AE33D9 /* UserCenterViewController.m in Sources */,
 				56572A342574E8E600AE33D9 /* DiscoverViewController.h in Sources */,

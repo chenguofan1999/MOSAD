@@ -17,6 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) IBOutlet UIButton *commentButton;
 @property (nonatomic, strong) IBOutlet UIButton *deleteButton;
 @property (nonatomic, strong) IBOutlet UIButton *portraitButton;
+@property (nonatomic, strong) IBOutlet UILabel *timeLable;
+@property (nonatomic, strong) IBOutlet UILabel *userNameLable;
+@property (nonatomic, strong) IBOutlet UILabel *textContentLable;
+@property (nonatomic, strong) IBOutlet UILabel *commentNumberLable;
+@property (nonatomic, strong) IBOutlet UILabel *likeNumberLable;
+@property (nonatomic, strong) IBOutlet UILabel *favNumberLable;
+@property (nonatomic) int picNum;
 @property (nonatomic) bool liked;
 @property (nonatomic) bool faved;
 - (void)dontShowPicView;

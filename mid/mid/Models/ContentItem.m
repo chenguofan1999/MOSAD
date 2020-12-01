@@ -5,9 +5,9 @@
 //  Created by itlab on 12/1/20.
 //
 
-#import "SendPostItem.h"
+#import "ContentItem.h"
 
-@implementation SendPostItem
+@implementation ContentItem
 
 - (id)init
 {

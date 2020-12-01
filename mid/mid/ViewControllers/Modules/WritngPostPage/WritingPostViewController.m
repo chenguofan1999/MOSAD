@@ -6,11 +6,11 @@
 //
 
 #import "WritingPostViewController.h"
-#import "PostItem.h"
+#import "ContentItem.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
-@property (nonatomic) PostItem *postItem;
+@property (nonatomic) ContentItem *postItem;
 @property (nonatomic) int picNum;
 
 @property (nonatomic, strong) UITextField *titleField;
@@ -40,7 +40,7 @@
     [super viewDidLoad];
     
     // 初始化model对象
-    _postItem = [PostItem new];
+    _postItem = [ContentItem new];
     
     // 加载此页面时隐藏 tabBar
     self.tabBarController.tabBar.hidden=YES;

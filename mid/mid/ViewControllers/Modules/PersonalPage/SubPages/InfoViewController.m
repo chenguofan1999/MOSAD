@@ -20,6 +20,7 @@
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
     
+    
     // 计算无遮挡页面尺寸
     UIWindow *window = UIApplication.sharedApplication.windows[0];
     CGRect safe = window.safeAreaLayoutGuide.layoutFrame;

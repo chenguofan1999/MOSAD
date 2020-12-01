@@ -7,11 +7,15 @@
 
 #import "DiscoverViewController.h"
 #import "PostCell.h"
+#import "FullDataItem.h"
+#import "ContentItem.h"
 #import "BigImageViewController.h"
 #import "CommentTableViewController.h"
 #import "ProfilePageViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface DiscoverViewController ()
+@property (nonatomic) NSMutableArray *items;
 @end
 
 @implementation DiscoverViewController
@@ -29,17 +33,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view setBackgroundColor:[UIColor darkGrayColor]];
+    [self.view setBackgroundColor:[UIColor whiteColor]];
     
-    NSArray *segmentedData = @[@"关注",@"热门"];
+    
+    // 标题
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    UILabel *header = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 80)];
+    header.text = @"  最新内容";
+    header.font = [UIFont boldSystemFontOfSize:32];
+    self.tableView.tableHeaderView = header;
+    
+    // 初始化数据源
+    _items = [NSMutableArray new];
+    
+    NSArray *segmentedData = @[@"按时间线",@"按热度"];
     UISegmentedControl *segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
     [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = segmentBar;
     
     [segmentBar setSelectedSegmentIndex:0];
     
+    // 刷新 button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
+    
     // 一些样式
-    //[self.tableView setBounces:NO];
+    [self.tableView setBounces:NO];
+    
+    [self loadData];
 }
 
 - (void)choose:(UISegmentedControl *)seg
@@ -65,11 +85,9 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 10;
+    return [_items count];
 }
 
-// cell 高度
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{}
 
 // cell 的具体属性
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -106,6 +124,11 @@
     [cell.deleteButton setHidden:YES];
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
+    
+    // 设置 cell 的值
+    long i = indexPath.row;
+    cell.textContentLable.text = [_items[i] contentData].detail;
+    cell.userNameLable.text = [_items[i] userName];
     
     return cell;
 }
@@ -162,6 +185,38 @@
     NSLog(@"press comment button at row %ld", indexPath.row);
     //[self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
     [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
+}
+
+# pragma mark 刷新
+- (void)loadData
+{
+//    [self.tableView reloadData];
+    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=20";
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *response = (NSDictionary *)responseObject;
+//        NSLog(@"%@",response);
+        if([response[@"State"] isEqualToString:@"success"])
+        {
+            NSArray *data = response[@"Data"];
+            NSInteger n = [data count];
+            for(int i = 0; i < n; i++)
+            {
+                FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
+                NSLog(@"Item[%d]: %@", i, newItem);
+                [self.items addObject:newItem];
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Failed to fetch public contents somehow");
+    }];
+    
+    [self.tableView reloadData];
+    
 }
 
 @end

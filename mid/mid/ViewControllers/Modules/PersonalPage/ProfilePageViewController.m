@@ -21,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.tabBarController.tabBar.hidden=YES;
     
     NSArray *segmentedData = @[@"个人信息",@"已发布",@"相册"];
     UISegmentedControl *segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
@@ -73,6 +74,7 @@
 
 - (void)backTapped:(UIBarButtonItem *)sender
 {
+    self.tabBarController.tabBar.hidden=NO;
     [self.navigationController popViewControllerAnimated:NO];
 }
 

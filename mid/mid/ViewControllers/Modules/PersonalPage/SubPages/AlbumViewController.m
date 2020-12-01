@@ -55,7 +55,6 @@
 
     // test
     [self test];
-    
 }
 
 - (void)test
@@ -75,8 +74,31 @@
         NSString *fileName = [NSString stringWithFormat:@"test10%d.jpg", i];
         [self addImage:[UIImage imageNamed:fileName]];
     }
-
+    for(int i = 0; i < 9; i++)
+    {
+        NSString *fileName = [NSString stringWithFormat:@"test20%d.jpg", i];
+        [self addImage:[UIImage imageNamed:fileName]];
+    }for(int i = 0; i < 9; i++)
+    {
+        NSString *fileName = [NSString stringWithFormat:@"test10%d.jpg", i];
+        [self addImage:[UIImage imageNamed:fileName]];
+    }
+    for(int i = 0; i < 9; i++)
+    {
+        NSString *fileName = [NSString stringWithFormat:@"test20%d.jpg", i];
+        [self addImage:[UIImage imageNamed:fileName]];
+    }for(int i = 0; i < 9; i++)
+    {
+        NSString *fileName = [NSString stringWithFormat:@"test10%d.jpg", i];
+        [self addImage:[UIImage imageNamed:fileName]];
+    }
+    for(int i = 0; i < 9; i++)
+    {
+        NSString *fileName = [NSString stringWithFormat:@"test20%d.jpg", i];
+        [self addImage:[UIImage imageNamed:fileName]];
+    }
 }
+
 
 - (CGRect)getFrameAtIndex:(int)i
 {
@@ -93,7 +115,7 @@
     if(_picNum % 3 == 0)
     {
         CGFloat w = [[UIScreen mainScreen] bounds].size.width;
-        CGFloat newHeight = _interval + (_picNum / 3 + 1) * (_interval + _sideLen);
+        CGFloat newHeight = _interval + (_picNum / 3 + 1) * (_interval + _sideLen) + 120;
         _innerView.frame = CGRectMake(0, 0, w, newHeight);
         [_scrollView setContentSize:CGSizeMake(w, newHeight)];
     }

@@ -10,17 +10,12 @@
 #import "CommentTableViewController.h"
 
 @interface PostCell()
-@property (nonatomic, strong) IBOutlet UILabel *timeLable;
-@property (nonatomic, strong) IBOutlet UILabel *userNameLable;
-@property (nonatomic, strong) IBOutlet UILabel *textContentLable;
-@property (nonatomic, strong) IBOutlet UILabel *commentNumberLable;
-@property (nonatomic, strong) IBOutlet UILabel *likeNumberLable;
-@property (nonatomic, strong) IBOutlet UILabel *favNumberLable;
+
 
 @property (nonatomic, strong) UIView *insidePicView;
 @property (nonatomic, strong) IBOutlet UIScrollView *picView;
 
-@property (nonatomic) int picNum;
+
 @end
 
 
