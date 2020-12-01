@@ -15,6 +15,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSMutableArray *tags;
 @property (nonatomic) bool isPublic;
 
+@property (nonatomic) NSString *contentID;
+@property (nonatomic) long PublishDate;
+@property (nonatomic) int likeNum;
+@property (nonatomic) int commentNum;
+
 - (instancetype)initWithDict:(NSDictionary *)dict;
 - (NSDictionary *)getDict;
 

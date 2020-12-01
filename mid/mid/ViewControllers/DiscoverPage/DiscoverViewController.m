@@ -16,6 +16,7 @@
 
 @interface DiscoverViewController ()
 @property (nonatomic) NSMutableArray *items;
+@property (nonatomic, strong) UILabel *header;
 @end
 
 @implementation DiscoverViewController
@@ -38,10 +39,10 @@
     
     // 标题
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
-    UILabel *header = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 80)];
-    header.text = @"  最新内容";
-    header.font = [UIFont boldSystemFontOfSize:32];
-    self.tableView.tableHeaderView = header;
+    _header = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 80)];
+    _header.text = @"  最新内容";
+    _header.font = [UIFont boldSystemFontOfSize:32];
+    self.tableView.tableHeaderView = _header;
     
     // 初始化数据源
     _items = [NSMutableArray new];
@@ -137,13 +138,27 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    //cell.textContentLable.text = [_items[i] contentData].detail;
     cell.userNameLable.text = [_items[i] userName];
     [self setLabel:cell.textContentLable
          WithTitle:[_items[i] contentData].title
               Tags:[_items[i] contentData].tags
             Detail:[_items[i] contentData].detail];
+    
+    cell.timeLable.text = [self timeStampToTime:[[_items[i] contentData] PublishDate]];
+    
     return cell;
+}
+
+#pragma mark 时间戳转化日期
+- (NSString *)timeStampToTime:(long)time
+{
+   // 时段转换时间
+   NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
+   // 时间格式
+   NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
+   dataformatter.dateFormat = @"MM-dd HH:mm a";
+   // 时间转换字符串
+   return [dataformatter stringFromDate:date];
 }
 
 #pragma mark 设定内部具有不同样式的内容
@@ -152,8 +167,16 @@
             Tags:(NSMutableArray *)tags
           Detail:(NSString *)detail
 {
-    NSString *newTitle = [title length] == 0 ? @"" : [NSString stringWithFormat:@"%@\n", title];
-    NSString *newDetail = [detail length] == 0 ? @"" :[NSString stringWithFormat:@"%@\n", detail];
+    NSString *newTitle = nil;
+    if([title length] == 0) newTitle = @"";
+    else if([detail length] == 0 && [tags count] == 0) newTitle = title;
+    else newTitle = [NSString stringWithFormat:@"%@\n", title];
+    
+    NSString *newDetail = nil;
+    if([detail length] == 0) newDetail = @"";
+    else if([tags count] == 0) newDetail = detail;
+    else newDetail = [NSString stringWithFormat:@"%@\n", detail];
+    
     NSMutableString *connectedTags = [[NSMutableString alloc]init];
     for(int i = 0; i < [tags count]; i++)
     {
@@ -173,7 +196,6 @@
     NSRange rangeTags = NSMakeRange(lenTitle + lenDetail, lenTags);
     
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@%@",newTitle,newDetail,connectedTags]];
-
     
     // Title 样式
     [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:rangeTitle];
@@ -205,6 +227,7 @@
     
     // 已经得到indexPath
     NSLog(@"press fav button at row %ld", indexPath.row);
+
 }
 
 #pragma mark 头像button

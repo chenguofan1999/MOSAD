@@ -8,7 +8,7 @@
 #import "CommentTableViewController.h"
 
 @interface CommentTableViewController () <UITableViewDataSource, UITableViewDelegate>
-
+@property (nonatomic, strong) UILabel *header;
 @end
 
 @implementation CommentTableViewController
@@ -21,6 +21,12 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
+    CGFloat w = [[UIScreen mainScreen] bounds].size.width;
+    _header = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 80)];
+    _header.text = @"  评论";
+    _header.font = [UIFont boldSystemFontOfSize:30];
+    self.tableView.tableHeaderView = _header;
     
     UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
