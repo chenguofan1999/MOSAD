@@ -52,7 +52,6 @@
     [self.view addSubview:_ivc.view];
     
     [segmentBar setSelectedSegmentIndex:0];
-    
 }
 
 - (void)choose:(UISegmentedControl *)seg

@@ -22,8 +22,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger *singleSize;
 
 
-+ (id)sharedUser;
++ (UserInfo *)sharedUser;
 + (void)configUser:(NSDictionary *)dict;
++ (void)updateUserInfo;
 @end
 
 NS_ASSUME_NONNULL_END

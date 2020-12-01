@@ -91,6 +91,7 @@
                 
                 [UserInfo configUser:selfInfo];
                 
+                // 找到主界面，更改根vc
                 UIWindow* window = nil;
                 if (@available(iOS 13.0, *))
                 {
@@ -105,18 +106,17 @@
                 {
                     window = [UIApplication sharedApplication].keyWindow;
                 }
-                
                 window.rootViewController = [[TabBarController alloc]init];
                 
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"Get self info failed somehow");
             }];
         }
-        else if([[response valueForKey:@"State"] isEqualToString:@"not found"])
+        else if([[response valueForKey:@"Data"] isEqualToString:@"not found"])
         {
             [self Alert:@"没有这个账号"];
         }
-        else if([[response valueForKey:@"State"] isEqualToString:@"crypto/bcrypt: hashedPassword is not the hash of the given password"])
+        else if([[response valueForKey:@"Data"] isEqualToString:@"crypto/bcrypt: hashedPassword is not the hash of the given password"])
         {
             [self Alert:@"密码错误"];
         }

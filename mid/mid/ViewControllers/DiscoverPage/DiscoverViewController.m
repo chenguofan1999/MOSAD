@@ -39,7 +39,7 @@
     [segmentBar setSelectedSegmentIndex:0];
     
     // 一些样式
-    [self.tableView setBounces:NO];
+    //[self.tableView setBounces:NO];
 }
 
 - (void)choose:(UISegmentedControl *)seg
@@ -56,7 +56,6 @@
 }
 
 #pragma mark - UITableViewDataSource
-
 // section 个数
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {

@@ -6,12 +6,13 @@
 //
 
 #import "UserInfo.h"
+#import <AFNetworking/AFNetworking.h>
 static UserInfo *userInfo = nil;
 
 @implementation UserInfo
 
 
-+ (id)sharedUser
++ (UserInfo *)sharedUser
 {
     static dispatch_once_t once;
     dispatch_once(&once, ^{
@@ -29,5 +30,21 @@ static UserInfo *userInfo = nil;
     sharedInfo.bio = dict[@"Info"][@"Bio"];
     sharedInfo.classNum = [dict[@"Class"] intValue];
     sharedInfo.gender = [dict[@"Info"][@"Gender"] intValue];
+}
+
++ (void)updateUserInfo
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString *selfURL = @"http://172.18.178.56/api/user/info/self";
+    [manager GET:selfURL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"\nSelf Info: %@", responseObject);
+        NSDictionary *selfInfo = (NSDictionary *)responseObject;
+        [UserInfo configUser:selfInfo];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Update failed");
+    }];
 }
 @end

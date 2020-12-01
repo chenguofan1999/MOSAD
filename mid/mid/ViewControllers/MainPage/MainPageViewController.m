@@ -63,14 +63,13 @@
     // 加载分类栏
     self.tableView.tableHeaderView = [self categoryView];
 
-    
-    
     // 注册 nib 文件
     UINib *nib = [UINib nibWithNibName:@"PostCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"PostCell"];
     
     // 一些样式
     [self.tableView setBounces:NO];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

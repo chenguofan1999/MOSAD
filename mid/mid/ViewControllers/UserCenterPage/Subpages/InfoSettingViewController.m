@@ -8,6 +8,7 @@
 #import "InfoSettingViewController.h"
 #import "TabBarController.h"
 #import "UserInfo.h"
+#import <AFNetworking/AFNetworking.h>
 @interface InfoSettingViewController ()
 @property (nonatomic, strong) UITextField *textField;
 @end
@@ -17,16 +18,15 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
+    [UserInfo updateUserInfo];
     [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
@@ -88,49 +88,70 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
-//                                                   reuseIdentifier:nil];
-//    switch (indexPath.row)
-//    {
-//        case 0:
-//            cell.textLabel.text = @"用户名";
-//            cell.detailTextLabel.text = @"Chen";
-//            break;
-//        case 1:
-//            cell.textLabel.text = @"邮箱";
-//            cell.detailTextLabel.text = @"chen2027@gmail.com";
-//            break;
-//        case 2:
-//            cell.textLabel.text = @"Bio";
-//            cell.detailTextLabel.text = @"Na";
-//            break;
-//        case 3:
-//            cell.textLabel.text = @"性别";
-//            cell.detailTextLabel.text = @"0";
-//            break;
-//        case 4:
-//            cell.textLabel.text = @"Nick Name";
-//            cell.detailTextLabel.text = @"None";
-//            break;
-//    }
     NSInteger i = indexPath.row;
-    NSArray *array = @[@"用户名",@"邮箱",@"Bio",@"性别",@"Nick Name"];
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@",array[i]] message:[NSString stringWithFormat:@"输入新的%@", array[i]] preferredStyle:UIAlertControllerStyleAlert];
+    NSArray *array = @[@"用户名",@"邮箱",@"Bio",@"性别",@"Nick Name",@"班级"];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@", array[i]] message:[NSString stringWithFormat:@"输入新的%@", array[i]] preferredStyle:UIAlertControllerStyleAlert];
     
     [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
-        textField.placeholder = @"不要太长";
+        textField.placeholder = @"20个字符以内";
         textField.textColor = [UIColor blueColor];
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
         textField.borderStyle = UITextBorderStyleRoundedRect;
     }];
     [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
     [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-        NSArray *textfields = alertController.textFields;
-        UITextField * namefield = textfields[0];
-        NSLog(@"%@",namefield.text);
+        if(i == 0)
+        {
+            NSArray *textfields = alertController.textFields;
+            UITextField * namefield = textfields[0];
+            NSLog(@"%@",namefield.text);
+            [self changeUserName:namefield.text];
+        }
+        else
+        {
+            [self Alert:[NSString stringWithFormat:@"暂不支持修改%@", array[i]]];
+        }
     }]];
     
     [self presentViewController:alertController animated:YES completion:nil];
+}
+
+# pragma mark 改名
+- (void)changeUserName:(NSString *)newName
+{
+    NSString *URL = @"http://172.18.178.56/api/user/name";
+    NSDictionary *body = @{@"name":newName};
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"State"] isEqualToString:@"success"])
+        {
+            [self Alert:@"改名成功"];
+        }
+        else
+        {
+            [self Alert:@"更改用户名失败"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"request failure");
+    }];
+}
+
+# pragma mark 提示
+- (void)Alert:(NSString *)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 /*
