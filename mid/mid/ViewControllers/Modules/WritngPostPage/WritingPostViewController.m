@@ -7,8 +7,9 @@
 
 #import "WritingPostViewController.h"
 #import "PostItem.h"
+#import <AFNetworking/AFNetworking.h>
 
-@interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
 @property (nonatomic) PostItem *postItem;
 @property (nonatomic) int picNum;
 
@@ -77,6 +78,9 @@
     // Detail 输入框
     _detailView = [[UITextView alloc] initWithFrame:CGRectMake(0, 60, _w, _h - 300)];
     [_detailView setFont:[UIFont systemFontOfSize:20]];
+    _detailView.delegate = self;
+    [_detailView setText:@"Detail"];
+    [_detailView setTextColor:[UIColor lightGrayColor]];
     [self.view addSubview:_detailView];
     
     // optionTable
@@ -106,7 +110,30 @@
 
 - (void)postIt
 {
-    [self.navigationController popViewControllerAnimated:YES];
+    _postItem.title = _titleField.text;
+    _postItem.detail = _detailView.text;
+    _postItem.isPublic = [_publicSwitch isOn];
+    NSString *URL = @"http://172.18.178.56/api/content/text";
+    NSDictionary *body = [_postItem getDict];
+    
+    NSLog(@"%@", body);
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"State"] isEqualToString:@"success"])
+        {
+            [self Alert:@"发布成功"];
+            [self.navigationController popViewControllerAnimated:NO];
+        }
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            [self Alert:@"请求失败"];
+        }];
+    
 }
 
 #pragma mark 图片区域
@@ -236,7 +263,6 @@
         case 0:
             cell.textLabel.text = @"Tags";
             cell.detailTextLabel.text = [_postItem.tags componentsJoinedByString:@","];
-//            cell.detailTextLabel.text = [_postItem.tags objectAtIndex:0];
             break;
             
         case 1:
@@ -244,6 +270,7 @@
             _publicSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
             [cell addSubview:_publicSwitch];
             cell.accessoryView = _publicSwitch;
+            
             break;
     }
     
@@ -278,6 +305,36 @@
 }
 
 
+# pragma mark place holder 模拟
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@"Detail"]) {
+         textView.text = @"";
+         textView.textColor = [UIColor blackColor]; //optional
+    }
+    [textView becomeFirstResponder];
+}
 
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+    if ([textView.text isEqualToString:@""]) {
+        textView.text = @"Detail";
+        textView.textColor = [UIColor lightGrayColor]; //optional
+    }
+    [textView resignFirstResponder];
+}
+
+# pragma mark 提示
+- (void)Alert:(NSString *)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示"
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
+}
 
 @end

@@ -17,4 +17,14 @@
   return self;
 }
 
+- (NSDictionary *)getDict
+{
+    NSDictionary *dict = @{
+        @"title" : _title,
+        @"detail" : _detail,
+        @"tags" : _tags,
+        @"isPublic" : [NSNumber numberWithBool:_isPublic]
+    };
+    return dict;
+}
 @end
