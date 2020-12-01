@@ -62,6 +62,12 @@
     [self loadData];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self loadData];
+}
+
+#pragma mark 热门or时间顺序
 - (void)choose:(UISegmentedControl *)seg
 {
     NSInteger Index = seg.selectedSegmentIndex;
@@ -88,6 +94,10 @@
     return [_items count];
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
 // cell 的具体属性
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -127,10 +137,56 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    cell.textContentLable.text = [_items[i] contentData].detail;
+    //cell.textContentLable.text = [_items[i] contentData].detail;
     cell.userNameLable.text = [_items[i] userName];
-    
+    [self setLabel:cell.textContentLable
+         WithTitle:[_items[i] contentData].title
+              Tags:[_items[i] contentData].tags
+            Detail:[_items[i] contentData].detail];
     return cell;
+}
+
+#pragma mark 设定内部具有不同样式的内容
+- (void)setLabel:(UILabel *)label
+       WithTitle:(NSString *)title
+            Tags:(NSMutableArray *)tags
+          Detail:(NSString *)detail
+{
+    NSString *newTitle = [title length] == 0 ? @"" : [NSString stringWithFormat:@"%@\n", title];
+    NSString *newDetail = [detail length] == 0 ? @"" :[NSString stringWithFormat:@"%@\n", detail];
+    NSMutableString *connectedTags = [[NSMutableString alloc]init];
+    for(int i = 0; i < [tags count]; i++)
+    {
+        if(i == 0) [connectedTags appendString:@"#"];
+        if(i == [tags count] - 1)
+            [connectedTags appendFormat:@"%@", tags[i]];
+        else
+            [connectedTags appendFormat:@"%@ #", tags[i]];
+    }
+    
+    NSUInteger lenTitle = [newTitle length];
+    NSUInteger lenDetail = [newDetail length];
+    NSUInteger lenTags = [connectedTags length];
+    
+    NSRange rangeTitle = NSMakeRange(0, lenTitle);
+    NSRange rangeDetail = NSMakeRange(lenTitle, lenDetail);
+    NSRange rangeTags = NSMakeRange(lenTitle + lenDetail, lenTags);
+    
+    NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@%@",newTitle,newDetail,connectedTags]];
+
+    
+    // Title 样式
+    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:rangeTitle];
+    
+    // Detail 样式
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangeDetail];
+    
+    // Tags 样式
+    UIColor *tagColor = [UIColor colorWithRed:(float)29/255 green:(float)161/255 blue:(float)242/255 alpha:1];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangeTags];
+    [str addAttribute:NSForegroundColorAttributeName value:tagColor range:rangeTags];
+    
+    [label setAttributedText:str];
 }
 
 // 选中 cell 的效果
@@ -190,7 +246,6 @@
 # pragma mark 刷新
 - (void)loadData
 {
-//    [self.tableView reloadData];
     NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=20";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -211,11 +266,10 @@
                 [self.items addObject:newItem];
             }
         }
+        [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Failed to fetch public contents somehow");
     }];
-    
-    [self.tableView reloadData];
     
 }
 

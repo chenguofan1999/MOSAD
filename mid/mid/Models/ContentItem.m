@@ -31,7 +31,7 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     self = [super init];
-    self.title = dict[@"Title"];
+    self.title = dict[@"Name"];
     self.detail = dict[@"Detail"];
     self.isPublic = [dict[@"Public"] intValue] == 1;
     self.tags = (NSMutableArray *)dict[@"Tag"];

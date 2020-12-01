@@ -37,7 +37,6 @@ static UserInfo *userInfo = nil;
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
     NSString *selfURL = @"http://172.18.178.56/api/user/info/self";
     [manager GET:selfURL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"\nSelf Info: %@", responseObject);
