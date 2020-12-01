@@ -6,14 +6,19 @@
 //
 
 #import "WritingPostViewController.h"
+#import <Masonry/Masonry.h>
 
 @interface WritingPostViewController ()
 @property (nonatomic) int picNum;
-@property (nonatomic, strong) UIImagePickerController *imagePicker;
+
+@property (nonatomic, strong) UITextField *titleView;
+@property (nonatomic, strong) UITextView *detailView;
+@property (nonatomic, strong) UITextView *tagView;
+
 @property (nonatomic, strong) UIScrollView *imageView;
 @property (nonatomic, strong) UIView *innerImageView;
 @property (nonatomic, strong) UIButton *addPicButton;
-
+@property (nonatomic, strong) UIImagePickerController *imagePicker;
 @property (nonatomic) int x;
 @property (nonatomic) int y;
 @property (nonatomic) int w;

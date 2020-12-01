@@ -18,6 +18,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -153,6 +154,8 @@
     // 显示对话框
     [self presentViewController:alert animated:true completion:nil];
 }
+
+
 
 /*
 // Override to support conditional editing of the table view.

@@ -9,6 +9,7 @@
 #import "InfoSettingViewController.h"
 #import "MessageViewController.h"
 #import "SystemSettingController.h"
+#import "UserInfo.h"
 
 @interface UserCenterViewController ()
 @property (nonatomic, strong) InfoSettingViewController *ivc;
@@ -52,6 +53,9 @@
     [self.view addSubview:_ivc.view];
     
     [segmentBar setSelectedSegmentIndex:0];
+    
+    // 刷新 button
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(refresh)];
 }
 
 - (void)choose:(UISegmentedControl *)seg
@@ -75,4 +79,14 @@
             break;
     }
 }
+
+# pragma mark 刷新
+- (void)refresh
+{
+    [UserInfo updateUserInfo];
+    [_ivc.tableView reloadData];
+    [_mvc.tableView reloadData];
+}
+
 @end
+
