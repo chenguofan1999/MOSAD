@@ -6,19 +6,23 @@
 //
 
 #import "WritingPostViewController.h"
-#import <Masonry/Masonry.h>
+#import "PostItem.h"
 
-@interface WritingPostViewController ()
+@interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (nonatomic) PostItem *postItem;
 @property (nonatomic) int picNum;
 
-@property (nonatomic, strong) UITextField *titleView;
+@property (nonatomic, strong) UITextField *titleField;
 @property (nonatomic, strong) UITextView *detailView;
-@property (nonatomic, strong) UITextView *tagView;
+
+@property (nonatomic, strong) UITableView *optionTable;
+@property (nonatomic, strong) UISwitch *publicSwitch;
 
 @property (nonatomic, strong) UIScrollView *imageView;
 @property (nonatomic, strong) UIView *innerImageView;
 @property (nonatomic, strong) UIButton *addPicButton;
 @property (nonatomic, strong) UIImagePickerController *imagePicker;
+
 @property (nonatomic) int x;
 @property (nonatomic) int y;
 @property (nonatomic) int w;
@@ -33,6 +37,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // 初始化model对象
+    _postItem = [PostItem new];
     
     // 加载此页面时隐藏 tabBar
     self.tabBarController.tabBar.hidden=YES;
@@ -61,10 +68,25 @@
     // 手动设置返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
     
-    // 上方的文本框
-    UITextView *textView = [[UITextView alloc] initWithFrame:CGRectMake(0, 0, _w, _h - 120)];
-    [textView setFont:[UIFont systemFontOfSize:20]];
-    [self.view addSubview:textView];
+    // Title 输入框
+    _titleField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, _w, 60)];
+    [_titleField setPlaceholder:@"Title"];
+    [_titleField setFont:[UIFont systemFontOfSize:30]];
+    [self.view addSubview:_titleField];
+    
+    // Detail 输入框
+    _detailView = [[UITextView alloc] initWithFrame:CGRectMake(0, 60, _w, _h - 300)];
+    [_detailView setFont:[UIFont systemFontOfSize:20]];
+    [self.view addSubview:_detailView];
+    
+    // optionTable
+    _optionTable = [[UITableView alloc]initWithFrame:CGRectMake(0, _h - 240, _w, 120) style:UITableViewStylePlain];
+    _optionTable.delegate = self;
+    _optionTable.dataSource = self;
+    [_optionTable setTableHeaderView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [_optionTable setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
+    [_optionTable setBounces:NO];
+    [self.view addSubview:_optionTable];
     
     // 下方的贴图区域
     [self loadPicZone];
@@ -73,9 +95,8 @@
     _imagePicker = [[UIImagePickerController alloc] init];
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
+    
 }
-
-
 
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -93,7 +114,7 @@
 {
     // imageView 是下方整个添加和显示图片的区域
     _imageView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, _h - 120, _w, 120)];
-    [_imageView setBackgroundColor:[UIColor lightGrayColor]];
+    [_imageView setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
     
     // innerImageView 是 imageView 的内部视图，应将图片和按钮添加到此视图
     // 每次更改该视图的 frame 时应调用 _imageView 的 setContentSize: 方法
@@ -106,7 +127,7 @@
     _addPicButton = [[UIButton alloc] initWithFrame:[self frameAtIndex:0]];
     [_addPicButton setTitle:@"+" forState:UIControlStateNormal];
     [_addPicButton.titleLabel setFont:[UIFont systemFontOfSize:40]];
-    [_addPicButton setBackgroundColor:[UIColor darkGrayColor]];
+    [_addPicButton setBackgroundColor:[UIColor lightGrayColor]];
     [[_addPicButton layer]setCornerRadius:5];
     [_addPicButton addTarget:self action:@selector(addPic) forControlEvents:UIControlEventTouchUpInside];
     [_innerImageView addSubview:_addPicButton];
@@ -186,6 +207,77 @@
 {
     [self.navigationController popViewControllerAnimated:NO];
 }
+
+# pragma mark UITableViewDelegate, UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 2;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 60;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForHeaderInSection:(NSInteger)section
+{
+    return 0.0001f;
+}
+
+- (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
+                                                   reuseIdentifier:nil];
+    [cell setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text = @"Tags";
+            cell.detailTextLabel.text = [_postItem.tags componentsJoinedByString:@","];
+//            cell.detailTextLabel.text = [_postItem.tags objectAtIndex:0];
+            break;
+            
+        case 1:
+            cell.textLabel.text = @"Public";
+            _publicSwitch = [[UISwitch alloc] initWithFrame:CGRectZero];
+            [cell addSubview:_publicSwitch];
+            cell.accessoryView = _publicSwitch;
+            break;
+    }
+    
+    return cell;
+}
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 增加tag
+    if(indexPath.row == 0)
+    {
+        UIAlertController *addTagController = [UIAlertController alertControllerWithTitle:@"标签" message:@"添加标签" preferredStyle:UIAlertControllerStyleAlert];
+        [addTagController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+            textField.placeholder = @"#";
+        }];
+        [addTagController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        [addTagController addAction:[UIAlertAction actionWithTitle:@"确定"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) {
+            NSArray *textfields = addTagController.textFields;
+            UITextField * tagField = textfields[0];
+            NSString *newTag = tagField.text;
+            
+            // 添加到 model 里
+            [self.postItem.tags addObject:newTag];
+            
+            // 更新当前显示的 tag
+            [self.optionTable reloadData];
+        }]];
+        [self presentViewController:addTagController animated:YES completion:nil];
+    }
+}
+
+
 
 
 @end
