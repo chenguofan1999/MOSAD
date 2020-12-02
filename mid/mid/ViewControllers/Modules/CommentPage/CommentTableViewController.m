@@ -161,6 +161,7 @@
         
         [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                     NSLog(@"%@", responseObject);
+                    [self loadData];
                 } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                     NSLog(@"failed somehow");
                 }];
@@ -209,12 +210,16 @@
                     // 插入其回复Items
                     NSString *commentOwnerName = convertedCommentItem.userName;
                     NSArray *replyItemDicts = commentItem.replies;
-                    for(int i = 0; i < [replyItemDicts count]; i++)
+                    
+                    if((NSNull *)replyItemDicts != [NSNull null])
                     {
-                        NSDictionary *dict = replyItemDicts[i];
-                        FullReplyItem *replyItem = [[FullReplyItem alloc]initWithDict:dict];
-                        CommentCellItem *convertedReplyItem = [[CommentCellItem alloc]initWithFullReplyItem:replyItem andCommentOwnerName:commentOwnerName];
-                        [self.commentItems addObject:convertedReplyItem];
+                        for(int i = 0; i < [replyItemDicts count]; i++)
+                        {
+                            NSDictionary *dict = replyItemDicts[i];
+                            FullReplyItem *replyItem = [[FullReplyItem alloc]initWithDict:dict];
+                            CommentCellItem *convertedReplyItem = [[CommentCellItem alloc]initWithFullReplyItem:replyItem andCommentOwnerName:commentOwnerName];
+                            [self.commentItems addObject:convertedReplyItem];
+                        }
                     }
                 }
             }
