@@ -118,7 +118,12 @@
     [cell.replyButton setHidden:cellItem.hideReplyButton];
     
     // 添加 reply 事件
-    [cell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
+    if(cellItem.hideReplyButton == NO)
+        [cell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // reply样式
+    if(cellItem.isReply)
+        [cell setBackgroundColor:[UIColor lightGrayColor]];
     
     return cell;
 }

@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int likeNum;
 @property (nonatomic) bool hideDeleteButton;
 @property (nonatomic) bool hideReplyButton;
+@property (nonatomic) bool isReply;
 
 - (instancetype)initWithFullCommentItem:(FullCommentItem *)fullCommentItem;
 - (instancetype)initWithFullReplyItem:(FullReplyItem *)fullReplyItem

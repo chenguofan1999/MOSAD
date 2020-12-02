@@ -29,7 +29,7 @@
         self.hideReplyButton = NO;
         self.hideDeleteButton = YES;
     }
-    
+    self.isReply = NO;
     return self;
 }
 
@@ -47,6 +47,8 @@
     // 判断显示按钮: reply 不提供这两种功能
     self.hideReplyButton = YES;
     self.hideDeleteButton = YES;
+    
+    self.isReply = YES;
     return self;
 }
 
