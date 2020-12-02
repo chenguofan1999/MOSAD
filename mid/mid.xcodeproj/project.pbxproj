@@ -85,6 +85,8 @@
 		56572ACA2577D82900AE33D9 /* famale.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC52577D82900AE33D9 /* famale.png */; };
 		56572ACB2577D82900AE33D9 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC62577D82900AE33D9 /* male.png */; };
 		56572ACC2577D82900AE33D9 /* kawaii-dinosaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */; };
+		56572AD02577E34F00AE33D9 /* CommentCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572ACF2577E34F00AE33D9 /* CommentCellItem.m */; };
+		56572AD42577E6BB00AE33D9 /* FullReplyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572AD32577E6BB00AE33D9 /* FullReplyItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -195,6 +197,10 @@
 		56572AC52577D82900AE33D9 /* famale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = famale.png; sourceTree = "<group>"; };
 		56572AC62577D82900AE33D9 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
 		56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kawaii-dinosaur.png"; sourceTree = "<group>"; };
+		56572ACE2577E34F00AE33D9 /* CommentCellItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentCellItem.h; sourceTree = "<group>"; };
+		56572ACF2577E34F00AE33D9 /* CommentCellItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCellItem.m; sourceTree = "<group>"; };
+		56572AD22577E6BB00AE33D9 /* FullReplyItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullReplyItem.h; sourceTree = "<group>"; };
+		56572AD32577E6BB00AE33D9 /* FullReplyItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullReplyItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -497,6 +503,10 @@
 				56572AB82577D15A00AE33D9 /* MiniUserItem.m */,
 				56572ABE2577D2F800AE33D9 /* CommentItem.h */,
 				56572ABF2577D2F800AE33D9 /* CommentItem.m */,
+				56572ACE2577E34F00AE33D9 /* CommentCellItem.h */,
+				56572ACF2577E34F00AE33D9 /* CommentCellItem.m */,
+				56572AD22577E6BB00AE33D9 /* FullReplyItem.h */,
+				56572AD32577E6BB00AE33D9 /* FullReplyItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -688,8 +698,10 @@
 				56572AA72577D0D600AE33D9 /* BigImageViewController.m in Sources */,
 				56572AA82577D0D600AE33D9 /* InfoSettingViewController.m in Sources */,
 				56572AA92577D0D600AE33D9 /* MessageViewController.m in Sources */,
+				56572AD02577E34F00AE33D9 /* CommentCellItem.m in Sources */,
 				56572AAA2577D0D600AE33D9 /* SystemSettingController.m in Sources */,
 				56572AAB2577D0D600AE33D9 /* UserCenterViewController.m in Sources */,
+				56572AD42577E6BB00AE33D9 /* FullReplyItem.m in Sources */,
 				56572AAC2577D0D600AE33D9 /* DiscoverViewController.m in Sources */,
 				56572AC02577D2F800AE33D9 /* CommentItem.m in Sources */,
 				56572AAD2577D0D600AE33D9 /* MainPageViewController.m in Sources */,

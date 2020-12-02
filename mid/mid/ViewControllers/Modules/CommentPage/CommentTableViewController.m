@@ -7,6 +7,7 @@
 
 #import "CommentTableViewController.h"
 #import "CommentCell.h"
+#import "CommentCellItem.h"
 #import <AFNetworking/AFNetworking.h>
 #import "FullCommentItem.h"
 #import "UserInfo.h"
@@ -107,23 +108,17 @@
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     
     NSInteger i = indexPath.row;
-    cell.userNameLable.text = [[_commentItems[i] userItem]userName];
-    cell.portraitButton.imageView.image = [[_commentItems[i] userItem]avatar];
-    cell.textContentLable.text = [[_commentItems[i] commentItem]commentContent];
-    cell.timeLable.text = [self timeStampToTime:[[_commentItems[i] commentItem]publishDate]];
-    cell.likeLabel.text = [NSString stringWithFormat:@"%d",[[_commentItems[i] commentItem] likeNum]];
-    if([UserInfo sharedUser].userId != [[_commentItems[i] commentItem] userID])
-    {
-        [cell.deleteButton setHidden:YES];
-    }
-    else
-    {
-        [cell.replyButton setHidden:YES];
-    }
+    CommentCellItem *cellItem = _commentItems[i];
+    cell.userNameLable.text = cellItem.userName;
+    cell.portraitButton.imageView.image = cellItem.avatar;
+    cell.textContentLable.text = cellItem.commentContent;
+    cell.timeLable.text = cellItem.publishDate;
+    cell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
+    [cell.deleteButton setHidden:cellItem.hideDeleteButton];
+    [cell.replyButton setHidden:cellItem.hideReplyButton];
     
     // 添加 reply 事件
     [cell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
-    
     
     return cell;
 }
@@ -137,7 +132,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     NSInteger i = indexPath.row;
-    NSString *contentID = [[_commentItems[i] commentItem] commentID];
+    NSString *contentID = [_commentItems[i] commentID];
     NSString *fatherID = self.contentID;
     
     // 弹窗输入内容
@@ -206,8 +201,21 @@
                 NSInteger n = [data count];
                 for(int i = 0; i < n; i++)
                 {
-                    FullCommentItem *newItem = [[FullCommentItem alloc] initWithDict:data[i]];
-                    [self.commentItems addObject:newItem];
+                    // 插入评论Item
+                    FullCommentItem *commentItem = [[FullCommentItem alloc] initWithDict:data[i]];
+                    CommentCellItem *convertedCommentItem = [[CommentCellItem alloc]initWithFullCommentItem:commentItem];
+                    [self.commentItems addObject:convertedCommentItem];
+                    
+                    // 插入其回复Items
+                    NSString *commentOwnerName = convertedCommentItem.userName;
+                    NSArray *replyItemDicts = commentItem.replies;
+                    for(int i = 0; i < [replyItemDicts count]; i++)
+                    {
+                        NSDictionary *dict = replyItemDicts[i];
+                        FullReplyItem *replyItem = [[FullReplyItem alloc]initWithDict:dict];
+                        CommentCellItem *convertedReplyItem = [[CommentCellItem alloc]initWithFullReplyItem:replyItem andCommentOwnerName:commentOwnerName];
+                        [self.commentItems addObject:convertedReplyItem];
+                    }
                 }
             }
         }

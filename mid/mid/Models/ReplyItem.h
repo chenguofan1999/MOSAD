@@ -13,6 +13,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *replyID;
 @property (nonatomic) NSString *contentID;
 @property (nonatomic) NSString *fatherID;
+@property (nonatomic) NSString *userID;
+@property (nonatomic) long publishDate;
+@property (nonatomic) int likeNum;
+@property (nonatomic) NSString *replyContent;
+
+- (instancetype)initWithDict:(NSDictionary *)dict;
 @end
 
 NS_ASSUME_NONNULL_END
