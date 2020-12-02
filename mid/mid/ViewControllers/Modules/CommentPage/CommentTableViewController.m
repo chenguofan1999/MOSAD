@@ -108,6 +108,7 @@
     
     NSInteger i = indexPath.row;
     cell.userNameLable.text = [[_commentItems[i] userItem]userName];
+    cell.portraitButton.imageView.image = [[_commentItems[i] userItem]avatar];
     cell.textContentLable.text = [[_commentItems[i] commentItem]commentContent];
     cell.timeLable.text = [self timeStampToTime:[[_commentItems[i] commentItem]publishDate]];
     cell.likeLabel.text = [NSString stringWithFormat:@"%d",[[_commentItems[i] commentItem] likeNum]];
@@ -130,15 +131,46 @@
 #pragma mark 回复评论
 - (void)pressReplyButton:(UIButton *)btn
 {
+    // 得到 indexPath
     UIView *contentView = [btn superview];
     CommentCell *cell = (CommentCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    // 已经得到 indexPath
     NSInteger i = indexPath.row;
-    NSString *contentID = [_commentItems[i] commentID];
+    NSString *contentID = [[_commentItems[i] commentItem] commentID];
     NSString *fatherID = self.contentID;
     
+    // 弹窗输入内容
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"回复" message:nil preferredStyle:UIAlertControllerStyleAlert];
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
+        textField.placeholder = @"输入回复内容";
+    }];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    [alertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        NSArray *textfields = alertController.textFields;
+        UITextField *textfield = textfields[0];
+        NSString *content = [textfield text];
+        
+        // 发送！
+        NSString *URL = [NSString stringWithFormat:@"http://172.18.178.56/api/comment"];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSDictionary *body = @{
+            @"contentID" : contentID,
+            @"fatherID"  : fatherID,
+            @"content"   : content,
+            @"isReply"   : @YES
+        };
+        
+        [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    NSLog(@"%@", responseObject);
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    NSLog(@"failed somehow");
+                }];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
     
 }
 

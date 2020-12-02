@@ -80,6 +80,11 @@
 		56572AB12577D0D600AE33D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
 		56572ABC2577D1D100AE33D9 /* MiniUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572AB82577D15A00AE33D9 /* MiniUserItem.m */; };
 		56572AC02577D2F800AE33D9 /* CommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572ABF2577D2F800AE33D9 /* CommentItem.m */; };
+		56572AC82577D82900AE33D9 /* maleUser.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC32577D82900AE33D9 /* maleUser.png */; };
+		56572AC92577D82900AE33D9 /* femaleUser.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC42577D82900AE33D9 /* femaleUser.png */; };
+		56572ACA2577D82900AE33D9 /* famale.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC52577D82900AE33D9 /* famale.png */; };
+		56572ACB2577D82900AE33D9 /* male.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC62577D82900AE33D9 /* male.png */; };
+		56572ACC2577D82900AE33D9 /* kawaii-dinosaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -185,6 +190,11 @@
 		56572AB82577D15A00AE33D9 /* MiniUserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniUserItem.m; sourceTree = "<group>"; };
 		56572ABE2577D2F800AE33D9 /* CommentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentItem.h; sourceTree = "<group>"; };
 		56572ABF2577D2F800AE33D9 /* CommentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentItem.m; sourceTree = "<group>"; };
+		56572AC32577D82900AE33D9 /* maleUser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = maleUser.png; sourceTree = "<group>"; };
+		56572AC42577D82900AE33D9 /* femaleUser.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = femaleUser.png; sourceTree = "<group>"; };
+		56572AC52577D82900AE33D9 /* famale.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = famale.png; sourceTree = "<group>"; };
+		56572AC62577D82900AE33D9 /* male.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = male.png; sourceTree = "<group>"; };
+		56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kawaii-dinosaur.png"; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -234,6 +244,11 @@
 		56510939256BB34200163966 /* icons */ = {
 			isa = PBXGroup;
 			children = (
+				56572AC52577D82900AE33D9 /* famale.png */,
+				56572AC42577D82900AE33D9 /* femaleUser.png */,
+				56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */,
+				56572AC62577D82900AE33D9 /* male.png */,
+				56572AC32577D82900AE33D9 /* maleUser.png */,
 				5651099B256C205700163966 /* comment-filled.png */,
 				5651099D256C205800163966 /* comment.png */,
 				5651099C256C205700163966 /* fav-filled.png */,
@@ -566,6 +581,7 @@
 				56529266256FFFA50007C033 /* test102.jpg in Resources */,
 				56529267256FFFA50007C033 /* test103.jpg in Resources */,
 				56529269256FFFA50007C033 /* test100.jpg in Resources */,
+				56572ACC2577D82900AE33D9 /* kawaii-dinosaur.png in Resources */,
 				56510950256BC9F100163966 /* compass-filled@2x.png in Resources */,
 				565109A1256C205800163966 /* comment-filled.png in Resources */,
 				5651094C256BC9F100163966 /* search@2x.png in Resources */,
@@ -573,18 +589,22 @@
 				565292A22571FE990007C033 /* test201.jpg in Resources */,
 				56510968256BEB1400163966 /* add@2x.png in Resources */,
 				56510972256BED0700163966 /* user-filled@2x.png in Resources */,
+				56572AC92577D82900AE33D9 /* femaleUser.png in Resources */,
 				56510973256BED0700163966 /* user@2x.png in Resources */,
 				5652929C2571FE990007C033 /* test205.jpg in Resources */,
 				565292A02571FE990007C033 /* test203.jpg in Resources */,
 				56529268256FFFA50007C033 /* test107.jpg in Resources */,
 				5652929D2571FE990007C033 /* test202.jpg in Resources */,
+				56572ACB2577D82900AE33D9 /* male.png in Resources */,
 				565729EC2573879900AE33D9 /* testAvator1.jpg in Resources */,
 				5651094D256BC9F100163966 /* setting-filled@2x.png in Resources */,
 				56510A0B256E22A500163966 /* chen.png in Resources */,
 				565729FB2573AAC000AE33D9 /* LogInViewController.xib in Resources */,
 				565109A2256C205800163966 /* fav-filled.png in Resources */,
+				56572AC82577D82900AE33D9 /* maleUser.png in Resources */,
 				5652929E2571FE990007C033 /* test204.jpg in Resources */,
 				56529262256FFFA50007C033 /* test105.jpg in Resources */,
+				56572ACA2577D82900AE33D9 /* famale.png in Resources */,
 				565292822571FB3E0007C033 /* testPic.jpg in Resources */,
 				565109A3256C205800163966 /* comment.png in Resources */,
 				565109A0256C205800163966 /* like.png in Resources */,
