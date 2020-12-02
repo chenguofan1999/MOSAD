@@ -282,12 +282,11 @@
     // 增加tag
     if(indexPath.row == 0)
     {
-        UIAlertController *addTagController = [UIAlertController alertControllerWithTitle:@"标签" message:@"添加标签" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *addTagController = [UIAlertController alertControllerWithTitle:@"标签" message:nil preferredStyle:UIAlertControllerStyleAlert];
         [addTagController addTextFieldWithConfigurationHandler:^(UITextField * _Nonnull textField) {
             textField.placeholder = @"#";
         }];
-        [addTagController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
-        [addTagController addAction:[UIAlertAction actionWithTitle:@"确定"
+        [addTagController addAction:[UIAlertAction actionWithTitle:@"添加标签"
                                                              style:UIAlertActionStyleDefault
                                                            handler:^(UIAlertAction *action) {
             NSArray *textfields = addTagController.textFields;
@@ -300,6 +299,16 @@
             // 更新当前显示的 tag
             [self.optionTable reloadData];
         }]];
+        [addTagController addAction:[UIAlertAction actionWithTitle:@"清空标签"
+                                                             style:UIAlertActionStyleDefault
+                                                           handler:^(UIAlertAction *action) {
+            // 清空 tags
+            self.postItem.tags = [NSMutableArray new];
+            // 更新当前显示的 tag
+            [self.optionTable reloadData];
+        }]];
+        [addTagController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+        
         [self presentViewController:addTagController animated:YES completion:nil];
     }
 }

@@ -30,7 +30,7 @@
                         <color key="highlightedColor" systemColor="systemGray2Color"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="textContent" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FDf-Ll-0HQ">
-                        <rect key="frame" x="64" y="60.5" width="448" height="550.5"/>
+                        <rect key="frame" x="64" y="64.5" width="448" height="546.5"/>
                         <constraints>
                             <constraint firstAttribute="height" priority="100" constant="20" id="ros-0V-b8r"/>
                         </constraints>
@@ -130,7 +130,7 @@
                     <constraint firstItem="oNn-Gp-h9A" firstAttribute="leading" secondItem="pdg-fM-rxR" secondAttribute="trailing" constant="5" id="BYL-vj-3fh"/>
                     <constraint firstAttribute="bottomMargin" secondItem="VXc-Th-XTY" secondAttribute="bottom" constant="5" id="CyF-q7-pEd"/>
                     <constraint firstAttribute="trailingMargin" secondItem="FDf-Ll-0HQ" secondAttribute="trailing" constant="5" id="Da2-9U-Zlj"/>
-                    <constraint firstItem="FDf-Ll-0HQ" firstAttribute="top" secondItem="Vul-QB-qXO" secondAttribute="bottom" constant="8" id="Dlq-Tg-ZnN"/>
+                    <constraint firstItem="FDf-Ll-0HQ" firstAttribute="top" secondItem="Vul-QB-qXO" secondAttribute="bottom" constant="12" id="Dlq-Tg-ZnN"/>
                     <constraint firstItem="1fh-02-Zg1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="G26-jz-Ped"/>
                     <constraint firstItem="Dlc-KA-oee" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="IHx-vV-zYL"/>
                     <constraint firstItem="mmh-NS-o07" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="Iab-j4-YVE"/>

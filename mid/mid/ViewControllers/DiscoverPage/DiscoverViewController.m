@@ -47,8 +47,11 @@
     // 初始化数据源
     _items = [NSMutableArray new];
     
+    // 顶部 SegmentedControl
     NSArray *segmentedData = @[@"按时间线",@"按热度"];
     UISegmentedControl *segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
+    [segmentBar setWidth:120 forSegmentAtIndex:0];
+    [segmentBar setWidth:120 forSegmentAtIndex:1];
     [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = segmentBar;
     
@@ -143,8 +146,9 @@
          WithTitle:[_items[i] contentData].title
               Tags:[_items[i] contentData].tags
             Detail:[_items[i] contentData].detail];
-    
     cell.timeLable.text = [self timeStampToTime:[[_items[i] contentData] PublishDate]];
+    cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentData] likeNum]];
+    cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentData] commentNum]];
     
     return cell;
 }
@@ -198,14 +202,14 @@
     NSMutableAttributedString *str = [[NSMutableAttributedString alloc]initWithString:[NSString stringWithFormat:@"%@%@%@",newTitle,newDetail,connectedTags]];
     
     // Title 样式
-    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:17] range:rangeTitle];
+    [str addAttribute:NSFontAttributeName value:[UIFont boldSystemFontOfSize:20] range:rangeTitle];
     
     // Detail 样式
     [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangeDetail];
     
     // Tags 样式
     UIColor *tagColor = [UIColor colorWithRed:(float)29/255 green:(float)161/255 blue:(float)242/255 alpha:1];
-    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:17] range:rangeTags];
+    [str addAttribute:NSFontAttributeName value:[UIFont systemFontOfSize:15] range:rangeTags];
     [str addAttribute:NSForegroundColorAttributeName value:tagColor range:rangeTags];
     
     [label setAttributedText:str];
@@ -266,7 +270,7 @@
     [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
 }
 
-# pragma mark 刷新
+# pragma mark 从后台拉取数据
 - (void)loadData
 {
     NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=20";
@@ -280,13 +284,16 @@
 //        NSLog(@"%@",response);
         if([response[@"State"] isEqualToString:@"success"])
         {
+//            self.items = [NSMutableArray new];
             NSArray *data = response[@"Data"];
             NSInteger n = [data count];
             for(int i = 0; i < n; i++)
             {
                 FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
                 NSLog(@"Item[%d]: %@", i, newItem);
-                [self.items addObject:newItem];
+                if([self.items count] > i)
+                    self.items[i] = newItem;
+                else [self.items addObject:newItem];
             }
         }
         [self.tableView reloadData];
