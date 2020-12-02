@@ -7,19 +7,16 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "CommentItem.h"
+#import "MiniUserItem.h"
+#import "ReplyItem.h"
+
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FullCommentItem : NSObject
-@property (nonatomic) NSString *commentID;
-@property (nonatomic) NSString *contentID;
-@property (nonatomic) NSString *userID;
-@property (nonatomic) long publishDate;
-@property (nonatomic) NSString *commentContent;
-@property (nonatomic) int likeNum;
-
-@property (nonatomic) NSString *userName;
-@property (nonatomic) int gender;
-//@property (nonatomic) UIImage *avatar;
+@property (nonatomic) CommentItem *commentItem;
+@property (nonatomic) MiniUserItem *userItem;
+@property (nonatomic) NSArray *replies;
 
 - (instancetype)initWithDict:(NSDictionary *)dict;
 

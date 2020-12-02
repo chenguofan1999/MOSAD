@@ -11,9 +11,8 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     self = [super init];
-    self.contentData = [[ContentItem alloc]initWithDict:dict[@"Data"]];
-    self.userName = dict[@"User"][@"Name"];
-    self.gender = [dict[@"User"][@"Gender"] intValue];
+    self.contentItem = [[ContentItem alloc]initWithDict:dict[@"Data"]];
+    self.userItem = [[MiniUserItem alloc]initWithDict:dict[@"User"]];
     return self;
 }
 @end

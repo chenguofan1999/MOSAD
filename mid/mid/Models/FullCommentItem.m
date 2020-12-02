@@ -12,17 +12,9 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     self = [super init];
-    
-    self.commentID = dict[@"Comment"][@"ID"];
-    self.contentID = dict[@"Comment"][@"ContentID"];
-    self.userID = dict[@"Comment"][@"UserID"];
-    self.publishDate = [dict[@"Comment"][@"Date"] longValue];
-    self.commentContent = dict[@"Comment"][@"Content"];
-    self.likeNum = [dict[@"Comment"][@"LikeNum"] intValue];
-    
-    self.userName = dict[@"User"][@"Name"];
-    self.gender = [dict[@"User"][@"Gender"] intValue];
-    
+    self.commentItem = [[CommentItem alloc]initWithDict:dict[@"Comment"]];
+    self.userItem = [[MiniUserItem alloc]initWithDict:dict[@"User"]];
+    self.replies = dict[@"Replies"];
     return self;
 }
 

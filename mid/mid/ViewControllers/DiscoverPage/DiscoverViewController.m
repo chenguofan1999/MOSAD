@@ -9,6 +9,7 @@
 #import "PostCell.h"
 #import "FullDataItem.h"
 #import "ContentItem.h"
+#import "MiniUserItem.h"
 #import "BigImageViewController.h"
 #import "CommentTableViewController.h"
 #import "ProfilePageViewController.h"
@@ -134,14 +135,14 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    cell.userNameLabel.text = [_items[i] userName];
+    cell.userNameLabel.text = [[_items[i] userItem] userName];
     [self setLabel:cell.textContentLable
-         WithTitle:[_items[i] contentData].title
-              Tags:[_items[i] contentData].tags
-            Detail:[_items[i] contentData].detail];
-    cell.timeLable.text = [self timeStampToTime:[[_items[i] contentData] PublishDate]];
-    cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentData] likeNum]];
-    cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentData] commentNum]];
+         WithTitle:[_items[i] contentItem].title
+              Tags:[_items[i] contentItem].tags
+            Detail:[_items[i] contentItem].detail];
+    cell.timeLable.text = [self timeStampToTime:[[_items[i] contentItem] PublishDate]];
+    cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentItem] likeNum]];
+    cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentItem] commentNum]];
     
     return cell;
 }
@@ -259,9 +260,10 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-    NSString *contentID = [[_items[indexPath.row] contentData] contentID];
+    NSString *contentID = [[_items[indexPath.row] contentItem] contentID];
+    NSString *ownerID = [[_items[indexPath.row] contentItem] ownerID];
     //[self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
-    [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID] animated:YES completion:nil];
+    [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
 
 # pragma mark 从后台拉取数据

@@ -36,6 +36,7 @@
     self.isPublic = [dict[@"Public"] intValue] == 1;
     self.tags = (NSMutableArray *)dict[@"Tag"];
     self.contentID = dict[@"ID"];
+    self.ownerID = dict[@"OwnID"];
     self.PublishDate = [dict[@"PublishDate"] longValue];
     self.likeNum = [dict[@"LikeNum"] intValue];
     self.commentNum = [dict[@"CommentNum"] intValue];

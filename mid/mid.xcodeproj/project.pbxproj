@@ -49,58 +49,37 @@
 		565292A32571FE990007C033 /* test200.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5652929A2571FE980007C033 /* test200.jpg */; };
 		565292A42571FE990007C033 /* test208.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5652929B2571FE990007C033 /* test208.jpg */; };
 		565292CC25728C7F0007C033 /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565292CA25728C7F0007C033 /* CommentCell.xib */; };
-		565292F1257290560007C033 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
 		565729EC2573879900AE33D9 /* testAvator1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565729EA2573879900AE33D9 /* testAvator1.jpg */; };
 		565729ED2573879900AE33D9 /* testAvator2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 565729EB2573879900AE33D9 /* testAvator2.jpg */; };
 		565729FB2573AAC000AE33D9 /* LogInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 565729F92573AAC000AE33D9 /* LogInViewController.xib */; };
-		56572A552577671D00AE33D9 /* UserInfo.h in Sources */ = {isa = PBXBuildFile; fileRef = 56572A0F2574DF9200AE33D9 /* UserInfo.h */; };
-		56572A562577671D00AE33D9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A102574DF9200AE33D9 /* UserInfo.m */; };
-		56572A572577671D00AE33D9 /* ContentItem.h in Sources */ = {isa = PBXBuildFile; fileRef = 56572A432575E4CC00AE33D9 /* ContentItem.h */; };
-		56572A582577671D00AE33D9 /* ContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A442575E4CC00AE33D9 /* ContentItem.m */; };
-		56572A592577671D00AE33D9 /* FullDataItem.h in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4825763CA800AE33D9 /* FullDataItem.h */; };
-		56572A5A2577671D00AE33D9 /* FullDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4925763CA800AE33D9 /* FullDataItem.m */; };
-		56572A5B2577671D00AE33D9 /* FullCommentItem.h in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4F2577555E00AE33D9 /* FullCommentItem.h */; };
-		56572A5C2577671D00AE33D9 /* FullCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A502577555E00AE33D9 /* FullCommentItem.m */; };
-		56572A5D2577671D00AE33D9 /* LogInViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565729F72573AAC000AE33D9 /* LogInViewController.h */; };
-		56572A5E2577671D00AE33D9 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729F82573AAC000AE33D9 /* LogInViewController.m */; };
-		56572A5F2577671D00AE33D9 /* PostCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510994256C1DD200163966 /* PostCell.h */; };
-		56572A602577671D00AE33D9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
-		56572A612577671D00AE33D9 /* PostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529243256FF9850007C033 /* PostViewController.h */; };
-		56572A622577671D00AE33D9 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529244256FF9850007C033 /* PostViewController.m */; };
-		56572A632577671D00AE33D9 /* AlbumViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56529248256FF9910007C033 /* AlbumViewController.h */; };
-		56572A642577671D00AE33D9 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529249256FF9910007C033 /* AlbumViewController.m */; };
-		56572A652577671D00AE33D9 /* InfoViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565292A72572066A0007C033 /* InfoViewController.h */; };
-		56572A662577671D00AE33D9 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292A82572066A0007C033 /* InfoViewController.m */; };
-		56572A672577671D00AE33D9 /* ProfilePageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 5652923B256FE7050007C033 /* ProfilePageViewController.h */; };
-		56572A682577671D00AE33D9 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5652923C256FE7050007C033 /* ProfilePageViewController.m */; };
-		56572A692577671D00AE33D9 /* WritingPostViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565109A9256CDCEC00163966 /* WritingPostViewController.h */; };
-		56572A6A2577671D00AE33D9 /* WritingPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109AA256CDCEC00163966 /* WritingPostViewController.m */; };
-		56572A6B2577671D00AE33D9 /* CommentTableViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565292C3257280170007C033 /* CommentTableViewController.h */; };
-		56572A6C2577671D00AE33D9 /* CommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292C4257280170007C033 /* CommentTableViewController.m */; };
-		56572A6D2577671D00AE33D9 /* CommentCell.h in Sources */ = {isa = PBXBuildFile; fileRef = 565292C825728C7F0007C033 /* CommentCell.h */; };
-		56572A6E2577671D00AE33D9 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292C925728C7F0007C033 /* CommentCell.m */; };
-		56572A6F2577671D00AE33D9 /* ImageSender.h in Sources */ = {isa = PBXBuildFile; fileRef = 565109E4256D3C4E00163966 /* ImageSender.h */; };
-		56572A702577671D00AE33D9 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109E5256D3C4E00163966 /* ImageSender.m */; };
-		56572A712577671D00AE33D9 /* BigImageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510A00256D6C6F00163966 /* BigImageViewController.h */; };
-		56572A722577671D00AE33D9 /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510A01256D6C6F00163966 /* BigImageViewController.m */; };
-		56572A732577671D00AE33D9 /* InfoSettingViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565729B625737E2600AE33D9 /* InfoSettingViewController.h */; };
-		56572A742577671D00AE33D9 /* InfoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729B725737E2600AE33D9 /* InfoSettingViewController.m */; };
-		56572A752577671D00AE33D9 /* MessageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565729BA25737ED200AE33D9 /* MessageViewController.h */; };
-		56572A762577671D00AE33D9 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729BB25737ED200AE33D9 /* MessageViewController.m */; };
-		56572A772577671D00AE33D9 /* SystemSettingController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565729BE25737EF600AE33D9 /* SystemSettingController.h */; };
-		56572A782577671D00AE33D9 /* SystemSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729BF25737EF600AE33D9 /* SystemSettingController.m */; };
-		56572A792577671D00AE33D9 /* UserCenterViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 56510900256BA52B00163966 /* UserCenterViewController.h */; };
-		56572A7A2577671D00AE33D9 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510901256BA52B00163966 /* UserCenterViewController.m */; };
-		56572A7B2577671D00AE33D9 /* DiscoverViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108FC256BA51F00163966 /* DiscoverViewController.h */; };
-		56572A7C2577671D00AE33D9 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108FD256BA52000163966 /* DiscoverViewController.m */; };
-		56572A7D2577671D00AE33D9 /* MainPageViewController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F8256BA50B00163966 /* MainPageViewController.h */; };
-		56572A7E2577671D00AE33D9 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F9256BA50B00163966 /* MainPageViewController.m */; };
-		56572A7F2577671D00AE33D9 /* TabBarController.h in Sources */ = {isa = PBXBuildFile; fileRef = 565108F4256B9FAF00163966 /* TabBarController.h */; };
-		56572A802577671D00AE33D9 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F5256B9FAF00163966 /* TabBarController.m */; };
-		56572A812577671D00AE33D9 /* AppDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C4256B5851007B92B2 /* AppDelegate.h */; };
-		56572A822577671D00AE33D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C5256B5851007B92B2 /* AppDelegate.m */; };
-		56572A832577671D00AE33D9 /* SceneDelegate.h in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C7256B5851007B92B2 /* SceneDelegate.h */; };
-		56572A842577671D00AE33D9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
+		56572A972577D0D600AE33D9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A102574DF9200AE33D9 /* UserInfo.m */; };
+		56572A982577D0D600AE33D9 /* ContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A442575E4CC00AE33D9 /* ContentItem.m */; };
+		56572A992577D0D600AE33D9 /* FullDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4925763CA800AE33D9 /* FullDataItem.m */; };
+		56572A9A2577D0D600AE33D9 /* FullCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A502577555E00AE33D9 /* FullCommentItem.m */; };
+		56572A9B2577D0D600AE33D9 /* ReplyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A892577CAB400AE33D9 /* ReplyItem.m */; };
+		56572A9D2577D0D600AE33D9 /* LogInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729F82573AAC000AE33D9 /* LogInViewController.m */; };
+		56572A9E2577D0D600AE33D9 /* PostCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510995256C1DD200163966 /* PostCell.m */; };
+		56572A9F2577D0D600AE33D9 /* PostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529244256FF9850007C033 /* PostViewController.m */; };
+		56572AA02577D0D600AE33D9 /* AlbumViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56529249256FF9910007C033 /* AlbumViewController.m */; };
+		56572AA12577D0D600AE33D9 /* InfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292A82572066A0007C033 /* InfoViewController.m */; };
+		56572AA22577D0D600AE33D9 /* ProfilePageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5652923C256FE7050007C033 /* ProfilePageViewController.m */; };
+		56572AA32577D0D600AE33D9 /* WritingPostViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109AA256CDCEC00163966 /* WritingPostViewController.m */; };
+		56572AA42577D0D600AE33D9 /* CommentTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292C4257280170007C033 /* CommentTableViewController.m */; };
+		56572AA52577D0D600AE33D9 /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 565292C925728C7F0007C033 /* CommentCell.m */; };
+		56572AA62577D0D600AE33D9 /* ImageSender.m in Sources */ = {isa = PBXBuildFile; fileRef = 565109E5256D3C4E00163966 /* ImageSender.m */; };
+		56572AA72577D0D600AE33D9 /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510A01256D6C6F00163966 /* BigImageViewController.m */; };
+		56572AA82577D0D600AE33D9 /* InfoSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729B725737E2600AE33D9 /* InfoSettingViewController.m */; };
+		56572AA92577D0D600AE33D9 /* MessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729BB25737ED200AE33D9 /* MessageViewController.m */; };
+		56572AAA2577D0D600AE33D9 /* SystemSettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565729BF25737EF600AE33D9 /* SystemSettingController.m */; };
+		56572AAB2577D0D600AE33D9 /* UserCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 56510901256BA52B00163966 /* UserCenterViewController.m */; };
+		56572AAC2577D0D600AE33D9 /* DiscoverViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108FD256BA52000163966 /* DiscoverViewController.m */; };
+		56572AAD2577D0D600AE33D9 /* MainPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F9256BA50B00163966 /* MainPageViewController.m */; };
+		56572AAE2577D0D600AE33D9 /* TabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 565108F5256B9FAF00163966 /* TabBarController.m */; };
+		56572AAF2577D0D600AE33D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C5256B5851007B92B2 /* AppDelegate.m */; };
+		56572AB02577D0D600AE33D9 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2C8256B5851007B92B2 /* SceneDelegate.m */; };
+		56572AB12577D0D600AE33D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5656D2D6256B5853007B92B2 /* main.m */; };
+		56572ABC2577D1D100AE33D9 /* MiniUserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572AB82577D15A00AE33D9 /* MiniUserItem.m */; };
+		56572AC02577D2F800AE33D9 /* CommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572ABF2577D2F800AE33D9 /* CommentItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -200,6 +179,12 @@
 		56572A4925763CA800AE33D9 /* FullDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullDataItem.m; sourceTree = "<group>"; };
 		56572A4F2577555E00AE33D9 /* FullCommentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullCommentItem.h; sourceTree = "<group>"; };
 		56572A502577555E00AE33D9 /* FullCommentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullCommentItem.m; sourceTree = "<group>"; };
+		56572A882577CAB400AE33D9 /* ReplyItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyItem.h; sourceTree = "<group>"; };
+		56572A892577CAB400AE33D9 /* ReplyItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyItem.m; sourceTree = "<group>"; };
+		56572AB72577D15A00AE33D9 /* MiniUserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MiniUserItem.h; sourceTree = "<group>"; };
+		56572AB82577D15A00AE33D9 /* MiniUserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MiniUserItem.m; sourceTree = "<group>"; };
+		56572ABE2577D2F800AE33D9 /* CommentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommentItem.h; sourceTree = "<group>"; };
+		56572ABF2577D2F800AE33D9 /* CommentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -491,6 +476,12 @@
 				56572A4925763CA800AE33D9 /* FullDataItem.m */,
 				56572A4F2577555E00AE33D9 /* FullCommentItem.h */,
 				56572A502577555E00AE33D9 /* FullCommentItem.m */,
+				56572A882577CAB400AE33D9 /* ReplyItem.h */,
+				56572A892577CAB400AE33D9 /* ReplyItem.m */,
+				56572AB72577D15A00AE33D9 /* MiniUserItem.h */,
+				56572AB82577D15A00AE33D9 /* MiniUserItem.m */,
+				56572ABE2577D2F800AE33D9 /* CommentItem.h */,
+				56572ABF2577D2F800AE33D9 /* CommentItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -658,55 +649,34 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				56572A552577671D00AE33D9 /* UserInfo.h in Sources */,
-				56572A562577671D00AE33D9 /* UserInfo.m in Sources */,
-				56572A572577671D00AE33D9 /* ContentItem.h in Sources */,
-				56572A582577671D00AE33D9 /* ContentItem.m in Sources */,
-				56572A592577671D00AE33D9 /* FullDataItem.h in Sources */,
-				56572A5A2577671D00AE33D9 /* FullDataItem.m in Sources */,
-				56572A5B2577671D00AE33D9 /* FullCommentItem.h in Sources */,
-				56572A5C2577671D00AE33D9 /* FullCommentItem.m in Sources */,
-				56572A5D2577671D00AE33D9 /* LogInViewController.h in Sources */,
-				56572A5E2577671D00AE33D9 /* LogInViewController.m in Sources */,
-				56572A5F2577671D00AE33D9 /* PostCell.h in Sources */,
-				56572A602577671D00AE33D9 /* PostCell.m in Sources */,
-				56572A612577671D00AE33D9 /* PostViewController.h in Sources */,
-				56572A622577671D00AE33D9 /* PostViewController.m in Sources */,
-				56572A632577671D00AE33D9 /* AlbumViewController.h in Sources */,
-				56572A642577671D00AE33D9 /* AlbumViewController.m in Sources */,
-				56572A652577671D00AE33D9 /* InfoViewController.h in Sources */,
-				56572A662577671D00AE33D9 /* InfoViewController.m in Sources */,
-				56572A672577671D00AE33D9 /* ProfilePageViewController.h in Sources */,
-				56572A682577671D00AE33D9 /* ProfilePageViewController.m in Sources */,
-				56572A692577671D00AE33D9 /* WritingPostViewController.h in Sources */,
-				56572A6A2577671D00AE33D9 /* WritingPostViewController.m in Sources */,
-				56572A6B2577671D00AE33D9 /* CommentTableViewController.h in Sources */,
-				56572A6C2577671D00AE33D9 /* CommentTableViewController.m in Sources */,
-				56572A6D2577671D00AE33D9 /* CommentCell.h in Sources */,
-				56572A6E2577671D00AE33D9 /* CommentCell.m in Sources */,
-				56572A6F2577671D00AE33D9 /* ImageSender.h in Sources */,
-				56572A702577671D00AE33D9 /* ImageSender.m in Sources */,
-				56572A712577671D00AE33D9 /* BigImageViewController.h in Sources */,
-				56572A722577671D00AE33D9 /* BigImageViewController.m in Sources */,
-				56572A732577671D00AE33D9 /* InfoSettingViewController.h in Sources */,
-				56572A742577671D00AE33D9 /* InfoSettingViewController.m in Sources */,
-				56572A752577671D00AE33D9 /* MessageViewController.h in Sources */,
-				56572A762577671D00AE33D9 /* MessageViewController.m in Sources */,
-				56572A772577671D00AE33D9 /* SystemSettingController.h in Sources */,
-				56572A782577671D00AE33D9 /* SystemSettingController.m in Sources */,
-				56572A792577671D00AE33D9 /* UserCenterViewController.h in Sources */,
-				56572A7A2577671D00AE33D9 /* UserCenterViewController.m in Sources */,
-				56572A7B2577671D00AE33D9 /* DiscoverViewController.h in Sources */,
-				56572A7C2577671D00AE33D9 /* DiscoverViewController.m in Sources */,
-				56572A7D2577671D00AE33D9 /* MainPageViewController.h in Sources */,
-				56572A7E2577671D00AE33D9 /* MainPageViewController.m in Sources */,
-				56572A7F2577671D00AE33D9 /* TabBarController.h in Sources */,
-				56572A802577671D00AE33D9 /* TabBarController.m in Sources */,
-				56572A812577671D00AE33D9 /* AppDelegate.h in Sources */,
-				56572A822577671D00AE33D9 /* AppDelegate.m in Sources */,
-				56572A832577671D00AE33D9 /* SceneDelegate.h in Sources */,
-				56572A842577671D00AE33D9 /* SceneDelegate.m in Sources */,
-				565292F1257290560007C033 /* main.m in Sources */,
+				56572ABC2577D1D100AE33D9 /* MiniUserItem.m in Sources */,
+				56572A972577D0D600AE33D9 /* UserInfo.m in Sources */,
+				56572A982577D0D600AE33D9 /* ContentItem.m in Sources */,
+				56572A992577D0D600AE33D9 /* FullDataItem.m in Sources */,
+				56572A9A2577D0D600AE33D9 /* FullCommentItem.m in Sources */,
+				56572A9B2577D0D600AE33D9 /* ReplyItem.m in Sources */,
+				56572A9D2577D0D600AE33D9 /* LogInViewController.m in Sources */,
+				56572A9E2577D0D600AE33D9 /* PostCell.m in Sources */,
+				56572A9F2577D0D600AE33D9 /* PostViewController.m in Sources */,
+				56572AA02577D0D600AE33D9 /* AlbumViewController.m in Sources */,
+				56572AA12577D0D600AE33D9 /* InfoViewController.m in Sources */,
+				56572AA22577D0D600AE33D9 /* ProfilePageViewController.m in Sources */,
+				56572AA32577D0D600AE33D9 /* WritingPostViewController.m in Sources */,
+				56572AA42577D0D600AE33D9 /* CommentTableViewController.m in Sources */,
+				56572AA52577D0D600AE33D9 /* CommentCell.m in Sources */,
+				56572AA62577D0D600AE33D9 /* ImageSender.m in Sources */,
+				56572AA72577D0D600AE33D9 /* BigImageViewController.m in Sources */,
+				56572AA82577D0D600AE33D9 /* InfoSettingViewController.m in Sources */,
+				56572AA92577D0D600AE33D9 /* MessageViewController.m in Sources */,
+				56572AAA2577D0D600AE33D9 /* SystemSettingController.m in Sources */,
+				56572AAB2577D0D600AE33D9 /* UserCenterViewController.m in Sources */,
+				56572AAC2577D0D600AE33D9 /* DiscoverViewController.m in Sources */,
+				56572AC02577D2F800AE33D9 /* CommentItem.m in Sources */,
+				56572AAD2577D0D600AE33D9 /* MainPageViewController.m in Sources */,
+				56572AAE2577D0D600AE33D9 /* TabBarController.m in Sources */,
+				56572AAF2577D0D600AE33D9 /* AppDelegate.m in Sources */,
+				56572AB02577D0D600AE33D9 /* SceneDelegate.m in Sources */,
+				56572AB12577D0D600AE33D9 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -832,6 +802,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = mid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -849,6 +820,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = mid/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) bool isPublic;
 
 @property (nonatomic) NSString *contentID;
+@property (nonatomic) NSString *ownerID;
 @property (nonatomic) long PublishDate;
 @property (nonatomic) int likeNum;
 @property (nonatomic) int commentNum;

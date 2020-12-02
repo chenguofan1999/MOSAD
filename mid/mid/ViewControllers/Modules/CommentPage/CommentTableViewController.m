@@ -20,10 +20,11 @@
 @implementation CommentTableViewController
 
 - (instancetype)initWithContentID:(NSString *)contentID
+                       andOwnerID:(NSString *)ownerID
 {
     self = [super init];
     _contentID = contentID;
-    
+    _ownerID = ownerID;
     return self;
 }
 
@@ -60,10 +61,36 @@
     [self.tableView setBounces:NO];
     [self.view setBackgroundColor:veryLightGrayColor];
     
-    // 发布button
+    // 发布button的事件
+    [_commentButton addTarget:self action:@selector(publishComment) forControlEvents:UIControlEventTouchUpInside];
     
     
     [self loadData];
+}
+
+#pragma mark 发布按钮
+- (void)publishComment
+{
+    NSString *URL = [NSString stringWithFormat:@"http://172.18.178.56/api/comment"];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"contentID" : _contentID,
+        @"fatherID"  : _ownerID,
+        @"content"   : [_commentField text],
+        @"isReply"   : @NO
+    };
+    
+    NSLog(@"params: %@", body);
+    
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"Comment Succeeded: %@", responseObject);
+        [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Comment Failed");
+    }];
 }
 
 #pragma mark - Table view data source
@@ -80,11 +107,11 @@
     CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
     
     NSInteger i = indexPath.row;
-    cell.userNameLable.text = [_commentItems[i] userName];
-    cell.textContentLable.text = [_commentItems[i] commentContent];
-    cell.timeLable.text = [self timeStampToTime:[_commentItems[i] publishDate]];
-    cell.likeLabel.text = [NSString stringWithFormat:@"%d",[_commentItems[i] likeNum]];
-    if([UserInfo sharedUser].userId != [_commentItems[i] userID])
+    cell.userNameLable.text = [[_commentItems[i] userItem]userName];
+    cell.textContentLable.text = [[_commentItems[i] commentItem]commentContent];
+    cell.timeLable.text = [self timeStampToTime:[[_commentItems[i] commentItem]publishDate]];
+    cell.likeLabel.text = [NSString stringWithFormat:@"%d",[[_commentItems[i] commentItem] likeNum]];
+    if([UserInfo sharedUser].userId != [[_commentItems[i] commentItem] userID])
     {
         [cell.deleteButton setHidden:YES];
     }
@@ -93,9 +120,26 @@
         [cell.replyButton setHidden:YES];
     }
     
+    // 添加 reply 事件
+    [cell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
     
     
     return cell;
+}
+
+#pragma mark 回复评论
+- (void)pressReplyButton:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    CommentCell *cell = (CommentCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到 indexPath
+    NSInteger i = indexPath.row;
+    NSString *contentID = [_commentItems[i] commentID];
+    NSString *fatherID = self.contentID;
+    
+    
 }
 
 #pragma mark 时间戳转化日期
