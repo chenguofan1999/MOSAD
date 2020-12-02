@@ -7,6 +7,7 @@
 
 #import "CommentTableViewController.h"
 #import "CommentCell.h"
+#import "ReplyCell.h"
 #import "CommentCellItem.h"
 #import <AFNetworking/AFNetworking.h>
 #import "FullCommentItem.h"
@@ -58,6 +59,9 @@
     UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
     
+    nib = [UINib nibWithNibName:@"ReplyCell" bundle:nil];
+    [self.tableView registerNib:nib forCellReuseIdentifier:@"ReplyCell"];
+    
     // 样式
     [self.tableView setBounces:NO];
     [self.view setBackgroundColor:veryLightGrayColor];
@@ -103,27 +107,45 @@
    return [_commentItems count];
 }
 
+// 点击变灰后立即恢复
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
-    
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     NSInteger i = indexPath.row;
     CommentCellItem *cellItem = _commentItems[i];
-    cell.userNameLable.text = cellItem.userName;
-    cell.portraitButton.imageView.image = cellItem.avatar;
-    cell.textContentLable.text = cellItem.commentContent;
-    cell.timeLable.text = cellItem.publishDate;
-    cell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
-    [cell.deleteButton setHidden:cellItem.hideDeleteButton];
-    [cell.replyButton setHidden:cellItem.hideReplyButton];
     
-    // 添加 reply 事件
-    if(cellItem.hideReplyButton == NO)
-        [cell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
+    UITableViewCell *cell = nil;
     
-    // reply样式
     if(cellItem.isReply)
-        [cell setBackgroundColor:[UIColor lightGrayColor]];
+    {
+        ReplyCell *replyCell = [tableView dequeueReusableCellWithIdentifier:@"ReplyCell" forIndexPath:indexPath];
+        replyCell.userNameLable.text = cellItem.userName;
+        replyCell.portraitButton.imageView.image = cellItem.avatar;
+        replyCell.textContentLable.text = cellItem.commentContent;
+        replyCell.timeLable.text = cellItem.publishDate;
+        replyCell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
+        cell = replyCell;
+    }
+    else
+    {
+        CommentCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+        commentCell.userNameLable.text = cellItem.userName;
+        commentCell.portraitButton.imageView.image = cellItem.avatar;
+        commentCell.textContentLable.text = cellItem.commentContent;
+        commentCell.timeLable.text = cellItem.publishDate;
+        commentCell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
+        [commentCell.deleteButton setHidden:cellItem.hideDeleteButton];
+        [commentCell.replyButton setHidden:cellItem.hideReplyButton];
+        // 添加 reply 事件
+        if(cellItem.hideReplyButton == NO)
+            [commentCell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
+        cell = commentCell;
+    }
     
     return cell;
 }

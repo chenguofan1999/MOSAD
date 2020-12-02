@@ -57,7 +57,7 @@
     
     [_likeNumberLable setText:@"10"];
     [_commentNumberLable setText:@"2"];
-    [_favNumberLable setText:@"4"];
+    [_favNumberLable setText:@""];
 }
 
 

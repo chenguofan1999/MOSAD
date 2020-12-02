@@ -9,6 +9,7 @@
 #import "PostCell.h"
 #import "FullDataItem.h"
 #import "ContentItem.h"
+#import "FullContentItem.h"
 #import "MiniUserItem.h"
 #import "BigImageViewController.h"
 #import "CommentTableViewController.h"
@@ -36,7 +37,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     
     // 标题
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
@@ -99,6 +99,7 @@
     return [_items count];
 }
 
+// 点击变灰后立即恢复
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
@@ -269,7 +270,7 @@
 # pragma mark 从后台拉取数据
 - (void)loadData
 {
-    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=1000";
+    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=100";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

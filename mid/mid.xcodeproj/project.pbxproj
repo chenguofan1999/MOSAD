@@ -87,6 +87,9 @@
 		56572ACC2577D82900AE33D9 /* kawaii-dinosaur.png in Resources */ = {isa = PBXBuildFile; fileRef = 56572AC72577D82900AE33D9 /* kawaii-dinosaur.png */; };
 		56572AD02577E34F00AE33D9 /* CommentCellItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572ACF2577E34F00AE33D9 /* CommentCellItem.m */; };
 		56572AD42577E6BB00AE33D9 /* FullReplyItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572AD32577E6BB00AE33D9 /* FullReplyItem.m */; };
+		56572AD92577F5A300AE33D9 /* ReplyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572AD72577F5A300AE33D9 /* ReplyCell.m */; };
+		56572ADA2577F5A300AE33D9 /* ReplyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 56572AD82577F5A300AE33D9 /* ReplyCell.xib */; };
+		56572ADE257802B600AE33D9 /* FullContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572ADD257802B600AE33D9 /* FullContentItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -201,6 +204,11 @@
 		56572ACF2577E34F00AE33D9 /* CommentCellItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CommentCellItem.m; sourceTree = "<group>"; };
 		56572AD22577E6BB00AE33D9 /* FullReplyItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullReplyItem.h; sourceTree = "<group>"; };
 		56572AD32577E6BB00AE33D9 /* FullReplyItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullReplyItem.m; sourceTree = "<group>"; };
+		56572AD62577F5A300AE33D9 /* ReplyCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyCell.h; sourceTree = "<group>"; };
+		56572AD72577F5A300AE33D9 /* ReplyCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyCell.m; sourceTree = "<group>"; };
+		56572AD82577F5A300AE33D9 /* ReplyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReplyCell.xib; sourceTree = "<group>"; };
+		56572ADC257802B600AE33D9 /* FullContentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullContentItem.h; sourceTree = "<group>"; };
+		56572ADD257802B600AE33D9 /* FullContentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullContentItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -406,6 +414,9 @@
 				565292C825728C7F0007C033 /* CommentCell.h */,
 				565292C925728C7F0007C033 /* CommentCell.m */,
 				565292CA25728C7F0007C033 /* CommentCell.xib */,
+				56572AD62577F5A300AE33D9 /* ReplyCell.h */,
+				56572AD72577F5A300AE33D9 /* ReplyCell.m */,
+				56572AD82577F5A300AE33D9 /* ReplyCell.xib */,
 			);
 			path = CommentPage;
 			sourceTree = "<group>";
@@ -507,6 +518,8 @@
 				56572ACF2577E34F00AE33D9 /* CommentCellItem.m */,
 				56572AD22577E6BB00AE33D9 /* FullReplyItem.h */,
 				56572AD32577E6BB00AE33D9 /* FullReplyItem.m */,
+				56572ADC257802B600AE33D9 /* FullContentItem.h */,
+				56572ADD257802B600AE33D9 /* FullContentItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -606,6 +619,7 @@
 				56529268256FFFA50007C033 /* test107.jpg in Resources */,
 				5652929D2571FE990007C033 /* test202.jpg in Resources */,
 				56572ACB2577D82900AE33D9 /* male.png in Resources */,
+				56572ADA2577F5A300AE33D9 /* ReplyCell.xib in Resources */,
 				565729EC2573879900AE33D9 /* testAvator1.jpg in Resources */,
 				5651094D256BC9F100163966 /* setting-filled@2x.png in Resources */,
 				56510A0B256E22A500163966 /* chen.png in Resources */,
@@ -688,6 +702,7 @@
 				56572A9D2577D0D600AE33D9 /* LogInViewController.m in Sources */,
 				56572A9E2577D0D600AE33D9 /* PostCell.m in Sources */,
 				56572A9F2577D0D600AE33D9 /* PostViewController.m in Sources */,
+				56572ADE257802B600AE33D9 /* FullContentItem.m in Sources */,
 				56572AA02577D0D600AE33D9 /* AlbumViewController.m in Sources */,
 				56572AA12577D0D600AE33D9 /* InfoViewController.m in Sources */,
 				56572AA22577D0D600AE33D9 /* ProfilePageViewController.m in Sources */,
@@ -700,6 +715,7 @@
 				56572AA92577D0D600AE33D9 /* MessageViewController.m in Sources */,
 				56572AD02577E34F00AE33D9 /* CommentCellItem.m in Sources */,
 				56572AAA2577D0D600AE33D9 /* SystemSettingController.m in Sources */,
+				56572AD92577F5A300AE33D9 /* ReplyCell.m in Sources */,
 				56572AAB2577D0D600AE33D9 /* UserCenterViewController.m in Sources */,
 				56572AD42577E6BB00AE33D9 /* FullReplyItem.m in Sources */,
 				56572AAC2577D0D600AE33D9 /* DiscoverViewController.m in Sources */,
