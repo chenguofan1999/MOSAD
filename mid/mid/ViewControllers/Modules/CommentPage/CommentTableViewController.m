@@ -6,12 +6,23 @@
 //
 
 #import "CommentTableViewController.h"
+#import "CommentCell.h"
+#import <AFNetworking/AFNetworking.h>
+#import "FullCommentItem.h"
 
 @interface CommentTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UILabel *header;
 @end
 
 @implementation CommentTableViewController
+
+- (instancetype)initWithContentID:(NSString *)contentID
+{
+    self = [super init];
+    _contentID = contentID;
+    
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,67 +41,77 @@
     
     UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
+    
+    [self loadData];
 }
 
 #pragma mark - Table view data source
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-   return 10;
+   return [_commentItems count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
-
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
+    
+    NSInteger i = indexPath.row;
+    cell.userNameLable.text = [_commentItems[i] userName];
+    cell.textContentLable.text = [_commentItems[i] commentContent];
+    cell.timeLable.text = [self timeStampToTime:[_commentItems[i] publishDate]];
+    
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+#pragma mark 时间戳转化日期
+- (NSString *)timeStampToTime:(long)time
+{
+   // 时段转换时间
+   NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
+   // 时间格式
+   NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
+   dataformatter.dateFormat = @"MM-dd HH:mm a";
+   // 时间转换字符串
+   return [dataformatter stringFromDate:date];
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+#pragma mark 从后台拉取评论数据
+- (void)loadData
+{
+    NSString *URL = [NSString stringWithFormat:@"http://172.18.178.56/api/comment/%@", _contentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *responseDict = (NSDictionary *)responseObject;
+        NSLog(@"%@",responseDict);
+        if([responseDict[@"State"] isEqualToString:@"success"])
+        {
+            self.commentItems = [NSMutableArray new];
+            NSArray *data = responseDict[@"Data"];
+            if((NSNull *)data != [NSNull null])
+            {
+                NSInteger n = [data count];
+                for(int i = 0; i < n; i++)
+                {
+                    FullCommentItem *newItem = [[FullCommentItem alloc] initWithDict:data[i]];
+                    [self.commentItems addObject:newItem];
+                }
+            }
+        }
+        else
+        {
+            NSLog(@"You might have mistaken the contentID");
+        }
+        [self.tableView reloadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"Get comments failed somehow");
+    }];
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

@@ -141,7 +141,7 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    cell.userNameLable.text = [_items[i] userName];
+    cell.userNameLabel.text = [_items[i] userName];
     [self setLabel:cell.textContentLable
          WithTitle:[_items[i] contentData].title
               Tags:[_items[i] contentData].tags
@@ -266,8 +266,9 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
+    NSString *contentID = [[_items[indexPath.row] contentData] contentID];
     //[self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
-    [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
+    [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID] animated:YES completion:nil];
 }
 
 # pragma mark 从后台拉取数据
@@ -290,7 +291,6 @@
             for(int i = 0; i < n; i++)
             {
                 FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
-                NSLog(@"Item[%d]: %@", i, newItem);
                 if([self.items count] > i)
                     self.items[i] = newItem;
                 else [self.items addObject:newItem];

@@ -8,10 +8,7 @@
 #import "CommentCell.h"
 
 @interface CommentCell()
-@property (nonatomic, strong) IBOutlet UIButton *portraitButton;
-@property (nonatomic, strong) IBOutlet UILabel *timeLable;
-@property (nonatomic, strong) IBOutlet UILabel *userNameLable;
-@property (nonatomic, strong) IBOutlet UILabel *textContentLable;
+
 @end
 
 @implementation CommentCell

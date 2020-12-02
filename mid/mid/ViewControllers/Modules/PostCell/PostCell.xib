@@ -166,7 +166,7 @@
                 <outlet property="portraitButton" destination="1fh-02-Zg1" id="I5x-Fx-DN6"/>
                 <outlet property="textContentLable" destination="FDf-Ll-0HQ" id="uHt-rQ-8B9"/>
                 <outlet property="timeLable" destination="Vul-QB-qXO" id="kep-Tn-HT0"/>
-                <outlet property="userNameLable" destination="TWH-z4-Ozw" id="xEW-NT-ENa"/>
+                <outlet property="userNameLabel" destination="TWH-z4-Ozw" id="xEW-NT-ENa"/>
             </connections>
             <point key="canvasLocation" x="357.24637681159425" y="145.98214285714286"/>
         </tableViewCell>

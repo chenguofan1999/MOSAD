@@ -46,7 +46,7 @@
 - (void)initWithTestData
 {
     _timeLable.text = @"2020 11 12";
-    _userNameLable.text = @"Edward";
+    _userNameLabel.text = @"Edward";
     _textContentLable.text = @"Music has always played an important role in my life—and that was especially true during my presidency. In honor of my book hitting shelves tomorrow, I put together this playlist featuring some memorable songs from my administration. Hope you enjoy it.";
     
     [_portraitButton setImage:[UIImage imageNamed:@"testPortrait.jpg"] forState:UIControlStateNormal];

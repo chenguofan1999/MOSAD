@@ -97,6 +97,7 @@
 		56572A402574E97900AE33D9 /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A102574DF9200AE33D9 /* UserInfo.m */; };
 		56572A452575E4CC00AE33D9 /* ContentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A442575E4CC00AE33D9 /* ContentItem.m */; };
 		56572A4A25763CA800AE33D9 /* FullDataItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A4925763CA800AE33D9 /* FullDataItem.m */; };
+		56572A512577555E00AE33D9 /* FullCommentItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56572A502577555E00AE33D9 /* FullCommentItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -194,6 +195,8 @@
 		56572A442575E4CC00AE33D9 /* ContentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ContentItem.m; sourceTree = "<group>"; };
 		56572A4825763CA800AE33D9 /* FullDataItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullDataItem.h; sourceTree = "<group>"; };
 		56572A4925763CA800AE33D9 /* FullDataItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullDataItem.m; sourceTree = "<group>"; };
+		56572A4F2577555E00AE33D9 /* FullCommentItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullCommentItem.h; sourceTree = "<group>"; };
+		56572A502577555E00AE33D9 /* FullCommentItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullCommentItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -483,6 +486,8 @@
 				56572A442575E4CC00AE33D9 /* ContentItem.m */,
 				56572A4825763CA800AE33D9 /* FullDataItem.h */,
 				56572A4925763CA800AE33D9 /* FullDataItem.m */,
+				56572A4F2577555E00AE33D9 /* FullCommentItem.h */,
+				56572A502577555E00AE33D9 /* FullCommentItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -688,6 +693,7 @@
 				56572A352574E8E600AE33D9 /* DiscoverViewController.m in Sources */,
 				56572A362574E8E600AE33D9 /* MainPageViewController.h in Sources */,
 				56572A372574E8E600AE33D9 /* MainPageViewController.m in Sources */,
+				56572A512577555E00AE33D9 /* FullCommentItem.m in Sources */,
 				56572A382574E8E600AE33D9 /* TabBarController.h in Sources */,
 				56572A392574E8E600AE33D9 /* TabBarController.m in Sources */,
 				56572A3A2574E8E600AE33D9 /* AppDelegate.h in Sources */,

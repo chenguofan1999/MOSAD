@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) IBOutlet UIButton *deleteButton;
 @property (nonatomic, strong) IBOutlet UIButton *portraitButton;
 @property (nonatomic, strong) IBOutlet UILabel *timeLable;
-@property (nonatomic, strong) IBOutlet UILabel *userNameLable;
+@property (nonatomic, strong) IBOutlet UILabel *userNameLabel;
 @property (nonatomic, strong) IBOutlet UILabel *textContentLable;
 @property (nonatomic, strong) IBOutlet UILabel *commentNumberLable;
 @property (nonatomic, strong) IBOutlet UILabel *likeNumberLable;
