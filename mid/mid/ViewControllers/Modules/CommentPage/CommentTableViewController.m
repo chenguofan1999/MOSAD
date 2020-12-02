@@ -9,9 +9,12 @@
 #import "CommentCell.h"
 #import <AFNetworking/AFNetworking.h>
 #import "FullCommentItem.h"
+#import "UserInfo.h"
 
 @interface CommentTableViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UILabel *header;
+@property (nonatomic, strong) UITextField *commentField;
+@property (nonatomic, strong) UIButton *commentButton;
 @end
 
 @implementation CommentTableViewController
@@ -28,22 +31,37 @@
 {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    
+
+    // 头部的标签
     CGFloat w = [[UIScreen mainScreen] bounds].size.width;
     _header = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, w, 80)];
     _header.text = @"  评论";
     _header.font = [UIFont boldSystemFontOfSize:30];
     self.tableView.tableHeaderView = _header;
     
+    // 尾部的评论框
+    _commentField = [[UITextField alloc]initWithFrame:CGRectMake(0, 0, w, 45)];
+    UIColor *veryLightGrayColor = [UIColor colorWithRed:0.96 green:0.96 blue:0.96 alpha:1];
+    [_commentField setBackgroundColor:veryLightGrayColor];
+    [_commentField setPlaceholder:@" 写一条新的评论"];
+    _commentButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 60, 45)];
+    [_commentButton setTitle:@"发布 " forState:UIControlStateNormal];
+    UIColor *lightBlueColor = [UIColor colorWithRed:(float)29/255 green:(float)161/255 blue:(float)242/255 alpha:1];
+    [_commentButton setTitleColor:lightBlueColor forState:UIControlStateNormal];
+    [_commentField setRightViewMode:UITextFieldViewModeWhileEditing];
+    [_commentField setRightView:_commentButton];
+    self.tableView.tableFooterView = _commentField;
+    
+    // 注册
     UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
     
+    // 样式
     [self.tableView setBounces:NO];
+    [self.view setBackgroundColor:veryLightGrayColor];
+    
+    // 发布button
+    
     
     [self loadData];
 }
@@ -65,6 +83,17 @@
     cell.userNameLable.text = [_commentItems[i] userName];
     cell.textContentLable.text = [_commentItems[i] commentContent];
     cell.timeLable.text = [self timeStampToTime:[_commentItems[i] publishDate]];
+    cell.likeLabel.text = [NSString stringWithFormat:@"%d",[_commentItems[i] likeNum]];
+    if([UserInfo sharedUser].userId != [_commentItems[i] userID])
+    {
+        [cell.deleteButton setHidden:YES];
+    }
+    else
+    {
+        [cell.replyButton setHidden:YES];
+    }
+    
+    
     
     return cell;
 }

@@ -107,19 +107,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 以下代码得到一个 PostCell, 几乎没有数据，需要赋值。
-    // 有复用版本
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     if (cell == nil)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-    // 无复用版本
-//    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
-//    PostCell *cell = [topLevelObjects objectAtIndex:0];
-    
-    // 设置数据
-//    [cell setVal:..];
 
     // 设置Block（点击略缩图事件）
     cell.showImageBlock = ^(UIImage *img){
@@ -274,7 +267,7 @@
 # pragma mark 从后台拉取数据
 - (void)loadData
 {
-    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=20";
+    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=1000";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

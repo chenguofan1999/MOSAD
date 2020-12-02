@@ -17,7 +17,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) IBOutlet UIButton *replyButton;
 @property (nonatomic, strong) IBOutlet UIButton *likeButton;
 @property (nonatomic, strong) IBOutlet UIButton *deleteButton;
-@property (nonatomic, strong) IBOutlet UILabel *replyLabel;
 @property (nonatomic, strong) IBOutlet UILabel *likeLabel;
 @end
 
