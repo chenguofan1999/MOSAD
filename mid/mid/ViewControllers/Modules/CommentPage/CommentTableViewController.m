@@ -24,7 +24,8 @@
     return self;
 }
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     
     // Uncomment the following line to preserve selection between presentations.
@@ -41,6 +42,8 @@
     
     UINib *nib = [UINib nibWithNibName:@"CommentCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"CommentCell"];
+    
+    [self.tableView setBounces:NO];
     
     [self loadData];
 }
