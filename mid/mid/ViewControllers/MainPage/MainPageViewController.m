@@ -76,6 +76,9 @@
     // 一些样式
     [self.tableView setBounces:NO];
     
+    // 接收通知
+    
+    
     [self loadTextData];
     
 }
@@ -140,6 +143,31 @@
     // 设置cell值
     long i = indexPath.row;
     ContentItem *contentItem = _items[i];
+    
+    if([contentItem.type isEqualToString:@"Text"])
+    {
+        [cell dontShowPicView];
+    }
+    else
+    {
+        NSArray *images = contentItem.album[@"Images"];
+        if((NSNull *)images != [NSNull null])
+        {
+            for(int i = 0; i < [images count]; i++)
+            {
+                NSString *thumbName = images[i][@"Thumb"];
+                NSLog(@"thumb name: %@", thumbName);
+                NSString *imageURL = [NSString stringWithFormat:@"http://172.18.178.56/api/thumb/%@", thumbName];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                [cell addPic:image];
+            }
+            if([images count] == 0)
+            {
+                [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
+            }
+        }
+    }
+    
     cell.userNameLabel.text = [UserInfo sharedUser].name;
     cell.portraitButton.imageView.image = [UserInfo sharedUser].avatar;
     [self setLabel:cell.textContentLable
@@ -388,16 +416,6 @@
     [label setAttributedText:str];
 }
 
-#pragma mark 喜欢button
-- (void)favPost:(UIButton *)btn
-{
-    UIView *contentView = [btn superview];
-    PostCell *cell = (PostCell *)[contentView superview];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    // 已经得到indexPath
-    NSLog(@"press fav button at row %ld", indexPath.row);
-}
 
 #pragma mark 头像button
 - (void)toUserPage:(UIButton *)btn

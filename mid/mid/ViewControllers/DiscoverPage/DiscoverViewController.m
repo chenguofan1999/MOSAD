@@ -19,6 +19,7 @@
 @interface DiscoverViewController ()
 @property (nonatomic) NSMutableArray *items;
 @property (nonatomic, strong) UILabel *header;
+@property (nonatomic, strong) UISegmentedControl *segmentBar;
 @end
 
 @implementation DiscoverViewController
@@ -50,13 +51,13 @@
     
     // 顶部 SegmentedControl
     NSArray *segmentedData = @[@"按时间线",@"按热度"];
-    UISegmentedControl *segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
-    [segmentBar setWidth:120 forSegmentAtIndex:0];
-    [segmentBar setWidth:120 forSegmentAtIndex:1];
-    [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
-    self.navigationItem.titleView = segmentBar;
+    _segmentBar = [[UISegmentedControl alloc] initWithItems:segmentedData];
+    [_segmentBar setWidth:120 forSegmentAtIndex:0];
+    [_segmentBar setWidth:120 forSegmentAtIndex:1];
+    [_segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
+    self.navigationItem.titleView = _segmentBar;
     
-    [segmentBar setSelectedSegmentIndex:0];
+    [_segmentBar setSelectedSegmentIndex:0];
     
     // 刷新 button
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
@@ -65,11 +66,13 @@
     [self.tableView setBounces:NO];
     
     [self loadData];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self loadData];
+//    [self loadData];
 }
 
 #pragma mark 热门or时间顺序
@@ -85,6 +88,12 @@
         case 1:
             [_header setText:@"  最热内容"];
             // 排序
+            [_items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                FullDataItem *item1 = (FullDataItem *)obj1;
+                FullDataItem *item2 = (FullDataItem *)obj2;
+                return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
+            }];
+            [self.tableView reloadData];
             break;
     }
 }
@@ -164,7 +173,6 @@
                 [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
             }
         }
-        
     }
     
     cell.userNameLabel.text = userItem.userName;
@@ -331,7 +339,7 @@
 # pragma mark 从后台拉取数据
 - (void)loadData
 {
-    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=100";
+    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=30";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -352,6 +360,14 @@
                 if([self.items count] > i)
                     self.items[i] = newItem;
                 else [self.items addObject:newItem];
+            }
+            if([self.segmentBar selectedSegmentIndex] == 1)
+            {
+                [self.items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    FullDataItem *item1 = (FullDataItem *)obj1;
+                    FullDataItem *item2 = (FullDataItem *)obj2;
+                    return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
+                }];
             }
         }
         [self.tableView reloadData];

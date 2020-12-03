@@ -108,6 +108,7 @@
     self.tabBarController.tabBar.hidden=NO;
 }
 
+#pragma mark 发送
 - (void)postIt
 {
     _postItem.title = _titleField.text;

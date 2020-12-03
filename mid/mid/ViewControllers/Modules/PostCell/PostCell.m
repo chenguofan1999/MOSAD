@@ -129,6 +129,7 @@
     [newPicView setImage:img];
     [newPicView.layer setCornerRadius:5];
     [newPicView.layer setMasksToBounds:YES];
+    [newPicView setClipsToBounds:YES];
     
     // 添加点击放大的功能(继承UITapGestureRecognizer来夹带消息)
     ImageSender *tapGesture = [[ImageSender alloc] initWithTarget:self
