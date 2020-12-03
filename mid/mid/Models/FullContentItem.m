@@ -12,7 +12,7 @@
 {
     self = [super init];
     self.contentItem = [[ContentItem alloc]initWithDict:dict[@"Data"]];
-    self.userItem = [[ContentItem alloc]initWithDict:dict[@"User"]];
+    self.userItem = [[MiniUserItem alloc]initWithDict:dict[@"User"]];
     return self;
 }
 @end

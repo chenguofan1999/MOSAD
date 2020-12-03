@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *detail;
 @property (nonatomic) NSMutableArray *tags;
+@property (nonatomic) NSString *type;
 @property (nonatomic) bool isPublic;
 
 @property (nonatomic) NSString *contentID;

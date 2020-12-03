@@ -137,14 +137,23 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    cell.userNameLabel.text = [[_items[i] userItem] userName];
+    ContentItem *contentItem = [_items[i] contentItem];
+    MiniUserItem *userItem = [_items[i] userItem];
+//    if([contentItem.type isEqualToString:@"Text"])
+//    {
+//        NSLog(@"not album");
+//        [cell dontShowPicView];
+//    }
+    [cell dontShowPicView];
+    cell.userNameLabel.text = userItem.userName;
+    cell.portraitButton.imageView.image = userItem.avatar;
     [self setLabel:cell.textContentLable
-         WithTitle:[_items[i] contentItem].title
-              Tags:[_items[i] contentItem].tags
-            Detail:[_items[i] contentItem].detail];
-    cell.timeLable.text = [self timeStampToTime:[[_items[i] contentItem] PublishDate]];
-    cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentItem] likeNum]];
-    cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [[_items[i] contentItem] commentNum]];
+         WithTitle:contentItem.title
+              Tags:contentItem.tags
+            Detail:contentItem.detail];
+    cell.timeLable.text = [self timeStampToTime:[contentItem PublishDate]];
+    cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [contentItem likeNum]];
+    cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [contentItem commentNum]];
     
     return cell;
 }
@@ -211,13 +220,7 @@
     [label setAttributedText:str];
 }
 
-// 选中 cell 的效果
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{}
 
-// 取消选中 cell 的效果
-//- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
-//{}
 #pragma mark 喜欢button
 - (void)favPost:(UIButton *)btn
 {
