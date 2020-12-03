@@ -176,7 +176,7 @@
     }
     
     cell.userNameLabel.text = userItem.userName;
-    cell.portraitButton.imageView.image = userItem.avatar;
+    [cell.portraitButton setImage:userItem.avatar forState:UIControlStateNormal];
     [self setLabel:cell.textContentLable
          WithTitle:contentItem.title
               Tags:contentItem.tags
@@ -272,7 +272,9 @@
     
     // 已经得到indexPath
     NSLog(@"press avator button at row %ld", indexPath.row);
-    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+    NSInteger i = indexPath.row;
+    NSString *userID = [[_items[i] contentItem]ownerID];
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID] animated:NO];
 }
 
 #pragma mark 点赞button

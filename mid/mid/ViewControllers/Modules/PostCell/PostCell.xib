@@ -92,7 +92,7 @@
                             <constraint firstAttribute="width" constant="45" id="HNa-tp-p3K"/>
                             <constraint firstAttribute="height" constant="45" id="Hn9-Oc-Kiz"/>
                         </constraints>
-                        <state key="normal" title="Button" image="edvard-munch.png"/>
+                        <state key="normal" title="Button" backgroundImage="edvard-munch.png"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mmh-NS-o07" customClass="UIScrollView">
                         <rect key="frame" x="60" y="580" width="562" height="120"/>

@@ -164,7 +164,7 @@
     }
     
     cell.userNameLabel.text = [UserInfo sharedUser].name;
-    cell.portraitButton.imageView.image = [UserInfo sharedUser].avatar;
+    [cell.portraitButton setImage:[UserInfo sharedUser].avatar forState:UIControlStateNormal];
     [self setLabel:cell.textContentLable
          WithTitle:contentItem.title
               Tags:contentItem.tags
@@ -323,7 +323,8 @@
 #pragma mark 加载 收藏 内容
 - (void)loadFavData
 {
-    
+    _items = [NSMutableArray new];
+    [self.tableView reloadData];
 }
 
 #pragma mark 搜索栏
@@ -441,7 +442,10 @@
     
     // 已经得到indexPath
     NSLog(@"press avator button at row %ld", indexPath.row);
-    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+    NSInteger i = indexPath.row;
+    NSString *userID = [_items[i] ownerID];
+    NSLog(@"1. userID = %@", userID);
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID] animated:NO];
 }
 
 #pragma mark 点赞button
@@ -552,7 +556,7 @@
 }
 - (void)toMyPage
 {
-    [self.navigationController pushViewController:[[ProfilePageViewController alloc]init] animated:NO];
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:[UserInfo sharedUser].userId] animated:NO];
 }
 - (void)post
 {
@@ -570,7 +574,7 @@
             [self loadAlbumData];
             break;
         case 2:
-            NSLog(@"tag: 2");
+            [self loadFavData];
             break;
         default:
             break;

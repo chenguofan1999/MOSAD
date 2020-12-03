@@ -6,20 +6,29 @@
 //
 
 #import "InfoViewController.h"
-
+#import <AFNetworking/AFNetworking.h>
 @interface InfoViewController ()<UITableViewDataSource, UITableViewDelegate>
-@property (nonatomic, strong) UIView *avatorView;
+@property (nonatomic, strong) UIView *avatarView;
+@property (nonatomic, strong) UIImageView *avatar;
 @property (nonatomic, strong) UITableView *infoView;
 @property (nonatomic) CGFloat w;
 @property (nonatomic) CGFloat h;
+@property (nonatomic) UserItem *userItem;
 @end
 
 @implementation InfoViewController
 
-- (void)viewDidLoad {
+- (instancetype)initWithUserID:(NSString *)userID;
+{
+    self = [super init];
+    _userID = userID;
+    return self;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self.view setBackgroundColor:[UIColor whiteColor]];
-    
     
     // 计算无遮挡页面尺寸
     UIWindow *window = UIApplication.sharedApplication.windows[0];
@@ -27,24 +36,25 @@
     _w = safe.size.width;
     _h = safe.size.height;
     
-    [self.view addSubview:self.avatorView];
+    [self.view addSubview:self.avatarView];
     [self.view addSubview:self.infoView];
     
+    [self loadData];
 }
 
-- (UIView *)avatorView
+- (UIView *)avatarView
 {
-    if(_avatorView == nil)
+    if(_avatarView == nil)
     {
-        _avatorView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _w, 160)];
-        UIImageView *avator = [[UIImageView alloc] initWithFrame:CGRectMake(_w/2 - 45, 35, 90, 90)];
-        avator.image = [UIImage imageNamed:@"testPortrait.jpg"];
-        avator.layer.cornerRadius = 45;
-        avator.layer.masksToBounds = YES;
-        avator.layer.borderWidth = 1;
-        [_avatorView addSubview:avator];
+        _avatarView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, _w, 160)];
+        _avatar = [[UIImageView alloc] initWithFrame:CGRectMake(_w/2 - 45, 35, 90, 90)];
+        _avatar.image = [UIImage imageNamed:@"testPortrait.jpg"];
+        _avatar.layer.cornerRadius = 45;
+        _avatar.layer.masksToBounds = YES;
+        _avatar.layer.borderWidth = 0;
+        [_avatarView addSubview:_avatar];
     }
-    return _avatorView;
+    return _avatarView;
 }
 
 - (UITableView *)infoView
@@ -77,23 +87,23 @@
     {
         case 0:
             cell.textLabel.text = @"用户名";
-            cell.detailTextLabel.text = @"Chen";
+            cell.detailTextLabel.text = _userItem.userName;
             break;
         case 1:
             cell.textLabel.text = @"邮箱";
-            cell.detailTextLabel.text = @"chen2027@gmail.com";
+            cell.detailTextLabel.text = _userItem.email;
             break;
         case 2:
             cell.textLabel.text = @"Bio";
-            cell.detailTextLabel.text = @"Na";
+            cell.detailTextLabel.text = _userItem.bio;
             break;
         case 3:
             cell.textLabel.text = @"性别";
-            cell.detailTextLabel.text = @"0";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", _userItem.gender];
             break;
         case 4:
             cell.textLabel.text = @"Nick Name";
-            cell.detailTextLabel.text = @"None";
+            cell.detailTextLabel.text = @"Nick";
             break;
     }
 
@@ -115,58 +125,25 @@
 {
     return 60;
 }
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+
+- (void)loadData
+{
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/user/info/",_userID];
+    NSLog(@"URL: %@:",URL);
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    // Configure the cell...
-    
-    return cell;
+    [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        NSDictionary *dict = (NSDictionary *)responseObject;
+        self.userItem = [[UserItem alloc]initWithDict:dict];
+        [self.infoView reloadData];
+        [self.avatar setImage:[self.userItem avatar]];
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed somehow");
+    }];
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

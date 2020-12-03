@@ -96,6 +96,7 @@
 		56F90B1C25789CCB0055A2B0 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B1B25789CCB0055A2B0 /* delete.png */; };
 		56F90B202578CED50055A2B0 /* AlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B1F2578CED50055A2B0 /* AlbumItem.m */; };
 		56F90B232578D5AD0055A2B0 /* noImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B222578D5AD0055A2B0 /* noImage.jpg */; };
+		56F90B272579031A0055A2B0 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B26257903190055A2B0 /* UserItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -222,6 +223,8 @@
 		56F90B1E2578CED50055A2B0 /* AlbumItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumItem.h; sourceTree = "<group>"; };
 		56F90B1F2578CED50055A2B0 /* AlbumItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumItem.m; sourceTree = "<group>"; };
 		56F90B222578D5AD0055A2B0 /* noImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noImage.jpg; sourceTree = "<group>"; };
+		56F90B25257903190055A2B0 /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
+		56F90B26257903190055A2B0 /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -540,6 +543,8 @@
 				56572ADD257802B600AE33D9 /* FullContentItem.m */,
 				56F90B1E2578CED50055A2B0 /* AlbumItem.h */,
 				56F90B1F2578CED50055A2B0 /* AlbumItem.m */,
+				56F90B25257903190055A2B0 /* UserItem.h */,
+				56F90B26257903190055A2B0 /* UserItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				56572AAB2577D0D600AE33D9 /* UserCenterViewController.m in Sources */,
 				56572AD42577E6BB00AE33D9 /* FullReplyItem.m in Sources */,
 				56572AAC2577D0D600AE33D9 /* DiscoverViewController.m in Sources */,
+				56F90B272579031A0055A2B0 /* UserItem.m in Sources */,
 				56572AC02577D2F800AE33D9 /* CommentItem.m in Sources */,
 				56572AAD2577D0D600AE33D9 /* MainPageViewController.m in Sources */,
 				56572AAE2577D0D600AE33D9 /* TabBarController.m in Sources */,

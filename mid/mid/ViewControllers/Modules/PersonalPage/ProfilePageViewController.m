@@ -9,6 +9,7 @@
 #import "PostViewController.h"
 #import "AlbumViewController.h"
 #import "InfoViewController.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface ProfilePageViewController ()
 @property (nonatomic, strong) InfoViewController *ivc;
@@ -17,6 +18,12 @@
 @end
 
 @implementation ProfilePageViewController
+- (instancetype)initWithUserID:(NSString *)userID
+{
+    self =[super init];
+    _userID = userID;
+    return self;
+}
 
 - (void)viewDidLoad
 {
@@ -28,7 +35,7 @@
     [segmentBar addTarget:self action:@selector(choose:) forControlEvents:UIControlEventValueChanged];
     self.navigationItem.titleView = segmentBar;
     
-    _ivc = [[InfoViewController alloc]init];
+    _ivc = [[InfoViewController alloc]initWithUserID:_userID];
     _pvc = [[PostViewController alloc]init];
     _avc = [[AlbumViewController alloc]init];
     
@@ -43,8 +50,6 @@
     [segmentBar setSelectedSegmentIndex:0];
     
     self.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
-    //test
-//    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithTitle:@"add" style:UIBarButtonItemStylePlain target:self action:@selector(testAddPic)]];
     
     // 手动设置返回按钮
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(backTapped:)];
@@ -78,10 +83,7 @@
     [self.navigationController popViewControllerAnimated:NO];
 }
 
-- (void)testAddPic
-{
-    [_avc addImage:[UIImage imageNamed:@"testPic.jpg"]];
-}
+
 
 
 #pragma mark - Navigation
