@@ -53,11 +53,13 @@
     [_commentButton setBackgroundImage:nil forState:UIControlStateNormal];
     [_likeButton setBackgroundImage:nil forState:UIControlStateNormal];
     [_favButton setBackgroundImage:nil forState:UIControlStateNormal];
+    [_deleteButton setBackgroundImage:nil forState:UIControlStateNormal];
     
     [_portraitButton setImage:[UIImage imageNamed:@"testPortrait.jpg"] forState:UIControlStateNormal];
     [_commentButton setImage:[UIImage imageNamed:@"comments.png"] forState:UIControlStateNormal];
     [_likeButton setImage:[UIImage imageNamed:@"like-color.png"] forState:UIControlStateNormal];
     [_favButton setImage:[UIImage imageNamed:@"bookmark-color.png"] forState:UIControlStateNormal];
+    [_deleteButton setImage:[UIImage imageNamed:@"delete.png"] forState:UIControlStateNormal];
     
     
     [_likeNumberLable setText:@"10"];

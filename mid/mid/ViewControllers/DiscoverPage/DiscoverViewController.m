@@ -131,6 +131,7 @@
     [cell.favButton addTarget:self action:@selector(favPost:) forControlEvents:UIControlEventTouchUpInside];
     [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
     [cell.deleteButton setHidden:YES];
+    
     // for test use
     [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
@@ -268,23 +269,21 @@
 
     NSLog(@"尝试点赞");
     [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        if([responseObject[@"State"] isEqualToString:@"exist"])
+        {
+            NSLog(@"已经点赞，应取消点赞");
+            [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
                 NSLog(@"%@", responseObject);
-                if([responseObject[@"State"] isEqualToString:@"exist"])
-                {
-                    {
-                        NSLog(@"取消点赞");
-                        [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-                            NSLog(@"%@", responseObject);
-                            [self loadData];
-                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                            NSLog(@"failed to patch somehow");
-                        }];
-                    }
-                }
                 [self loadData];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"failed to post somehow");
+                NSLog(@"failed to patch somehow");
             }];
+        }
+        [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to post somehow");
+    }];
 
     
 }

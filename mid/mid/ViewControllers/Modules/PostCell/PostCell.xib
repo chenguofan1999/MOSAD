@@ -108,13 +108,13 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dlc-KA-oee">
-                        <rect key="frame" x="606" y="10" width="30" height="30"/>
+                        <rect key="frame" x="561" y="543" width="25" height="25"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="Jnm-Xs-ZMF"/>
-                            <constraint firstAttribute="height" constant="30" id="bX6-CE-vVJ"/>
+                            <constraint firstAttribute="width" constant="25" id="Jnm-Xs-ZMF"/>
+                            <constraint firstAttribute="height" constant="25" id="bX6-CE-vVJ"/>
                         </constraints>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" image="trash" catalog="system"/>
+                        <state key="normal" backgroundImage="delete.png"/>
                     </button>
                 </subviews>
                 <constraints>
@@ -127,15 +127,14 @@
                     <constraint firstItem="FDf-Ll-0HQ" firstAttribute="top" secondItem="Vul-QB-qXO" secondAttribute="bottom" constant="12" id="Dlq-Tg-ZnN"/>
                     <constraint firstItem="1fh-02-Zg1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="G26-jz-Ped"/>
                     <constraint firstItem="oNn-Gp-h9A" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="HBG-0G-DOz"/>
-                    <constraint firstItem="Dlc-KA-oee" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="IHx-vV-zYL"/>
                     <constraint firstItem="mmh-NS-o07" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="40" id="Iab-j4-YVE"/>
-                    <constraint firstAttribute="trailing" secondItem="Dlc-KA-oee" secondAttribute="trailing" constant="10" id="K5I-YL-YQT"/>
                     <constraint firstItem="8bs-EB-w4f" firstAttribute="leading" secondItem="VXc-Th-XTY" secondAttribute="trailing" constant="5" id="ON6-zz-DAG"/>
                     <constraint firstItem="FDf-Ll-0HQ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="44" id="SVo-hI-XPs"/>
                     <constraint firstItem="pdg-fM-rxR" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="Scf-9Q-7ba"/>
                     <constraint firstItem="mmh-NS-o07" firstAttribute="top" secondItem="FDf-Ll-0HQ" secondAttribute="bottom" constant="8" id="TA6-yf-j0F"/>
                     <constraint firstAttribute="bottomMargin" secondItem="zpc-9H-IGT" secondAttribute="bottom" constant="5" id="TXB-oQ-9Uq"/>
                     <constraint firstItem="1fh-02-Zg1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="WOu-Wq-co8"/>
+                    <constraint firstItem="zpc-9H-IGT" firstAttribute="leading" secondItem="Dlc-KA-oee" secondAttribute="trailing" constant="5" id="bB1-5H-1CA"/>
                     <constraint firstItem="pdg-fM-rxR" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" constant="2" id="bTo-Vs-3ys"/>
                     <constraint firstItem="VXc-Th-XTY" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="46" id="dde-50-qTf"/>
                     <constraint firstItem="IEn-4e-8ng" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="dta-HU-pQC"/>
@@ -147,6 +146,7 @@
                     <constraint firstItem="zpc-9H-IGT" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="pCx-eT-4Da"/>
                     <constraint firstItem="8bs-EB-w4f" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="qG6-oo-EXk"/>
                     <constraint firstAttribute="bottomMargin" secondItem="IEn-4e-8ng" secondAttribute="bottom" constant="5" id="qrS-eq-wZg"/>
+                    <constraint firstItem="Dlc-KA-oee" firstAttribute="bottom" secondItem="VXc-Th-XTY" secondAttribute="bottom" id="qwM-7F-2nW"/>
                     <constraint firstItem="TWH-z4-Ozw" firstAttribute="leading" secondItem="1fh-02-Zg1" secondAttribute="trailing" constant="7" id="rGL-4e-tee"/>
                     <constraint firstItem="Vul-QB-qXO" firstAttribute="leading" secondItem="TWH-z4-Ozw" secondAttribute="leading" id="vt7-PJ-kYH"/>
                     <constraint firstAttribute="trailingMargin" secondItem="zpc-9H-IGT" secondAttribute="trailing" constant="10" id="xP8-BW-Zih"/>
@@ -156,7 +156,7 @@
             <connections>
                 <outlet property="commentButton" destination="VXc-Th-XTY" id="9fr-af-HHJ"/>
                 <outlet property="commentNumberLable" destination="8bs-EB-w4f" id="aG6-A8-YLc"/>
-                <outlet property="deleteButton" destination="Dlc-KA-oee" id="V7g-58-p1q"/>
+                <outlet property="deleteButton" destination="Dlc-KA-oee" id="8mn-5k-hRS"/>
                 <outlet property="favButton" destination="IEn-4e-8ng" id="jOp-rV-Ixz"/>
                 <outlet property="favNumberLable" destination="zpc-9H-IGT" id="ijd-R9-hmT"/>
                 <outlet property="likeButton" destination="pdg-fM-rxR" id="N3I-5y-jZm"/>
@@ -172,10 +172,10 @@
     </objects>
     <resources>
         <image name="comment.png" width="50" height="50"/>
+        <image name="delete.png" width="100" height="100"/>
         <image name="edvard-munch.png" width="96" height="96"/>
         <image name="fav.png" width="50" height="50"/>
         <image name="like.png" width="50" height="50"/>
-        <image name="trash" catalog="system" width="121" height="128"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

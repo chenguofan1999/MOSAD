@@ -18,6 +18,8 @@
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) UIView *categoryView;
 @property (strong, nonatomic) NSArray *categories;
+@property (nonatomic) NSInteger atPage;
+@property (nonatomic) NSMutableArray *items;
 @end
 
 @implementation MainPageViewController
@@ -31,7 +33,7 @@
     //self.view.backgroundColor = [UIColor whiteColor];
     
     // TabBar项中的样式 (有必要在 init 时加载)
-    [[self tabBarItem] setTitle:@"主页"];
+    [[self tabBarItem] setTitle:@"我的"];
     [self.tabBarItem setImage:[UIImage imageNamed:@"compass@2x.png"]];
     [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"compass-filled@2x.png"]];
     
@@ -106,13 +108,13 @@
         _categoryView.backgroundColor = [UIColor clearColor];
         
         UILabel *category1 = [[UILabel alloc] initWithFrame:CGRectMake(w * 1/5, 0, w / 5, h)];
-        category1.text = @"分类1";
+        category1.text = @"文字";
         
         UILabel *category2 = [[UILabel alloc] initWithFrame:CGRectMake(w * 2/5, 0, w / 5, h)];
-        category2.text = @"分类2";
+        category2.text = @"图片";
         
         UILabel *category3 = [[UILabel alloc] initWithFrame:CGRectMake(w * 3/5, 0, w / 5, h)];
-        category3.text = @"分类3";
+        category3.text = @"收藏";
         
         _categories = [[NSArray alloc] init];
         _categories = @[category1, category2, category3];
@@ -133,34 +135,39 @@
 
 - (void)tapSec:(UITapGestureRecognizer *)sender
 {
-    NSInteger target = sender.view.tag;
+    _atPage = sender.view.tag;
     
     // 样式改变
     for(int i = 0; i < [_categories count]; i++)
     {
-        if(i == target)
+        if(i == _atPage)
             [_categories[i] setTextColor:[UIColor blackColor]];
         else
             [_categories[i] setTextColor:[UIColor lightGrayColor]];
     }
     
     // 定义功能
-//    switch (i) {
-//        case 0:
-//            NSLog(@"tag: 0");
-//            break;
-//        case 1:
-//            NSLog(@"tag: 1");
-//            break;
-//        case 2:
-//            NSLog(@"tag: 2");
-//            break;
-//        default:
-//            break;
-//    }
+    switch (_atPage) {
+        case 0:
+            NSLog(@"tag: 0");
+            break;
+        case 1:
+            NSLog(@"tag: 1");
+            break;
+        case 2:
+            NSLog(@"tag: 2");
+            break;
+        default:
+            break;
+    }
     
 }
 
+#pragma mark 加载 text 类内容
+
+#pragma mark 加载 album 类内容
+
+#pragma mark 加载 收藏 内容
 
 #pragma mark 搜索栏
 // 延迟加载搜索栏
@@ -236,12 +243,7 @@
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-    // 无复用版本
-//    NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
-//    PostCell *cell = [topLevelObjects objectAtIndex:0];
-    
-    // 设置数据
-//    [cell setVal:..];
+
 
     // 设置Block（点击略缩图事件）
     cell.showImageBlock = ^(UIImage *img){
@@ -255,7 +257,7 @@
     // 为buttons设置事件
     [cell.likeButton addTarget:self action:@selector(likePost:) forControlEvents:UIControlEventTouchUpInside];
     [cell.portraitButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
-    [cell.favButton addTarget:self action:@selector(favPost:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.favButton setHidden:YES];
     [cell.deleteButton addTarget:self action:@selector(deletePost:) forControlEvents:UIControlEventTouchUpInside];
     [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
     
