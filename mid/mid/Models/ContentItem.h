@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *title;
 @property (nonatomic) NSString *detail;
 @property (nonatomic) NSMutableArray *tags;
-@property (nonatomic) NSString *type;
+@property (nonatomic) NSString *contentType;
 @property (nonatomic) bool isPublic;
 
 @property (nonatomic) NSString *contentID;
@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) long PublishDate;
 @property (nonatomic) int likeNum;
 @property (nonatomic) int commentNum;
+@property (nonatomic) NSArray *images;
 
 @property (nonatomic) NSDictionary *album;
 - (instancetype)initWithDict:(NSDictionary *)dict;

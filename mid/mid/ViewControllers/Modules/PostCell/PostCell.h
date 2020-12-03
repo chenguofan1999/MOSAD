@@ -27,6 +27,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) bool liked;
 @property (nonatomic) bool faved;
 - (void)dontShowPicView;
+- (void)initPicView;
 - (void)addPic:(UIImage *)image;
 @end
 NS_ASSUME_NONNULL_END

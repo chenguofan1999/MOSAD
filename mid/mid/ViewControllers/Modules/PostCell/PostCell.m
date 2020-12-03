@@ -96,6 +96,7 @@
     [_picView removeFromSuperview];
 }
 
+
 - (void)initPicView
 {
     int w = _picView.frame.size.width;

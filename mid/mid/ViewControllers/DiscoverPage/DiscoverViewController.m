@@ -151,7 +151,7 @@
     ContentItem *contentItem = [_items[i] contentItem];
     MiniUserItem *userItem = [_items[i] userItem];
     
-    if([contentItem.type isEqualToString:@"Text"])
+    if([contentItem.contentType isEqualToString:@"Text"])
     {
         [cell dontShowPicView];
     }

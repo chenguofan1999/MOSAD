@@ -83,7 +83,7 @@
     long i = indexPath.row;
     ContentItem *contentItem = _items[i];
     
-    if([contentItem.type isEqualToString:@"Text"])
+    if([contentItem.contentType isEqualToString:@"Text"])
     {
         [cell dontShowPicView];
     }
@@ -284,7 +284,6 @@
                 for(int i = 0; i < n; i++)
                 {
                     ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
-                    NSLog(@"this Item: %@", newItem);
                     [self.items addObject:newItem];
                 }
             }

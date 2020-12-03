@@ -6,7 +6,7 @@
 //
 
 #import "ContentItem.h"
-
+#import <UIKit/UIKit.h>
 @implementation ContentItem
 
 - (id)init
@@ -19,12 +19,13 @@
 
 - (NSDictionary *)getDict
 {
-    NSDictionary *dict = @{
+    NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:@{
         @"title" : _title,
         @"detail" : _detail,
         @"tags" : _tags,
         @"isPublic" : [NSNumber numberWithBool:_isPublic]
-    };
+    }];
+    
     return dict;
 }
 
@@ -40,7 +41,7 @@
     self.PublishDate = [dict[@"PublishDate"] longValue] / 1000;
     self.likeNum = [dict[@"LikeNum"] intValue];
     self.commentNum = [dict[@"CommentNum"] intValue];
-    self.type = dict[@"Type"];
+    self.contentType = dict[@"Type"];
     
     self.album = dict[@"Album"];
     

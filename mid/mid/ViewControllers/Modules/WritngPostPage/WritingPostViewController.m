@@ -12,7 +12,8 @@
 
 @interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate>
 @property (nonatomic) ContentItem *postItem;
-@property (nonatomic) int picNum;
+@property (nonatomic) NSMutableArray *imageCache;
+@property (nonatomic) int imageNum;
 
 @property (nonatomic, strong) UITextField *titleField;
 @property (nonatomic, strong) UITextView *detailView;
@@ -101,6 +102,9 @@
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
     
+    // 初始化图片缓存
+    _imageCache = [NSMutableArray new];
+    _imageNum = 0;
     
     self.navigationController.delegate = self;
 }
@@ -114,36 +118,72 @@
 #pragma mark 发送
 - (void)postIt
 {
+    NSLog(@"一共 %d 张图", _imageNum);
+    _postItem.images = _imageCache;
     _postItem.title = _titleField.text;
     _postItem.detail = _detailView.text;
     _postItem.isPublic = [_publicSwitch isOn];
-    NSString *URL = @"http://172.18.178.56/api/content/text";
+    
     NSDictionary *body = [_postItem getDict];
     
-    NSLog(@"%@", body);
+    NSLog(@"%@",body);
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
-
-    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@",responseObject);
-        NSDictionary *response = (NSDictionary *)responseObject;
-        if([response[@"State"] isEqualToString:@"success"])
-        {
-//            [self Alert:@"发布成功"];
-//            [self.navigationController popViewControllerAnimated:NO];
-            // 提示成功
-            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发布成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
-            [alertController addAction:[UIAlertAction actionWithTitle:@"返回主页" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                [self.navigationController popViewControllerAnimated:NO];
-            }]];
-            [self presentViewController:alertController animated:YES completion:nil];
-        }
-        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-            [self Alert:@"请求失败"];
-        }];
     
+    NSString *URL = nil;
+    if(_imageNum != 0)
+    {
+        URL = @"http://172.18.178.56/api/content/album";
+        [manager POST:URL parameters:body headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+                if(self.imageNum > 0)
+                {
+                    for(int i = 0; i < self.imageNum; i++)
+                    {
+                        NSData *imageData = UIImageJPEGRepresentation(self.imageCache[i], 0.7);
+                        NSString *key1 = [NSString stringWithFormat:@"file%d", i + 1];
+                        NSString *key2 = [NSString stringWithFormat:@"thumb%d", i + 1];
+                        [formData appendPartWithFileData:imageData name:key1 fileName:key1 mimeType:@"image/jpg"];
+                        [formData appendPartWithFileData:imageData name:key2 fileName:key2 mimeType:@"image/jpg"];
+                    }
+                }
+            } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"response obj : %@",responseObject);
+                NSDictionary *response = (NSDictionary *)responseObject;
+                if([response[@"State"] isEqualToString:@"success"])
+                {
+                    // 初始化图片缓存
+                    self.imageCache = [NSMutableArray new];
+                    self.imageNum = 0;
+                    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发布成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                    [alertController addAction:[UIAlertAction actionWithTitle:@"返回主页" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        [self.navigationController popViewControllerAnimated:NO];
+                    }]];
+                    [self presentViewController:alertController animated:YES completion:nil];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                [self Alert:@"请求失败"];
+            }];
+    }
+    else
+    {
+        URL = @"http://172.18.178.56/api/content/text";
+        [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                    NSLog(@"response obj : %@",responseObject);
+                    NSDictionary *response = (NSDictionary *)responseObject;
+                    if([response[@"State"] isEqualToString:@"success"])
+                    {
+                        UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发布成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+                        [alertController addAction:[UIAlertAction actionWithTitle:@"返回主页" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                            [self.navigationController popViewControllerAnimated:NO];
+                        }]];
+                        [self presentViewController:alertController animated:YES completion:nil];
+                    }
+                } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                    [self Alert:@"请求失败"];
+                }];
+    }
 }
 
 #pragma mark 图片区域
@@ -172,12 +212,13 @@
     [self.view addSubview:_imageView];
 }
 
+#pragma mark 增加图片
 - (void)addPic
 {
     // 如果图片数已大于等于3，resize
-    if(_picNum >= 3)
+    if(_imageNum >= 3)
     {
-        [_innerImageView setFrame:CGRectMake(0, 0, 120 * (_picNum + 1), 120)];
+        [_innerImageView setFrame:CGRectMake(0, 0, 120 * (_imageNum + 1), 120)];
         [_imageView setContentSize:_innerImageView.frame.size];
     }
     
@@ -190,17 +231,11 @@
         [self presentViewController:self.imagePicker animated:YES completion:nil];
     }];
     
-    UIAlertAction *cameraAction = [UIAlertAction actionWithTitle:@"拍照" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        self.imagePicker.sourceType = UIImagePickerControllerSourceTypeCamera;
-        [self presentViewController:self.imagePicker animated:YES completion:nil];
-    }];
-    
     UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消"
                                                            style:UIAlertActionStyleCancel
                                                          handler:nil];
     
     [actionSheet addAction:photoAction];
-    [actionSheet addAction:cameraAction];
     [actionSheet addAction:cancelAction];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
@@ -214,7 +249,7 @@
     
     // 呈现选中的照片的视图
     UIImage *selectedImage = [info objectForKey:UIImagePickerControllerOriginalImage];
-    UIImageView *newPicView = [[UIImageView alloc] initWithFrame:[self frameAtIndex:_picNum]];
+    UIImageView *newPicView = [[UIImageView alloc] initWithFrame:[self frameAtIndex:_imageNum]];
     newPicView.image = selectedImage;
     
     // 视图样式
@@ -224,10 +259,13 @@
     [_imageView addSubview:newPicView];
     
     // 添加成功后再移动添加按钮
-    _addPicButton.frame = [self frameAtIndex:_picNum + 1];
+    _addPicButton.frame = [self frameAtIndex:_imageNum + 1];
     
     // 增加图片计数
-    _picNum ++;
+    _imageNum ++;
+    
+    // 加入缓存区
+    [_imageCache addObject:selectedImage];
 }
 
 - (CGRect)frameAtIndex:(int)i
@@ -287,7 +325,7 @@
     return cell;
 }
 
-- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // 增加tag
     if(indexPath.row == 0)

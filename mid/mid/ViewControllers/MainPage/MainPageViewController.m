@@ -21,7 +21,7 @@
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) UIView *categoryView;
 @property (strong, nonatomic) NSArray *categories;
-@property (nonatomic) NSMutableArray *items;
+@property (nonatomic) NSMutableArray *contentItems;
 @end
 
 @implementation MainPageViewController
@@ -80,9 +80,6 @@
 {
     [super viewWillAppear:animated];
     
-    // 设置导航栏不透明，一劳永逸解决排布问题
-    // self.navigationController.navigationBar.translucent = NO;
-    
     // 隐藏navbar下面的黑线
     UIView *backgroundView = [self.navigationController.navigationBar subviews].firstObject;
     UIView *navBottomLine;
@@ -101,15 +98,13 @@
 // cell 的具体属性
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // 以下代码得到一个 PostCell, 几乎没有数据，需要赋值。
-    // 有复用版本
-    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    // 两个页面复用池分离！
+    PostCell *cell = [tableView dequeueReusableCellWithIdentifier:[NSString stringWithFormat: @"PostCell%ld", _atPage]];
     if (cell == nil)
     {
         NSArray *topLevelObjects = [[NSBundle mainBundle] loadNibNamed:@"PostCell" owner:self options:nil];
         cell = [topLevelObjects objectAtIndex:0];
     }
-
 
     // 设置Block（点击略缩图事件）
     cell.showImageBlock = ^(UIImage *img){
@@ -135,9 +130,9 @@
     
     // 设置cell值
     long i = indexPath.row;
-    ContentItem *contentItem = _items[i];
+    ContentItem *contentItem = _contentItems[i];
     
-    if([contentItem.type isEqualToString:@"Text"])
+    if([contentItem.contentType isEqualToString:@"Text"])
     {
         [cell dontShowPicView];
     }
@@ -149,7 +144,6 @@
             for(int i = 0; i < [images count]; i++)
             {
                 NSString *thumbName = images[i][@"Thumb"];
-                NSLog(@"thumb name: %@", thumbName);
                 NSString *imageURL = [NSString stringWithFormat:@"http://172.18.178.56/api/thumb/%@", thumbName];
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                 [cell addPic:image];
@@ -159,6 +153,8 @@
                 [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
             }
         }
+        [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
+        [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
     }
     
     cell.userNameLabel.text = [UserInfo sharedUser].name;
@@ -183,7 +179,7 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_items count];
+    return [_contentItems count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -264,17 +260,15 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"State"] isEqualToString:@"success"])
         {
-            self.items = [NSMutableArray new];
+            self.contentItems = [NSMutableArray new];
             NSArray *data = response[@"Data"];
             if((NSNull *)data != [NSNull null])
             {
                 NSInteger n = [data count];
-                NSLog(@"Item Number: %ld",n);
                 for(int i = 0; i < n; i++)
                 {
                     ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
-                    NSLog(@"this Item: %@", newItem);
-                    [self.items addObject:newItem];
+                    [self.contentItems addObject:newItem];
                 }
             }
         }
@@ -297,7 +291,7 @@
             NSDictionary *response = (NSDictionary *)responseObject;
             if([response[@"State"] isEqualToString:@"success"])
             {
-                self.items = [NSMutableArray new];
+                self.contentItems = [NSMutableArray new];
                 NSArray *data = response[@"Data"];
                 if((NSNull *)data != [NSNull null])
                 {
@@ -305,8 +299,7 @@
                     for(int i = 0; i < n; i++)
                     {
                         ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
-                        NSLog(@"this Item: %@", newItem);
-                        [self.items addObject:newItem];
+                        [self.contentItems addObject:newItem];
                     }
                 }
             }
@@ -321,7 +314,7 @@
 #pragma mark 加载 收藏 内容
 - (void)loadFavData
 {
-    _items = [NSMutableArray new];
+    _contentItems = [NSMutableArray new];
     [self.tableView reloadData];
 }
 
@@ -441,7 +434,7 @@
     // 已经得到indexPath
     NSLog(@"press avator button at row %ld", indexPath.row);
     NSInteger i = indexPath.row;
-    NSString *userID = [_items[i] ownerID];
+    NSString *userID = [_contentItems[i] ownerID];
     NSString *userName = [UserInfo sharedUser].name;
     NSLog(@"1. userID = %@", userID);
     [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID userName:userName] animated:NO];
@@ -457,7 +450,7 @@
 
     NSLog(@"press like button at row %ld", indexPath.row);
     NSInteger i = indexPath.row;
-    NSString *contentID = [_items[i] contentID];
+    NSString *contentID = [_contentItems[i] contentID];
     NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -495,26 +488,30 @@
 #pragma mark 删除button
 - (void)deletePost:(UIButton *)btn
 {
-    // 得到indexPath
-    UIView *contentView = [btn superview];
-    PostCell *cell = (PostCell *)[contentView superview];
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    NSLog(@"press delete button at row %ld", indexPath.row);
-    NSInteger i = indexPath.row;
-    NSString *contentID = [_items[i] contentID];
-    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/content/",contentID];
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFJSONResponseSerializer serializer];
-    
-    [manager DELETE:URL parameters:nil headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
-        [self loadData];
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failed somehow");
-    }];
-    
+    UIAlertController *deleteAlertController = [UIAlertController alertControllerWithTitle:@"删除" message:@"确定要删除吗？" preferredStyle:UIAlertControllerStyleAlert];
+    [deleteAlertController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
+    [deleteAlertController addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        // 得到indexPath
+        UIView *contentView = [btn superview];
+        PostCell *cell = (PostCell *)[contentView superview];
+        NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+        
+        NSLog(@"press delete button at row %ld", indexPath.row);
+        NSInteger i = indexPath.row;
+        NSString *contentID = [self.contentItems[i] contentID];
+        NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/content/",contentID];
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        [manager DELETE:URL parameters:nil headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@", responseObject);
+            [self loadData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"failed somehow");
+        }];
+    }]];
+    [self presentViewController:deleteAlertController animated:YES completion:nil];
 }
 
 #pragma mark 评论区button
@@ -526,8 +523,8 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-    NSString *contentID = [_items[indexPath.row] contentID];
-    NSString *ownerID = [_items[indexPath.row]ownerID];
+    NSString *contentID = [_contentItems[indexPath.row] contentID];
+    NSString *ownerID = [_contentItems[indexPath.row]ownerID];
     [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
 
