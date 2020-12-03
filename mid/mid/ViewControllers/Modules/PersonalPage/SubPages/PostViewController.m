@@ -95,7 +95,6 @@
             for(int i = 0; i < [images count]; i++)
             {
                 NSString *thumbName = images[i][@"Thumb"];
-                NSLog(@"thumb name: %@", thumbName);
                 NSString *imageURL = [NSString stringWithFormat:@"http://172.18.178.56/api/thumb/%@", thumbName];
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                 [cell addPic:image];

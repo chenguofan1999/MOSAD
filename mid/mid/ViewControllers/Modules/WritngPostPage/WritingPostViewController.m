@@ -122,6 +122,8 @@
     _postItem.images = _imageCache;
     _postItem.title = _titleField.text;
     _postItem.detail = _detailView.text;
+    if([_postItem.detail isEqualToString:@"detail"])
+        _postItem.detail = @"";
     _postItem.isPublic = [_publicSwitch isOn];
     
     NSDictionary *body = [_postItem getDict];
@@ -303,6 +305,7 @@
     return 0.0001f;
 }
 
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                    reuseIdentifier:nil];
@@ -358,6 +361,7 @@
         [addTagController addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:nil]];
         
         [self presentViewController:addTagController animated:YES completion:nil];
+        [tableView deselectRowAtIndexPath:indexPath animated:NO];
     }
 }
 
