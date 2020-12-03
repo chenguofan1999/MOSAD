@@ -6,7 +6,7 @@
 //
 
 #import <Foundation/Foundation.h>
-
+#import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
 @interface UserInfo : NSObject
@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSInteger *maxSize;
 @property (nonatomic) NSInteger *usedSize;
 @property (nonatomic) NSInteger *singleSize;
+@property (nonatomic) UIImage *avatar;
 
 
 + (UserInfo *)sharedUser;

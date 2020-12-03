@@ -10,7 +10,7 @@
 #import "BigImageViewController.h"
 #import "PostCell.h"
 #import "FullDataItem.h"
-#import "MiniUserItem.h"
+#import "UserInfo.h"
 #import "ContentItem.h"
 #import "PostViewController.h"
 #import "ProfilePageViewController.h"
@@ -76,6 +76,8 @@
     // 一些样式
     [self.tableView setBounces:NO];
     
+    [self loadTextData];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -137,10 +139,9 @@
     
     // 设置cell值
     long i = indexPath.row;
-    ContentItem *contentItem = [_items[i] contentItem];
-    MiniUserItem *userItem = [_items[i] userItem];
-    cell.userNameLabel.text = userItem.userName;
-    cell.portraitButton.imageView.image = userItem.avatar;
+    ContentItem *contentItem = _items[i];
+    cell.userNameLabel.text = [UserInfo sharedUser].name;
+    cell.portraitButton.imageView.image = [UserInfo sharedUser].avatar;
     [self setLabel:cell.textContentLable
          WithTitle:contentItem.title
               Tags:contentItem.tags
@@ -252,17 +253,21 @@
         NSLog(@"%@",response);
         if([response[@"State"] isEqualToString:@"success"])
         {
+            self.items = [NSMutableArray new];
             NSArray *data = response[@"Data"];
             NSInteger n = [data count];
             NSLog(@"Item Number: %ld",n);
             for(int i = 0; i < n; i++)
             {
-                FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
-                if([self.items count] > i)
-                    self.items[i] = newItem;
-                else [self.items addObject:newItem];
+                ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
+                NSLog(@"this Item: %@", newItem);
+                [self.items addObject:newItem];
             }
+            for(int i = 0; i < n; i++)
+                NSLog(@"item[%d] = %@",i,self.items[i]);
         }
+        
+        
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Failed to fetch public contents somehow");
@@ -434,7 +439,9 @@
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
 //    [self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
-    [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
+    NSString *contentID = [_items[indexPath.row] contentID];
+    NSString *ownerID = [_items[indexPath.row]ownerID];
+    [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
 
 
