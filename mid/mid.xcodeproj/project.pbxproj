@@ -94,6 +94,8 @@
 		56F90B1725788C4E0055A2B0 /* like-color.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B1425788C4E0055A2B0 /* like-color.png */; };
 		56F90B1825788C4E0055A2B0 /* comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B1525788C4E0055A2B0 /* comments.png */; };
 		56F90B1C25789CCB0055A2B0 /* delete.png in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B1B25789CCB0055A2B0 /* delete.png */; };
+		56F90B202578CED50055A2B0 /* AlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B1F2578CED50055A2B0 /* AlbumItem.m */; };
+		56F90B232578D5AD0055A2B0 /* noImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B222578D5AD0055A2B0 /* noImage.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -217,6 +219,9 @@
 		56F90B1425788C4E0055A2B0 /* like-color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "like-color.png"; sourceTree = "<group>"; };
 		56F90B1525788C4E0055A2B0 /* comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = comments.png; sourceTree = "<group>"; };
 		56F90B1B25789CCB0055A2B0 /* delete.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = delete.png; sourceTree = "<group>"; };
+		56F90B1E2578CED50055A2B0 /* AlbumItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AlbumItem.h; sourceTree = "<group>"; };
+		56F90B1F2578CED50055A2B0 /* AlbumItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AlbumItem.m; sourceTree = "<group>"; };
+		56F90B222578D5AD0055A2B0 /* noImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noImage.jpg; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -299,6 +304,7 @@
 		56510953256BD14700163966 /* pics */ = {
 			isa = PBXGroup;
 			children = (
+				56F90B222578D5AD0055A2B0 /* noImage.jpg */,
 				565729EA2573879900AE33D9 /* testAvator1.jpg */,
 				565729EB2573879900AE33D9 /* testAvator2.jpg */,
 				5652926D2571FB230007C033 /* testGroup1 */,
@@ -532,6 +538,8 @@
 				56572AD32577E6BB00AE33D9 /* FullReplyItem.m */,
 				56572ADC257802B600AE33D9 /* FullContentItem.h */,
 				56572ADD257802B600AE33D9 /* FullContentItem.m */,
+				56F90B1E2578CED50055A2B0 /* AlbumItem.h */,
+				56F90B1F2578CED50055A2B0 /* AlbumItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -630,6 +638,7 @@
 				565292A02571FE990007C033 /* test203.jpg in Resources */,
 				56529268256FFFA50007C033 /* test107.jpg in Resources */,
 				56F90B1725788C4E0055A2B0 /* like-color.png in Resources */,
+				56F90B232578D5AD0055A2B0 /* noImage.jpg in Resources */,
 				56F90B1825788C4E0055A2B0 /* comments.png in Resources */,
 				5652929D2571FE990007C033 /* test202.jpg in Resources */,
 				56572ACB2577D82900AE33D9 /* male.png in Resources */,
@@ -711,6 +720,7 @@
 			files = (
 				56572ABC2577D1D100AE33D9 /* MiniUserItem.m in Sources */,
 				56572A972577D0D600AE33D9 /* UserInfo.m in Sources */,
+				56F90B202578CED50055A2B0 /* AlbumItem.m in Sources */,
 				56572A982577D0D600AE33D9 /* ContentItem.m in Sources */,
 				56572A992577D0D600AE33D9 /* FullDataItem.m in Sources */,
 				56572A9A2577D0D600AE33D9 /* FullCommentItem.m in Sources */,

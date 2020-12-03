@@ -42,6 +42,8 @@
     self.commentNum = [dict[@"CommentNum"] intValue];
     self.type = dict[@"Type"];
     
+    self.album = dict[@"Album"];
+    
     return self;
 }
 @end

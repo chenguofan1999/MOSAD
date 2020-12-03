@@ -201,6 +201,7 @@
             UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapSec:)];
             [t setUserInteractionEnabled:YES];
             [t addGestureRecognizer:gesture];
+            [t setFont:[UIFont boldSystemFontOfSize:17]];
             [t setTextColor:i == 0 ? [UIColor blackColor] : [UIColor lightGrayColor]];
             [_categoryView addSubview:t];
         }
@@ -216,7 +217,7 @@
     for(int i = 0; i < [_categories count]; i++)
     {
         if(i == _atPage)
-            [_categories[i] setTextColor:[UIColor blackColor]];
+            [_categories[i] setTextColor:[UIColor darkGrayColor]];
         else
             [_categories[i] setTextColor:[UIColor lightGrayColor]];
     }

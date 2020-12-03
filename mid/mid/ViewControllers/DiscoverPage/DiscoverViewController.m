@@ -78,12 +78,13 @@
     NSInteger Index = seg.selectedSegmentIndex;
     switch (Index) {
         case 0:
-            // 设置数据源
             [_header setText:@"  最新内容"];
+            // 重新从后台拉取
+            [self loadData];
             break;
         case 1:
-            // 设置数据源
             [_header setText:@"  最热内容"];
+            // 排序
             break;
     }
 }
@@ -123,7 +124,6 @@
         BigImageViewController *bivc = [[BigImageViewController alloc] init];
         bivc.view.backgroundColor = [UIColor blackColor];
         bivc.image = img;
-        //[self.navigationController pushViewController:bivc animated:YES];
         [self presentViewController:bivc animated:YES completion:nil];
     };
 
@@ -148,7 +148,23 @@
     }
     else
     {
-        //NSArray *images = contentItem[@"Album"][@"Images"];
+        NSArray *images = contentItem.album[@"Images"];
+        if((NSNull *)images != [NSNull null])
+        {
+            for(int i = 0; i < [images count]; i++)
+            {
+                NSString *thumbName = images[i][@"Thumb"];
+                NSLog(@"thumb name: %@", thumbName);
+                NSString *imageURL = [NSString stringWithFormat:@"http://172.18.178.56/api/thumb/%@", thumbName];
+                UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
+                [cell addPic:image];
+            }
+            if([images count] == 0)
+            {
+                [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
+            }
+        }
+        
     }
     
     cell.userNameLabel.text = userItem.userName;
@@ -230,13 +246,13 @@
 #pragma mark 喜欢button
 - (void)favPost:(UIButton *)btn
 {
+    // 得到indexPath
     UIView *contentView = [btn superview];
     PostCell *cell = (PostCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    // 已经得到indexPath
     NSLog(@"press fav button at row %ld", indexPath.row);
 
+    [self AlertWithTitle:@"收藏" message:@"敬请期待"];
 }
 
 #pragma mark 头像button
@@ -343,6 +359,19 @@
         NSLog(@"Failed to fetch public contents somehow");
     }];
     
+}
+
+# pragma mark 提示
+- (void)AlertWithTitle:(NSString *)title
+               message:(NSString *)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
 }
 
 @end

@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int likeNum;
 @property (nonatomic) int commentNum;
 
+@property (nonatomic) NSDictionary *album;
 - (instancetype)initWithDict:(NSDictionary *)dict;
 - (NSDictionary *)getDict;
 
