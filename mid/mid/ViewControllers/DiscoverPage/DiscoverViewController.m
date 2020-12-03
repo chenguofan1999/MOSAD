@@ -244,12 +244,49 @@
 #pragma mark 点赞button
 - (void)likePost:(UIButton *)btn
 {
+    // 得到indexPath
     UIView *contentView = [btn superview];
     PostCell *cell = (PostCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    // 已经得到indexPath
-    NSLog(@"press like button at row %ld", indexPath.row);
+    
+    NSInteger i = indexPath.row;
+    NSString *contentID = [[_items[i] contentItem]contentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"isContent" : @YES,
+        @"isComment" : @NO,
+        @"isReply" : @NO
+    };
+    
+    NSLog(@"Id : %@", contentID);
+    
+
+    NSLog(@"尝试点赞");
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                if([responseObject[@"State"] isEqualToString:@"exist"])
+                {
+                    {
+                        NSLog(@"取消点赞");
+                        [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                            NSLog(@"%@", responseObject);
+                            [self loadData];
+                        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                            NSLog(@"failed to patch somehow");
+                        }];
+                    }
+                }
+                [self loadData];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to post somehow");
+            }];
+
+    
 }
 
 #pragma mark 评论区button
