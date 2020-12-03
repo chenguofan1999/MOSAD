@@ -131,10 +131,10 @@
     [cell.commentButton addTarget:self action:@selector(showCommentPage:) forControlEvents:UIControlEventTouchUpInside];
     
     // for test use
-    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
-    [cell addPic:[UIImage imageNamed:@"test100.jpg"]];
-    [cell addPic:[UIImage imageNamed:@"test101.jpg"]];
-    [cell addPic:[UIImage imageNamed:@"test102.jpg"]];
+//    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
+//    [cell addPic:[UIImage imageNamed:@"test100.jpg"]];
+//    [cell addPic:[UIImage imageNamed:@"test101.jpg"]];
+//    [cell addPic:[UIImage imageNamed:@"test102.jpg"]];
     
     // 设置cell值
     long i = indexPath.row;
@@ -233,6 +233,7 @@
     return _categoryView;
 }
 
+# pragma mark 切换分类
 - (void)tapSec:(UITapGestureRecognizer *)sender
 {
     _atPage = sender.view.tag;
@@ -254,6 +255,7 @@
             break;
         case 1:
             NSLog(@"tag: 1");
+            [self loadAlbumData];
             break;
         case 2:
             NSLog(@"tag: 2");
@@ -274,7 +276,6 @@
     
     [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *response = (NSDictionary *)responseObject;
-        NSLog(@"%@",response);
         if([response[@"State"] isEqualToString:@"success"])
         {
             self.items = [NSMutableArray new];
@@ -289,8 +290,6 @@
                     NSLog(@"this Item: %@", newItem);
                     [self.items addObject:newItem];
                 }
-//                for(int i = 0; i < n; i++)
-//                    NSLog(@"item[%d] = %@",i,self.items[i]);
             }
         }
         [self.tableView reloadData];
@@ -303,10 +302,33 @@
 #pragma mark 加载 album 类内容
 - (void)loadAlbumData
 {
-    NSString *URL = @"http://172.18.178.56/api/content/texts/self";
+    NSString *URL = @"http://172.18.178.56/api/content/album/self";
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSDictionary *response = (NSDictionary *)responseObject;
+            if([response[@"State"] isEqualToString:@"success"])
+            {
+                self.items = [NSMutableArray new];
+                NSArray *data = response[@"Data"];
+                if((NSNull *)data != [NSNull null])
+                {
+                    NSInteger n = [data count];
+                    for(int i = 0; i < n; i++)
+                    {
+                        ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
+                        NSLog(@"this Item: %@", newItem);
+                        [self.items addObject:newItem];
+                    }
+                }
+            }
+            [self.tableView reloadData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"Failed to fetch public contents somehow");
+        }];
+    
 }
 
 
@@ -500,8 +522,6 @@
 {
     [self.navigationController pushViewController:[WritingPostViewController new] animated:NO];
 }
-
-
 
 
 @end
