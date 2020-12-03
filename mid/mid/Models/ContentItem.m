@@ -37,7 +37,7 @@
     self.tags = (NSMutableArray *)dict[@"Tag"];
     self.contentID = dict[@"ID"];
     self.ownerID = dict[@"OwnID"];
-    self.PublishDate = [dict[@"PublishDate"] longValue];
+    self.PublishDate = [dict[@"PublishDate"] longValue] / 1000;
     self.likeNum = [dict[@"LikeNum"] intValue];
     self.commentNum = [dict[@"CommentNum"] intValue];
     self.type = dict[@"Type"];

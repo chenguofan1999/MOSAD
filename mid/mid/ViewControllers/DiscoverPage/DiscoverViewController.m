@@ -79,9 +79,11 @@
     switch (Index) {
         case 0:
             // 设置数据源
+            [_header setText:@"  最新内容"];
             break;
         case 1:
             // 设置数据源
+            [_header setText:@"  最热内容"];
             break;
     }
 }
@@ -133,18 +135,22 @@
     [cell.deleteButton setHidden:YES];
     
     // for test use
-    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
+//    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
     // 设置 cell 的值
     long i = indexPath.row;
     ContentItem *contentItem = [_items[i] contentItem];
     MiniUserItem *userItem = [_items[i] userItem];
-//    if([contentItem.type isEqualToString:@"Text"])
-//    {
-//        NSLog(@"not album");
-//        [cell dontShowPicView];
-//    }
-    [cell dontShowPicView];
+    
+    if([contentItem.type isEqualToString:@"Text"])
+    {
+        [cell dontShowPicView];
+    }
+    else
+    {
+        //NSArray *images = contentItem[@"Album"][@"Images"];
+    }
+    
     cell.userNameLabel.text = userItem.userName;
     cell.portraitButton.imageView.image = userItem.avatar;
     [self setLabel:cell.textContentLable
@@ -165,7 +171,7 @@
    NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
    // 时间格式
    NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
-   dataformatter.dateFormat = @"MM-dd HH:mm a";
+   dataformatter.dateFormat = @"MM-dd HH:mm";
    // 时间转换字符串
    return [dataformatter stringFromDate:date];
 }
@@ -326,6 +332,7 @@
             for(int i = 0; i < n; i++)
             {
                 FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
+                NSLog(@"---->%@",data[i]);
                 if([self.items count] > i)
                     self.items[i] = newItem;
                 else [self.items addObject:newItem];

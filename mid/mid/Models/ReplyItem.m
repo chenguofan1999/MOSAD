@@ -15,7 +15,7 @@
     self.contentID = dict[@"ContentID"];
     self.fatherID = dict[@"FatherID"];
     self.userID = dict[@"UserID"];
-    self.publishDate = [dict[@"Date"] longValue];
+    self.publishDate = [dict[@"Date"] longValue] / 1000;
     self.replyContent = dict[@"Content"];
     self.likeNum = [dict[@"LikeNum"] intValue];
     

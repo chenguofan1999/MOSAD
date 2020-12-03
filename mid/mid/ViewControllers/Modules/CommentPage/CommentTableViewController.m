@@ -204,7 +204,7 @@
    NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
    // 时间格式
    NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
-   dataformatter.dateFormat = @"MM-dd HH:mm a";
+   dataformatter.dateFormat = @"MM-dd HH:mm";
    // 时间转换字符串
    return [dataformatter stringFromDate:date];
 }

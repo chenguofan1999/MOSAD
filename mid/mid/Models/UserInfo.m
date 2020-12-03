@@ -30,22 +30,15 @@ static UserInfo *userInfo = nil;
     sharedInfo.bio = dict[@"Info"][@"Bio"];
     sharedInfo.classNum = [dict[@"Class"] intValue];
     sharedInfo.gender = [dict[@"Info"][@"Gender"] intValue];
-    NSString *avatarURL = dict[@"info"][@"Avatar"];
-    
-    if([avatarURL isEqualToString:@""])
-    {
-        if(sharedInfo.gender == 0)
-            sharedInfo.avatar = [UIImage imageNamed:@"maleUser.png"];
-        else if(sharedInfo.gender == 1)
-            sharedInfo.avatar = [UIImage imageNamed:@"femaleUser.png"];
-        else
-            sharedInfo.avatar = [UIImage imageNamed:@"kawaii-dinosaur.png"];
-    }
+//    NSString *avatarURL = dict[@"Info"][@"Avatar"];
+
+    if(sharedInfo.gender == 0)
+        sharedInfo.avatar = [UIImage imageNamed:@"maleUser.png"];
+    else if(sharedInfo.gender == 1)
+        sharedInfo.avatar = [UIImage imageNamed:@"femaleUser.png"];
     else
-    {
-        NSURL *URL = [NSURL URLWithString:avatarURL];// 获取的图片地址
-        sharedInfo.avatar = [UIImage imageWithData: [NSData dataWithContentsOfURL:URL]]; // 根据地址取出图片
-    }
+        sharedInfo.avatar = [UIImage imageNamed:@"kawaii-dinosaur.png"];
+
 }
 
 + (void)updateUserInfo

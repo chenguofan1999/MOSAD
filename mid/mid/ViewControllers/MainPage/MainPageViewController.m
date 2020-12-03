@@ -255,16 +255,19 @@
         {
             self.items = [NSMutableArray new];
             NSArray *data = response[@"Data"];
-            NSInteger n = [data count];
-            NSLog(@"Item Number: %ld",n);
-            for(int i = 0; i < n; i++)
+            if((NSNull *)data != [NSNull null])
             {
-                ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
-                NSLog(@"this Item: %@", newItem);
-                [self.items addObject:newItem];
+                NSInteger n = [data count];
+                NSLog(@"Item Number: %ld",n);
+                for(int i = 0; i < n; i++)
+                {
+                    ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
+                    NSLog(@"this Item: %@", newItem);
+                    [self.items addObject:newItem];
+                }
+                for(int i = 0; i < n; i++)
+                    NSLog(@"item[%d] = %@",i,self.items[i]);
             }
-            for(int i = 0; i < n; i++)
-                NSLog(@"item[%d] = %@",i,self.items[i]);
         }
         
         
@@ -328,7 +331,7 @@
    NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
    // 时间格式
    NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
-   dataformatter.dateFormat = @"MM-dd HH:mm a";
+   dataformatter.dateFormat = @"MM-dd HH:mm";
    // 时间转换字符串
    return [dataformatter stringFromDate:date];
 }
