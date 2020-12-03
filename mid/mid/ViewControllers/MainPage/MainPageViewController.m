@@ -153,8 +153,6 @@
                 [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
             }
         }
-        [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
-        [cell addPic:[UIImage imageNamed:@"noImage.jpg"]];
     }
     
     cell.userNameLabel.text = [UserInfo sharedUser].name;
