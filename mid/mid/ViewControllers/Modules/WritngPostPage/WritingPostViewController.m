@@ -6,10 +6,11 @@
 //
 
 #import "WritingPostViewController.h"
+#import "MainPageViewController.h"
 #import "ContentItem.h"
 #import <AFNetworking/AFNetworking.h>
 
-@interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate>
+@interface WritingPostViewController () <UITableViewDelegate, UITableViewDataSource, UITextViewDelegate, UINavigationControllerDelegate>
 @property (nonatomic) ContentItem *postItem;
 @property (nonatomic) int picNum;
 
@@ -100,6 +101,8 @@
     _imagePicker.delegate = self;
     _imagePicker.allowsEditing = YES;
     
+    
+    self.navigationController.delegate = self;
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -128,8 +131,14 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"State"] isEqualToString:@"success"])
         {
-            [self Alert:@"发布成功"];
-            [self.navigationController popViewControllerAnimated:NO];
+//            [self Alert:@"发布成功"];
+//            [self.navigationController popViewControllerAnimated:NO];
+            // 提示成功
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"发布成功" message:nil preferredStyle:UIAlertControllerStyleAlert];
+            [alertController addAction:[UIAlertAction actionWithTitle:@"返回主页" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.navigationController popViewControllerAnimated:NO];
+            }]];
+            [self presentViewController:alertController animated:YES completion:nil];
         }
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
             [self Alert:@"请求失败"];
@@ -345,6 +354,29 @@
     
     // 显示对话框
     [self presentViewController:alert animated:true completion:nil];
+}
+
+#pragma mark UINavigationControllerDelegate
+- (void)navigationController:(UINavigationController*)navigationController willShowViewController:(UIViewController*)viewController animated:(BOOL)animated{
+
+    if([[viewController class]isSubclassOfClass:[MainPageViewController class]])
+    {
+        MainPageViewController *VC = (MainPageViewController *)viewController;
+        switch ([VC atPage]) {
+            case 0:
+                NSLog(@"tag: 0");
+                [VC loadTextData];
+                break;
+            case 1:
+                NSLog(@"tag: 1");
+                break;
+            case 2:
+                NSLog(@"tag: 2");
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 @end

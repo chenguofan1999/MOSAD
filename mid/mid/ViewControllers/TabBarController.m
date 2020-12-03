@@ -27,6 +27,7 @@
     mainPageNav.navigationBar.translucent = NO;
     
     DiscoverViewController *discoverPage = [[DiscoverViewController alloc]init];
+    [discoverPage loadData];
     UINavigationController *discoverNav = [[UINavigationController alloc]initWithRootViewController:discoverPage];
     discoverNav.navigationBar.translucent = NO;
     

@@ -9,13 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum{
-    Mine,
-    Following
-} Mode;
-
 @interface MainPageViewController : UITableViewController
-
+@property (nonatomic) NSInteger atPage;
+- (void)loadTextData;
+- (void)loadAlbumData;
 @end
 
 NS_ASSUME_NONNULL_END

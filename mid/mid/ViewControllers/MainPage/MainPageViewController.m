@@ -22,7 +22,6 @@
 @property (strong, nonatomic) UISearchBar *searchBar;
 @property (strong, nonatomic) UIView *categoryView;
 @property (strong, nonatomic) NSArray *categories;
-@property (nonatomic) NSInteger atPage;
 @property (nonatomic) NSMutableArray *items;
 @end
 
@@ -75,10 +74,7 @@
     
     // 一些样式
     [self.tableView setBounces:NO];
-    
-    // 接收通知
-    
-    
+
     [self loadTextData];
     
 }
@@ -269,7 +265,6 @@
 }
 
 #pragma mark 加载 text 类内容
-
 - (void)loadTextData
 {
     NSString *URL = @"http://172.18.178.56/api/content/texts/self";
@@ -294,12 +289,10 @@
                     NSLog(@"this Item: %@", newItem);
                     [self.items addObject:newItem];
                 }
-                for(int i = 0; i < n; i++)
-                    NSLog(@"item[%d] = %@",i,self.items[i]);
+//                for(int i = 0; i < n; i++)
+//                    NSLog(@"item[%d] = %@",i,self.items[i]);
             }
         }
-        
-        
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"Failed to fetch public contents somehow");
@@ -308,8 +301,20 @@
 
 
 #pragma mark 加载 album 类内容
+- (void)loadAlbumData
+{
+    NSString *URL = @"http://172.18.178.56/api/content/texts/self";
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+}
+
 
 #pragma mark 加载 收藏 内容
+- (void)loadFavData
+{
+    
+}
 
 #pragma mark 搜索栏
 // 延迟加载搜索栏
@@ -495,6 +500,8 @@
 {
     [self.navigationController pushViewController:[WritingPostViewController new] animated:NO];
 }
+
+
 
 
 @end
