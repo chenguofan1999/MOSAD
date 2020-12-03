@@ -129,13 +129,13 @@
 - (void)loadData
 {
     NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/user/info/",_userID];
-    NSLog(@"URL: %@:",URL);
+//    NSLog(@"URL: %@:",URL);
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        NSLog(@"%@", responseObject);
+//        NSLog(@"%@", responseObject);
         NSDictionary *dict = (NSDictionary *)responseObject;
         self.userItem = [[UserItem alloc]initWithDict:dict];
         [self.infoView reloadData];

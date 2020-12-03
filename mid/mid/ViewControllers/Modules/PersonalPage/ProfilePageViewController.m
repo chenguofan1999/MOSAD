@@ -7,14 +7,13 @@
 
 #import "ProfilePageViewController.h"
 #import "PostViewController.h"
-#import "AlbumViewController.h"
 #import "InfoViewController.h"
 #import <AFNetworking/AFNetworking.h>
 
 @interface ProfilePageViewController ()
 @property (nonatomic, strong) InfoViewController *ivc;
 @property (nonatomic, strong) PostViewController *pvc;
-@property (nonatomic, strong) AlbumViewController *avc;
+@property (nonatomic, strong) PostViewController *avc;
 @end
 
 @implementation ProfilePageViewController
@@ -36,8 +35,8 @@
     self.navigationItem.titleView = segmentBar;
     
     _ivc = [[InfoViewController alloc]initWithUserID:_userID];
-    _pvc = [[PostViewController alloc]init];
-    _avc = [[AlbumViewController alloc]init];
+    _pvc = [[PostViewController alloc]initWithType:@"Text" UserID:_userID];
+    _avc = [[PostViewController alloc]initWithType:@"Album" UserID:_userID];
     
     _ivc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;
     _pvc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;

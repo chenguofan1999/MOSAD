@@ -4,7 +4,6 @@
 //
 //  Created by itlab on 2020/11/23.
 //
-
 #import "MainPageViewController.h"
 #import "WritingPostViewController.h"
 #import "BigImageViewController.h"
@@ -39,7 +38,6 @@
     [[self tabBarItem] setTitle:@"我的"];
     [self.tabBarItem setImage:[UIImage imageNamed:@"compass@2x.png"]];
     [self.tabBarItem setSelectedImage:[UIImage imageNamed:@"compass-filled@2x.png"]];
-    
     
     return self;
 }
