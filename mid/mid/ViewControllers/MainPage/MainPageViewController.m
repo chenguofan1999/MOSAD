@@ -53,11 +53,10 @@
      * 中间是搜索框
      * 左侧按钮是头像，点击进入个人页面
      */
-    
     // 延迟加载搜索框, 放在 navBar 的中间
     [self.navigationItem setTitleView:[self searchBar]];
     // 左侧按钮
-    [self setPortraitButtonWithImage:[UIImage imageNamed:@"testPortrait.jpg"]];
+    [self setPortraitButtonWithImage:[UserInfo sharedUser].avatar];
     // 右侧按钮
     UIBarButtonItem *rightButton =
         [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemCompose
@@ -237,7 +236,6 @@
 - (void)tapSec:(UITapGestureRecognizer *)sender
 {
     _atPage = sender.view.tag;
-    
     // 样式改变
     for(int i = 0; i < [_categories count]; i++)
     {
@@ -247,23 +245,13 @@
             [_categories[i] setTextColor:[UIColor lightGrayColor]];
     }
     
-    // 定义功能
-    switch (_atPage) {
-        case 0:
-            NSLog(@"tag: 0");
-            [self loadTextData];
-            break;
-        case 1:
-            NSLog(@"tag: 1");
-            [self loadAlbumData];
-            break;
-        case 2:
-            NSLog(@"tag: 2");
-            break;
-        default:
-            break;
+    if(_atPage == 2)
+    {
+        [self AlertWithTitle:@"收藏功能" message:@"敬请期待"];
     }
     
+    // 定义功能
+    [self loadData];
 }
 
 #pragma mark 加载 text 类内容
@@ -459,23 +447,71 @@
 #pragma mark 点赞button
 - (void)likePost:(UIButton *)btn
 {
+    //得到indexPath
     UIView *contentView = [btn superview];
     PostCell *cell = (PostCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
-    
-    // 已经得到indexPath
+
     NSLog(@"press like button at row %ld", indexPath.row);
+    NSInteger i = indexPath.row;
+    NSString *contentID = [_items[i] contentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"isContent" : @YES,
+        @"isComment" : @NO,
+        @"isReply" : @NO
+    };
+    
+    NSLog(@"Id : %@", contentID);
+    
+
+    NSLog(@"尝试点赞");
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        if([responseObject[@"State"] isEqualToString:@"exist"])
+        {
+            NSLog(@"已经点赞，应取消点赞");
+            [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                [self loadData];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to patch somehow");
+            }];
+        }
+        else
+            [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to post somehow");
+    }];
 }
 
 #pragma mark 删除button
 - (void)deletePost:(UIButton *)btn
 {
+    // 得到indexPath
     UIView *contentView = [btn superview];
     PostCell *cell = (PostCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    // 已经得到indexPath
     NSLog(@"press delete button at row %ld", indexPath.row);
+    NSInteger i = indexPath.row;
+    NSString *contentID = [_items[i] contentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/content/",contentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager DELETE:URL parameters:nil headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed somehow");
+    }];
+    
 }
 
 #pragma mark 评论区button
@@ -487,7 +523,6 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-//    [self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
     NSString *contentID = [_items[indexPath.row] contentID];
     NSString *ownerID = [_items[indexPath.row]ownerID];
     [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
@@ -503,13 +538,14 @@
     button.layer.cornerRadius = r/2;
     button.imageView.contentMode = UIViewContentModeScaleAspectFill; // 头像截取而不缩放
     button.layer.masksToBounds = YES;                               // 头像将只显示在圆圈内
+    button.clipsToBounds = YES;
     
     // 以下两句约束了button的控件大小
-    [button.widthAnchor constraintEqualToConstant:35].active = YES;
-    [button.heightAnchor constraintEqualToConstant:35].active = YES;
+    [button.widthAnchor constraintEqualToConstant:r].active = YES;
+    [button.heightAnchor constraintEqualToConstant:r].active = YES;
     
-    button.layer.borderWidth = 1.2;
-    button.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    button.layer.borderWidth = 0;
+//    button.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     [button addTarget:self action:@selector(toMyPage) forControlEvents:UIControlEventTouchUpInside];
     [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:button]];
@@ -523,5 +559,34 @@
     [self.navigationController pushViewController:[WritingPostViewController new] animated:NO];
 }
 
+#pragma mark
+-(void)loadData;
+{
+    switch (_atPage) {
+        case 0:
+            [self loadTextData];
+            break;
+        case 1:
+            [self loadAlbumData];
+            break;
+        case 2:
+            NSLog(@"tag: 2");
+            break;
+        default:
+            break;
+    }
+}
 
+# pragma mark 提示
+- (void)AlertWithTitle:(NSString *)title
+               message:(NSString *)msg
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title
+                                                                   message:msg
+                                                            preferredStyle:UIAlertControllerStyleAlert];
+    [alert addAction:[UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:nil]];
+    
+    // 显示对话框
+    [self presentViewController:alert animated:true completion:nil];
+}
 @end

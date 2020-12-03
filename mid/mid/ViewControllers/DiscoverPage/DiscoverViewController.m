@@ -283,7 +283,6 @@
     PostCell *cell = (PostCell *)[contentView superview];
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
-    
     NSInteger i = indexPath.row;
     NSString *contentID = [[_items[i] contentItem]contentID];
     NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
@@ -299,7 +298,6 @@
     
     NSLog(@"Id : %@", contentID);
     
-
     NSLog(@"尝试点赞");
     [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@", responseObject);
@@ -313,7 +311,8 @@
                 NSLog(@"failed to patch somehow");
             }];
         }
-        [self loadData];
+        else
+            [self loadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to post somehow");
     }];
