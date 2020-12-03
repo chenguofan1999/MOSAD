@@ -18,9 +18,11 @@
 
 @implementation ProfilePageViewController
 - (instancetype)initWithUserID:(NSString *)userID
+                      userName:(NSString *)userName
 {
     self =[super init];
     _userID = userID;
+    _userName = userName;
     return self;
 }
 
@@ -35,8 +37,8 @@
     self.navigationItem.titleView = segmentBar;
     
     _ivc = [[InfoViewController alloc]initWithUserID:_userID];
-    _pvc = [[PostViewController alloc]initWithType:@"Text" UserID:_userID];
-    _avc = [[PostViewController alloc]initWithType:@"Album" UserID:_userID];
+    _pvc = [[PostViewController alloc]initWithType:@"Text" UserID:_userID UserName:_userName];
+    _avc = [[PostViewController alloc]initWithType:@"Album" UserID:_userID UserName:_userName];
     
     _ivc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;
     _pvc.view.frame=self.view.safeAreaLayoutGuide.layoutFrame;

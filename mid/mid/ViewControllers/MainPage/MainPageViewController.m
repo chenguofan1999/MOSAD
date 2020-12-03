@@ -442,8 +442,9 @@
     NSLog(@"press avator button at row %ld", indexPath.row);
     NSInteger i = indexPath.row;
     NSString *userID = [_items[i] ownerID];
+    NSString *userName = [UserInfo sharedUser].name;
     NSLog(@"1. userID = %@", userID);
-    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID] animated:NO];
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID userName:userName] animated:NO];
 }
 
 #pragma mark 点赞button
@@ -554,7 +555,7 @@
 }
 - (void)toMyPage
 {
-    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:[UserInfo sharedUser].userId] animated:NO];
+    [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:[UserInfo sharedUser].userId userName:[UserInfo sharedUser].name] animated:NO];
 }
 - (void)post
 {

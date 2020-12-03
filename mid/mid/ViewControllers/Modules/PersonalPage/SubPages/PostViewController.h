@@ -14,7 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *userName;
 @property (nonatomic) NSString *contentType;
 - (instancetype)initWithType:(NSString *)contentType
-                      UserID:(NSString *)userID;
+                      UserID:(NSString *)userID
+                    UserName:(NSString *)userName;
 @end
 
 NS_ASSUME_NONNULL_END

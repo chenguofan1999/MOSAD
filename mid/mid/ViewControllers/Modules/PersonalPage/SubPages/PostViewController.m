@@ -18,10 +18,12 @@
 @implementation PostViewController
 - (instancetype)initWithType:(NSString *)contentType
                       UserID:(NSString *)userID
+                    UserName:(NSString *)userName
 {
     self = [super init];
     _userID = userID;
     _contentType = contentType;
+    _userName = userName;
     return self;
 }
 
@@ -112,6 +114,8 @@
     cell.timeLable.text = [self timeStampToTime:[contentItem PublishDate]];
     cell.likeNumberLable.text = [NSString stringWithFormat:@"%d", [contentItem likeNum]];
     cell.commentNumberLable.text = [NSString stringWithFormat:@"%d", [contentItem commentNum]];
+    cell.userNameLabel.text = _userName;
+    [cell.portraitButton setImage:[UIImage imageNamed:@"maleUser.png"] forState:UIControlStateNormal];
     
     return cell;
 }
@@ -199,6 +203,39 @@
     
     // 已经得到indexPath
     NSLog(@"press like button at row %ld", indexPath.row);
+    
+    NSString *contentID = [_items[indexPath.row] contentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"isContent" : @YES,
+        @"isComment" : @NO,
+        @"isReply" : @NO
+    };
+    
+    NSLog(@"Id : %@", contentID);
+    
+    NSLog(@"尝试点赞");
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        if([responseObject[@"State"] isEqualToString:@"exist"])
+        {
+            NSLog(@"已经点赞，应取消点赞");
+            [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                [self loadData];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to patch somehow");
+            }];
+        }
+        else
+            [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to post somehow");
+    }];
 }
 
 
@@ -212,8 +249,9 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-//    [self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
-    [self presentViewController:[CommentTableViewController new] animated:YES completion:nil];
+    NSString *contentID = [_items[indexPath.row] contentID];
+    NSString *ownerID = [_items[indexPath.row] ownerID];
+    [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
 
 
