@@ -110,7 +110,8 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_contentItems count];
+//    return [_contentItems count];
+    return 20;
 }
 
 // 点击变灰后立即恢复
@@ -165,7 +166,6 @@
             for(int i = 0; i < [images count]; i++)
             {
                 NSString *thumbName = images[i][@"Thumb"];
-                NSLog(@"thumb name: %@", thumbName);
                 NSString *imageURL = [NSString stringWithFormat:@"http://172.18.178.56/api/thumb/%@", thumbName];
                 UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:imageURL]]];
                 [cell addPic:image];
@@ -343,7 +343,7 @@
 # pragma mark 从后台拉取数据
 - (void)loadData
 {
-    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=30";
+    NSString *URL = @"http://172.18.178.56/api/content/public?page=1&eachPage=200";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];

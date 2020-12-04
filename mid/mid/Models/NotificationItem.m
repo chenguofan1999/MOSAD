@@ -16,7 +16,7 @@
     self.sourceID = dict[@"SourceID"];
     self.targetID = dict[@"TargetID"];
     self.notificationType = dict[@"Type"];
-    self.createTime = [dict[@"CreateTime"] longValue];
+    self.createTime = [dict[@"CreateTime"] longValue] / 1000;
     self.read = [dict[@"Read"] boolValue];
     return self;
 }

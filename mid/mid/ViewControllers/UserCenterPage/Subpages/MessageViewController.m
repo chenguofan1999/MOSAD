@@ -44,9 +44,11 @@
 {
     UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                    reuseIdentifier:nil];
-    
     NSInteger sec = indexPath.section;
     NSInteger row = indexPath.row;
+    
+    UIColor *unread = [UIColor colorWithRed:0.97 green:0.97 blue:0.97 alpha:1];
+    
     if(sec == 0)
     {
         FullNotificationItem *thisItem = _likeItems[row];
@@ -57,6 +59,11 @@
         [cell.textLabel setText:[NSString stringWithFormat:@" %@ 点赞了你的内容", userName]];
         [cell.imageView setImage:avatar];
         [cell.detailTextLabel setText:time];
+        
+        if(thisItem.notificationItem.read == NO)
+            [cell setBackgroundColor:unread];
+        else
+            [cell setBackgroundColor:[UIColor whiteColor]];
     }
     else if(sec == 1)
     {
@@ -66,15 +73,49 @@
         UIImage *avatar = [thisItem userItem].avatar;
         NSString *time = [self timeStampToTime:[thisItem notificationItem].createTime];
         
-        
         [cell.textLabel setText:[NSString stringWithFormat:@" %@ 评论你: %@", userName, content]];
         [cell.imageView setImage:avatar];
         [cell.detailTextLabel setText:time];
+        
+        if(thisItem.notificationItem.read == NO)
+            [cell setBackgroundColor:unread];
+        else
+            [cell setBackgroundColor:[UIColor whiteColor]];
     }
     
-
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // 标记为已读
+    NSInteger sec = indexPath.section;
+    NSInteger row = indexPath.row;
+    
+    FullNotificationItem *thisItem = nil;
+    if(sec == 0) thisItem = _likeItems[row];
+    else thisItem = _replyItems[row];
+    
+    NSString *notificationID = thisItem.notificationItem.notificationID;
+    NSString *URL = [NSString stringWithFormat:@"http://172.18.178.56/api/notification/read/%@",notificationID];
+    
+    NSDictionary *body = @{
+        @"isRead" : @YES
+    };
+    
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to patch somehow");
+    }];
+    
+    [[tableView cellForRowAtIndexPath:indexPath] setBackgroundColor:[UIColor whiteColor]];
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 #pragma mark 时间戳转化日期
@@ -114,7 +155,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-            NSLog(@"%@",responseObject);
+//            NSLog(@"%@",responseObject);
             NSDictionary *response = (NSDictionary *)responseObject;
             if([response[@"State"] isEqualToString:@"success"])
             {
@@ -134,7 +175,10 @@
                         [self.replyItems addObject:newItem];
                     }
                 }
-                NSLog(@"item number: %ld", n);
+                [self.likeItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                    FullNotificationItem *item1 = (FullNotificationItem *)obj1;
+                    return item1.notificationItem.read;
+                }];
             }
             [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
