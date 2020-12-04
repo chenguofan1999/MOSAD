@@ -6,9 +6,14 @@
 //
 
 #import "MessageViewController.h"
+#import "FullNotificationItem.h"
+#import "NotificationItem.h"
+#import "MiniUserItem.h"
+#import <AFNetworking/AFNetworking.h>
 
 @interface MessageViewController ()
-
+@property (nonatomic) NSMutableArray *likeItems;
+@property (nonatomic) NSMutableArray *replyItems;
 @end
 
 @implementation MessageViewController
@@ -20,34 +25,73 @@
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self loadData];
 }
 
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 5;
+    if(section == 0)return [_likeItems count];
+    return [_replyItems count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1
                                                    reuseIdentifier:nil];
     
-//    NSInteger sec = indexPath.section;
-    [cell.textLabel setText:@"Tom __ed you"];
-    [cell.imageView setImage:[UIImage imageNamed:@"edvard-munch.png"]];
+    NSInteger sec = indexPath.section;
+    NSInteger row = indexPath.row;
+    if(sec == 0)
+    {
+        FullNotificationItem *thisItem = _likeItems[row];
+        NSString *userName = [thisItem userItem].userName;
+        UIImage *avatar = [thisItem userItem].avatar;
+        NSString *time = [self timeStampToTime:[thisItem notificationItem].createTime];
+        
+        [cell.textLabel setText:[NSString stringWithFormat:@" %@ 点赞了你的内容", userName]];
+        [cell.imageView setImage:avatar];
+        [cell.detailTextLabel setText:time];
+    }
+    else if(sec == 1)
+    {
+        FullNotificationItem *thisItem = _replyItems[row];
+        NSString *userName = [thisItem userItem].userName;
+        NSString *content = [thisItem notificationItem].notificationContent;
+        UIImage *avatar = [thisItem userItem].avatar;
+        NSString *time = [self timeStampToTime:[thisItem notificationItem].createTime];
+        
+        
+        [cell.textLabel setText:[NSString stringWithFormat:@" %@ 评论你: %@", userName, content]];
+        [cell.imageView setImage:avatar];
+        [cell.detailTextLabel setText:time];
+    }
+    
+
     
     return cell;
 }
 
+#pragma mark 时间戳转化日期
+- (NSString *)timeStampToTime:(long)time
+{
+   // 时段转换时间
+   NSDate *date=[NSDate dateWithTimeIntervalSince1970:(NSTimeInterval)time];
+   // 时间格式
+   NSDateFormatter *dataformatter = [[NSDateFormatter alloc] init];
+   dataformatter.dateFormat = @"MM-dd HH:mm";
+   // 时间转换字符串
+   return [dataformatter stringFromDate:date];
+}
+
 -(NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSArray *sectionNames = @[@"点赞通知",@"收藏通知",@"关注通知"];
+    NSArray *sectionNames = @[@"点赞通知",@"回复通知"];
     return sectionNames[section];
 }
 
@@ -61,58 +105,41 @@
     return 60;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (void)loadData
+{
+    NSString *URL = @"http://172.18.178.56/api/notification/all";
     
-    // Configure the cell...
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    return cell;
+    [manager GET:URL parameters:nil headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"%@",responseObject);
+            NSDictionary *response = (NSDictionary *)responseObject;
+            if([response[@"State"] isEqualToString:@"success"])
+            {
+                self.likeItems = [NSMutableArray new];
+                self.replyItems = [NSMutableArray new];
+                NSArray *data = response[@"Notification"];
+                NSInteger n = [data count];
+                for(int i = 0; i < n; i++)
+                {
+                    FullNotificationItem *newItem = [[FullNotificationItem alloc]initWithDict:data[i]];
+                    if([newItem.notificationItem.notificationType isEqualToString:@"like"])
+                    {
+                        [self.likeItems addObject:newItem];
+                    }
+                    else if([newItem.notificationItem.notificationType isEqualToString:@"reply"])
+                    {
+                        [self.replyItems addObject:newItem];
+                    }
+                }
+                NSLog(@"item number: %ld", n);
+            }
+            [self.tableView reloadData];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"failed to fetch notifications somehow");
+        }];
 }
-*/
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

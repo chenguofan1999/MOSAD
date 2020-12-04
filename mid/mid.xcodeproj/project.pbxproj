@@ -97,6 +97,8 @@
 		56F90B202578CED50055A2B0 /* AlbumItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B1F2578CED50055A2B0 /* AlbumItem.m */; };
 		56F90B232578D5AD0055A2B0 /* noImage.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 56F90B222578D5AD0055A2B0 /* noImage.jpg */; };
 		56F90B272579031A0055A2B0 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B26257903190055A2B0 /* UserItem.m */; };
+		56F90B302579C8A30055A2B0 /* NotificationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B2F2579C8A30055A2B0 /* NotificationItem.m */; };
+		56F90B342579C8B10055A2B0 /* FullNotificationItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 56F90B332579C8B10055A2B0 /* FullNotificationItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -225,6 +227,10 @@
 		56F90B222578D5AD0055A2B0 /* noImage.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noImage.jpg; sourceTree = "<group>"; };
 		56F90B25257903190055A2B0 /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		56F90B26257903190055A2B0 /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
+		56F90B2E2579C8A30055A2B0 /* NotificationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NotificationItem.h; sourceTree = "<group>"; };
+		56F90B2F2579C8A30055A2B0 /* NotificationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NotificationItem.m; sourceTree = "<group>"; };
+		56F90B322579C8B10055A2B0 /* FullNotificationItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FullNotificationItem.h; sourceTree = "<group>"; };
+		56F90B332579C8B10055A2B0 /* FullNotificationItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FullNotificationItem.m; sourceTree = "<group>"; };
 		851432155450AFC1E98CD4C1 /* Pods-mid.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.debug.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.debug.xcconfig"; sourceTree = "<group>"; };
 		F53B90CB129DAE2B4B92505A /* Pods-mid.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-mid.release.xcconfig"; path = "Target Support Files/Pods-mid/Pods-mid.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -545,6 +551,10 @@
 				56F90B1F2578CED50055A2B0 /* AlbumItem.m */,
 				56F90B25257903190055A2B0 /* UserItem.h */,
 				56F90B26257903190055A2B0 /* UserItem.m */,
+				56F90B2E2579C8A30055A2B0 /* NotificationItem.h */,
+				56F90B2F2579C8A30055A2B0 /* NotificationItem.m */,
+				56F90B322579C8B10055A2B0 /* FullNotificationItem.h */,
+				56F90B332579C8B10055A2B0 /* FullNotificationItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -729,6 +739,7 @@
 				56572A982577D0D600AE33D9 /* ContentItem.m in Sources */,
 				56572A992577D0D600AE33D9 /* FullDataItem.m in Sources */,
 				56572A9A2577D0D600AE33D9 /* FullCommentItem.m in Sources */,
+				56F90B302579C8A30055A2B0 /* NotificationItem.m in Sources */,
 				56572A9B2577D0D600AE33D9 /* ReplyItem.m in Sources */,
 				56572A9D2577D0D600AE33D9 /* LogInViewController.m in Sources */,
 				56572A9E2577D0D600AE33D9 /* PostCell.m in Sources */,
@@ -736,6 +747,7 @@
 				56572ADE257802B600AE33D9 /* FullContentItem.m in Sources */,
 				56572AA02577D0D600AE33D9 /* AlbumViewController.m in Sources */,
 				56572AA12577D0D600AE33D9 /* InfoViewController.m in Sources */,
+				56F90B342579C8B10055A2B0 /* FullNotificationItem.m in Sources */,
 				56572AA22577D0D600AE33D9 /* ProfilePageViewController.m in Sources */,
 				56572AA32577D0D600AE33D9 /* WritingPostViewController.m in Sources */,
 				56572AA42577D0D600AE33D9 /* CommentTableViewController.m in Sources */,

@@ -85,7 +85,7 @@
 {
     [UserInfo updateUserInfo];
     [_ivc.tableView reloadData];
-    [_mvc.tableView reloadData];
+    [_mvc loadData];
 }
 
 @end

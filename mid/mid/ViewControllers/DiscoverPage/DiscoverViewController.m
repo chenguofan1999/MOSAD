@@ -15,11 +15,13 @@
 #import "CommentTableViewController.h"
 #import "ProfilePageViewController.h"
 #import <AFNetworking/AFNetworking.h>
+#import <Masonry/Masonry.h>
 
 @interface DiscoverViewController ()
-@property (nonatomic) NSMutableArray *items;
+@property (nonatomic) NSMutableArray *contentItems;
 @property (nonatomic, strong) UILabel *header;
 @property (nonatomic, strong) UISegmentedControl *segmentBar;
+@property (nonatomic) UIButton *refreshButton;
 @end
 
 @implementation DiscoverViewController
@@ -47,7 +49,7 @@
     self.tableView.tableHeaderView = _header;
     
     // 初始化数据源
-    _items = [NSMutableArray new];
+    _contentItems = [NSMutableArray new];
     
     // 顶部 SegmentedControl
     NSArray *segmentedData = @[@"按时间线",@"按热度"];
@@ -88,7 +90,7 @@
         case 1:
             [_header setText:@"  最热内容"];
             // 排序
-            [_items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+            [_contentItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                 FullDataItem *item1 = (FullDataItem *)obj1;
                 FullDataItem *item2 = (FullDataItem *)obj2;
                 return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
@@ -108,7 +110,7 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_items count];
+    return [_contentItems count];
 }
 
 // 点击变灰后立即恢复
@@ -148,8 +150,8 @@
     
     // 设置 cell 的值
     long i = indexPath.row;
-    ContentItem *contentItem = [_items[i] contentItem];
-    MiniUserItem *userItem = [_items[i] userItem];
+    ContentItem *contentItem = [_contentItems[i] contentItem];
+    MiniUserItem *userItem = [_contentItems[i] userItem];
     
     if([contentItem.contentType isEqualToString:@"Text"])
     {
@@ -273,8 +275,8 @@
     // 已经得到indexPath
     NSLog(@"press avator button at row %ld", indexPath.row);
     NSInteger i = indexPath.row;
-    NSString *userID = [[_items[i] contentItem]ownerID];
-    NSString *userName = [[_items[i] userItem]userName];
+    NSString *userID = [[_contentItems[i] contentItem]ownerID];
+    NSString *userName = [[_contentItems[i] userItem]userName];
     [self.navigationController pushViewController:[[ProfilePageViewController alloc]initWithUserID:userID userName:userName] animated:NO];
 }
 
@@ -287,7 +289,7 @@
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     NSInteger i = indexPath.row;
-    NSString *contentID = [[_items[i] contentItem]contentID];
+    NSString *contentID = [[_contentItems[i] contentItem]contentID];
     NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -332,8 +334,8 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-    NSString *contentID = [[_items[indexPath.row] contentItem] contentID];
-    NSString *ownerID = [[_items[indexPath.row] contentItem] ownerID];
+    NSString *contentID = [[_contentItems[indexPath.row] contentItem] contentID];
+    NSString *ownerID = [[_contentItems[indexPath.row] contentItem] ownerID];
     //[self.navigationController pushViewController:[CommentTableViewController new] animated:NO];
     [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
@@ -352,20 +354,20 @@
 //        NSLog(@"%@",response);
         if([response[@"State"] isEqualToString:@"success"])
         {
-//            self.items = [NSMutableArray new];
+//            self.contentItems = [NSMutableArray new];
             NSArray *data = response[@"Data"];
             NSInteger n = [data count];
             for(int i = 0; i < n; i++)
             {
                 FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
                 NSLog(@"---->%@",data[i]);
-                if([self.items count] > i)
-                    self.items[i] = newItem;
-                else [self.items addObject:newItem];
+                if([self.contentItems count] > i)
+                    self.contentItems[i] = newItem;
+                else [self.contentItems addObject:newItem];
             }
             if([self.segmentBar selectedSegmentIndex] == 1)
             {
-                [self.items sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                [self.contentItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
                     FullDataItem *item1 = (FullDataItem *)obj1;
                     FullDataItem *item2 = (FullDataItem *)obj2;
                     return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
