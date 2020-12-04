@@ -21,7 +21,6 @@
 @property (nonatomic) NSMutableArray *contentItems;
 @property (nonatomic, strong) UILabel *header;
 @property (nonatomic, strong) UISegmentedControl *segmentBar;
-@property (nonatomic) UIButton *refreshButton;
 @end
 
 @implementation DiscoverViewController
@@ -69,12 +68,11 @@
     
     [self loadData];
     
-    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
-//    [self loadData];
+    [super viewWillAppear:animated];
 }
 
 #pragma mark 热门or时间顺序
@@ -123,6 +121,7 @@
 // cell 的具体属性
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
     // 以下代码得到一个 PostCell, 几乎没有数据，需要赋值。
     PostCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     if (cell == nil)
@@ -356,22 +355,24 @@
         {
 //            self.contentItems = [NSMutableArray new];
             NSArray *data = response[@"Data"];
-            NSInteger n = [data count];
-            for(int i = 0; i < n; i++)
+            if((NSNull *)data != [NSNull null])
             {
-                FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
-                NSLog(@"---->%@",data[i]);
-                if([self.contentItems count] > i)
-                    self.contentItems[i] = newItem;
-                else [self.contentItems addObject:newItem];
-            }
-            if([self.segmentBar selectedSegmentIndex] == 1)
-            {
-                [self.contentItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    FullDataItem *item1 = (FullDataItem *)obj1;
-                    FullDataItem *item2 = (FullDataItem *)obj2;
-                    return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
-                }];
+                NSInteger n = [data count];
+                for(int i = 0; i < n; i++)
+                {
+                    FullDataItem *newItem = [[FullDataItem alloc]initWithDict:data[i]];
+                    if([self.contentItems count] > i)
+                        self.contentItems[i] = newItem;
+                    else [self.contentItems addObject:newItem];
+                }
+                if([self.segmentBar selectedSegmentIndex] == 1)
+                {
+                    [self.contentItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        FullDataItem *item1 = (FullDataItem *)obj1;
+                        FullDataItem *item2 = (FullDataItem *)obj2;
+                        return item1.contentItem.commentNum + item1.contentItem.likeNum < item2.contentItem.commentNum + item2.contentItem.likeNum;
+                    }];
+                }
             }
         }
         [self.tableView reloadData];
@@ -393,5 +394,6 @@
     // 显示对话框
     [self presentViewController:alert animated:true completion:nil];
 }
+
 
 @end

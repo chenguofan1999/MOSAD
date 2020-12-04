@@ -177,7 +177,9 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_contentItems count];
+    if ((NSNull *)_contentItems != [NSNull null])
+        return [_contentItems count];
+    return 0;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath

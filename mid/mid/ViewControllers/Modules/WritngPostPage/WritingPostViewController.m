@@ -137,6 +137,7 @@
     NSString *URL = nil;
     if(_imageNum != 0)
     {
+        [body setValue:@[] forKey:@"tags"];
         URL = @"http://172.18.178.56/api/content/album";
         [manager POST:URL parameters:body headers:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
                 if(self.imageNum > 0)

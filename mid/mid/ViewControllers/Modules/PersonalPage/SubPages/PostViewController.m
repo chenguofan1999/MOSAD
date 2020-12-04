@@ -12,7 +12,7 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface PostViewController ()
-@property (nonatomic) NSMutableArray *items;
+@property (nonatomic) NSMutableArray *contentitems;
 @end
 
 @implementation PostViewController
@@ -43,7 +43,7 @@
 // Section 中的 Cell 个数
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [_items count];
+    return [_contentitems count];
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -81,7 +81,7 @@
 //    [cell addPic:[UIImage imageNamed:@"testPic.jpg"]];
     
     long i = indexPath.row;
-    ContentItem *contentItem = _items[i];
+    ContentItem *contentItem = _contentitems[i];
     
     if([contentItem.contentType isEqualToString:@"Text"])
     {
@@ -203,7 +203,7 @@
     // 已经得到indexPath
     NSLog(@"press like button at row %ld", indexPath.row);
     
-    NSString *contentID = [_items[indexPath.row] contentID];
+    NSString *contentID = [_contentitems[indexPath.row] contentID];
     NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",contentID];
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -248,8 +248,8 @@
     
     // 已经得到indexPath
     NSLog(@"press comment button at row %ld", indexPath.row);
-    NSString *contentID = [_items[indexPath.row] contentID];
-    NSString *ownerID = [_items[indexPath.row] ownerID];
+    NSString *contentID = [_contentitems[indexPath.row] contentID];
+    NSString *ownerID = [_contentitems[indexPath.row] ownerID];
     [self presentViewController:[[CommentTableViewController alloc]initWithContentID:contentID andOwnerID:ownerID] animated:YES completion:nil];
 }
 
@@ -274,7 +274,7 @@
         NSLog(@"%@",response);
         if([response[@"State"] isEqualToString:@"success"])
         {
-            self.items = [NSMutableArray new];
+            self.contentitems = [NSMutableArray new];
             NSArray *data = response[@"Data"];
             if((NSNull *)data != [NSNull null])
             {
@@ -283,7 +283,7 @@
                 for(int i = 0; i < n; i++)
                 {
                     ContentItem *newItem = [[ContentItem alloc]initWithDict:data[i]];
-                    [self.items addObject:newItem];
+                    [self.contentitems addObject:newItem];
                 }
             }
         }

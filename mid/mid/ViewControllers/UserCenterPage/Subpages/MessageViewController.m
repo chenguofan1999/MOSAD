@@ -162,23 +162,26 @@
                 self.likeItems = [NSMutableArray new];
                 self.replyItems = [NSMutableArray new];
                 NSArray *data = response[@"Notification"];
-                NSInteger n = [data count];
-                for(int i = 0; i < n; i++)
+                if((NSNull *)data != [NSNull null])
                 {
-                    FullNotificationItem *newItem = [[FullNotificationItem alloc]initWithDict:data[i]];
-                    if([newItem.notificationItem.notificationType isEqualToString:@"like"])
+                    NSInteger n = [data count];
+                    for(int i = 0; i < n; i++)
                     {
-                        [self.likeItems addObject:newItem];
+                        FullNotificationItem *newItem = [[FullNotificationItem alloc]initWithDict:data[i]];
+                        if([newItem.notificationItem.notificationType isEqualToString:@"like"])
+                        {
+                            [self.likeItems addObject:newItem];
+                        }
+                        else if([newItem.notificationItem.notificationType isEqualToString:@"reply"])
+                        {
+                            [self.replyItems addObject:newItem];
+                        }
                     }
-                    else if([newItem.notificationItem.notificationType isEqualToString:@"reply"])
-                    {
-                        [self.replyItems addObject:newItem];
-                    }
+                    [self.likeItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+                        FullNotificationItem *item1 = (FullNotificationItem *)obj1;
+                        return item1.notificationItem.read;
+                    }];
                 }
-                [self.likeItems sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
-                    FullNotificationItem *item1 = (FullNotificationItem *)obj1;
-                    return item1.notificationItem.read;
-                }];
             }
             [self.tableView reloadData];
         } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
