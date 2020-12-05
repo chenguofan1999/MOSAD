@@ -43,6 +43,7 @@
     self.commentContent = [NSString stringWithFormat:@"回复 %@: %@", commentOwnerName, replyContents];
     self.publishDate = [self timeStampToTime:[[fullReplyItem replyItem]publishDate]];
     self.likeNum = [[fullReplyItem replyItem]likeNum];
+    self.commentID = [[fullReplyItem replyItem]replyID];
     
     // 判断显示按钮: reply 不提供这两种功能
     self.hideReplyButton = YES;

@@ -125,22 +125,24 @@
     {
         ReplyCell *replyCell = [tableView dequeueReusableCellWithIdentifier:@"ReplyCell" forIndexPath:indexPath];
         replyCell.userNameLable.text = cellItem.userName;
-        replyCell.portraitButton.imageView.image = cellItem.avatar;
+        [replyCell.portraitButton setImage:cellItem.avatar forState:UIControlStateNormal];
         replyCell.textContentLable.text = cellItem.commentContent;
         replyCell.timeLable.text = cellItem.publishDate;
         replyCell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
+        [replyCell.likeButton addTarget:self action:@selector(likeReply:) forControlEvents:UIControlEventTouchUpInside];
         cell = replyCell;
     }
     else
     {
         CommentCell *commentCell = [tableView dequeueReusableCellWithIdentifier:@"CommentCell" forIndexPath:indexPath];
         commentCell.userNameLable.text = cellItem.userName;
-        commentCell.portraitButton.imageView.image = cellItem.avatar;
+        [commentCell.portraitButton setImage:cellItem.avatar forState:UIControlStateNormal];
         commentCell.textContentLable.text = cellItem.commentContent;
         commentCell.timeLable.text = cellItem.publishDate;
         commentCell.likeLabel.text = [NSString stringWithFormat:@"%d",cellItem.likeNum];
         [commentCell.deleteButton setHidden:cellItem.hideDeleteButton];
         [commentCell.replyButton setHidden:cellItem.hideReplyButton];
+        [commentCell.likeButton addTarget:self action:@selector(likeComment:) forControlEvents:UIControlEventTouchUpInside];
         // 添加 reply 事件
         if(cellItem.hideReplyButton == NO)
             [commentCell.replyButton addTarget:self action:@selector(pressReplyButton:) forControlEvents:UIControlEventTouchUpInside];
@@ -148,6 +150,94 @@
     }
     
     return cell;
+}
+
+#pragma mark Comment中的点赞button
+- (void)likeComment:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    CommentCell *cell = (CommentCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press like button at row %ld", indexPath.row);
+    
+    NSString *commentID = [_commentItems[indexPath.row] commentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",commentID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"isContent" : @NO,
+        @"isComment" : @YES,
+        @"isReply" : @NO
+    };
+    
+    NSLog(@"Id : %@", commentID);
+    
+    NSLog(@"尝试点赞");
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        if([responseObject[@"State"] isEqualToString:@"exist"])
+        {
+            NSLog(@"已经点赞，应取消点赞");
+            [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                [self loadData];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to patch somehow");
+            }];
+        }
+        else
+            [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to post somehow");
+    }];
+}
+
+#pragma mark reply 中的点赞button
+- (void)likeReply:(UIButton *)btn
+{
+    UIView *contentView = [btn superview];
+    ReplyCell *cell = (ReplyCell *)[contentView superview];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
+    // 已经得到indexPath
+    NSLog(@"press like button at row %ld", indexPath.row);
+    
+    NSString *replyID = [_commentItems[indexPath.row] commentID];
+    NSString *URL = [NSString stringWithFormat:@"%@%@",@"http://172.18.178.56/api/like/",replyID];
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSDictionary *body = @{
+        @"isContent" : @NO,
+        @"isComment" : @NO,
+        @"isReply" : @YES
+    };
+    
+    NSLog(@"Id : %@", replyID);
+    
+    NSLog(@"尝试点赞");
+    [manager POST:URL parameters:body headers:nil progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        if([responseObject[@"State"] isEqualToString:@"exist"])
+        {
+            NSLog(@"已经点赞，应取消点赞");
+            [manager PATCH:URL parameters:body headers:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                [self loadData];
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to patch somehow");
+            }];
+        }
+        else
+            [self loadData];
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to post somehow");
+    }];
 }
 
 #pragma mark 回复评论

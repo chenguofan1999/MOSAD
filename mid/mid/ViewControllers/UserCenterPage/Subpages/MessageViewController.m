@@ -56,7 +56,7 @@
         UIImage *avatar = [thisItem userItem].avatar;
         NSString *time = [self timeStampToTime:[thisItem notificationItem].createTime];
         
-        [cell.textLabel setText:[NSString stringWithFormat:@" %@ 点赞了你的内容", userName]];
+        [cell.textLabel setText:[NSString stringWithFormat:@" %@ 点赞了你", userName]];
         [cell.imageView setImage:avatar];
         [cell.detailTextLabel setText:time];
         
