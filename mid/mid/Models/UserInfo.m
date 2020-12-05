@@ -30,7 +30,10 @@ static UserInfo *userInfo = nil;
     sharedInfo.bio = dict[@"Info"][@"Bio"];
     sharedInfo.classNum = [dict[@"Class"] intValue];
     sharedInfo.gender = [dict[@"Info"][@"Gender"] intValue];
-//    NSString *avatarURL = dict[@"Info"][@"Avatar"];
+    
+    sharedInfo.maxSize = [dict[@"MaxSize"] longValue];
+    sharedInfo.usedSize = [dict[@"UsedSize"] longValue];
+    sharedInfo.singleSize = [dict[@"SingleSize"] longValue];
 
     if(sharedInfo.gender == 0)
         sharedInfo.avatar = [UIImage imageNamed:@"maleUser.png"];
@@ -38,7 +41,6 @@ static UserInfo *userInfo = nil;
         sharedInfo.avatar = [UIImage imageNamed:@"femaleUser.png"];
     else
         sharedInfo.avatar = [UIImage imageNamed:@"kawaii-dinosaur.png"];
-
 }
 
 + (void)updateUserInfo

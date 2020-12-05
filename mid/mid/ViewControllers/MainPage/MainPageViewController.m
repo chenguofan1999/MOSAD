@@ -158,7 +158,7 @@
     cell.userNameLabel.text = [UserInfo sharedUser].name;
     [cell.portraitButton setImage:[UserInfo sharedUser].avatar forState:UIControlStateNormal];
     [self setLabel:cell.textContentLable
-         WithTitle:contentItem.title
+         WithTitle:contentItem.contentTitle
               Tags:contentItem.tags
             Detail:contentItem.detail];
     cell.timeLable.text = [self timeStampToTime:[contentItem PublishDate]];
@@ -589,4 +589,25 @@
     // 显示对话框
     [self presentViewController:alert animated:true completion:nil];
 }
+
+# pragma mark searchBarDelegate
+- (void) searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    NSString *searchText = searchBar.text;
+    NSInteger n = [_contentItems count];
+    for(int i = 0; i < n; i++)
+    {
+        NSString *title = [_contentItems[i] contentTitle];
+        NSString *detail = [_contentItems[i] detail];
+//        PostCell *cellAtI = [self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:i]];
+        NSString *contentStringAtI = [NSString stringWithFormat:@"%@ %@",title,detail];
+        if([contentStringAtI rangeOfString:searchText].location != NSNotFound)
+        {
+            [self AlertWithTitle:@"找到了" message:[NSString stringWithFormat:@"第%d条", i+1]];
+            return;
+        }
+    }
+    [self AlertWithTitle:@"没找到" message:nil];
+}
+
 @end

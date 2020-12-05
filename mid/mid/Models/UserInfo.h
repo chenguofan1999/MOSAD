@@ -17,11 +17,10 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) NSString *bio;
 @property (nonatomic) int gender;
 
-@property (nonatomic) NSInteger *maxSize;
-@property (nonatomic) NSInteger *usedSize;
-@property (nonatomic) NSInteger *singleSize;
+@property (nonatomic) long maxSize;
+@property (nonatomic) long usedSize;
+@property (nonatomic) long singleSize;
 @property (nonatomic) UIImage *avatar;
-
 
 + (UserInfo *)sharedUser;
 + (void)configUser:(NSDictionary *)dict;

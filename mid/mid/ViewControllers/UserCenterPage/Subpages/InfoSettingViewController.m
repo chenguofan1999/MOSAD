@@ -33,7 +33,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 6;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -67,6 +67,14 @@
             cell.textLabel.text = @"班级";
             cell.detailTextLabel.text = [NSString stringWithFormat:@"%d",userInfo.classNum];
             break;
+        case 6:
+            cell.textLabel.text = @"个人空间限额";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",(float)userInfo.maxSize/1000000];
+            break;
+        case 7:
+            cell.textLabel.text = @"已用空间";
+            cell.detailTextLabel.text = [NSString stringWithFormat:@"%.2fM",(float)userInfo.usedSize/1000000];
+            break;
     }
 
     return cell;
@@ -90,6 +98,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSInteger i = indexPath.row;
+    if(i > 5) return;
     NSArray *array = @[@"用户名",@"邮箱",@"Bio",@"性别",@"Nick Name",@"班级"];
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:[NSString stringWithFormat:@"修改%@", array[i]] message:[NSString stringWithFormat:@"输入新的%@", array[i]] preferredStyle:UIAlertControllerStyleAlert];
     
@@ -129,6 +138,7 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"State"] isEqualToString:@"success"])
         {
+            [self.tableView reloadData];
             [self Alert:@"改名成功"];
         }
         else

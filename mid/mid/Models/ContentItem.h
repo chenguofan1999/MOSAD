@@ -10,7 +10,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface ContentItem : NSObject
-@property (nonatomic) NSString *title;
+@property (nonatomic) NSString *contentTitle;
 @property (nonatomic) NSString *detail;
 @property (nonatomic) NSMutableArray *tags;
 @property (nonatomic) NSString *contentType;

@@ -120,7 +120,7 @@
 {
     NSLog(@"一共 %d 张图", _imageNum);
     _postItem.images = _imageCache;
-    _postItem.title = _titleField.text;
+    _postItem.contentTitle = _titleField.text;
     _postItem.detail = _detailView.text;
     if([_postItem.detail isEqualToString:@"detail"])
         _postItem.detail = @"";

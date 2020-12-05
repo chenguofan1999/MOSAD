@@ -179,7 +179,7 @@
     cell.userNameLabel.text = userItem.userName;
     [cell.portraitButton setImage:userItem.avatar forState:UIControlStateNormal];
     [self setLabel:cell.textContentLable
-         WithTitle:contentItem.title
+         WithTitle:contentItem.contentTitle
               Tags:contentItem.tags
             Detail:contentItem.detail];
     cell.timeLable.text = [self timeStampToTime:[contentItem PublishDate]];

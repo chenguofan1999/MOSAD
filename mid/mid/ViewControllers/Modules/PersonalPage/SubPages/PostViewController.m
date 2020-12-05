@@ -30,6 +30,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadData];
+    [self.tableView setTableFooterView:[[UIView alloc] initWithFrame:CGRectZero]];
 }
 
 #pragma mark - UITableViewDataSource
@@ -107,7 +108,7 @@
     }
     
     [self setLabel:cell.textContentLable
-         WithTitle:contentItem.title
+         WithTitle:contentItem.contentTitle
               Tags:contentItem.tags
             Detail:contentItem.detail];
     cell.timeLable.text = [self timeStampToTime:[contentItem PublishDate]];

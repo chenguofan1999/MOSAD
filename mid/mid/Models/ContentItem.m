@@ -20,7 +20,7 @@
 - (NSDictionary *)getDict
 {
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] initWithDictionary:@{
-        @"title" : _title,
+        @"title" : _contentTitle,
         @"detail" : _detail,
         @"tags" : _tags,
         @"isPublic" : [NSNumber numberWithBool:_isPublic]
@@ -32,7 +32,7 @@
 - (instancetype)initWithDict:(NSDictionary *)dict
 {
     self = [super init];
-    self.title = dict[@"Name"];
+    self.contentTitle = dict[@"Name"];
     self.detail = dict[@"Detail"];
     self.isPublic = [dict[@"Public"] intValue] == 1;
     self.tags = (NSMutableArray *)dict[@"Tag"];
