@@ -2,6 +2,8 @@
 
 ![](pics/icon.jpg)
 
+[演示视频](https://streamable.com/0v1byb)
+
 ## 程序运行截图
 
 ### 登录界面
