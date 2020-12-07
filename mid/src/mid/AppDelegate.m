@@ -7,7 +7,7 @@
 
 #import "AppDelegate.h"
 #import "TabBarController.h"
-
+#import "LogInViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -21,7 +21,7 @@
         // In iOS 13 setup is done in SceneDelegate
     } else {
         self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen]bounds]];
-        self.window.rootViewController = [[TabBarController alloc] init];
+        self.window.rootViewController = [[LogInViewController alloc] init];
         self.window.backgroundColor = [UIColor whiteColor];
         NSLog(@"init in appDelegate");
         [self.window makeKeyAndVisible];
