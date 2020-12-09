@@ -12,7 +12,7 @@
 
 | 登录界面                                | 登录失败                                 | 个人信息                               |
 | --------------------------------------- | ---------------------------------------- | -------------------------------------- |
-| <img src="pics/login.png" width="400"/> | <img src="pics/login2.png" width="400"/> | <img src="pics/info.png" width="400"/> |
+| <img src="pics/login.png" width="400"/> | <img src="pics/login2.png" width="400"/> | <img src="pics/Info.png" width="400"/> |
 
 
 
@@ -34,7 +34,7 @@
 
 | 清空前                                   | 清空后                                       | 再次点击加载                             |
 | ---------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| <img src="pics/loaded.png" width="400"/> | <img src="pics/afterClear.png" width="400"/> | <img src="pics/loaded.png" width="400"/> |
+| <img src="pics/loaded.png" width="400"/> | <img src="pics/AfterClear.png" width="400"/> | <img src="pics/loaded.png" width="400"/> |
 
 
 
