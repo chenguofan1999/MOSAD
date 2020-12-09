@@ -27,7 +27,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opm-90-Z0e">
-                        <rect key="frame" x="205" y="20" width="145" height="25"/>
+                        <rect key="frame" x="205" y="30" width="145" height="25"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="25" id="9UD-bX-Gyd"/>
                             <constraint firstAttribute="width" constant="145" id="SDT-9u-Mg7"/>
@@ -37,7 +37,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Progress" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5TC-iP-Z00">
-                        <rect key="frame" x="205" y="130" width="145" height="30"/>
+                        <rect key="frame" x="205" y="126" width="145" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="145" id="2UA-Ri-UOf"/>
                             <constraint firstAttribute="height" constant="30" id="zN7-1H-NjR"/>
@@ -46,12 +46,9 @@
                         <color key="textColor" systemColor="systemGrayColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlQ-Bw-2FB">
-                        <rect key="frame" x="206" y="50" width="155" height="75"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="75" id="cmO-DY-JX5"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DlQ-Bw-2FB">
+                        <rect key="frame" x="206" y="60" width="155" height="19.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -63,7 +60,7 @@
                         </constraints>
                     </activityIndicatorView>
                     <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Lda-ax-bA3">
-                        <rect key="frame" x="205" y="170" width="150" height="4"/>
+                        <rect key="frame" x="205" y="166" width="150" height="4"/>
                         <color key="tintColor" systemColor="systemIndigoColor"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="150" id="jlH-35-MPF"/>
@@ -76,22 +73,23 @@
                     <constraint firstItem="jhU-24-nOS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="10" id="Bxo-hl-5EQ"/>
                     <constraint firstAttribute="trailing" secondItem="DlQ-Bw-2FB" secondAttribute="trailing" constant="9" id="DDE-Ml-h9o"/>
                     <constraint firstItem="Lda-ax-bA3" firstAttribute="top" secondItem="5TC-iP-Z00" secondAttribute="bottom" constant="10" id="DrP-FO-xfV"/>
-                    <constraint firstItem="opm-90-Z0e" firstAttribute="top" secondItem="jhU-24-nOS" secondAttribute="top" constant="10" id="Gi5-hz-FZF"/>
+                    <constraint firstItem="opm-90-Z0e" firstAttribute="top" secondItem="jhU-24-nOS" secondAttribute="top" constant="20" id="Gi5-hz-FZF"/>
                     <constraint firstItem="P25-9G-YCp" firstAttribute="centerX" secondItem="jhU-24-nOS" secondAttribute="centerX" id="Pjs-Fb-pej"/>
                     <constraint firstItem="P25-9G-YCp" firstAttribute="centerY" secondItem="jhU-24-nOS" secondAttribute="centerY" id="dQB-LN-LKa"/>
                     <constraint firstItem="opm-90-Z0e" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="205" id="gAH-46-g5n"/>
                     <constraint firstItem="DlQ-Bw-2FB" firstAttribute="leading" secondItem="opm-90-Z0e" secondAttribute="leading" constant="1" id="nZd-hQ-qtN"/>
+                    <constraint firstItem="Lda-ax-bA3" firstAttribute="bottom" secondItem="jhU-24-nOS" secondAttribute="bottom" constant="-20" id="pRz-Zj-EUY"/>
                     <constraint firstAttribute="bottom" secondItem="jhU-24-nOS" secondAttribute="bottom" constant="10" id="t3D-EG-v5B"/>
                     <constraint firstItem="jhU-24-nOS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="u9b-5z-r75"/>
                     <constraint firstItem="Lda-ax-bA3" firstAttribute="leading" secondItem="opm-90-Z0e" secondAttribute="leading" id="uEL-fP-Xt3"/>
                     <constraint firstItem="5TC-iP-Z00" firstAttribute="leading" secondItem="opm-90-Z0e" secondAttribute="leading" id="ve5-Fu-ub1"/>
-                    <constraint firstItem="5TC-iP-Z00" firstAttribute="top" secondItem="opm-90-Z0e" secondAttribute="bottom" constant="85" id="xVo-S6-78z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="aW0-zy-SZf"/>
             <connections>
                 <outlet property="indicator" destination="P25-9G-YCp" id="hf4-3u-hJB"/>
                 <outlet property="infoLabel" destination="DlQ-Bw-2FB" id="Zkp-r9-6ll"/>
+                <outlet property="infoTitleLabel" destination="opm-90-Z0e" id="r1a-1y-zco"/>
                 <outlet property="myImageView" destination="jhU-24-nOS" id="FYb-eR-04D"/>
                 <outlet property="progressBar" destination="Lda-ax-bA3" id="v1n-iL-cdb"/>
             </connections>

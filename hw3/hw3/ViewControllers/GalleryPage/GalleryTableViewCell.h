@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface GalleryTableViewCell : UITableViewCell
 @property (nonatomic, strong) IBOutlet UIImageView *myImageView;
 @property (nonatomic, strong) IBOutlet UILabel *infoLabel;
+@property (nonatomic, strong) IBOutlet UILabel *infoTitleLabel;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *indicator;
 @property (nonatomic, strong) IBOutlet UIProgressView *progressBar;
 @end
