@@ -53,7 +53,7 @@
 //    // 获取xxx.app程序包
 //    NSBundle *myBundle = [NSBundle mainBundle];
 //    NSLog(@"app程序包 = %@",myBundle);
-    
+//
 //    // 获取管理文件系统的单例
 //    NSFileManager *fileManager = [NSFileManager defaultManager];
     
