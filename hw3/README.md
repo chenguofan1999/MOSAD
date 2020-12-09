@@ -12,7 +12,7 @@
 
 | 登录界面                                | 登录失败                                 | 个人信息                               |
 | --------------------------------------- | ---------------------------------------- | -------------------------------------- |
-| <img src="pics/login.png" width="400"/> | <img src="pics/login2.png" width="400"/> | <img src="pics/Info.png" width="400"/> |
+| <img src="pics/login.png" width="500"/> | <img src="pics/login2.png" width="500"/> | <img src="pics/Info.png" width="500"/> |
 
 
 
@@ -24,7 +24,7 @@
 
 |                  加载中                   |                 加载完成                 | 沙盒内缓存                              |
 | :---------------------------------------: | :--------------------------------------: | --------------------------------------- |
-| <img src="pics/loading.png" width="400"/> | <img src="pics/loaded.png" width="400"/> | <img src="pics/cache.png" width="600"/> |
+| <img src="pics/loading.png" width="500"/> | <img src="pics/loaded.png" width="500"/> | <img src="pics/cache.png" width="600"/> |
 
 
 
@@ -34,17 +34,17 @@
 
 | 清空前                                   | 清空后                                       | 再次点击加载                             |
 | ---------------------------------------- | -------------------------------------------- | ---------------------------------------- |
-| <img src="pics/loaded.png" width="400"/> | <img src="pics/AfterClear.png" width="400"/> | <img src="pics/loaded.png" width="400"/> |
+| <img src="pics/loaded.png" width="500"/> | <img src="pics/AfterClear.png" width="500"/> | <img src="pics/loaded.png" width="500"/> |
 
 
 
 #### 删除缓存
 
-**删除后点击加载：**需要加载 
+**删除后点击加载**: 需要加载 
 
 | 删除缓存前                               | 删除缓存后                                    | 再次点击加载                              |
 | ---------------------------------------- | --------------------------------------------- | ----------------------------------------- |
-| <img src="pics/loaded.png" width="400"/> | <img src="pics/afterDelete.png" width="400"/> | <img src="pics/loading.png" width="400"/> |
+| <img src="pics/loaded.png" width="500"/> | <img src="pics/afterDelete.png" width="500"/> | <img src="pics/loading.png" width="500"/> |
 
 
 
