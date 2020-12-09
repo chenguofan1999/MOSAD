@@ -1,4 +1,4 @@
-# HW2
+# HW2 
 
 
 
@@ -134,7 +134,7 @@ AppDelegate 有一个实例方法用于将数据按时间倒序排列，以达�
 本类实现了发现页面。  
 发现页面由一个搜索框 (`UISearchBar`) 和一个 `UITableView` 组成。  
 
-![](pics/findView.png)
+<img src="pics/findView.png" width="500"/>
 
 ### 实现 `UITableView`
 
@@ -241,7 +241,8 @@ AppDelegate 有一个实例方法用于将数据按时间倒序排列，以达�
 ## `DetailViewController` 类
 
 本类实现的是打卡详情页面。  
-![](pics/detailView.png)
+
+<img src="pics/detailView.png" width="500"/>
 
 该类主要需要解决的问题是数据传送的问题，这里用**构造函数传值**的方法解决了问题。  
 
@@ -320,7 +321,7 @@ AppDelegate 有一个实例方法用于将数据按时间倒序排列，以达�
 
 本类实现的是打卡页面。  
 
-![](pics/InsertView.png)
+<img src="pics/InsertView.png" width="500"/>
 
 打卡页面包含以下控件：
 
@@ -387,7 +388,7 @@ AppDelegate 有一个实例方法用于将数据按时间倒序排列，以达�
 
 `LogInViewController` 类实现的是"我的"页面，该页面并无特别的知识点。
 
-![](pics/logInView.png)
+<img src="pics/logInView.png" width="500"/>
 
 我实现该界面的方法是当点击按钮后直接清空整个页面的控件，用以下这条危险的语句：
 
@@ -398,4 +399,5 @@ AppDelegate 有一个实例方法用于将数据按时间倒序排列，以达�
 
 然后从新绘制登录后的界面。
 
-![](pics/logedInView.png)
+<img src="pics/logedInView.png" width="500"/>
+
