@@ -10,47 +10,46 @@
 
 ### 登录界面
 
-<img src="pics/登录页面.png" style="zoom:50%;" />
+<img src="pics/登录页面.png" width="500" />
 
 ### 注册界面
 
-<img src="pics/注册页面.png" style="zoom:50%;" />
+<img src="pics/注册页面.png" width="500" />
 
 ### "我的"界面
 
-<img src="pics/我的-album类.png" style="zoom:50%;" />
+<img src="pics/我的-album类.png" width="500" />
 
-<img src="pics/我的-text类.png" style="zoom:50%;" />
+<img src="pics/我的-text类.png" width="500" />
+
 
 ### 个人界面
 
-<img src="pics/个人页面-信息.png" style="zoom:50%;" />
+<img src="pics/个人页面-信息.png" width="500" />
 
-<img src="pics/个人页面-album类.png" style="zoom:50%;" />
+<img src="pics/个人页面-album类.png" width="500" />
 
-<img src="pics/个人页面-text类.png" style="zoom:50%;" />
+<img src="pics/个人页面-text类.png" width="500" />
 
 
 ### 创作界面
 
-<img src="pics/创作页面-空.png" style="zoom:50%;" />
+<img src="pics/创作页面-空.png" width="500" />
 
-<img src="pics/创作页面-编辑中.png" style="zoom:50%;" />
+<img src="pics/创作页面-编辑中.png" width="500" />
 
 ### 广场
 
-<img src="pics/广场-时间排序.png" style="zoom:50%;" />
+<img src="pics/广场-时间排序.png" width="500" />
 
-<img src="pics/广场-热度排序.png" style="zoom:50%;" />
+<img src="pics/广场-热度排序.png" width="500" />
 
 
 ### 个人中心
 
-<img src="pics/个人中心-信息.png" style="zoom:50%;" />
+<img src="pics/个人中心-信息.png" width="500" />
 
-
-
-<img src="pics/个人中心-通知.png" style="zoom:50%;" />
+<img src="pics/个人中心-通知.png" width="500" />
 
 # 实现时解决的一些问题
 
@@ -192,7 +191,7 @@
 
 效果图：
 
-<img src="pics/commentPage.png" style="zoom:50%;" />
+<img src="pics/commentPage.png" width="500" />
 
 ## 问题6: 一条内容中不定数量的图片的显示
 
@@ -206,11 +205,11 @@
 
 我的解决方案是用一个可横向滑动的 UIScrollView 来做图片区域，当图片增加，UIScrollView 的 contentSize 也随之动态地增加。下图中箭头所指的图片区域即为我的实现。遗憾的是往 Cell 中动态添加图片导致了一定程度的性能下降。
 
-<img src="pics/imageZone.jpg" style="zoom:50%;" />
+<img src="pics/imageZone.jpg" width="500" />
 
 同样的解决方案被应用在了创作页面的图片区域:
 
-<img src="pics/writePost.png" style="zoom:50%;" />
+<img src="pics/writePost.png" width="500" />
 
 这里没有性能的问题，呈现出的效果是优雅的。
 
