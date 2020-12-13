@@ -8,6 +8,8 @@
 
 在校园网环境下使用用户名 *MOSAD* ，密码 *2020* 登录。
 
+（非校园网环境可在 `SceneDelegate.m` / `Appdelegate.m` 中将程序入口改为 `GalleryViewController` , 跳过登录部分）
+
 | 登录界面                                | 登录失败                                 | 个人信息                               |
 | --------------------------------------- | ---------------------------------------- | -------------------------------------- |
 | <img src="pics/login.png" width="500"/> | <img src="pics/login2.png" width="500"/> | <img src="pics/Info.png" width="500"/> |
