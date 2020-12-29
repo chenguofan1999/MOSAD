@@ -27,6 +27,7 @@
     self = [super init];
     self.tabBarItem = [[UITabBarItem alloc]initWithTabBarSystemItem:UITabBarSystemItemDownloads tag:1];
     self.tabBarItem.title = @"Info";
+    
     return self;
 }
 

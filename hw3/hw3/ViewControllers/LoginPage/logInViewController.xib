@@ -32,6 +32,7 @@
                                 <constraint firstAttribute="height" constant="37" id="MaM-pe-skg"/>
                                 <constraint firstAttribute="height" constant="37" id="b8y-5Q-UTz"/>
                             </constraints>
+                            <color key="tintColor" systemColor="systemBlueColor"/>
                             <state key="normal" title="登录">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
