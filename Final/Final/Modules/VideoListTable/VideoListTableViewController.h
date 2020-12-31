@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 @interface VideoListTableViewController : UITableViewController
 @property (nonatomic, strong) NSString *serviceURL;
 @property (nonatomic, strong) NSMutableArray *contentItems;
+- (instancetype)initWithURL:(NSString *)URL;
+- (void)loadData;
 @end
 
 NS_ASSUME_NONNULL_END

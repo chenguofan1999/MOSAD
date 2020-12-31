@@ -14,8 +14,8 @@
 #import "HomePageViewController.h"
 #import "PostContentViewController.h"
 #import "VideoListTableViewController.h"
-#import "PlusButton.h"
 #import "UserInfo.h"
+#import "AppConfig.h"
 
 @interface MainTabBarController ()
 
@@ -38,7 +38,6 @@
     
     
     [self customizeTabBarAppearance:tabBarController];
-//    self.navigationController.navigationBar.hidden = YES;
     
     
     return (self = (MainTabBarController *)tabBarController);
@@ -47,13 +46,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [PlusButton registerPlusButton];
+//    [PlusButton registerPlusButton];
     
 }
 
 - (void)customizeTabBarAppearance:(CYLTabBarController *)tabBarController
 {
-    [tabBarController.tabBar setTintColor:[UIColor darkGrayColor]];
+//    [tabBarController.tabBar setTintColor:[UIColor darkGrayColor]];
+    [tabBarController.tabBar setTintColor:[AppConfig getMainColor]];
     [tabBarController.tabBar setUnselectedItemTintColor:[UIColor darkGrayColor]];
     [tabBarController.tabBar setTranslucent:NO];
     
@@ -62,7 +62,7 @@
 
 - (NSArray *)viewControllers {
     // Home Page
-    VideoListTableViewController *homePageViewController = [[VideoListTableViewController alloc] init];
+    HomePageViewController *homePageViewController = [[HomePageViewController alloc] init];
     UIViewController *homePageNavigationController = [[CYLBaseNavigationController alloc]
                                                   initWithRootViewController:homePageViewController];
     [homePageViewController cyl_setHideNavigationBarSeparator:YES];
@@ -92,7 +92,6 @@
     
     NSArray *viewControllers = @[homePageNavigationController,
                                  subscribingPageNavigationController,
-//                                 postContentNavigationController,
                                  explorePageNavigationController,
                                  libraryPageNavigationController];
    return viewControllers;
@@ -101,12 +100,12 @@
 - (NSArray *)tabBarItemsAttributesForController {
     NSDictionary *homeTabBarItemsAttributes = @{
                                                 CYLTabBarItemTitle : @"Home",
-                                                CYLTabBarItemImage : [UIImage imageNamed:@"home@2x.png"],
+                                                CYLTabBarItemImage : [UIImage imageNamed:@"home-filled@2x.png"],
                                                 CYLTabBarItemSelectedImage : [UIImage imageNamed:@"home-filled@2x.png"],
                                                 };
     NSDictionary *subscriptionTabBarItemsAttributes = @{
                                                 CYLTabBarItemTitle : @"Subscriptions",
-                                                CYLTabBarItemImage : [UIImage imageNamed:@"playlist@2x.png"],
+                                                CYLTabBarItemImage : [UIImage imageNamed:@"playlist-filled@2x.png"],
                                                 CYLTabBarItemSelectedImage : [UIImage imageNamed:@"playlist-filled@2x.png"],
                                                 };
 //    NSDictionary *plusTabBarItemsAttributes = @{
@@ -115,20 +114,19 @@
 //                                                };
     NSDictionary *exploreTabBarItemsAttributes = @{
                                                 CYLTabBarItemTitle : @"Explore",
-                                                CYLTabBarItemImage : [UIImage imageNamed:@"compass@2x.png"],
+                                                CYLTabBarItemImage : [UIImage imageNamed:@"compass-filled@2x.png"],
                                                 CYLTabBarItemSelectedImage : [UIImage imageNamed:@"compass-filled@2x.png"],
                                                 };
     NSDictionary *libraryTabBarItemsAttributes = @{
                                                 CYLTabBarItemTitle : @"Library",
-                                                CYLTabBarItemImage : [UIImage imageNamed:@"laptop-play@2x.png"],
-                                                CYLTabBarItemSelectedImage : [UIImage imageNamed:@"laptop-play-filled@2x.png"],
+                                                CYLTabBarItemImage : [UIImage imageNamed:@"play-property@2x.png"],
+                                                CYLTabBarItemSelectedImage : [UIImage imageNamed:@"play-property@2x.png"],
                                                 };
    
 
     NSArray *tabBarItemsAttributes = @[
                                       homeTabBarItemsAttributes,
                                       subscriptionTabBarItemsAttributes,
-//                                      plusTabBarItemsAttributes,
                                       exploreTabBarItemsAttributes,
                                       libraryTabBarItemsAttributes
                                       ];
@@ -139,6 +137,8 @@
 //   [[self cyl_tabBarController] updateSelectionStatusIfNeededForTabBarController:tabBarController shouldSelectViewController:viewController];
 //   return YES;
 //}
+
+
 
 
 //- (void)tabBarController:(UITabBarController *)tabBarController didSelectControl:(UIControl *)control {

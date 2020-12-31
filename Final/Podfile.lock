@@ -49,6 +49,17 @@ PODS:
   - "MaterialComponents/Buttons+TypographyThemer (119.3.0)":
     - MaterialComponents/Buttons
     - MaterialComponents/schemes/Typography
+  - MaterialComponents/Cards (119.3.0):
+    - MaterialComponents/Elevation
+    - MaterialComponents/Ink
+    - MaterialComponents/private/Icons/ic_check_circle
+    - MaterialComponents/private/Math
+    - MaterialComponents/Ripple
+    - MaterialComponents/ShadowLayer
+    - MaterialComponents/Shapes
+  - "MaterialComponents/Cards+Theming (119.3.0)":
+    - MaterialComponents/Cards
+    - MaterialComponents/schemes/Container
   - MaterialComponents/Dialogs (119.3.0):
     - MaterialComponents/Buttons
     - MaterialComponents/Elevation
@@ -69,6 +80,9 @@ PODS:
   - MaterialComponents/private/Application (119.3.0)
   - MaterialComponents/private/Color (119.3.0):
     - MaterialComponents/Availability
+  - MaterialComponents/private/Icons/Base (119.3.0)
+  - MaterialComponents/private/Icons/ic_check_circle (119.3.0):
+    - MaterialComponents/private/Icons/Base
   - MaterialComponents/private/KeyboardWatcher (119.3.0):
     - MaterialComponents/private/Application
   - MaterialComponents/private/Math (119.3.0)
@@ -155,10 +169,73 @@ PODS:
     - MDFTextAccessibility
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
+  - MJRefresh (3.5.0)
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
+  - SJBaseVideoPlayer (3.4.5):
+    - Masonry
+    - SJBaseVideoPlayer/AVPlayer (= 3.4.5)
+    - SJBaseVideoPlayer/Common (= 3.4.5)
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper
+    - SJUIKit/Queues
+    - SJUIKit/SQLite3
+  - SJBaseVideoPlayer/AVPlayer (3.4.5):
+    - Masonry
+    - SJBaseVideoPlayer/Common
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper
+    - SJUIKit/Queues
+    - SJUIKit/SQLite3
+  - SJBaseVideoPlayer/Common (3.4.5):
+    - Masonry
+    - SJBaseVideoPlayer/ResourceLoader
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper
+    - SJUIKit/Queues
+    - SJUIKit/SQLite3
+  - SJBaseVideoPlayer/ResourceLoader (3.4.5):
+    - Masonry
+    - SJUIKit/AttributesFactory (>= 0.0.0.38)
+    - SJUIKit/ObserverHelper
+    - SJUIKit/Queues
+    - SJUIKit/SQLite3
+  - SJUIKit/AttributesFactory (0.0.0.51):
+    - SJUIKit/AttributesFactory/Deprecated (= 0.0.0.51)
+    - SJUIKit/AttributesFactory/UIKitText (= 0.0.0.51)
+  - SJUIKit/AttributesFactory/Deprecated (0.0.0.51)
+  - SJUIKit/AttributesFactory/UIKitText (0.0.0.51)
+  - SJUIKit/ObserverHelper (0.0.0.51)
+  - SJUIKit/Queues (0.0.0.51)
+  - SJUIKit/SQLite3 (0.0.0.51):
+    - SJUIKit/SQLite3/Core (= 0.0.0.51)
+    - SJUIKit/SQLite3/Protocol (= 0.0.0.51)
+    - YYModel
+  - SJUIKit/SQLite3/Core (0.0.0.51):
+    - SJUIKit/SQLite3/Protocol
+    - YYModel
+  - SJUIKit/SQLite3/Protocol (0.0.0.51):
+    - YYModel
+  - SJVideoPlayer (3.2.9):
+    - SJBaseVideoPlayer (>= 3.4.5)
+    - SJVideoPlayer/Common (= 3.2.9)
+    - SJVideoPlayer/ControlLayers (= 3.2.9)
+    - SJVideoPlayer/ResourceLoader (= 3.2.9)
+  - SJVideoPlayer/Common (3.2.9):
+    - Masonry
+    - SJBaseVideoPlayer (>= 3.4.5)
+    - SJUIKit/AttributesFactory
+    - SJVideoPlayer/ResourceLoader
+  - SJVideoPlayer/ControlLayers (3.2.9):
+    - SJBaseVideoPlayer (>= 3.4.5)
+    - SJVideoPlayer/Common
+  - SJVideoPlayer/ResourceLoader (3.2.9):
+    - SJBaseVideoPlayer (>= 3.4.5)
   - "UITextView+Placeholder (1.4.0)"
+  - WMPlayer (5.0.0):
+    - Masonry
+  - YYModel (1.0.4)
 
 DEPENDENCIES:
   - AFNetworking
@@ -166,12 +243,16 @@ DEPENDENCIES:
   - DZNEmptyDataSet
   - Masonry
   - "MaterialComponents/Buttons+Theming"
+  - "MaterialComponents/Cards+Theming"
   - MaterialComponents/Dialogs
   - "MaterialComponents/Tabs+TabBarView"
   - "MaterialComponents/TextControls+FilledTextFields"
   - "MaterialComponents/TextControls+OutlinedTextFields"
+  - MJRefresh
   - SDWebImage
+  - SJVideoPlayer
   - "UITextView+Placeholder"
+  - WMPlayer
 
 SPEC REPOS:
   trunk:
@@ -182,8 +263,14 @@ SPEC REPOS:
     - MaterialComponents
     - MDFInternationalization
     - MDFTextAccessibility
+    - MJRefresh
     - SDWebImage
+    - SJBaseVideoPlayer
+    - SJUIKit
+    - SJVideoPlayer
     - "UITextView+Placeholder"
+    - WMPlayer
+    - YYModel
 
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
@@ -193,9 +280,15 @@ SPEC CHECKSUMS:
   MaterialComponents: 49658f0fd7ef6e098e9943fce3f293e700595570
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
+  SJBaseVideoPlayer: 0ecccbae3bf6cad55187113247ea88f711bef276
+  SJUIKit: bdf86af3648e70483c57e2bfe2fcc7531337fa54
+  SJVideoPlayer: 3cccc263bc03edccedc1b2be887b903e3dfca106
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
+  WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
+  YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 64ffecefbd1befc1c77146c0b81b38a7574b585e
+PODFILE CHECKSUM: 19b659cbaae758d93c1dc907e9c93481d43f1ea1
 
 COCOAPODS: 1.10.0

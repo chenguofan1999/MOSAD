@@ -13,7 +13,7 @@
         <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="201" id="KGk-i7-Jjw" customClass="VideoListTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="381" height="279"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="381" height="279"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -56,7 +56,6 @@
                     <constraint firstItem="8Sm-MO-zRM" firstAttribute="leading" secondItem="BMM-jn-hAF" secondAttribute="leading" id="eVH-tq-2Bj"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BMM-jn-hAF" secondAttribute="trailing" constant="10" id="qV2-A5-suD"/>
                     <constraint firstItem="fbh-xQ-iCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wxa-NO-rCT"/>
-                    <constraint firstAttribute="bottom" secondItem="Sk0-9E-PtV" secondAttribute="bottom" constant="15" id="yYX-yx-Vg5"/>
                     <constraint firstItem="fbh-xQ-iCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yrd-p2-iSY"/>
                 </constraints>
             </tableViewCellContentView>

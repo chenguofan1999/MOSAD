@@ -12,5 +12,6 @@
 @property (strong, nonatomic) UIWindow * window;
 + (UIWindow *)mainWindow;
 + (bool)isIphoneXSerie;
++ (void)jumpToTabBar;
 @end
 

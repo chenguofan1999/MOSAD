@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic) int followerNum;
 @property (nonatomic) int followingNum;
 @property (nonatomic) int likeNum;
-
+@property (nonatomic) NSMutableArray *userTags;
 
 + (UserInfo *)sharedUser;
 + (void)configUser:(NSDictionary *)dict;

@@ -19,7 +19,6 @@
     [_avatarButton setBackgroundImage:nil forState:UIControlStateNormal];
     
     
-    
     // 封面图片样式
     _coverImage.layer.masksToBounds = YES;
     _coverImage.clipsToBounds = YES;

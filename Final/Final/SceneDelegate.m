@@ -11,6 +11,7 @@
 #import "PostContentViewController.h"
 #import "VideoListTableViewController.h"
 #import "LoginPageViewController.h"
+#import "UserInfo.h"
 @interface SceneDelegate ()
 
 @end
@@ -26,11 +27,36 @@
     self.window.rootViewController = [[LoginPageViewController alloc] init];
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
-    
-    if(CYLExternPlusButton)
-        [CYLExternPlusButton addTarget:self action:@selector(AddPostButtonClcked:) forControlEvents:UIControlEventTouchUpInside];
 }
 
++ (UIWindow *)mainWindow
+{
+    UIWindow* window = nil;
+    for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes)
+        if (windowScene.activationState == UISceneActivationStateForegroundActive)
+        {
+            window = windowScene.windows.firstObject;
+            break;
+        }
+    return window;
+}
+
++ (bool)isIphoneXSerie
+{
+    if (@available(iOS 11.0, *)) {
+        UIWindow* window = [SceneDelegate mainWindow];
+            if (window.safeAreaInsets.top > 24.0) {
+                return YES;
+            }
+        }
+    return NO;
+}
+
++ (void)jumpToTabBar
+{
+    UIWindow* mainwindow = [SceneDelegate mainWindow];
+    mainwindow.rootViewController = [MainTabBarController new];
+}
 
 - (void)sceneDidDisconnect:(UIScene *)scene {
     // Called as the scene is being released by the system.
@@ -64,34 +90,8 @@
     // to restore the scene back to its current state.
 }
 
-- (void)AddPostButtonClcked:(id)sender{
-    PostContentViewController *pvc = [PostContentViewController new];
-//    pvc.modalPresentationStyle = UIModalPresentationFullScreen;
-    
-    [self.window.rootViewController presentViewController:pvc animated:YES completion:nil];
-}
 
-+ (UIWindow *)mainWindow
-{
-    UIWindow* window = nil;
-    for (UIWindowScene* windowScene in [UIApplication sharedApplication].connectedScenes)
-        if (windowScene.activationState == UISceneActivationStateForegroundActive)
-        {
-            window = windowScene.windows.firstObject;
-            break;
-        }
-    return window;
-}
 
-+ (bool)isIphoneXSerie
-{
-    if (@available(iOS 11.0, *)) {
-        UIWindow* window = [SceneDelegate mainWindow];
-            if (window.safeAreaInsets.top > 24.0) {
-                return YES;
-            }
-        }
-    return NO;
-}
+
 
 @end

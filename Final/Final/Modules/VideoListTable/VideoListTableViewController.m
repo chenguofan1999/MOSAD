@@ -10,12 +10,22 @@
 #import <AFNetworking/AFNetworking.h>
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImage/UIButton+WebCache.h>
+#import <MJRefresh/MJRefresh.h>
 #import "TimeTool.h"
+#import "VideoPageViewController.h"
+#import "UserInfo.h"
+#import "DetailedContentItem.h"
 @interface VideoListTableViewController ()
-
+@property (nonatomic) int contentNum;
 @end
 
 @implementation VideoListTableViewController
+- (instancetype)initWithURL:(NSString *)URL
+{
+    self = [super init];
+    self.serviceURL = URL;
+    return self;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -29,15 +39,19 @@
     // 注册
     UINib *nib = [UINib nibWithNibName:@"VideoListTableViewCell" bundle:nil];
     [self.tableView registerNib:nib forCellReuseIdentifier:@"VideoListTableViewCell"];
-    [self.tableView setBounces:NO];
+
     
     // 样式
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
-        
-    
-    
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
+    //    [self.tableView setBounces:NO];
+    _contentNum = 5;
+    [self addMJRefresh];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController.navigationBar setHidden:NO];
+}
 
 #pragma mark - Table view data source
 
@@ -68,46 +82,48 @@
     return 280;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger i = indexPath.row;
+    int contentID = [self.contentItems[i] contentID];
+    
+    NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/contents/%d", contentID];
+    NSDictionary *header = @{
+        @"Authorization":[UserInfo sharedUser].token
+    };
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    [manager GET:URL parameters:nil headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"status"] isEqualToString:@"success"])
+        {
+            DetailedContentItem *detailedContentItem = [[DetailedContentItem alloc]initWithDict:response[@"data"]];
+            [self.navigationController pushViewController:[[VideoPageViewController alloc] initWithContentItem:detailedContentItem] animated:YES];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"get contentItem faied");
+    }];
+    
+    
 }
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
 
 - (void)loadData
 {
-    NSString *URL = @"http://159.75.1.231:5009/contents";
+//    NSString *URL = @"http://159.75.1.231:5009/contents";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     NSDictionary *header = @{
-        @"Authorization":@"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkFsaWNlIn0.qQ2aj4ME0Vm-Kppv4-H-FAe6aLqCu4JNEtmCVKkfFII"
+        @"Authorization":[UserInfo sharedUser].token
     };
     
-    [manager GET:URL parameters:nil headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+    [manager GET:self.serviceURL parameters:@{@"num":@(_contentNum)} headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {
@@ -121,10 +137,23 @@
             }
         }
         [self.tableView reloadData];
+        if([self.tableView.mj_header isRefreshing]) [self.tableView.mj_header endRefreshing];
+        if([self.tableView.mj_footer isRefreshing]) [self.tableView.mj_footer endRefreshing];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to get contents");
     }];
     
 }
 
+- (void)addMJRefresh
+{
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
+    self.tableView.mj_footer = [MJRefreshBackNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+}
+
+- (void)loadMoreData
+{
+    _contentNum += 5;
+    [self loadData];
+}
 @end

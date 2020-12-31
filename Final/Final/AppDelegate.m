@@ -25,8 +25,6 @@
         self.window.backgroundColor = [UIColor whiteColor];
         NSLog(@"init in appDelegate");
         [self.window makeKeyAndVisible];
-        if(CYLExternPlusButton)
-            [CYLExternPlusButton addTarget:self action:@selector(AddPostButtonClcked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return YES;
 }
@@ -41,10 +39,7 @@
     return [[UISceneConfiguration alloc] initWithName:@"Default Configuration" sessionRole:connectingSceneSession.role];
 }
 
-- (void)AddPostButtonClcked:(id)sender{
 
-    [self.window.rootViewController presentViewController:[PostContentViewController new] animated:YES completion:nil];
-}
 
 - (void)application:(UIApplication *)application didDiscardSceneSessions:(NSSet<UISceneSession *> *)sceneSessions {
     // Called when the user discards a scene session.

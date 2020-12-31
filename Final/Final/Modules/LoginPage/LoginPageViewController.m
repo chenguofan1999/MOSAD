@@ -202,7 +202,7 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {
-            
+            // 登录成功，现在更新本地用户信息
             UserInfo *sharedInfo = [UserInfo sharedUser];
             NSString *tokenString = response[@"token"];
             sharedInfo.token = tokenString;
@@ -215,12 +215,31 @@
                 {
                     [UserInfo configUser:response[@"data"]];
                     // 跳转到app页面
-                    UIWindow *mainWindow = [SceneDelegate mainWindow];
-                    mainWindow.rootViewController = [MainTabBarController new];
+                    [SceneDelegate jumpToTabBar];
+                    
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-                NSLog(@"failed to get userdata");
+                NSLog(@"failed to get userinfo");
             }];
+            
+            // 同时获取用户关注的Tag
+            NSString *getTagsURL = @"http://159.75.1.231:5009/user/tags";
+            [manager GET:getTagsURL parameters:nil headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+                NSLog(@"%@", responseObject);
+                NSDictionary *response = (NSDictionary *)responseObject;
+                if([response[@"status"] isEqualToString:@"success"])
+                {
+                    UserInfo *sharedInfo = [UserInfo sharedUser];
+                    sharedInfo.userTags = [NSMutableArray new];
+                    NSArray *tags = response[@"data"];
+                    for(int i = 0; i < [tags count]; i++)
+//                        [sharedInfo.userTags addObject:tags[i]];
+                    [[sharedInfo mutableArrayValueForKey:@"userTags"] addObject:tags[i]];
+                }
+            } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+                NSLog(@"failed to get user tags");
+            }];
+        
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to login");

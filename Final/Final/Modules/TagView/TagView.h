@@ -6,16 +6,19 @@
 //
 
 #import <UIKit/UIKit.h>
-
 NS_ASSUME_NONNULL_BEGIN
 
-@interface TagView : UIScrollView
-//@property (nonatomic) CGFloat height;
-@property (nonatomic, retain) NSArray *tagArray;
-@property (nonatomic,strong) NSMutableArray *buttons;
+@protocol tagBtnDelegate <NSObject>
 
+- (void) tagBtnClick:(UIButton *)btn;
+
+@end
+
+@interface TagView : UIScrollView
+@property (weak, nonatomic) id<tagBtnDelegate> tagDelegate;
 - (instancetype)initWithTagArray:(NSArray*)tagArray;
 - (instancetype)initWithFrame:(CGRect)frame tagArray:(NSArray*)tagArray;
+- (void)updateTagButtons;
 @end
 
 NS_ASSUME_NONNULL_END

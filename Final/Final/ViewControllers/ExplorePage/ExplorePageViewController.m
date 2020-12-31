@@ -15,17 +15,23 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self setNavBar];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)setNavBar
+{
+    // 左侧 logo
+    UIImageView *logoImage = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 0, 0)];
+    [logoImage setImage:[UIImage imageNamed:@"Yourtube3.png"]];
+    [logoImage setClipsToBounds:YES];
+    [logoImage.widthAnchor constraintEqualToConstant:120].active = YES;
+    [logoImage setContentMode:UIViewContentModeScaleAspectFit];
+    [self.navigationItem setLeftBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:logoImage]];
+    
+    // 滑动隐藏
+    [self.navigationController setHidesBarsOnSwipe:YES];
 }
-*/
+
 
 @end

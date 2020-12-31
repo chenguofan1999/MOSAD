@@ -6,7 +6,12 @@
 //
 
 #import "TagView.h"
+#import "UserInfo.h"
+
 @interface TagView()
+@property (nonatomic, retain) NSArray *tagArray;
+@property (nonatomic, strong) NSMutableArray *buttons;
+@property (nonatomic) NSString *currentTag;
 // 选中标签文字颜色
 @property (nonatomic,retain) UIColor* textColorSelected;
 // 默认标签文字颜色
@@ -31,24 +36,39 @@
     if (self) {
         _tagArray = tagArray;
         [self setColors];
-        [self createTagButtons];
+        [self updateTagButtons];
         [self setShowsHorizontalScrollIndicator:NO];
         [self setBounces:NO];
+        [[UserInfo sharedUser] addObserver: self
+                                forKeyPath:@"userTags"
+                                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                                   context:@"userTags changed"];
     }
     return self;
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
+    [self updateTagButtons];
+}
+
 - (void)setColors
 {
-    [self setBackgroundColor:[UIColor colorWithRed:0.98 green:0.98 blue:0.98 alpha:1]];
+    [self setBackgroundColor:[UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1]];
     _textColorNormal = [UIColor blackColor];
     _textColorSelected = [UIColor whiteColor];
     _backgroundColorSelected = [UIColor darkGrayColor];
     _backgroundColorNormal = [UIColor colorWithRed:0.9 green:0.9 blue:0.9 alpha:1];
 }
 
-- (void)createTagButtons
+- (void)updateTagButtons
 {
+    // update tags first
+    self.tagArray = [UserInfo sharedUser].userTags;
+    
+    if([_buttons count] == [_tagArray count]) return;
+    
     _buttons = [NSMutableArray new];
     // 屏幕宽度
     CGFloat w = self.frame.size.width;
@@ -148,10 +168,10 @@
 // 标签按钮点击事件
 - (void)selectdButton:(UIButton*)btn
 {
-    btn.selected = !btn.selected;
-    
-    if([btn isSelected])
+    if([btn isSelected]) return;
+    else
     {
+        [btn setSelected:YES];
         for(int i = 0; i < [_buttons count]; i++)
         {
             if(_buttons[i] != btn && [_buttons[i] isSelected])
@@ -160,19 +180,21 @@
             }
         }
         
-        // Filtering here
+        // 调用代理
+        if([self.tagDelegate respondsToSelector:@selector(tagBtnClick:)])
+        {
+            [self.tagDelegate tagBtnClick:btn];
+        }
+        else
+        {
+            NSLog(@"no delegate yer");
+        }
         
     }
 }
 
 
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect {
-    // Drawing code
-}
-*/
+
 
 
 
