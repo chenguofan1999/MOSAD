@@ -6,7 +6,7 @@
 //
 
 #import "HomePageViewController.h"
-#import "SearchPageViewController.h""
+#import "SearchPageViewController.h"
 #import <MJRefresh/MJRefresh.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import <Masonry/Masonry.h>
@@ -26,6 +26,7 @@
     [self addChildViewController:self.videoListTableViewController];
     self.tagView.tagDelegate = self;
     [self.videoListTableViewController loadData];
+    self.navigationController.navigationBar.tintColor = [UIColor grayColor];
     
     
 }
@@ -51,8 +52,18 @@
     if(_tagView == nil)
     {
         _tagView = [[TagView alloc]initWithTagArray:[UserInfo sharedUser].userTags];
+        [[UserInfo sharedUser] addObserver: self
+                                forKeyPath:@"userTags"
+                                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
+                                   context:@"userTags changed"];
     }
     return _tagView;
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
+    [self.tagView updateTagButtons];
 }
 
 - (void)setNavBar
@@ -84,8 +95,8 @@
     userButton.layer.cornerRadius = d/2;
     [userButton addTarget:self.tagView action:@selector(updateTagButtons) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *userButtonItem = [[UIBarButtonItem alloc]initWithCustomView:userButton];
-    
     [self.navigationItem setRightBarButtonItems:@[userButtonItem, searchButtonItem]];
+
 }
 
 - (void)toSearchPage

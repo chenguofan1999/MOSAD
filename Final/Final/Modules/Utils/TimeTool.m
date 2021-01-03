@@ -45,7 +45,7 @@
     }else if(minute == 1){
         return @"1 minute ago";
     }else{
-        return [NSString stringWithFormat:@"刚刚"];
+        return [NSString stringWithFormat:@"Just now"];
     }
 }
 

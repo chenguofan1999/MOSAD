@@ -39,18 +39,9 @@
         [self updateTagButtons];
         [self setShowsHorizontalScrollIndicator:NO];
         [self setBounces:NO];
-        [[UserInfo sharedUser] addObserver: self
-                                forKeyPath:@"userTags"
-                                   options:NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld
-                                   context:@"userTags changed"];
+        
     }
     return self;
-}
-
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
-    [self updateTagButtons];
 }
 
 - (void)setColors

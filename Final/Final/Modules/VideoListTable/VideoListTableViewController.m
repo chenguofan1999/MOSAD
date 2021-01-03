@@ -42,7 +42,6 @@
 
     
     // 样式
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(loadData)];
     //    [self.tableView setBounces:NO];
     _contentNum = 5;
     [self addMJRefresh];
@@ -79,7 +78,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 280;
+    return 290;
 }
 
 
@@ -109,6 +108,8 @@
     
     
 }
+
+
 
 - (void)loadData
 {
