@@ -21,4 +21,5 @@ target 'Final' do
   pod 'MJRefresh'
   pod 'WMPlayer'
   pod 'SJVideoPlayer'
+  pod 'FTPopOverMenu'
 end

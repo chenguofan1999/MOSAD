@@ -233,8 +233,7 @@
                     sharedInfo.userTags = [NSMutableArray new];
                     NSArray *tags = response[@"data"];
                     for(int i = 0; i < [tags count]; i++)
-//                        [sharedInfo.userTags addObject:tags[i]];
-                    [[sharedInfo mutableArrayValueForKey:@"userTags"] addObject:tags[i]];
+                        [[sharedInfo mutableArrayValueForKey:@"userTags"] addObject:tags[i]];
                 }
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"failed to get user tags");

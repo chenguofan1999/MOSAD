@@ -6,10 +6,17 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "NavedViewController.h"
 NS_ASSUME_NONNULL_BEGIN
 
-@interface ExplorePageViewController : UIViewController
+typedef NS_ENUM(NSInteger, VideoSortingMode) {
+    VideoSortingModeTimeDesc = 0,
+    VideoSortingModeViewNumDesc = 1,
+    VideoSortingModeTimeAsc = 2,
+    VideoSortingModeViewNumAsc = 3
+};
+
+@interface ExplorePageViewController : NavedViewController
 
 @end
 

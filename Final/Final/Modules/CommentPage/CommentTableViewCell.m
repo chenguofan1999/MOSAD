@@ -30,7 +30,7 @@
     NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
     if([(__bridge NSString *)context isEqualToString:@"likeNum"])
     {
-        [self.likeLabel setText:[change[@"new"] intValue]> 0 ? [NSString stringWithFormat:@"%d", [change[@"new"] intValue]] : @""];
+        [self.likeLabel setText:[change[@"new"] intValue] > 0 ? [NSString stringWithFormat:@"%d", [change[@"new"] intValue]] : @""];
     }
     if([(__bridge NSString *)context isEqualToString:@"liked"])
     {
@@ -45,7 +45,7 @@
     }
     if([(__bridge NSString *)context isEqualToString:@"replyNum"])
     {
-        [self.replyLabel setText:[change[@"new"] intValue]> 0 ? [NSString stringWithFormat:@"%d", [change[@"new"] intValue]] : @""];
+        [self.replyLabel setText:[change[@"new"] intValue] > 0 ? [NSString stringWithFormat:@"%d", [change[@"new"] intValue]] : @""];
     }
     
 }

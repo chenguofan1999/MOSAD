@@ -93,7 +93,8 @@
     NSArray *viewControllers = @[homePageNavigationController,
                                  subscribingPageNavigationController,
                                  explorePageNavigationController,
-                                 libraryPageNavigationController];
+                                 libraryPageNavigationController
+    ];
    return viewControllers;
 }
 

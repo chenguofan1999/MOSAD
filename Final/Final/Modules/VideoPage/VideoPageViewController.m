@@ -11,7 +11,9 @@
 #import <MaterialTextControls+OutlinedTextFields.h>
 #import <Masonry/Masonry.h>
 #import <SJVideoPlayer/SJVideoPlayer.h>
+#import <MJRefresh/MJRefresh.h>
 #import <MaterialCards+Theming.h>
+#import <MaterialDialogs.h>
 #import <SDWebImage.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MaterialComponents/MDCButton+MaterialTheming.h>
@@ -19,9 +21,11 @@
 #import "TimeTool.h"
 #import "UserInfo.h"
 #import "CommentItem.h"
+#import "TagView.h"
 #import "CommentTableViewController.h"
+#import "VideoListTableViewController.h"
 
-@interface VideoPageViewController () <UINavigationControllerDelegate>
+@interface VideoPageViewController () <tagBtnDelegate>
 @property (nonatomic, strong) SJVideoPlayer *player;
 
 @property (nonatomic, strong) UIScrollView *scrollView;
@@ -50,6 +54,8 @@
 @property (nonatomic, strong) MDCBaseTextField *commentField;
 @property (nonatomic, strong) UIButton *sendButton;
 @property (nonatomic) CommentItem *topCommentItem;
+
+@property (nonatomic, strong) TagView *videoTagView;
 
 
 @end
@@ -138,13 +144,13 @@
     
     [self.usernameLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.userAvatarView.mas_right).offset(8);
-        make.top.equalTo(self.userCard).offset(10);
+        make.top.equalTo(self.userCard).offset(15);
     }];
     
     [self.userFollowerLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.mas_equalTo(self.userAvatarView.mas_right).offset(8);
         make.top.mas_equalTo(self.usernameLabel.mas_bottom).offset(3);
-        make.bottom.equalTo(self.userCard).offset(-10);
+        make.bottom.equalTo(self.userCard).offset(-15);
     }];
     
     [self.followButton mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -195,8 +201,24 @@
         make.size.mas_equalTo(CGSizeMake(20, 20));
     }];
     
+    /* tagView */
+    [self.videoTagView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.mas_equalTo(self.commentCard.mas_bottom);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.height.mas_equalTo(50);
+    }];
     
     [self setNavBar];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+    [nc addObserver:self
+               selector:@selector(requestTopComment)
+                   name:@"loadComments"
+                 object:nil];
 }
 
 
@@ -222,10 +244,12 @@
         _player = [SJVideoPlayer player];
         NSURL *URL = [NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",self.contentItem.videoURL]];
         _player.URLAsset = [[SJVideoPlayerURLAsset alloc] initWithURL:URL];
-        [_player setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+//        [_player setVideoGravity:AVLayerVideoGravityResizeAspectFill];
+        
         // 以下两行使自动旋转被禁用
 //        _player.autoManageViewToFitOnScreenOrRotation = NO;
 //        _player.useFitOnScreenAndDisableRotation = YES;
+        
 //        _player.defaultEdgeControlLayer.hiddenBottomProgressIndicator = YES;
         SJVideoPlayer.update(^(SJVideoPlayerSettings * _Nonnull commonSettings) {
 //            commonSettings.placeholder = [UIImage imageNamed:@"placeholder"];
@@ -242,11 +266,12 @@
     if(_scrollView == nil)
     {
         _scrollView = [[UIScrollView alloc]init];
-        [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 700)];
+        [_scrollView setContentSize:CGSizeMake(self.view.frame.size.width, 600)];
         [_scrollView setBackgroundColor:[UIColor whiteColor]];
         [_scrollView addSubview:self.videoInfoCard];
         [_scrollView addSubview:self.userCard];
         [_scrollView addSubview:self.commentCard];
+        [_scrollView addSubview:self.videoTagView];
         [_scrollView setBounces:NO];
     }
     return _scrollView;
@@ -594,7 +619,7 @@
     {
         _commentCard = [[MDCCard alloc]init];
         [_commentCard applyThemeWithScheme:[[MDCContainerScheme alloc] init]];
-        [_commentCard setBorderWidth:0.3 forState:UIControlStateNormal];
+        [_commentCard setBorderWidth:0.5 forState:UIControlStateNormal];
         [_commentCard setBorderColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [_commentCard setCornerRadius:0];
         [_commentCard addSubview:self.commentTitleLabel];
@@ -741,6 +766,7 @@
         {
             NSArray *commentsByDesc = response[@"data"];
             self.topCommentItem = [[CommentItem alloc]initWithDict:commentsByDesc[0]];
+            self.contentItem.commentNum = (int)[commentsByDesc count];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"get top comment failed");
@@ -750,9 +776,19 @@
 - (void)toCommentPage
 {
     UINavigationController *commentNav = [[UINavigationController alloc]initWithRootViewController: [[CommentTableViewController alloc]initWithContentID:self.contentItem.contentID]];
-//    [commentNav setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:commentNav animated:YES completion:nil];
-//    [self.navigationController pushViewController:[[CommentTableViewController alloc]initWithContentID:self.contentItem.contentID] animated:YES];
+}
+
+#pragma mark TagView
+- (TagView *)videoTagView
+{
+    if(_videoTagView == nil)
+    {
+        _videoTagView = [[TagView alloc]initWithTagArray:self.contentItem.videoTags viewType:VideoTagView];
+        _videoTagView.tagDelegate = self;
+        [self.contentItem addObserver:self forKeyPath:@"videoTags" options:NSKeyValueObservingOptionNew context:@"tags changed"];
+    }
+    return _videoTagView;
 }
 
 
@@ -814,7 +850,173 @@
             [self.sendButton setHidden:YES];
         }
     }
+    else if([(__bridge NSString *)context isEqualToString:@"tags changed"])
+    {
+        self.videoTagView.tagArray = self.contentItem.videoTags;
+        [self.videoTagView updateTagButtons];
+    }
+}
+
+#pragma mark tag delegate
+- (void)addBtnClick:(UIButton *)btn {
     
+    if(self.contentItem.userItem.userID == [UserInfo sharedUser].userID)
+    {
+        MDCAlertController *alertController =
+        [MDCAlertController alertControllerWithTitle:@"Add New Tag" message:nil];
+        
+        MDCFilledTextField *inputField = [[MDCFilledTextField alloc]init];
+        [inputField.label setText:@"Tag"];
+        [inputField setNormalLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
+        [inputField setUnderlineColor:[UIColor lightGrayColor] forState:MDCTextControlStateNormal];
+        [inputField setUnderlineColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
+        [inputField setFloatingLabelColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
+        
+        alertController.accessoryView = inputField;
+        
+        MDCAlertAction *OKAction = [MDCAlertAction actionWithTitle:@"YES" handler:^(MDCAlertAction *action) {
+            NSString *newTagString = [inputField text];
+            if([newTagString containsString:@" "])
+            {
+                alertController.message = @"space not allowed";
+                [self presentViewController:alertController animated:YES completion:nil];
+            }
+            [self addNewTag:newTagString forContentID:self.contentItem.contentID];
+        }];
+        MDCAlertAction *CancelAction = [MDCAlertAction actionWithTitle:@"NO" handler:nil];
+        [alertController addAction:OKAction];
+        [alertController addAction:CancelAction];
+        
+        [alertController setTitleColor:[UIColor blackColor]];
+        [alertController setButtonTitleColor:[AppConfig getMainColor]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    else
+    {
+        MDCAlertController *alertController =
+        [MDCAlertController alertControllerWithTitle:@"Add New Tag" message:@"Only the author can edit tags"];
+        MDCAlertAction *OKAction = [MDCAlertAction actionWithTitle:@"Fine" handler:nil];
+        [alertController addAction:OKAction];
+        
+        [alertController setTitleColor:[UIColor blackColor]];
+        [alertController setMessageColor:[UIColor darkGrayColor]];
+        [alertController setButtonTitleColor:[AppConfig getMainColor]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    
+    
+}
+
+- (void)longPressBtn:(UIButton *)btn {
+    if(self.contentItem.userItem.userID == [UserInfo sharedUser].userID)
+    {
+        MDCAlertController *alertController =
+        [MDCAlertController alertControllerWithTitle:@"Delete Tag"
+                                             message:[NSString stringWithFormat:@"Sure to delete tag '%@' ?",[btn.titleLabel text]]];
+        
+        MDCAlertAction *OKAction = [MDCAlertAction actionWithTitle:@"YES" handler:^(MDCAlertAction *action) {
+            [self deleteTag:[btn.titleLabel text] forContentID:self.contentItem.contentID];
+        }];
+        MDCAlertAction *CancelAction = [MDCAlertAction actionWithTitle:@"NO" handler:nil];
+        
+        [alertController addAction:CancelAction];
+        [alertController addAction:OKAction];
+
+        [alertController setMessageColor:[UIColor darkGrayColor]];
+        [alertController setButtonTitleColor:[AppConfig getMainColor]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+    else
+    {
+        MDCAlertController *alertController =
+        [MDCAlertController alertControllerWithTitle:@"Delete Tag" message:@"Only the author can edit tags"];
+        MDCAlertAction *OKAction = [MDCAlertAction actionWithTitle:@"Fine" handler:nil];
+        [alertController addAction:OKAction];
+        
+        [alertController setTitleColor:[UIColor blackColor]];
+        [alertController setMessageColor:[UIColor darkGrayColor]];
+        [alertController setButtonTitleColor:[AppConfig getMainColor]];
+        
+        [self presentViewController:alertController animated:YES completion:nil];
+    }
+}
+
+- (void)tagBtnClick:(UIButton *)btn {
+    NSString *tagString = [btn.titleLabel text];
+    NSString *URLString = [NSString stringWithFormat:@"http://159.75.1.231:5009/contents?tag=%@",tagString];
+    VideoListTableViewController *videoList = [[VideoListTableViewController alloc]initWithURL:URLString];
+    [videoList loadData];
+    [videoList.tableView.mj_footer setHidden:YES];
+    [videoList.tableView.mj_header setHidden:YES];
+    [videoList.tableView setBounces:NO];
+    [videoList.navigationItem setTitle:[NSString stringWithFormat:@"Videos With Tag: %@", tagString]];
+    [self.navigationController pushViewController:videoList animated:YES];
+}
+
+- (void)allBtnClick:(nonnull UIButton *)btn {}
+
+
+
+#pragma mark tag operations
+- (void)addNewTag:(NSString *)tagName forContentID:(int)contentID
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    
+    NSString *URL = @"http://159.75.1.231:5009/content/tags";
+    NSDictionary *header = @{
+        @"Authorization":[UserInfo sharedUser].token
+    };
+    NSDictionary *body = @{
+        @"contentID":@(contentID),
+        @"tag":tagName
+    };
+    
+    [manager POST:URL parameters:body headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"status"] isEqualToString:@"success"])
+        {
+            NSLog(@"add tag success");
+            self.contentItem.videoTags = response[@"data"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to add tag");
+    }];
+}
+
+
+- (void)deleteTag:(NSString *)tagName forContentID:(int)contentID
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    manager.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithObjects:@"GET", @"HEAD", nil];
+    
+    NSString *URL = @"http://159.75.1.231:5009/content/tags";
+    NSDictionary *header = @{
+        @"Authorization":[UserInfo sharedUser].token
+    };
+    NSDictionary *body = @{
+        @"contentID":@(contentID),
+        @"tag":tagName
+    };
+    
+    [manager DELETE:URL parameters:body headers:header success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"status"] isEqualToString:@"success"])
+        {
+            NSLog(@"delete tag success");
+            self.contentItem.videoTags = response[@"data"];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to delete tag %@",tagName);
+    }];
 }
 
 @end

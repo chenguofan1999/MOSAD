@@ -24,6 +24,7 @@
 {
     self = [super init];
     self.serviceURL = URL;
+    self.contentNum = 10;
     return self;
 }
 
@@ -43,7 +44,6 @@
     
     // 样式
     //    [self.tableView setBounces:NO];
-    _contentNum = 5;
     [self addMJRefresh];
 }
 
@@ -96,6 +96,7 @@
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
     [manager GET:URL parameters:nil headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"Detailed contentItem: %@", responseObject);
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {

@@ -67,6 +67,13 @@
 		5657EB0925A19235000F3B86 /* thumbs-up.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB0825A19235000F3B86 /* thumbs-up.png */; };
 		5657EB0C25A19239000F3B86 /* thumbs-up-filled.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB0B25A19239000F3B86 /* thumbs-up-filled.png */; };
 		5657EB1025A193AE000F3B86 /* menu.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB0F25A193AE000F3B86 /* menu.png */; };
+		5657EB1625A1C096000F3B86 /* ReplyTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5657EB1525A1C096000F3B86 /* ReplyTableViewController.m */; };
+		5657EB1925A1CB62000F3B86 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB1825A1CB61000F3B86 /* back.png */; };
+		5657EB1E25A23741000F3B86 /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB1D25A23741000F3B86 /* plus.png */; };
+		5657EB4225A30D86000F3B86 /* NavedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5657EB4125A30D86000F3B86 /* NavedViewController.m */; };
+		5657EB5B25A37CE7000F3B86 /* sorting.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB5A25A37CE7000F3B86 /* sorting.png */; };
+		5657EB5F25A381F9000F3B86 /* descending.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB5E25A381F9000F3B86 /* descending.png */; };
+		5657EB6425A38259000F3B86 /* ascending.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB6325A38259000F3B86 /* ascending.png */; };
 		5672C28C259F701600E82B10 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 5672C28B259F701600E82B10 /* eye.png */; };
 		56EAA2B22592EEF5001E9B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B12592EEF5001E9B7D /* AppDelegate.m */; };
 		56EAA2B52592EEF5001E9B7D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B42592EEF5001E9B7D /* SceneDelegate.m */; };
@@ -162,6 +169,15 @@
 		5657EB0825A19235000F3B86 /* thumbs-up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs-up.png"; sourceTree = "<group>"; };
 		5657EB0B25A19239000F3B86 /* thumbs-up-filled.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "thumbs-up-filled.png"; sourceTree = "<group>"; };
 		5657EB0F25A193AE000F3B86 /* menu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menu.png; sourceTree = "<group>"; };
+		5657EB1425A1C096000F3B86 /* ReplyTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ReplyTableViewController.h; sourceTree = "<group>"; };
+		5657EB1525A1C096000F3B86 /* ReplyTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ReplyTableViewController.m; sourceTree = "<group>"; };
+		5657EB1825A1CB61000F3B86 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		5657EB1D25A23741000F3B86 /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
+		5657EB4025A30D86000F3B86 /* NavedViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NavedViewController.h; sourceTree = "<group>"; };
+		5657EB4125A30D86000F3B86 /* NavedViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NavedViewController.m; sourceTree = "<group>"; };
+		5657EB5A25A37CE7000F3B86 /* sorting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorting.png; sourceTree = "<group>"; };
+		5657EB5E25A381F9000F3B86 /* descending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = descending.png; sourceTree = "<group>"; };
+		5657EB6325A38259000F3B86 /* ascending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ascending.png; sourceTree = "<group>"; };
 		5672C28B259F701600E82B10 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
 		56EAA2AD2592EEF5001E9B7D /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56EAA2B02592EEF5001E9B7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -226,6 +242,8 @@
 		5628B5F525931893000E4DA3 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5657EB3F25A30D69000F3B86 /* NavedVC */,
+				5657EB1325A1C02E000F3B86 /* ReplyPage */,
 				5609C113259E46B7007E2F2A /* CommentPage */,
 				5609C0EA259DD9D9007E2F2A /* SearchPage */,
 				5628B7AA259D7799000E4DA3 /* VideoPage */,
@@ -250,6 +268,11 @@
 		5628B63D25998142000E4DA3 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5657EB6325A38259000F3B86 /* ascending.png */,
+				5657EB5E25A381F9000F3B86 /* descending.png */,
+				5657EB5A25A37CE7000F3B86 /* sorting.png */,
+				5657EB1D25A23741000F3B86 /* plus.png */,
+				5657EB1825A1CB61000F3B86 /* back.png */,
 				5657EB0F25A193AE000F3B86 /* menu.png */,
 				5657EB0B25A19239000F3B86 /* thumbs-up-filled.png */,
 				5657EB0825A19235000F3B86 /* thumbs-up.png */,
@@ -403,6 +426,24 @@
 			path = VideoPage;
 			sourceTree = "<group>";
 		};
+		5657EB1325A1C02E000F3B86 /* ReplyPage */ = {
+			isa = PBXGroup;
+			children = (
+				5657EB1425A1C096000F3B86 /* ReplyTableViewController.h */,
+				5657EB1525A1C096000F3B86 /* ReplyTableViewController.m */,
+			);
+			path = ReplyPage;
+			sourceTree = "<group>";
+		};
+		5657EB3F25A30D69000F3B86 /* NavedVC */ = {
+			isa = PBXGroup;
+			children = (
+				5657EB4025A30D86000F3B86 /* NavedViewController.h */,
+				5657EB4125A30D86000F3B86 /* NavedViewController.m */,
+			);
+			path = NavedVC;
+			sourceTree = "<group>";
+		};
 		56EAA2A42592EEF5001E9B7D = {
 			isa = PBXGroup;
 			children = (
@@ -521,17 +562,22 @@
 				5628B6832599950B000E4DA3 /* laptop-play-filled@2x.png in Resources */,
 				5657EAF325A16617000F3B86 /* fold.png in Resources */,
 				5657EAE225A0977D000F3B86 /* fav@3x.png in Resources */,
+				5657EB5B25A37CE7000F3B86 /* sorting.png in Resources */,
 				5628B6802599950B000E4DA3 /* home-filled@2x.png in Resources */,
 				5657EB0325A189D8000F3B86 /* CommentTableViewCell.xib in Resources */,
+				5657EB6425A38259000F3B86 /* ascending.png in Resources */,
 				56EAA2C02592EEF6001E9B7D /* LaunchScreen.storyboard in Resources */,
+				5657EB5F25A381F9000F3B86 /* descending.png in Resources */,
 				5628B6842599950B000E4DA3 /* playlist-filled@2x.png in Resources */,
 				5672C28C259F701600E82B10 /* eye.png in Resources */,
 				56EAA2BD2592EEF6001E9B7D /* Assets.xcassets in Resources */,
+				5657EB1E25A23741000F3B86 /* plus.png in Resources */,
 				5657EAEF25A0F708000F3B86 /* paper-plane.png in Resources */,
 				5609C10C259E427A007E2F2A /* like2.png in Resources */,
 				5609C101259E3EA1007E2F2A /* comment.png in Resources */,
 				5657EB0C25A19239000F3B86 /* thumbs-up-filled.png in Resources */,
 				5628B6C5259A1768000E4DA3 /* VideoListTableViewCell.xib in Resources */,
+				5657EB1925A1CB62000F3B86 /* back.png in Resources */,
 				5628B6872599950B000E4DA3 /* for-you@2x.png in Resources */,
 				5628B69325999813000E4DA3 /* compass@2x.png in Resources */,
 				5657EAE625A097A2000F3B86 /* yes@3x.png in Resources */,
@@ -621,6 +667,7 @@
 				5657EAEC25A0DFFD000F3B86 /* CommentItem.m in Sources */,
 				5628B749259B1C5D000E4DA3 /* AppConfig.m in Sources */,
 				5628B63425996ACC000E4DA3 /* MainTabBarController.m in Sources */,
+				5657EB1625A1C096000F3B86 /* ReplyTableViewController.m in Sources */,
 				5628B65C25998DAE000E4DA3 /* ExplorePageViewController.m in Sources */,
 				56EAA2C32592EEF6001E9B7D /* main.m in Sources */,
 				5628B7AD259D77BF000E4DA3 /* VideoPageViewController.m in Sources */,
@@ -631,6 +678,7 @@
 				5609C073259D7AC2007E2F2A /* DetailedContentItem.m in Sources */,
 				5628B6EB259B02C9000E4DA3 /* LoginPageViewController.m in Sources */,
 				5628B6A22599AA9F000E4DA3 /* PostContentViewController.m in Sources */,
+				5657EB4225A30D86000F3B86 /* NavedViewController.m in Sources */,
 				5657EAFD25A188A1000F3B86 /* ReplyItem.m in Sources */,
 				5628B68D259995B0000E4DA3 /* LibraryPageViewController.m in Sources */,
 			);

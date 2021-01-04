@@ -18,6 +18,7 @@ PODS:
     - CYLTabBarController/Core (= 1.29.0)
   - CYLTabBarController/Core (1.29.0)
   - DZNEmptyDataSet (1.8.1)
+  - FTPopOverMenu (2.1.1)
   - Masonry (1.1.0)
   - MaterialComponents/AnimationTiming (119.3.0)
   - MaterialComponents/Availability (119.3.0)
@@ -241,6 +242,7 @@ DEPENDENCIES:
   - AFNetworking
   - CYLTabBarController
   - DZNEmptyDataSet
+  - FTPopOverMenu
   - Masonry
   - "MaterialComponents/Buttons+Theming"
   - "MaterialComponents/Cards+Theming"
@@ -259,6 +261,7 @@ SPEC REPOS:
     - AFNetworking
     - CYLTabBarController
     - DZNEmptyDataSet
+    - FTPopOverMenu
     - Masonry
     - MaterialComponents
     - MDFInternationalization
@@ -276,6 +279,7 @@ SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
   CYLTabBarController: f5460b8446f82d016945d4d53895a1ef185b79e3
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  FTPopOverMenu: 202d46aea0656307fd463fac0340c9c8837158d2
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MaterialComponents: 49658f0fd7ef6e098e9943fce3f293e700595570
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
@@ -289,6 +293,6 @@ SPEC CHECKSUMS:
   WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 19b659cbaae758d93c1dc907e9c93481d43f1ea1
+PODFILE CHECKSUM: 0350000f91242627b7a106a8121b2d277dce84a7
 
 COCOAPODS: 1.10.0

@@ -1,5 +1,5 @@
 //
-//  CommentTableViewController.m
+//  ReplyTableViewController.m
 //  Final
 //
 //  Created by itlab on 1/3/21.
@@ -12,24 +12,24 @@
 #import <MaterialComponents/MDCFilledTextField.h>
 #import <MaterialTextControls+OutlinedTextFields.h>
 #import "ReplyTableViewController.h"
-#import "CommentTableViewController.h"
 #import "CommentTableViewCell.h"
-#import "CommentItem.h"
+#import "ReplyItem.h"
 #import "TimeTool.h"
 #import "UserInfo.h"
 
-@interface CommentTableViewController () <UINavigationControllerDelegate>
-@property (nonatomic, strong) UILabel *commentNumberLabel;
-@property (nonatomic, strong) MDCBaseTextField *commentField;
+
+@interface ReplyTableViewController ()
+@property (nonatomic, strong) UILabel *replyNumberLabel;
+@property (nonatomic, strong) MDCBaseTextField *replyField;
 @property (nonatomic, strong) UIImageView *userAvatarView;
 @property (nonatomic, strong) UIButton *sendButton;
 @end
 
-@implementation CommentTableViewController
-- (instancetype)initWithContentID:(int)contentID
+@implementation ReplyTableViewController
+- (instancetype)initWithCommentID:(int)commentID
 {
     self = [super init];
-    self.contentID = contentID;
+    self.commentID = commentID;
     return self;
 }
 
@@ -48,15 +48,10 @@
     
     // header view: 输入栏
     UIView *fieldContainerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 0, 70)];
-    [fieldContainerView addSubview:self.commentField];
+    [fieldContainerView addSubview:self.replyField];
     [self.tableView setTableHeaderView:fieldContainerView];
     
-    [self loadDataOrderBy:LoadCommentsOrderByTime];
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [self loadDataOrderBy:LoadCommentsOrderByTime];
+    [self loadDataOrderBy:LoadRepliesOrderByTime];
 }
 
 - (void)setNavBar
@@ -64,47 +59,51 @@
     // 背景色
     [self.navigationController.navigationBar setBarTintColor:[UIColor colorWithRed:0.7 green:0.7 blue:0.7 alpha:1]];
     
+    // 返回键
+    UIButton *backButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 25, 25)];
+    [backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+    [backButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
+    [backButton.imageView setClipsToBounds:YES];
+    [backButton setClipsToBounds:YES];
+    [backButton.widthAnchor constraintEqualToConstant:25].active = YES;
+    [backButton addTarget:self action:@selector(backToCommentPage) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *backItem = [[UIBarButtonItem alloc]initWithCustomView:backButton];
+    
     // 标题
-    UILabel *commentTitleLabel = [[UILabel alloc]init];
-    [commentTitleLabel setText:@"Comments"];
-    [commentTitleLabel setFont:[UIFont systemFontOfSize:20]];
-    UIBarButtonItem *titleItem = [[UIBarButtonItem alloc]initWithCustomView:commentTitleLabel];
+    UILabel *replyTitleLabel = [[UILabel alloc]init];
+    [replyTitleLabel setText:@"replys"];
+    [replyTitleLabel setFont:[UIFont systemFontOfSize:20]];
+    UIBarButtonItem *titleItem = [[UIBarButtonItem alloc]initWithCustomView:replyTitleLabel];
     
-    // 回复数
-    _commentNumberLabel = [[UILabel alloc]init];
-    [_commentNumberLabel setTextColor:[UIColor darkGrayColor]];
-    [_commentNumberLabel setText:@"      "];//撑开frame
-    [_commentNumberLabel setFont:[UIFont systemFontOfSize:20]];
-    UIBarButtonItem *numberItem = [[UIBarButtonItem alloc]initWithCustomView:_commentNumberLabel];
-    
-    [self.navigationItem setLeftBarButtonItems:@[titleItem, numberItem]];
-    
-    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemClose target:self action:@selector(closeCommentPage)]];
-    
+    // 评论数
+    _replyNumberLabel = [[UILabel alloc]init];
+    [_replyNumberLabel setTextColor:[UIColor darkGrayColor]];
+    [_replyNumberLabel setText:@"     "];//撑开frame
+    [_replyNumberLabel setFont:[UIFont systemFontOfSize:20]];
+    UIBarButtonItem *numberItem = [[UIBarButtonItem alloc]initWithCustomView:_replyNumberLabel];
+
+    [self.navigationItem setLeftBarButtonItems:@[backItem, titleItem, numberItem]];
 }
 
-- (void)closeCommentPage
+- (void)backToCommentPage
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"loadComments" object:self];
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 #pragma mark header view
-- (MDCBaseTextField *)commentField
+- (MDCBaseTextField *)replyField
 {
-    if(_commentField == nil)
+    if(_replyField == nil)
     {
-        _commentField = [[MDCBaseTextField alloc]init];
-        [_commentField setFrame:CGRectMake(5, 14, 350, 50)];
-        [_commentField setPlaceholder:@"Add a public comment..."];
-        [_commentField setLeftViewMode:UITextFieldViewModeAlways];
-        [_commentField setRightViewMode:UITextFieldViewModeWhileEditing];
-        _commentField.rightView = self.sendButton;
-        _commentField.leftView = self.userAvatarView;
+        _replyField = [[MDCBaseTextField alloc]init];
+        [_replyField setFrame:CGRectMake(5, 14, 350, 50)];
+        [_replyField setPlaceholder:@"Add a public reply..."];
+        [_replyField setLeftViewMode:UITextFieldViewModeAlways];
+        [_replyField setRightViewMode:UITextFieldViewModeWhileEditing];
+        _replyField.rightView = self.sendButton;
+        _replyField.leftView = self.userAvatarView;
     }
-    return _commentField;
+    return _replyField;
 }
 
 - (UIButton *)sendButton
@@ -115,7 +114,7 @@
         [_sendButton setImage:[[UIImage imageNamed:@"paper-plane.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
         [_sendButton.imageView setTintColor:[UIColor grayColor]];
         [_sendButton.imageView setContentMode:UIViewContentModeScaleAspectFit];
-        [_sendButton addTarget:self action:@selector(commentButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [_sendButton addTarget:self action:@selector(replyButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _sendButton;
 }
@@ -133,15 +132,15 @@
     return  _userAvatarView;
 }
 
-- (void)commentButtonClicked
+- (void)replyButtonClicked
 {
-    NSString *URL = @"http://159.75.1.231:5009/comments";
+    NSString *URL = @"http://159.75.1.231:5009/replies";
     NSDictionary *header = @{
         @"Authorization":[UserInfo sharedUser].token
     };
     NSDictionary *body = @{
-        @"text":[self.commentField text],
-        @"contentID":@(self.contentID)
+        @"text":[self.replyField text],
+        @"commentID":@(self.commentID)
     };
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -153,12 +152,12 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {
-            NSLog(@"succeed to make a comment");
-            [self.commentField setText:@""];
-            [self loadDataOrderBy:LoadCommentsOrderByTime];
+            NSLog(@"succeed to make a reply");
+            [self.replyField setText:@""];
+            [self loadDataOrderBy:LoadRepliesOrderByTime];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failed to make a comment");
+        NSLog(@"failed to make a reply");
     }];
 }
 
@@ -169,42 +168,37 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.commentItems count];
+    return [self.replyItems count];
 }
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     CommentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"CommentTableViewCell" forIndexPath:indexPath];
-    CommentItem *itemForThisCell = self.commentItems[indexPath.row];
-    
+    ReplyItem *itemForThisCell = self.replyItems[indexPath.row];
     
     [cell.avatarButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", itemForThisCell.userItem.avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
     [cell.titleLable setText:[NSString stringWithFormat:@"%@ · %@", itemForThisCell.userItem.userName, [TimeTool timeBeforeInfoWithString:itemForThisCell.createTime]]];
-    [cell.commentTextLable setText:itemForThisCell.commentText];
+    [cell.commentTextLable setText:itemForThisCell.replyText];
     [cell.likeLabel setText:itemForThisCell.likeNum > 0 ? [NSString stringWithFormat:@"%d", itemForThisCell.likeNum] : @""];
-    [cell.replyLabel setText:itemForThisCell.replyNum > 0? [NSString stringWithFormat:@"%d", itemForThisCell.replyNum] : @""];
+    [cell.replyButton setHidden:YES];
+    [cell.replyLabel setHidden:YES];
     
     [cell.likeButton setTag:indexPath.row];
-    [cell.likeButton addTarget:self action:@selector(likeCommentButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    
-    [cell.replyButton setTag:indexPath.row];
-    [cell.replyButton addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    [cell.likeButton addTarget:self action:@selector(likeReplyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
     [itemForThisCell addObserver:cell forKeyPath:@"likeNum" options:NSKeyValueObservingOptionNew context:@"likeNum"];
     [itemForThisCell addObserver:cell forKeyPath:@"liked" options:NSKeyValueObservingOptionNew context:@"liked"];
-    [itemForThisCell addObserver:cell forKeyPath:@"replyNum" options:NSKeyValueObservingOptionNew context:@"replyNum"];
-    
     
     return cell;
 }
 
-#pragma mark 点赞评论
-- (void)likeCommentButtonClicked:(UIButton *)btn
+#pragma mark 点赞回复
+- (void) likeReplyButtonClicked:(UIButton *)btn
 {
     NSInteger i = btn.tag;
-    CommentItem *itemForThisCell = self.commentItems[i];
+    ReplyItem *itemForThisCell = self.replyItems[i];
     
-    NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/like/comment/%d",itemForThisCell.commentID];
+    NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/like/reply/%d",itemForThisCell.replyID];
     NSDictionary *header = @{
         @"Authorization":[UserInfo sharedUser].token
     };
@@ -242,26 +236,18 @@
             NSLog(@"like failed");
         }];
     }
-    
 }
 
-#pragma mark 进入回复页面
-- (void)replyButtonClicked:(UIButton *)btn
-{
-    NSInteger i = btn.tag;
-    int commentID = [self.commentItems[i] commentID];
-    [self.navigationController pushViewController:[[ReplyTableViewController alloc]initWithCommentID:commentID] animated:YES];
-}
 
 #pragma mark 网络请求
-typedef NS_ENUM(NSInteger, LoadCommentMode) {
-    LoadCommentsOrderByTime,
-    LoadCommentsOrderByLikeNum
+typedef NS_ENUM(NSInteger, LoadReplyMode) {
+    LoadRepliesOrderByTime,
+    LoadRepliesOrderByLikeNum
 };
 
-- (void)loadDataOrderBy:(LoadCommentMode)mode
+- (void)loadDataOrderBy:(LoadReplyMode)mode
 {
-    NSString *URL = @"http://159.75.1.231:5009/comments";
+    NSString *URL = @"http://159.75.1.231:5009/replies";
     
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
@@ -272,12 +258,12 @@ typedef NS_ENUM(NSInteger, LoadCommentMode) {
     };
     
     NSMutableDictionary *params = [NSMutableDictionary new];
-    [params setValue:@(self.contentID) forKey:@"contentID"];
+    [params setValue:@(self.commentID) forKey:@"commentID"];
     switch (mode) {
-        case LoadCommentsOrderByTime:
+        case LoadRepliesOrderByTime:
             [params setValue:@"time" forKey:@"orderBy"];
             break;
-        case LoadCommentsOrderByLikeNum:
+        case LoadRepliesOrderByLikeNum:
             [params setValue:@"likeNum" forKey:@"orderBy"];
             break;
         default:
@@ -289,19 +275,19 @@ typedef NS_ENUM(NSInteger, LoadCommentMode) {
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {
-            self.commentItems = [NSMutableArray new];
-            NSArray *commentData = response[@"data"];
-            [self.commentNumberLabel setText:[NSString stringWithFormat:@" %ld", [commentData count]]];
+            self.replyItems = [NSMutableArray new];
+            NSArray *replyData = response[@"data"];
+            [self.replyNumberLabel setText:[NSString stringWithFormat:@" %ld", [replyData count]]];
             
-            for(int i = 0; i < [commentData count]; i++)
+            for(int i = 0; i < [replyData count]; i++)
             {
-                CommentItem *newItem = [[CommentItem alloc]initWithDict:commentData[i]];
-                [self.commentItems addObject:newItem];
+                ReplyItem *newItem = [[ReplyItem alloc]initWithDict:replyData[i]];
+                [self.replyItems addObject:newItem];
             }
         }
         [self.tableView reloadData];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        NSLog(@"failed to get comment data");
+        NSLog(@"failed to get reply data");
     }];
 }
 

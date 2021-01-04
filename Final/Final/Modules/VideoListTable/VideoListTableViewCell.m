@@ -14,8 +14,9 @@
     // Initialization code
     
     // 头像样式
+    [_avatarButton setClipsToBounds:YES];
+    [_avatarButton.imageView setClipsToBounds:YES];
     _avatarButton.layer.cornerRadius = 25;
-    _avatarButton.layer.masksToBounds = YES;
     [_avatarButton setBackgroundImage:nil forState:UIControlStateNormal];
     
     
