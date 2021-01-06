@@ -14,6 +14,8 @@ target 'Final' do
   pod 'Masonry'
   pod 'MaterialComponents/TextControls+OutlinedTextFields'
   pod 'MaterialComponents/TextControls+FilledTextFields'
+  pod 'MaterialComponents/TextControls+OutlinedTextAreas'
+  pod 'MaterialComponents/TextControls+FilledTextAreas'
   pod ‘MaterialComponents/Buttons+Theming’
   pod 'MaterialComponents/Dialogs'
   pod 'MaterialComponents/Tabs+TabBarView'
@@ -22,4 +24,5 @@ target 'Final' do
   pod 'WMPlayer'
   pod 'SJVideoPlayer'
   pod 'FTPopOverMenu'
+  pod 'TZImagePickerController'
 end

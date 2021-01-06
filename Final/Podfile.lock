@@ -150,16 +150,28 @@ PODS:
     - MaterialComponents/private/Math
     - MaterialComponents/Ripple
     - MDFInternationalization
+  - "MaterialComponents/TextControls+BaseTextAreas (119.3.0)":
+    - "MaterialComponents/private/TextControlsPrivate+BaseStyle"
+    - "MaterialComponents/private/TextControlsPrivate+Shared"
+    - MDFInternationalization
   - "MaterialComponents/TextControls+BaseTextFields (119.3.0)":
     - "MaterialComponents/private/TextControlsPrivate+BaseStyle"
     - "MaterialComponents/private/TextControlsPrivate+Shared"
     - "MaterialComponents/private/TextControlsPrivate+TextFields"
     - MDFInternationalization
   - "MaterialComponents/TextControls+Enums (119.3.0)"
+  - "MaterialComponents/TextControls+FilledTextAreas (119.3.0)":
+    - MaterialComponents/Availability
+    - "MaterialComponents/private/TextControlsPrivate+FilledStyle"
+    - "MaterialComponents/TextControls+BaseTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields (119.3.0)":
     - MaterialComponents/Availability
     - "MaterialComponents/private/TextControlsPrivate+FilledStyle"
     - "MaterialComponents/TextControls+BaseTextFields"
+  - "MaterialComponents/TextControls+OutlinedTextAreas (119.3.0)":
+    - MaterialComponents/Availability
+    - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle"
+    - "MaterialComponents/TextControls+BaseTextAreas"
   - "MaterialComponents/TextControls+OutlinedTextFields (119.3.0)":
     - MaterialComponents/Availability
     - "MaterialComponents/private/TextControlsPrivate+OutlinedStyle"
@@ -233,6 +245,7 @@ PODS:
     - SJVideoPlayer/Common
   - SJVideoPlayer/ResourceLoader (3.2.9):
     - SJBaseVideoPlayer (>= 3.4.5)
+  - TZImagePickerController (3.5.8)
   - "UITextView+Placeholder (1.4.0)"
   - WMPlayer (5.0.0):
     - Masonry
@@ -248,11 +261,14 @@ DEPENDENCIES:
   - "MaterialComponents/Cards+Theming"
   - MaterialComponents/Dialogs
   - "MaterialComponents/Tabs+TabBarView"
+  - "MaterialComponents/TextControls+FilledTextAreas"
   - "MaterialComponents/TextControls+FilledTextFields"
+  - "MaterialComponents/TextControls+OutlinedTextAreas"
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - MJRefresh
   - SDWebImage
   - SJVideoPlayer
+  - TZImagePickerController
   - "UITextView+Placeholder"
   - WMPlayer
 
@@ -271,6 +287,7 @@ SPEC REPOS:
     - SJBaseVideoPlayer
     - SJUIKit
     - SJVideoPlayer
+    - TZImagePickerController
     - "UITextView+Placeholder"
     - WMPlayer
     - YYModel
@@ -289,10 +306,11 @@ SPEC CHECKSUMS:
   SJBaseVideoPlayer: 0ecccbae3bf6cad55187113247ea88f711bef276
   SJUIKit: bdf86af3648e70483c57e2bfe2fcc7531337fa54
   SJVideoPlayer: 3cccc263bc03edccedc1b2be887b903e3dfca106
+  TZImagePickerController: 7fd9702897ef8c0b7c951e5463f4bcf398296f9e
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
   WMPlayer: a914f80ed5dca7cd9e3a94ec07a2b02eec8c15c0
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 0350000f91242627b7a106a8121b2d277dce84a7
+PODFILE CHECKSUM: 2cf8f288043d21603d3f6f29f2a5fa25023229e9
 
 COCOAPODS: 1.10.0

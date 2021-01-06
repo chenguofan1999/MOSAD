@@ -22,6 +22,12 @@
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    // This clears the title of back button
+    self.navigationController.navigationBar.topItem.title = @"";
+}
+
 /*
 #pragma mark - Navigation
 

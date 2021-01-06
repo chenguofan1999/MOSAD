@@ -109,6 +109,10 @@
 {
     if(_usernameField != nil) return _usernameField;
     _usernameField = [[MDCFilledTextField alloc]init];
+    [_usernameField setFilledBackgroundColor:[UIColor systemGray5Color] forState:MDCTextControlStateNormal];
+    [_usernameField setFilledBackgroundColor:[UIColor systemGray5Color] forState:MDCTextControlStateEditing];
+    [_usernameField setLeadingAssistiveLabelColor:[UIColor whiteColor] forState:MDCTextControlStateNormal];
+    [_usernameField setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
     [_usernameField setNormalLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
     [_usernameField setUnderlineColor:[UIColor lightGrayColor] forState:MDCTextControlStateNormal];
     [_usernameField setUnderlineColor:[AppConfig getMainColor] forState:MDCTextControlStateEditing];
@@ -122,6 +126,10 @@
 {
     if(_passwordField != nil) return _passwordField;
     _passwordField = [[MDCFilledTextField alloc]init];
+    [_passwordField setFilledBackgroundColor:[UIColor systemGray5Color] forState:MDCTextControlStateNormal];
+    [_passwordField setFilledBackgroundColor:[UIColor systemGray5Color] forState:MDCTextControlStateEditing];
+    [_passwordField setLeadingAssistiveLabelColor:[UIColor whiteColor] forState:MDCTextControlStateNormal];
+    [_passwordField setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
     [_passwordField setNormalLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
     [_passwordField setUnderlineColor:[UIColor lightGrayColor] forState:MDCTextControlStateNormal];
     [_passwordField setUnderlineColor:[AppConfig getMainColor] forState:MDCTextControlStateEditing];
@@ -145,18 +153,32 @@
 
 - (void)changeMode
 {
+    [UIView animateWithDuration:0.8 animations:^{
+        [self.usernameField setAlpha:0];
+        [self.passwordField setAlpha:0];
+    }];
+    
     if(_isLogin)
     {
         _isLogin = NO;
-        [self.actionButton setTitle:@"Sign up" forState:UIControlStateNormal];
+        [self.actionButton setTitle:@"Create" forState:UIControlStateNormal];
         [self.modeButton setTitle:@"Log in" forState:UIControlStateNormal];
+        [self.usernameField.leadingAssistiveLabel setText:@"Unique Identifying Username"];
+        [self.passwordField.leadingAssistiveLabel setText:@"Any but empty string"];
     }
     else
     {
         _isLogin = YES;
         [self.actionButton setTitle:@"Log in" forState:UIControlStateNormal];
         [self.modeButton setTitle:@"Create account" forState:UIControlStateNormal];
+        [self.usernameField.leadingAssistiveLabel setText:@""];
+        [self.passwordField.leadingAssistiveLabel setText:@""];
     }
+    
+    [UIView animateWithDuration:0.8 animations:^{
+        [self.usernameField setAlpha:1];
+        [self.passwordField setAlpha:1];
+    }];
 }
 
 - (void)signupWithUsername:(NSString *)username Password:(NSString *)password

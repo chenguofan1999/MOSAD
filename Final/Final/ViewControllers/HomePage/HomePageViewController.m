@@ -29,12 +29,14 @@
     [self addChildViewController:self.videoListTableViewController];
     [self.videoListTableViewController loadData];
     
+    
 }
 
-//- (void)viewWillAppear:(BOOL)animated
-//{
-//    [self.tagView createTagButtons];
-//}
+- (void)viewWillAppear:(BOOL)animated
+{
+    // This clears the title of back button
+    self.navigationController.navigationBar.topItem.title = @"";
+}
 
 - (VideoListTableViewController *)videoListTableViewController
 {

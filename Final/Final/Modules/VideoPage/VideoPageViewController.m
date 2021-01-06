@@ -765,8 +765,9 @@
         if([response[@"status"] isEqualToString:@"success"])
         {
             NSArray *commentsByDesc = response[@"data"];
-            self.topCommentItem = [[CommentItem alloc]initWithDict:commentsByDesc[0]];
             self.contentItem.commentNum = (int)[commentsByDesc count];
+            if(self.contentItem.commentNum > 0)
+                self.topCommentItem = [[CommentItem alloc]initWithDict:commentsByDesc[0]];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"get top comment failed");

@@ -10,7 +10,6 @@
 #import <SDWebImage/UIButton+WebCache.h>
 #import "UserInfo.h"
 #import "PostContentViewController.h"
-
 @interface NavedViewController ()
 
 @end
@@ -21,6 +20,7 @@
     [super viewDidLoad];
     [self setNavBar];
 }
+
 
 
 - (void)setNavBar
@@ -82,6 +82,7 @@
 - (void)toPostPage
 {
     [self.navigationController pushViewController:[PostContentViewController new] animated:YES];
+    
 }
 
 @end

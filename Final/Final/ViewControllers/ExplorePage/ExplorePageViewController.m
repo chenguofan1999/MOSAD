@@ -33,6 +33,13 @@
     self.sortingMode = VideoSortingModeTimeDesc;
 }
 
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    // This clears the title of back button
+    self.navigationController.navigationBar.topItem.title = @"";
+}
+
 - (VideoListTableViewController *)videoListTableViewController
 {
     if(_videoListTableViewController == nil)

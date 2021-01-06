@@ -74,6 +74,12 @@
 		5657EB5B25A37CE7000F3B86 /* sorting.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB5A25A37CE7000F3B86 /* sorting.png */; };
 		5657EB5F25A381F9000F3B86 /* descending.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB5E25A381F9000F3B86 /* descending.png */; };
 		5657EB6425A38259000F3B86 /* ascending.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB6325A38259000F3B86 /* ascending.png */; };
+		5657EB8525A48403000F3B86 /* edit.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB8125A48402000F3B86 /* edit.png */; };
+		5657EB8625A48403000F3B86 /* title.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB8225A48402000F3B86 /* title.png */; };
+		5657EB8E25A4872A000F3B86 /* image.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB8C25A48729000F3B86 /* image.png */; };
+		5657EB8F25A4872A000F3B86 /* video.png in Resources */ = {isa = PBXBuildFile; fileRef = 5657EB8D25A4872A000F3B86 /* video.png */; };
+		5657EB9625A4B8A3000F3B86 /* PreViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5657EB9525A4B8A2000F3B86 /* PreViewController.m */; };
+		5657EBAE25A4E150000F3B86 /* BigImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5657EBAD25A4E150000F3B86 /* BigImageViewController.m */; };
 		5672C28C259F701600E82B10 /* eye.png in Resources */ = {isa = PBXBuildFile; fileRef = 5672C28B259F701600E82B10 /* eye.png */; };
 		56EAA2B22592EEF5001E9B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B12592EEF5001E9B7D /* AppDelegate.m */; };
 		56EAA2B52592EEF5001E9B7D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B42592EEF5001E9B7D /* SceneDelegate.m */; };
@@ -178,6 +184,14 @@
 		5657EB5A25A37CE7000F3B86 /* sorting.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sorting.png; sourceTree = "<group>"; };
 		5657EB5E25A381F9000F3B86 /* descending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = descending.png; sourceTree = "<group>"; };
 		5657EB6325A38259000F3B86 /* ascending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ascending.png; sourceTree = "<group>"; };
+		5657EB8125A48402000F3B86 /* edit.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = edit.png; sourceTree = "<group>"; };
+		5657EB8225A48402000F3B86 /* title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = title.png; sourceTree = "<group>"; };
+		5657EB8C25A48729000F3B86 /* image.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = image.png; sourceTree = "<group>"; };
+		5657EB8D25A4872A000F3B86 /* video.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = video.png; sourceTree = "<group>"; };
+		5657EB9425A4B8A2000F3B86 /* PreViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PreViewController.h; sourceTree = "<group>"; };
+		5657EB9525A4B8A2000F3B86 /* PreViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PreViewController.m; sourceTree = "<group>"; };
+		5657EBAC25A4E150000F3B86 /* BigImageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BigImageViewController.h; sourceTree = "<group>"; };
+		5657EBAD25A4E150000F3B86 /* BigImageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BigImageViewController.m; sourceTree = "<group>"; };
 		5672C28B259F701600E82B10 /* eye.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = eye.png; sourceTree = "<group>"; };
 		56EAA2AD2592EEF5001E9B7D /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56EAA2B02592EEF5001E9B7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -268,6 +282,10 @@
 		5628B63D25998142000E4DA3 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				5657EB8C25A48729000F3B86 /* image.png */,
+				5657EB8D25A4872A000F3B86 /* video.png */,
+				5657EB8125A48402000F3B86 /* edit.png */,
+				5657EB8225A48402000F3B86 /* title.png */,
 				5657EB6325A38259000F3B86 /* ascending.png */,
 				5657EB5E25A381F9000F3B86 /* descending.png */,
 				5657EB5A25A37CE7000F3B86 /* sorting.png */,
@@ -383,6 +401,10 @@
 			children = (
 				5628B6A02599AA9F000E4DA3 /* PostContentViewController.h */,
 				5628B6A12599AA9F000E4DA3 /* PostContentViewController.m */,
+				5657EB9425A4B8A2000F3B86 /* PreViewController.h */,
+				5657EB9525A4B8A2000F3B86 /* PreViewController.m */,
+				5657EBAC25A4E150000F3B86 /* BigImageViewController.h */,
+				5657EBAD25A4E150000F3B86 /* BigImageViewController.m */,
 			);
 			path = PostContentPage;
 			sourceTree = "<group>";
@@ -559,7 +581,9 @@
 				5628B67F2599950B000E4DA3 /* playlist@2x.png in Resources */,
 				5609C0F1259DE90E007E2F2A /* Yourtube_dark.jpg in Resources */,
 				5628B796259C22B0000E4DA3 /* play-property@2x.png in Resources */,
+				5657EB8625A48403000F3B86 /* title.png in Resources */,
 				5628B6832599950B000E4DA3 /* laptop-play-filled@2x.png in Resources */,
+				5657EB8525A48403000F3B86 /* edit.png in Resources */,
 				5657EAF325A16617000F3B86 /* fold.png in Resources */,
 				5657EAE225A0977D000F3B86 /* fav@3x.png in Resources */,
 				5657EB5B25A37CE7000F3B86 /* sorting.png in Resources */,
@@ -567,6 +591,7 @@
 				5657EB0325A189D8000F3B86 /* CommentTableViewCell.xib in Resources */,
 				5657EB6425A38259000F3B86 /* ascending.png in Resources */,
 				56EAA2C02592EEF6001E9B7D /* LaunchScreen.storyboard in Resources */,
+				5657EB8F25A4872A000F3B86 /* video.png in Resources */,
 				5657EB5F25A381F9000F3B86 /* descending.png in Resources */,
 				5628B6842599950B000E4DA3 /* playlist-filled@2x.png in Resources */,
 				5672C28C259F701600E82B10 /* eye.png in Resources */,
@@ -578,6 +603,7 @@
 				5657EB0C25A19239000F3B86 /* thumbs-up-filled.png in Resources */,
 				5628B6C5259A1768000E4DA3 /* VideoListTableViewCell.xib in Resources */,
 				5657EB1925A1CB62000F3B86 /* back.png in Resources */,
+				5657EB8E25A4872A000F3B86 /* image.png in Resources */,
 				5628B6872599950B000E4DA3 /* for-you@2x.png in Resources */,
 				5628B69325999813000E4DA3 /* compass@2x.png in Resources */,
 				5657EAE625A097A2000F3B86 /* yes@3x.png in Resources */,
@@ -667,6 +693,7 @@
 				5657EAEC25A0DFFD000F3B86 /* CommentItem.m in Sources */,
 				5628B749259B1C5D000E4DA3 /* AppConfig.m in Sources */,
 				5628B63425996ACC000E4DA3 /* MainTabBarController.m in Sources */,
+				5657EB9625A4B8A3000F3B86 /* PreViewController.m in Sources */,
 				5657EB1625A1C096000F3B86 /* ReplyTableViewController.m in Sources */,
 				5628B65C25998DAE000E4DA3 /* ExplorePageViewController.m in Sources */,
 				56EAA2C32592EEF6001E9B7D /* main.m in Sources */,
@@ -679,6 +706,7 @@
 				5628B6EB259B02C9000E4DA3 /* LoginPageViewController.m in Sources */,
 				5628B6A22599AA9F000E4DA3 /* PostContentViewController.m in Sources */,
 				5657EB4225A30D86000F3B86 /* NavedViewController.m in Sources */,
+				5657EBAE25A4E150000F3B86 /* BigImageViewController.m in Sources */,
 				5657EAFD25A188A1000F3B86 /* ReplyItem.m in Sources */,
 				5628B68D259995B0000E4DA3 /* LibraryPageViewController.m in Sources */,
 			);
