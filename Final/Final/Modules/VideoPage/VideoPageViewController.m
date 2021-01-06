@@ -57,6 +57,7 @@
 
 @property (nonatomic, strong) TagView *videoTagView;
 
+@property (nonatomic) UIButton *moreActionButton;
 
 @end
 
@@ -230,7 +231,7 @@
     [titleLogo setClipsToBounds:YES];
     [titleLogo.widthAnchor constraintEqualToConstant:120].active = YES;
     [self.navigationItem setTitleView:titleLogo];
-    
+    [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:self.moreActionButton]];
     
     // This clears the title of back button
     self.navigationController.navigationBar.topItem.title = @"";
@@ -619,7 +620,7 @@
     {
         _commentCard = [[MDCCard alloc]init];
         [_commentCard applyThemeWithScheme:[[MDCContainerScheme alloc] init]];
-        [_commentCard setBorderWidth:0.5 forState:UIControlStateNormal];
+        [_commentCard setBorderWidth:0.3 forState:UIControlStateNormal];
         [_commentCard setBorderColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
         [_commentCard setCornerRadius:0];
         [_commentCard addSubview:self.commentTitleLabel];
@@ -780,6 +781,23 @@
     [self presentViewController:commentNav animated:YES completion:nil];
 }
 
+#pragma mark moreActionButton
+- (UIButton *)moreActionButton
+{
+    if(_moreActionButton == nil)
+    {
+        _moreActionButton = [[UIButton alloc]init];
+        [_moreActionButton setImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
+        [_moreActionButton addTarget:self action:@selector(moreActionButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _moreActionButton;
+}
+
+- (void)moreActionButtonClicked
+{
+    
+}
+
 #pragma mark TagView
 - (TagView *)videoTagView
 {
@@ -793,70 +811,7 @@
 }
 
 
-#pragma mark KVO
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
-
-    if([(__bridge NSString *)context isEqualToString:@"following state changed"])
-    {
-        if([self.isFollowing boolValue] == NO)
-        {
-            [self.followButton setTitle:@"SUBSCRIBE" forState:UIControlStateNormal];
-            [self.followButton setTitleColor:[AppConfig getMainColor] forState:UIControlStateNormal];
-        }
-        else
-        {
-            [self.followButton setTitle:@"SUBSCRIBED" forState:UIControlStateNormal];
-            [self.followButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
-        }
-    }
-    else if([(__bridge NSString *)context isEqualToString:@"following number changed"])
-    {
-        [self.userFollowerLabel setText:[NSString stringWithFormat:@"%d subscribers", self.contentItem.userItem.followerNum]];
-    }
-    else if([(__bridge NSString *)context isEqualToString:@"like status changed"])
-    {
-        if([change[@"new"] isEqualToNumber:@(YES)])
-        {
-            NSLog(@" doing like !! ");
-            // do: like
-            [self.likeButton setTitle:@"LIKED" forState:UIControlStateNormal];
-            [self.likeButton setBackgroundColor:[UIColor grayColor]];
-            [self.likeButton setImage:[[UIImage imageNamed:@"yes@3x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        }
-        else if([change[@"new"] isEqualToNumber:@(NO)])
-        {
-            NSLog(@" doing unlike !! ");
-            // do: cancel like
-            [self.likeButton setTitle:@"LIKE" forState:UIControlStateNormal];
-            [self.likeButton setBackgroundColor:[AppConfig getMainColor]];
-            [self.likeButton setImage:[[UIImage imageNamed:@"fav@3x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
-        }
-        [self.videoInfoLabel setText:[NSString stringWithFormat:@"%d views · %d likes · %@", self.contentItem.viewNum, self.contentItem.likeNum, [TimeTool timeBeforeInfoWithString:self.contentItem.createTime]]];
-    }
-    else if([(__bridge NSString *)context isEqualToString:@"comment number changed"])
-    {
-        [_commentNumLabel setText:[NSString stringWithFormat:@"%d", self.contentItem.commentNum]];
-    }
-    else if([(__bridge NSString *)context isEqualToString:@"get top comment"])
-    {
-        if(self.topCommentItem != nil)
-        {
-            [self.commenterAvatarView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", self.topCommentItem.userItem.avatarURL]]];
-            [self.topCommentLabel setText:self.topCommentItem.commentText];
-            [self.topCommentLabel setHidden:NO];
-            [self.commentField setHidden:YES];
-            [self.sendButton setHidden:YES];
-        }
-    }
-    else if([(__bridge NSString *)context isEqualToString:@"tags changed"])
-    {
-        self.videoTagView.tagArray = self.contentItem.videoTags;
-        [self.videoTagView updateTagButtons];
-    }
-}
 
 #pragma mark tag delegate
 - (void)addBtnClick:(UIButton *)btn {
@@ -1018,6 +973,71 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to delete tag %@",tagName);
     }];
+}
+
+#pragma mark KVO
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
+{
+    NSLog(@"监听到%@的%@属性值改变了 - %@ - %@", object, keyPath, change, context);
+
+    if([(__bridge NSString *)context isEqualToString:@"following state changed"])
+    {
+        if([self.isFollowing boolValue] == NO)
+        {
+            [self.followButton setTitle:@"SUBSCRIBE" forState:UIControlStateNormal];
+            [self.followButton setTitleColor:[AppConfig getMainColor] forState:UIControlStateNormal];
+        }
+        else
+        {
+            [self.followButton setTitle:@"SUBSCRIBED" forState:UIControlStateNormal];
+            [self.followButton setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
+        }
+    }
+    else if([(__bridge NSString *)context isEqualToString:@"following number changed"])
+    {
+        [self.userFollowerLabel setText:[NSString stringWithFormat:@"%d subscribers", self.contentItem.userItem.followerNum]];
+    }
+    else if([(__bridge NSString *)context isEqualToString:@"like status changed"])
+    {
+        if([change[@"new"] isEqualToNumber:@(YES)])
+        {
+            NSLog(@" doing like !! ");
+            // do: like
+            [self.likeButton setTitle:@"LIKED" forState:UIControlStateNormal];
+            [self.likeButton setBackgroundColor:[UIColor grayColor]];
+            [self.likeButton setImage:[[UIImage imageNamed:@"yes@3x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        }
+        else if([change[@"new"] isEqualToNumber:@(NO)])
+        {
+            NSLog(@" doing unlike !! ");
+            // do: cancel like
+            [self.likeButton setTitle:@"LIKE" forState:UIControlStateNormal];
+            [self.likeButton setBackgroundColor:[AppConfig getMainColor]];
+            [self.likeButton setImage:[[UIImage imageNamed:@"fav@3x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+        }
+        [self.videoInfoLabel setText:[NSString stringWithFormat:@"%d views · %d likes · %@", self.contentItem.viewNum, self.contentItem.likeNum, [TimeTool timeBeforeInfoWithString:self.contentItem.createTime]]];
+    }
+    else if([(__bridge NSString *)context isEqualToString:@"comment number changed"])
+    {
+        [_commentNumLabel setText:[NSString stringWithFormat:@"%d", self.contentItem.commentNum]];
+    }
+    else if([(__bridge NSString *)context isEqualToString:@"get top comment"])
+    {
+        if(self.topCommentItem != nil)
+        {
+            [self.commenterAvatarView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", self.topCommentItem.userItem.avatarURL]]];
+            [self.topCommentLabel setText:self.topCommentItem.commentText];
+            [self.topCommentLabel setHidden:NO];
+            [self.commentField setHidden:YES];
+            [self.sendButton setHidden:YES];
+        }
+    }
+    else if([(__bridge NSString *)context isEqualToString:@"tags changed"])
+    {
+        self.videoTagView.tagArray = self.contentItem.videoTags;
+        [self.videoTagView updateTagButtons];
+    }
 }
 
 @end

@@ -21,8 +21,6 @@ target 'Final' do
   pod 'MaterialComponents/Tabs+TabBarView'
   pod 'MaterialComponents/Cards+Theming'
   pod 'MJRefresh'
-  pod 'WMPlayer'
   pod 'SJVideoPlayer'
   pod 'FTPopOverMenu'
-  pod 'TZImagePickerController'
 end

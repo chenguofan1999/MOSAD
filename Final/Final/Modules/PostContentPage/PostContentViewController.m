@@ -12,7 +12,6 @@
 #import <MaterialTextControls+FilledTextFields.h>
 #import <MaterialTextControls+OutlinedTextAreas.h>
 #import <MaterialTextControls+OutlinedTextFields.h>
-#import <TZImagePickerController/TZImagePickerController.h>
 #import <AFNetworking/AFNetworking.h>
 #import <AVFoundation/AVFoundation.h>
 #import <SJVideoPlayer/SJVideoPlayer.h>
@@ -26,7 +25,7 @@
 #import "PreViewController.h"
 #import "BigImageViewController.h"
 
-@interface PostContentViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,PHPickerViewControllerDelegate>
+@interface PostContentViewController ()<UINavigationControllerDelegate,UIImagePickerControllerDelegate,PHPickerViewControllerDelegate,UITextFieldDelegate,UITextViewDelegate>
 @property (nonatomic, strong) UILabel *selectCoverImageLabel;
 @property (nonatomic, strong) MDCButton *selectVideoButton;
 @property (nonatomic, strong) MDCButton *sendButton;
@@ -150,9 +149,13 @@
 - (void)viewWillDisappear:(BOOL)animated
 {
     [self.navigationController.navigationBar setBarTintColor:[UIColor whiteColor]];
+    if(self.videoURL != nil)
+    {
+        // delete cached video
+        [[NSFileManager defaultManager] removeItemAtURL:self.videoURL error:nil];
+    }
     [super viewWillDisappear:animated];
 }
-
 
 - (void)setColors
 {
@@ -186,11 +189,11 @@
         [_selectVideoButton setBackgroundColor:self.POSTButtonColor];
         [_selectVideoButton setTitle:@"Select Video" forState:UIControlStateNormal];
         [_selectVideoButton addTarget:self action:@selector(selectVideoButtonClicked) forControlEvents:UIControlEventTouchUpInside];
-        
-//        [self.likeButton setImage:[[UIImage imageNamed:@"fav@3x.png"]imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
     }
     return _selectVideoButton;
 }
+
+
 
 - (UIImageView *)coverImageView
 {
@@ -218,6 +221,8 @@
     if(_selectCoverImageLabel == nil)
     {
         _selectCoverImageLabel = [[UILabel alloc]init];
+//        [_selectCoverImageLabel setFont:[UIFont systemFontOfSize:14]];
+        [_selectCoverImageLabel setFont:self.selectVideoButton.titleLabel.font];
         [_selectCoverImageLabel setTextColor:[UIColor grayColor]];
         [_selectCoverImageLabel setText:@"+ Cover Image"];
         [_selectCoverImageLabel sizeToFit];
@@ -230,6 +235,7 @@
     if(_titleField == nil)
     {
         _titleField = [[MDCFilledTextField alloc]init];
+        _titleField.delegate = self;
         [_titleField.label setText:@"Title"];
         [_titleField.leadingAssistiveLabel setText:@"Required"];
         [_titleField.leadingAssistiveLabel setFont:[UIFont systemFontOfSize:12]];
@@ -251,11 +257,31 @@
     return _titleField;
 }
 
+- (void)textFieldDidEndEditing:(UITextField *)textField
+{
+    if(textField == _titleField && ![[textField text] isEqualToString:@""])
+    {
+        [_titleField.leadingAssistiveLabel setText:@"✓"];
+        CGFloat R = (float)0x1E/255;
+        CGFloat G = (float)0xB9/255;
+        CGFloat B = (float)0x80/255;
+        [_titleField setLeadingAssistiveLabelColor:[UIColor colorWithRed:R green:G blue:B alpha:1] forState:MDCTextControlStateNormal];
+        [_titleField setLeadingAssistiveLabelColor:[UIColor colorWithRed:R green:G blue:B alpha:1] forState:MDCTextControlStateEditing];
+    }
+    else if(textField == _titleField && [[textField text] isEqualToString:@""])
+    {
+        [_titleField.leadingAssistiveLabel setText:@"Required"];
+        [_titleField setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
+        [_titleField setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
+    }
+}
+
 - (MDCFilledTextArea *)descriptionArea
 {
     if(_descriptionArea == nil)
     {
         _descriptionArea = [[MDCFilledTextArea alloc]init];
+        _descriptionArea.textView.delegate = self;
         [_descriptionArea.label setText:@"Description"];
         [_descriptionArea.leadingAssistiveLabel setText:@"Required"];
         [_descriptionArea.leadingAssistiveLabel setFont:[UIFont systemFontOfSize:12]];
@@ -277,6 +303,25 @@
         [_descriptionArea.textView setBounces:NO];
     }
     return _descriptionArea;
+}
+
+-(void)textViewDidEndEditing:(UITextView *)textView
+{
+    if(textView == _descriptionArea.textView && ![[textView text] isEqualToString:@""])
+    {
+        [_descriptionArea.leadingAssistiveLabel setText:@"✓"];
+        CGFloat R = (float)0x1E/255;
+        CGFloat G = (float)0xB9/255;
+        CGFloat B = (float)0x80/255;
+        [_descriptionArea setLeadingAssistiveLabelColor:[UIColor colorWithRed:R green:G blue:B alpha:1] forState:MDCTextControlStateNormal];
+        [_descriptionArea setLeadingAssistiveLabelColor:[UIColor colorWithRed:R green:G blue:B alpha:1] forState:MDCTextControlStateEditing];
+    }
+    else if(textView == _descriptionArea.textView && [[textView text] isEqualToString:@""])
+    {
+        [_descriptionArea.leadingAssistiveLabel setText:@"Required"];
+        [_descriptionArea setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
+        [_descriptionArea setLeadingAssistiveLabelColor:[UIColor grayColor] forState:MDCTextControlStateEditing];
+    }
 }
 
 - (MDCButton *)sendButton
@@ -340,8 +385,6 @@
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"successed to upload");
-        // delete cached video
-        [[NSFileManager defaultManager] removeItemAtURL:self.videoURL error:nil];
         
         MDCAlertController *alertController =
         [MDCAlertController alertControllerWithTitle:@"Post Succeeded!" message:nil];
@@ -366,7 +409,7 @@
         _videoIcon = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"video.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         [_videoIcon setContentMode:UIViewContentModeScaleAspectFit];
         [_videoIcon setClipsToBounds:YES];
-        [_videoIcon setTintColor:[UIColor whiteColor]];
+        [_videoIcon setTintColor:[UIColor lightGrayColor]];
     }
     return _videoIcon;
 }
@@ -378,7 +421,7 @@
         _imageIcon = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"image.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         [_imageIcon setContentMode:UIViewContentModeScaleAspectFit];
         [_imageIcon setClipsToBounds:YES];
-        [_imageIcon setTintColor:[UIColor whiteColor]];
+        [_imageIcon setTintColor:[UIColor lightGrayColor]];
     }
     return _imageIcon;
 }
@@ -390,7 +433,7 @@
         _titleIcon = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"title.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         [_titleIcon setContentMode:UIViewContentModeScaleAspectFit];
         [_titleIcon setClipsToBounds:YES];
-        [_titleIcon setTintColor:[UIColor whiteColor]];
+        [_titleIcon setTintColor:[UIColor lightGrayColor]];
     }
     return _titleIcon;
 }
@@ -402,7 +445,7 @@
         _pencilIcon = [[UIImageView alloc]initWithImage:[[UIImage imageNamed:@"edit.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate]];
         [_pencilIcon setContentMode:UIViewContentModeScaleAspectFit];
         [_pencilIcon setClipsToBounds:YES];
-        [_pencilIcon setTintColor:[UIColor whiteColor]];
+        [_pencilIcon setTintColor:[UIColor lightGrayColor]];
     }
     return _pencilIcon;
 }
@@ -481,7 +524,8 @@
 {
     self.coverImage = img;
     self.cachedImageData = UIImageJPEGRepresentation(img, 0.9);
-    [self.selectCoverImageLabel setText:@"✓  Cover Selected"];
+    [self.selectCoverImageLabel setText:@"✓  COVER SELECTED"];
+    [self.selectCoverImageLabel setTextColor:self.POSTButtonColor];
 }
 
 #pragma mark imagePicker
@@ -519,15 +563,13 @@
             NSLog(@"时长 : %lf s", ceil(time.value/time.timescale));
             self.videoDuration = ceil(time.value/time.timescale);
         
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.selectVideoButton setBackgroundColor:self.POSTSurfaceColor];
+                [self.selectVideoButton setTitle:@"✓  Video Selected" forState:UIControlStateNormal];
+                [self.selectVideoButton setTitleColor:self.POSTButtonColor forState:UIControlStateNormal];
+            });
         }];
     }
-    // 完成
-    [self.selectVideoButton setBackgroundColor:self.POSTSurfaceColor];
-    [self.selectVideoButton setTitle:@"✓  Video Selected" forState:UIControlStateNormal];
 }
-
-
-
-
 
 @end
