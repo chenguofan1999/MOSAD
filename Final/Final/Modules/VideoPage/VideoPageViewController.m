@@ -63,7 +63,7 @@
 @end
 
 @implementation VideoPageViewController
-- (instancetype)initWithContentItem:(DetailedContentItem *)contentItem;
+- (instancetype)initWithContentItem:(DetailedContentItem *)contentItem
 {
     self = [super init];
     self.contentItem = contentItem;
@@ -791,7 +791,7 @@
     if(_moreActionButton == nil)
     {
         _moreActionButton = [[UIButton alloc]init];
-        [_moreActionButton setImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
+        [_moreActionButton setImage:[UIImage imageNamed:@"menu-lines@2x.png"] forState:UIControlStateNormal];
         [_moreActionButton addTarget:self action:@selector(moreActionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreActionButton;

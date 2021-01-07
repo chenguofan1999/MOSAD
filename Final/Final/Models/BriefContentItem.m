@@ -13,6 +13,7 @@
     self = [super init];
     self.contentID = [dict[@"contentID"] intValue];
     self.title = dict[@"title"];
+    self.duration = [dict[@"duration"] intValue];
     self.coverURL = dict[@"cover"];
     self.createTime = [dict[@"createTime"] longValue];
     self.viewNum = [dict[@"viewNum"] intValue];

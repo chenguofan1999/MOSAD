@@ -13,21 +13,22 @@
 #import "MiniUserItem.h"
 #import "SubscribingPageViewController.h"
 #import "VideoListTableViewController.h"
+#import "UserListTableViewController.h"
 #import "ExplorePageViewController.h"
 #import "AppConfig.h"
 #import "UserInfo.h"
 
 @interface SubscribingPageViewController () <UICollectionViewDelegate, UICollectionViewDataSource, UITableViewDelegate, VideoListSlideDelegate>
-@property (nonatomic,strong) UICollectionView *subscribingUsersView;
-@property (nonatomic,strong) MDCButton *allSubscribingButton;
+@property (nonatomic, strong) UICollectionView *subscribingUsersView;
+@property (nonatomic, strong) MDCButton *allSubscribingButton;
 @property (nonatomic) bool collectionViewBuild;
+@property (nonatomic) bool shoWingUserView;
 
-@property (nonatomic,strong) VideoListTableViewController *videoListController;
+@property (nonatomic, strong) UILabel *videoListTitleLabel;
+@property (nonatomic, strong) VideoListTableViewController *videoListController;
 @property (nonatomic, strong) UIButton *modeButton;
 @property (nonatomic, strong) UILabel *modeLabel;
 @property (nonatomic) VideoSortingMode sortingMode;
-@property (nonatomic) CGFloat oldY;
-@property (nonatomic) bool TestBool;
 
 // data
 @property (nonatomic,strong) NSMutableArray *followingUserItems; //array of UserItem
@@ -38,14 +39,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // 注册
-    UIView *bottomLine = [[UIView alloc]init];
-    [bottomLine setBackgroundColor:[UIColor grayColor]];
+    
     
     [self.view addSubview:self.allSubscribingButton];
     [self addChildViewController:self.videoListController];
     [self.view addSubview:self.videoListController.tableView];
-    [self.view addSubview:bottomLine];
     
     [self.allSubscribingButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.right.equalTo(self.view);
@@ -53,19 +51,14 @@
         make.height.mas_equalTo(120);
     }];
     
-    [bottomLine mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.allSubscribingButton.mas_bottom);
-        make.left.right.equalTo(self.view);
-        make.height.mas_equalTo(0.5);
-    }];
     
     [self.videoListController.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(bottomLine.mas_bottom);
+        make.top.mas_equalTo(self.allSubscribingButton.mas_bottom);
         make.left.right.bottom.equalTo(self.view);
     }];
     
     _collectionViewBuild = NO;
-    _TestBool = NO;
+    _shoWingUserView = YES;
     [self addObserver:self forKeyPath:@"sortingMode" options:NSKeyValueObservingOptionNew context:@"mode"];
     self.sortingMode = VideoSortingModeTimeDesc;
     [self loadData];
@@ -76,6 +69,13 @@
     // This clears the title of back button
     self.navigationController.navigationBar.topItem.title = @"";
     [self loadData];
+    [self.videoListController loadData];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.videoListController setServiceURL:@"http://159.75.1.231:5009/contents?follow=true"];
+    [self.videoListTitleLabel setText:@"Subscribing"];
 }
 
 - (UICollectionView *)subscribingUsersView
@@ -106,9 +106,11 @@
         _allSubscribingButton = [[MDCButton alloc]init];
         [_allSubscribingButton applyTextThemeWithScheme:[MDCContainerScheme new]];
         [_allSubscribingButton setTitleFont:[UIFont boldSystemFontOfSize:15] forState:UIControlStateNormal];
+        [_allSubscribingButton setBackgroundColor:[UIColor whiteColor]];
+        [_allSubscribingButton.layer setCornerRadius:0];
         [_allSubscribingButton setTitle:@"ALL" forState:UIControlStateNormal];
-        [_allSubscribingButton setTitleColor:[AppConfig getMainColor] forState:UIControlStateNormal];
-//        [_allSubscribingButton addTarget:self action:@selector(allUserButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [_allSubscribingButton setTitleColor:[UIColor darkGrayColor] forState:UIControlStateNormal];
+        [_allSubscribingButton addTarget:self action:@selector(allUserButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     }
     return _allSubscribingButton;
 }
@@ -120,12 +122,10 @@
         _videoListController = [[VideoListTableViewController alloc]initWithURL:@"http://159.75.1.231:5009/contents?follow=true"];
         UIView *headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)];
         
-        UILabel *videoListTitleLabel = [[UILabel alloc]init];
-        [videoListTitleLabel setText:@"Subscribing"];
-        [videoListTitleLabel setFont:[UIFont boldSystemFontOfSize:24]];
+        
         [headerView addSubview:self.modeButton];
         [headerView addSubview:self.modeLabel];
-        [headerView addSubview:videoListTitleLabel];
+        [headerView addSubview:self.videoListTitleLabel];
         
         [self.modeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(headerView);
@@ -138,48 +138,35 @@
             make.size.mas_equalTo(CGSizeMake(22, 22));
         }];
         
-        [videoListTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        [self.videoListTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.centerY.equalTo(headerView);
             make.left.equalTo(headerView).offset(15);
         }];
         
         _videoListController.customDelegate = self;
+        [_videoListController.tableView setBounces:NO];
         [_videoListController.tableView setTableHeaderView:headerView];
     }
     return _videoListController;
 }
 
+- (UILabel *)videoListTitleLabel
+{
+    if(_videoListTitleLabel == nil)
+    {
+        _videoListTitleLabel = [[UILabel alloc]init];
+        [_videoListTitleLabel setText:@"Subscribing"];
+        [_videoListTitleLabel setFont:[UIFont boldSystemFontOfSize:24]];
+    }
+    return _videoListTitleLabel;
+}
+
 #pragma mark All button
 - (void)allUserButtonClicked
 {
-    if(self.collectionViewBuild)
-    {
-        if(self.TestBool == NO)
-        {
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.allSubscribingButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.right.equalTo(self.view);
-                    make.left.mas_equalTo(self.view.mas_right).offset(-68);
-                    make.height.mas_equalTo(0);
-                }];
-                [self.view layoutIfNeeded];
-            }];
-            self.TestBool = YES;
-        }
-        else
-        {
-            [UIView animateWithDuration:0.5 animations:^{
-                [self.allSubscribingButton mas_remakeConstraints:^(MASConstraintMaker *make) {
-                    make.top.right.equalTo(self.view);
-                    make.left.mas_equalTo(self.view.mas_right).offset(-68);
-                    make.height.mas_equalTo(120);
-                }];
-                [self.view layoutIfNeeded];
-            }];
-            self.TestBool = NO;
-        }
-
-    }
+    UserListTableViewController *userList =[[UserListTableViewController alloc]initWithUsername:[UserInfo sharedUser].username type:UserListTableTypeFollowing];
+    [userList.navigationItem setTitle:@"Subscribing List"];
+    [self.navigationController pushViewController:userList animated:YES];
 }
 
 
@@ -189,7 +176,7 @@
     if(_modeButton == nil)
     {
         _modeButton = [[UIButton alloc]init];
-        [_modeButton setTintColor:[UIColor darkGrayColor]];
+        [_modeButton setTintColor:[UIColor grayColor]];
         [_modeButton addTarget:self action:@selector(changeSortingMode) forControlEvents:UIControlEventTouchUpInside];
     }
     return _modeButton;
@@ -200,10 +187,10 @@
     if(_modeLabel == nil)
     {
         _modeLabel = [[UILabel alloc]init];
-        [_modeLabel setTextColor:[UIColor darkGrayColor]];
+        [_modeLabel setTextColor:[UIColor grayColor]];
         [_modeLabel setFont:[UIFont systemFontOfSize:16]];
         [_modeLabel setUserInteractionEnabled:YES];
-        [_modeLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(allUserButtonClicked)]];
+        [_modeLabel addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(changeSortingMode)]];
     }
     return _modeLabel;
 }
@@ -267,7 +254,6 @@
     [cell.avatarView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisCell.avatarURL]]
                        placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
     [cell.usernameLabel setText:itemForThisCell.userName];
-    
     return cell;
 
 }
@@ -276,10 +262,29 @@
     return [self.followingUserItems count];
 }
 
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[collectionView cellForItemAtIndexPath:indexPath] setAlpha:1];
+    for(UserCollectionViewCell *cell in [collectionView visibleCells])
+    {
+        if([collectionView indexPathForCell:cell] != indexPath)
+            [cell setAlpha:0.3];
+    }
+    
+    MiniUserItem *itemForThisCell = self.followingUserItems[indexPath.item];
+    NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/contents?user=%@",itemForThisCell.userName];
+    self.videoListController.serviceURL = URL;
+    [self.videoListTitleLabel setText:[NSString stringWithFormat:@"%@'s",itemForThisCell.userName]];
+    
+    [self.videoListController loadData];
+}
+
 #pragma mark Drag delegate
 
 - (void)hideUserView
 {
+    if(_shoWingUserView == NO) return;
+    NSLog(@"hideUserView");
     [UIView animateWithDuration:0.5 animations:^{
         [self.allSubscribingButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.right.equalTo(self.view);
@@ -288,10 +293,13 @@
         }];
         [self.view layoutIfNeeded];
     }];
+    _shoWingUserView = NO;
 }
 
 - (void)showUserView
 {
+    if(_shoWingUserView == YES) return;
+    NSLog(@"showUserView");
     [UIView animateWithDuration:0.5 animations:^{
         [self.allSubscribingButton mas_remakeConstraints:^(MASConstraintMaker *make) {
             make.top.right.equalTo(self.view);
@@ -300,6 +308,7 @@
         }];
         [self.view layoutIfNeeded];
     }];
+    _shoWingUserView = YES;
 }
 
 #pragma mark KVO

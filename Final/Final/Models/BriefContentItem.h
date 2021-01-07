@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BriefContentItem : NSObject
 @property (nonatomic) int contentID;
 @property (nonatomic) int viewNum;
+@property (nonatomic) int duration;
 @property (nonatomic) long createTime;
 @property (nonatomic) NSString *coverURL;
 @property (nonatomic) NSString *title;

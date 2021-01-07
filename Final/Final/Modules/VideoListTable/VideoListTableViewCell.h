@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) IBOutlet UIButton *avatarButton;
 @property (nonatomic, strong) IBOutlet UILabel *titleLabel;
 @property (nonatomic, strong) IBOutlet UILabel *infoLabel;
+@property (nonatomic, strong) IBOutlet UILabel *durationLabel;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -24,6 +24,9 @@
     _coverImage.layer.masksToBounds = YES;
     _coverImage.clipsToBounds = YES;
     [_coverImage setContentMode:UIViewContentModeScaleAspectFill];
+    
+    // duration
+    _durationLabel.layer.cornerRadius = 5;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {

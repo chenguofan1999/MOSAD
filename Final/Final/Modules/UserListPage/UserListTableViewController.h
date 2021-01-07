@@ -9,8 +9,13 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UserListTableViewController : UITableViewController
+typedef NS_ENUM(NSInteger, UserListTableType) {
+    UserListTableTypeFollowing,
+    UserListTableTypeFollowed
+};
 
+@interface UserListTableViewController : UITableViewController
+- (instancetype)initWithUsername:(NSString *)username type:(UserListTableType)type;
 @end
 
 NS_ASSUME_NONNULL_END

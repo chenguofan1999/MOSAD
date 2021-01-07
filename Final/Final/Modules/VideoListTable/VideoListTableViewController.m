@@ -15,6 +15,7 @@
 #import "VideoPageViewController.h"
 #import "UserInfo.h"
 #import "DetailedContentItem.h"
+#import "OrderedVideoListTable.h"
 @interface VideoListTableViewController ()
 @property (nonatomic) int contentNum;
 @end
@@ -70,6 +71,11 @@
                              itemForThisRow.userItem.userName, itemForThisRow.viewNum, [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
     [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisRow.coverURL]] placeholderImage:[UIImage imageNamed:@"Yourtube1.png"]];
     [cell.avatarButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisRow.userItem.avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+    [cell.avatarButton setTag:indexPath.row];
+    [cell.avatarButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    
+    // duration label
+    [cell.durationLabel setText:[TimeTool durationInSecondsToString:itemForThisRow.duration]];
     return cell;
 }
 
@@ -103,8 +109,6 @@
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"get contentItem faied");
     }];
-    
-    
 }
 
 
@@ -154,11 +158,20 @@
     [self loadData];
 }
 
+#pragma mark 点击头像
+- (void)avatarButtonClicked:(UIButton *)btn
+{
+    NSInteger i = btn.tag;
+    NSString *username = [self.contentItems[i] userItem].userName;
+    OrderedVideoListTable *userPage = [[OrderedVideoListTable alloc]initWithUserName:username];
+    [self.navigationController pushViewController:userPage animated:YES];
+}
+
 #pragma mark delegata
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
-//    NSLog(@"%lf",scrollView.contentOffset.y);
+//    NSLog(@"%lf %lf",scrollView.contentOffset.y,[scrollView.panGestureRecognizer velocityInView:scrollView].y);
 //    CGPoint vel = [scrollView.panGestureRecognizer velocityInView:scrollView];
-    if(scrollView.contentOffset.y > 400)
+    if(scrollView.contentOffset.y > 140)
     {
         if([self.customDelegate respondsToSelector:@selector(slideDown)])
         {
@@ -172,6 +185,7 @@
             [self.customDelegate slideUp];
         }
     }
+
 }
 
 @end

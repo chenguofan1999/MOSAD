@@ -45,6 +45,13 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Um5-mj-fKV">
+                        <rect key="frame" x="340.5" y="188" width="35.5" height="17"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="BMM-jn-hAF" firstAttribute="top" secondItem="Sk0-9E-PtV" secondAttribute="top" id="0le-s2-6Ho"/>
@@ -54,6 +61,8 @@
                     <constraint firstItem="Sk0-9E-PtV" firstAttribute="top" secondItem="fbh-xQ-iCp" secondAttribute="bottom" constant="10" id="N7e-eB-oZf"/>
                     <constraint firstAttribute="trailing" secondItem="fbh-xQ-iCp" secondAttribute="trailing" id="WRs-o0-YAM"/>
                     <constraint firstItem="8Sm-MO-zRM" firstAttribute="leading" secondItem="BMM-jn-hAF" secondAttribute="leading" id="eVH-tq-2Bj"/>
+                    <constraint firstItem="Um5-mj-fKV" firstAttribute="trailing" secondItem="fbh-xQ-iCp" secondAttribute="trailing" constant="-5" id="n1z-Re-Ab4"/>
+                    <constraint firstItem="Um5-mj-fKV" firstAttribute="bottom" secondItem="fbh-xQ-iCp" secondAttribute="bottom" constant="-5" id="pWD-TY-EQz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="BMM-jn-hAF" secondAttribute="trailing" constant="10" id="qV2-A5-suD"/>
                     <constraint firstItem="fbh-xQ-iCp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="wxa-NO-rCT"/>
                     <constraint firstItem="fbh-xQ-iCp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="yrd-p2-iSY"/>
@@ -63,6 +72,7 @@
             <connections>
                 <outlet property="avatarButton" destination="Sk0-9E-PtV" id="Wt7-jS-88j"/>
                 <outlet property="coverImage" destination="fbh-xQ-iCp" id="g4K-DP-lGd"/>
+                <outlet property="durationLabel" destination="Um5-mj-fKV" id="RGB-Zw-XJj"/>
                 <outlet property="infoLabel" destination="8Sm-MO-zRM" id="5YG-6w-oid"/>
                 <outlet property="titleLabel" destination="BMM-jn-hAF" id="TKk-fx-txx"/>
             </connections>

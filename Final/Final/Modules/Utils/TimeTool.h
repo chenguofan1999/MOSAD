@@ -11,7 +11,7 @@
 @interface TimeTool : NSObject
 
 + (NSString *)timeBeforeInfoWithString:(NSTimeInterval)timeIntrval;
-
++ (NSString *)durationInSecondsToString:(int)duration;
 @end
 
 #endif /* TimeTool_h */
