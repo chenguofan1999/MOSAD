@@ -224,7 +224,10 @@
                  object:nil];
 }
 
-
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.player stop];
+}
 #pragma mark 导航栏样式
 - (void)setNavBar
 {

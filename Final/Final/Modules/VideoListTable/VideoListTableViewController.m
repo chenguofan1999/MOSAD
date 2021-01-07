@@ -70,7 +70,7 @@
     [cell.titleLabel setText:itemForThisRow.title];
     [cell.infoLabel setText:[NSString stringWithFormat:@"%@ · %d views · %@",
                              itemForThisRow.userItem.userName, itemForThisRow.viewNum, [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
-    [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisRow.coverURL]] placeholderImage:[UIImage imageNamed:@"Yourtube1.png"]];
+    [cell.coverImage sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisRow.coverURL]] placeholderImage:[UIImage imageNamed:@"Yourtube4.png"]];
     [cell.avatarButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",itemForThisRow.userItem.avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
     [cell.avatarButton setTag:indexPath.row];
     [cell.avatarButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];

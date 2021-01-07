@@ -43,6 +43,8 @@
 @property (nonatomic, strong) UIColor *POSTSurfaceColor;
 @property (nonatomic, strong) UIColor *POSTButtonColor;
 
+@property (nonatomic, strong) UIActivityIndicatorView *uploadingIndicator;
+
 // cache data
 @property (nonatomic) NSURL *videoURL;
 @property (nonatomic) NSData *cachedImageData;
@@ -56,6 +58,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setColors];
+    
     
     UIScrollView *scrollView = [[UIScrollView alloc]init];
     [scrollView setBounces:NO];
@@ -74,6 +77,8 @@
     [backView addSubview:self.imageIcon];
     [backView addSubview:self.titleIcon];
     [backView addSubview:self.pencilIcon];
+    
+    [backView addSubview:self.uploadingIndicator];
     
     [scrollView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.equalTo(self.view);
@@ -136,6 +141,9 @@
         make.left.equalTo(backView).offset(20);
     }];
     
+//    [self.uploadingIndicator mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.centerX.centerY.equalTo(self.view);
+//    }];
 //    [self.navigationItem setTitle:@"Edit Content"];
     [self.navigationItem setRightBarButtonItem:[[UIBarButtonItem alloc]initWithCustomView:self.sendButton]];
 }
@@ -339,6 +347,17 @@
     return _sendButton;
 }
 
+- (UIActivityIndicatorView *)uploadingIndicator
+{
+    if(_uploadingIndicator == nil)
+    {
+        _uploadingIndicator = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleLarge];
+        [_uploadingIndicator setColor:[UIColor grayColor]];
+        [_uploadingIndicator setCenter:CGPointMake(self.view.frame.size.width/2, 300)];
+    }
+    return _uploadingIndicator;
+}
+
 
 #pragma mark post 事件
 
@@ -367,6 +386,10 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     
+    
+    [self.uploadingIndicator startAnimating];
+    
+        
     [manager POST:URL parameters:nil headers:header constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         // video
         [formData appendPartWithFileURL:self.videoURL name:@"video" error:nil];
@@ -384,6 +407,9 @@
         [formData appendPartWithFormData:[[NSString stringWithFormat:@"%d",self.videoDuration]dataUsingEncoding:NSUTF8StringEncoding] name:@"duration"];
         
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.uploadingIndicator stopAnimating];
+        });
         NSLog(@"successed to upload");
         
         MDCAlertController *alertController =
@@ -396,6 +422,10 @@
         [self presentViewController:alertController animated:YES completion:nil];
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.uploadingIndicator stopAnimating];
+        });
+        
         NSLog(@"%@", error);
     }];
     

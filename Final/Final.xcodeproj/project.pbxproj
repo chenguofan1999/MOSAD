@@ -97,6 +97,7 @@
 		569FC4EE25A718A000216243 /* OrderedVideoListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569FC4D925A6E2A400216243 /* OrderedVideoListTableCell.xib */; };
 		569FC57525A7459600216243 /* InfoPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FC57425A7459600216243 /* InfoPageViewController.m */; };
 		569FC57925A747E000216243 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FC57825A747E000216243 /* UserItem.m */; };
+		569FC5AA25A7B25A00216243 /* Yourtube4.png in Resources */ = {isa = PBXBuildFile; fileRef = 569FC5A925A7B25A00216243 /* Yourtube4.png */; };
 		56EAA2B22592EEF5001E9B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B12592EEF5001E9B7D /* AppDelegate.m */; };
 		56EAA2B52592EEF5001E9B7D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B42592EEF5001E9B7D /* SceneDelegate.m */; };
 		56EAA2BD2592EEF6001E9B7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EAA2BC2592EEF6001E9B7D /* Assets.xcassets */; };
@@ -232,6 +233,7 @@
 		569FC57425A7459600216243 /* InfoPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoPageViewController.m; sourceTree = "<group>"; };
 		569FC57725A747E000216243 /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
 		569FC57825A747E000216243 /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
+		569FC5A925A7B25A00216243 /* Yourtube4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Yourtube4.png; sourceTree = "<group>"; };
 		56EAA2AD2592EEF5001E9B7D /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56EAA2B02592EEF5001E9B7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		56EAA2B12592EEF5001E9B7D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -323,6 +325,7 @@
 		5628B63D25998142000E4DA3 /* Icons */ = {
 			isa = PBXGroup;
 			children = (
+				569FC5A925A7B25A00216243 /* Yourtube4.png */,
 				569FC4E225A700C200216243 /* desc@2x.png */,
 				5657EBEE25A6C16C000F3B86 /* right-arrow.png */,
 				5657EBC525A5E0EA000F3B86 /* delete@2x.png */,
@@ -706,6 +709,7 @@
 				5628B6822599950B000E4DA3 /* user@2x.png in Resources */,
 				5628B6A62599ABEC000E4DA3 /* plus@3x.png in Resources */,
 				5628B6D3259A2FA4000E4DA3 /* Yourtube3.png in Resources */,
+				569FC5AA25A7B25A00216243 /* Yourtube4.png in Resources */,
 				5657EB0625A1921F000F3B86 /* comments-material.png in Resources */,
 				5628B6852599950B000E4DA3 /* laptop-play@2x.png in Resources */,
 				5657EBC925A5E0EC000F3B86 /* exit.png in Resources */,

@@ -40,13 +40,18 @@
     [self addChildViewController:self.likesPage];
     [self addChildViewController:self.historyPage];
     
-    [self.navigationItem setTitle:self.username];
+    
     // 阴影
     [self.navigationController.navigationBar.layer setShadowOffset:CGSizeMake(0.5, 0.5)];
     [self.navigationController.navigationBar.layer setShadowColor:[UIColor darkGrayColor].CGColor];
     [self.navigationController.navigationBar.layer setShadowRadius:1.5];
     [self.navigationController.navigationBar.layer setShadowOpacity:0.7];
     self.navigationController.navigationBar.tintColor = [UIColor grayColor];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationItem setTitle:self.username];
 }
 
 

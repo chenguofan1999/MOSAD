@@ -9,6 +9,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import <MaterialButtons+Theming.h>
 #import <Masonry/Masonry.h>
+#import <MJRefresh/MJRefresh.h>
 
 #import "UserInfo.h"
 #import "TimeTool.h"
@@ -122,6 +123,7 @@
     self.baseURL = @"http://159.75.1.231:5009/contents";
     
     [self.tableView setTableHeaderView:self.headerView];
+    self.tableView.mj_header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadData)];
     [self loadData];
 }
 
@@ -326,6 +328,7 @@
                 [self.videoItems addObject:newItem];
             }
             [self.tableView reloadData];
+            if([self.tableView.mj_header isRefreshing]) [self.tableView.mj_header endRefreshing];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to get contents");
