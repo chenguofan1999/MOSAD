@@ -183,6 +183,13 @@ PODS:
   - MDFInternationalization (2.0.0)
   - MDFTextAccessibility (2.0.0)
   - MJRefresh (3.5.0)
+  - MXPagerView (0.2.1)
+  - MXParallaxHeader (1.1.0)
+  - MXSegmentedControl (1.1.0)
+  - MXSegmentedPager (4.0.0):
+    - MXPagerView (~> 0.2)
+    - MXParallaxHeader (~> 1.0)
+    - MXSegmentedControl (~> 1.1)
   - SDWebImage (5.10.0):
     - SDWebImage/Core (= 5.10.0)
   - SDWebImage/Core (5.10.0)
@@ -263,6 +270,8 @@ DEPENDENCIES:
   - "MaterialComponents/TextControls+OutlinedTextAreas"
   - "MaterialComponents/TextControls+OutlinedTextFields"
   - MJRefresh
+  - MXParallaxHeader
+  - MXSegmentedPager
   - SDWebImage
   - SJVideoPlayer
   - "UITextView+Placeholder"
@@ -278,6 +287,10 @@ SPEC REPOS:
     - MDFInternationalization
     - MDFTextAccessibility
     - MJRefresh
+    - MXPagerView
+    - MXParallaxHeader
+    - MXSegmentedControl
+    - MXSegmentedPager
     - SDWebImage
     - SJBaseVideoPlayer
     - SJUIKit
@@ -295,6 +308,10 @@ SPEC CHECKSUMS:
   MDFInternationalization: 010097556d6b09d2c4ea38e0820ea6d37be6a314
   MDFTextAccessibility: 85c09a1bd9c321f494348e632a25063bcda35a53
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  MXPagerView: ede184b5191b2ed689ccf05a750a9978cce42414
+  MXParallaxHeader: de3c867e10ba46e8f6e20c8ee1f2a910372b3b94
+  MXSegmentedControl: f39e46199a52cbc03b1c845e150215119f2542f5
+  MXSegmentedPager: 527ee76513c96e6607eebe473fe49b7ab4971616
   SDWebImage: 9169792e9eec3e45bba2a0c02f74bf8bd922d1ee
   SJBaseVideoPlayer: 0ecccbae3bf6cad55187113247ea88f711bef276
   SJUIKit: bdf86af3648e70483c57e2bfe2fcc7531337fa54
@@ -302,6 +319,6 @@ SPEC CHECKSUMS:
   "UITextView+Placeholder": d7b0c400921f66523f3a85d74f774512e14f6502
   YYModel: 2a7fdd96aaa4b86a824e26d0c517de8928c04b30
 
-PODFILE CHECKSUM: 11d9f981aff113b051b32bba43cb9c9f8e6bc18a
+PODFILE CHECKSUM: 158b66756881b57e3134cfc05bfdc01b74bcedd5
 
 COCOAPODS: 1.10.0

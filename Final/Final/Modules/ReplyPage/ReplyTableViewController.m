@@ -14,6 +14,7 @@
 #import <FTPopOverMenu/FTPopOverMenu.h>
 #import <MaterialDialogs.h>
 #import "ReplyTableViewController.h"
+#import "UserPageViewController.h"
 #import "CommentTableViewCell.h"
 #import "ReplyItem.h"
 #import "TimeTool.h"
@@ -179,6 +180,8 @@
     ReplyItem *itemForThisCell = self.replyItems[indexPath.row];
     
     [cell.avatarButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", itemForThisCell.userItem.avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+    [cell.avatarButton setTag:indexPath.row];
+    [cell.avatarButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
     [cell.titleLable setText:[NSString stringWithFormat:@"%@ · %@", itemForThisCell.userItem.userName, [TimeTool timeBeforeInfoWithString:itemForThisCell.createTime]]];
     [cell.commentTextLable setText:itemForThisCell.replyText];
     [cell.likeLabel setText:itemForThisCell.likeNum > 0 ? [NSString stringWithFormat:@"%d", itemForThisCell.likeNum] : @""];
@@ -195,6 +198,15 @@
     [itemForThisCell addObserver:cell forKeyPath:@"liked" options:NSKeyValueObservingOptionNew context:@"liked"];
     
     return cell;
+}
+#pragma mark 头像
+- (void)toUserPage:(UIButton *)btn
+{
+    NSInteger i = btn.tag;
+    ReplyItem *itemForThisCell = self.replyItems[i];
+    NSString *username = itemForThisCell.userItem.userName;
+    UserPageViewController *userPage = [[UserPageViewController alloc]initWithUsername:username];
+    [self.navigationController pushViewController:userPage animated:YES];
 }
 
 #pragma mark 点赞回复

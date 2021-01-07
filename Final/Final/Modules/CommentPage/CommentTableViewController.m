@@ -16,6 +16,7 @@
 #import "ReplyTableViewController.h"
 #import "CommentTableViewController.h"
 #import "CommentTableViewCell.h"
+#import "UserPageViewController.h"
 #import "CommentItem.h"
 #import "TimeTool.h"
 #import "UserInfo.h"
@@ -185,6 +186,8 @@
     
     
     [cell.avatarButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", itemForThisCell.userItem.avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+    [cell.avatarButton setTag:indexPath.row];
+    [cell.avatarButton addTarget:self action:@selector(toUserPage:) forControlEvents:UIControlEventTouchUpInside];
     [cell.titleLable setText:[NSString stringWithFormat:@"%@ · %@", itemForThisCell.userItem.userName, [TimeTool timeBeforeInfoWithString:itemForThisCell.createTime]]];
     [cell.commentTextLable setText:itemForThisCell.commentText];
     [cell.likeLabel setText:itemForThisCell.likeNum > 0 ? [NSString stringWithFormat:@"%d", itemForThisCell.likeNum] : @""];
@@ -205,6 +208,15 @@
     
     
     return cell;
+}
+#pragma mark 头像
+- (void)toUserPage:(UIButton *)btn
+{
+    NSInteger i = btn.tag;
+    CommentItem *itemForThisCell = self.commentItems[i];
+    NSString *username = itemForThisCell.userItem.userName;
+    UserPageViewController *userPage = [[UserPageViewController alloc]initWithUsername:username];
+    [self.navigationController pushViewController:userPage animated:YES];
 }
 
 #pragma mark 点赞评论

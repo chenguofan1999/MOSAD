@@ -15,7 +15,7 @@
 #import "VideoListTableViewController.h"
 #import "UserInfo.h"
 #import "AppConfig.h"
-
+#import "UserPageViewController.h"
 @interface MainTabBarController ()
 
 @end
@@ -82,7 +82,8 @@
     [subscribingPageNavigationController cyl_setHideNavigationBarSeparator:YES];
     
     // Library Page
-    LibraryPageViewController *libraryPageViewController = [[LibraryPageViewController alloc] init];
+//    LibraryPageViewController *libraryPageViewController = [[LibraryPageViewController alloc] init];
+    UserPageViewController *libraryPageViewController = [[UserPageViewController alloc] initWithUsername:[UserInfo sharedUser].username];
     UIViewController *libraryPageNavigationController = [[CYLBaseNavigationController alloc]
                                                    initWithRootViewController:libraryPageViewController];
     [libraryPageViewController cyl_setHideNavigationBarSeparator:YES];
@@ -116,9 +117,9 @@
                                                 CYLTabBarItemSelectedImage : [UIImage imageNamed:@"compass-filled@2x.png"],
                                                 };
     NSDictionary *libraryTabBarItemsAttributes = @{
-                                                CYLTabBarItemTitle : @"Library",
-                                                CYLTabBarItemImage : [UIImage imageNamed:@"play-property@2x.png"],
-                                                CYLTabBarItemSelectedImage : [UIImage imageNamed:@"play-property@2x.png"],
+                                                CYLTabBarItemTitle : @"My",
+                                                CYLTabBarItemImage : [UIImage imageNamed:@"user-filled@2x.png"],
+                                                CYLTabBarItemSelectedImage : [UIImage imageNamed:@"user-filled@2x.png"],
                                                 };
    
 

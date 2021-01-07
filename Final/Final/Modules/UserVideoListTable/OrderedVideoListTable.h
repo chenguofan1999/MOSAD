@@ -26,8 +26,9 @@ typedef NS_ENUM(NSInteger, UserVideoListTableOrderMode) {
 @interface OrderedVideoListTable : UITableViewController
 - (instancetype)initWithUserName:(NSString *)username;
 - (instancetype)initWithTypeHistory;
-- (instancetype)initWithSearchKeyword:(NSString *)keyword;
-- (instancetype)initWithTypeLikeByUserID:(NSString *)username;
+- (instancetype)initWithTypeSearch;
+- (void)searchWithKeyword:(NSString *)keyword;
+- (instancetype)initWithTypeLikeByUsername:(NSString *)username;
 - (instancetype)initWithTypeSelf;
 @end
 

@@ -9,6 +9,7 @@
 #import <SDWebImage/SDWebImage.h>
 #import "UserListTableViewController.h"
 #import "UserListTableViewCell.h"
+#import "UserPageViewController.h"
 #import "MiniUserItem.h"
 
 
@@ -74,7 +75,12 @@ NSString static *reuseIdentifier = @"cell";
     return 80;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *username = [self.userItems[indexPath.row] userName];
+    UserPageViewController *userPage = [[UserPageViewController alloc]initWithUsername:username];
+    [self.navigationController pushViewController:userPage animated:YES];
+}
     
 //- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
 //    // Return NO if you do not want the specified item to be editable.

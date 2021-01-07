@@ -15,6 +15,7 @@
 #import "VideoPageViewController.h"
 #import "UserInfo.h"
 #import "DetailedContentItem.h"
+#import "UserPageViewController.h"
 #import "OrderedVideoListTable.h"
 @interface VideoListTableViewController ()
 @property (nonatomic) int contentNum;
@@ -163,7 +164,7 @@
 {
     NSInteger i = btn.tag;
     NSString *username = [self.contentItems[i] userItem].userName;
-    OrderedVideoListTable *userPage = [[OrderedVideoListTable alloc]initWithUserName:username];
+    UserPageViewController *userPage = [[UserPageViewController alloc]initWithUsername:username];
     [self.navigationController pushViewController:userPage animated:YES];
 }
 

@@ -23,4 +23,6 @@ target 'Final' do
   pod 'MJRefresh'
   pod 'SJVideoPlayer'
   pod 'FTPopOverMenu'
+  pod 'MXSegmentedPager'
+  pod "MXParallaxHeader"
 end

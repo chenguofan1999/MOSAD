@@ -6,26 +6,48 @@
 //
 
 #import "SearchPageViewController.h"
+#import "OrderedVideoListTable.h"
 
-@interface SearchPageViewController ()
-
+@interface SearchPageViewController ()<UISearchBarDelegate>
+@property (strong, nonatomic) UISearchBar *searchBar;
+@property (strong, nonatomic) OrderedVideoListTable *tableViewController;
 @end
 
 @implementation SearchPageViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    [self.navigationItem setTitleView:self.searchBar];
+    [self addChildViewController:self.tableViewController];
+    [self.view addSubview:self.tableViewController.tableView];
+    [self.tableViewController.tableView setFrame:self.view.frame];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (UISearchBar *)searchBar
+{
+    if(_searchBar == nil)
+    {
+        _searchBar = [[UISearchBar alloc]init];
+        _searchBar.delegate = self;
+    }
+    return _searchBar;
 }
-*/
+
+- (OrderedVideoListTable *)tableViewController
+{
+    if(_tableViewController == nil)
+    {
+        _tableViewController = [[OrderedVideoListTable alloc]initWithTypeSearch];
+    }
+    return _tableViewController;
+}
+
+#pragma mark delegate
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [self.tableViewController searchWithKeyword:[searchBar text]];
+}
+
+
 
 @end

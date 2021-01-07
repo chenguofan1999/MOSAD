@@ -62,21 +62,29 @@
     return self;
 }
 
-- (instancetype)initWithSearchKeyword:(NSString *)keyword
+- (instancetype)initWithTypeSearch;
 {
     self = [super init];
     self.queryParams = [NSMutableDictionary dictionary];
-    [self.queryParams setValue:keyword forKey:@"search"];
     self.tableType = OrderedVideoListTableTypeSearch;
     self.orderMode = UserVideoListTableOrderByTimeDesc;
     
+    [self.queryParams setValue:@"218h7eg1jnascxz" forKey:@"search"];
     _headerTitle = [[UILabel alloc]init];
-    [_headerTitle setText:[NSString stringWithFormat:@"Search: %@",keyword]];
+    [_headerTitle setText:@"Search"];
     [_headerTitle setFont:[UIFont boldSystemFontOfSize:24]];
     return self;
 }
 
-- (instancetype)initWithTypeLikeByUserID:(NSString *)username
+- (void)searchWithKeyword:(NSString *)keyword
+{
+    if(self.tableType != OrderedVideoListTableTypeSearch) return;
+    [_headerTitle setText:[NSString stringWithFormat:@"Search: %@",keyword]];
+    [self.queryParams setValue:keyword forKey:@"search"];
+    [self loadData];
+}
+
+- (instancetype)initWithTypeLikeByUsername:(NSString *)username
 {
     self = [super init];
     self.queryParams = [NSMutableDictionary dictionary];
@@ -203,20 +211,18 @@
     [cell.videoTitleLabel setText:itemForThisRow.title];
     
     // info label
-    switch (self.tableType) {
-        case OrderedVideoListTableTypeUser:
-            [cell.videoInfoLabel setText:[NSString stringWithFormat:@"%d views · %@"
-                                          , itemForThisRow.viewNum
-                                          , [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
-            break;
-        case OrderedVideoListTableTypeHistory:
-            [cell.videoInfoLabel setText:[NSString stringWithFormat:@"%@\n%d views · %@"
-                                          , itemForThisRow.userItem.userName
-                                          , itemForThisRow.viewNum
-                                          , [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
-            break;
-        default:
-            break;
+    if(self.tableType == OrderedVideoListTableTypeUser)
+    {
+        [cell.videoInfoLabel setText:[NSString stringWithFormat:@"%d views · %@"
+                                      , itemForThisRow.viewNum
+                                      , [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
+    }
+    else
+    {
+        [cell.videoInfoLabel setText:[NSString stringWithFormat:@"%@\n%d views · %@"
+                                      , itemForThisRow.userItem.userName
+                                      , itemForThisRow.viewNum
+                                      , [TimeTool timeBeforeInfoWithString:itemForThisRow.createTime]]];
     }
     
     // duration label

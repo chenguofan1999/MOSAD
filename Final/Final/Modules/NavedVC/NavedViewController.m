@@ -84,12 +84,12 @@
     config.ignoreImageOriginalColor = YES;
     
     [FTPopOverMenu showForSender:sender
-                   withMenuArray:@[@"My Page",@"Setting",@"Log out"]
-                      imageArray:@[@"user-filled@2x",@"gear",@"exit"]
+                   withMenuArray:@[@"Log out"]
+                      imageArray:@[@"exit"]
                    configuration:config
                        doneBlock:^(NSInteger selectedIndex) {
         switch (selectedIndex) {
-            case 2:
+            case 0:
                 [SceneDelegate jumpToLoginPage];
                 break;
         }

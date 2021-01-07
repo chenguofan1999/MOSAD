@@ -25,6 +25,7 @@
 #import "TagView.h"
 #import "CommentTableViewController.h"
 #import "VideoListTableViewController.h"
+#import "UserPageViewController.h"
 
 @interface VideoPageViewController () <tagBtnDelegate>
 @property (nonatomic, strong) SJVideoPlayer *player;
@@ -492,6 +493,8 @@
         [_userAvatarView setClipsToBounds:YES];
         [_userAvatarView.layer setCornerRadius:20];
         [_userAvatarView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", self.contentItem.userItem.avatarURL]]];
+        [_userAvatarView setUserInteractionEnabled:YES];
+        [_userAvatarView addGestureRecognizer:[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(toUserPage)]];
     }
     return  _userAvatarView;
 }
@@ -612,7 +615,12 @@
     }];
 }
 
-
+- (void)toUserPage
+{
+    NSString *username = self.contentItem.userItem.userName;
+    UserPageViewController *userPage = [[UserPageViewController alloc]initWithUsername:username];
+    [self.navigationController pushViewController:userPage animated:YES];
+}
 #pragma mark comment-card
 
 - (MDCCard *)commentCard

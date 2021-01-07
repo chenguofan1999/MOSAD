@@ -95,6 +95,8 @@
 		569FC4E325A700C300216243 /* desc@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 569FC4E225A700C200216243 /* desc@2x.png */; };
 		569FC4E925A7124600216243 /* UserPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FC4E825A7124600216243 /* UserPageViewController.m */; };
 		569FC4EE25A718A000216243 /* OrderedVideoListTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 569FC4D925A6E2A400216243 /* OrderedVideoListTableCell.xib */; };
+		569FC57525A7459600216243 /* InfoPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FC57425A7459600216243 /* InfoPageViewController.m */; };
+		569FC57925A747E000216243 /* UserItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 569FC57825A747E000216243 /* UserItem.m */; };
 		56EAA2B22592EEF5001E9B7D /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B12592EEF5001E9B7D /* AppDelegate.m */; };
 		56EAA2B52592EEF5001E9B7D /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 56EAA2B42592EEF5001E9B7D /* SceneDelegate.m */; };
 		56EAA2BD2592EEF6001E9B7D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 56EAA2BC2592EEF6001E9B7D /* Assets.xcassets */; };
@@ -226,6 +228,10 @@
 		569FC4E225A700C200216243 /* desc@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "desc@2x.png"; sourceTree = "<group>"; };
 		569FC4E725A7124600216243 /* UserPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserPageViewController.h; sourceTree = "<group>"; };
 		569FC4E825A7124600216243 /* UserPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserPageViewController.m; sourceTree = "<group>"; };
+		569FC57325A7459600216243 /* InfoPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = InfoPageViewController.h; sourceTree = "<group>"; };
+		569FC57425A7459600216243 /* InfoPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = InfoPageViewController.m; sourceTree = "<group>"; };
+		569FC57725A747E000216243 /* UserItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UserItem.h; sourceTree = "<group>"; };
+		569FC57825A747E000216243 /* UserItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UserItem.m; sourceTree = "<group>"; };
 		56EAA2AD2592EEF5001E9B7D /* Final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Final.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		56EAA2B02592EEF5001E9B7D /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		56EAA2B12592EEF5001E9B7D /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -406,6 +412,8 @@
 				5657EAEB25A0DFFD000F3B86 /* CommentItem.m */,
 				5657EAFB25A188A1000F3B86 /* ReplyItem.h */,
 				5657EAFC25A188A1000F3B86 /* ReplyItem.m */,
+				569FC57725A747E000216243 /* UserItem.h */,
+				569FC57825A747E000216243 /* UserItem.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -526,6 +534,8 @@
 			children = (
 				569FC4E725A7124600216243 /* UserPageViewController.h */,
 				569FC4E825A7124600216243 /* UserPageViewController.m */,
+				569FC57325A7459600216243 /* InfoPageViewController.h */,
+				569FC57425A7459600216243 /* InfoPageViewController.m */,
 			);
 			path = UserPage;
 			sourceTree = "<group>";
@@ -767,6 +777,7 @@
 				5657EBDB25A60EA6000F3B86 /* UserCollectionViewCell.m in Sources */,
 				56EAA2B22592EEF5001E9B7D /* AppDelegate.m in Sources */,
 				5657EAF925A184B2000F3B86 /* CommentTableViewController.m in Sources */,
+				569FC57525A7459600216243 /* InfoPageViewController.m in Sources */,
 				5628B6BE259A1717000E4DA3 /* VideoListTableViewController.m in Sources */,
 				5657EB0225A189D8000F3B86 /* CommentTableViewCell.m in Sources */,
 				5628B6C4259A1768000E4DA3 /* VideoListTableViewCell.m in Sources */,
@@ -798,6 +809,7 @@
 				5657EBAE25A4E150000F3B86 /* BigImageViewController.m in Sources */,
 				569FC4E925A7124600216243 /* UserPageViewController.m in Sources */,
 				5657EAFD25A188A1000F3B86 /* ReplyItem.m in Sources */,
+				569FC57925A747E000216243 /* UserItem.m in Sources */,
 				5628B68D259995B0000E4DA3 /* LibraryPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

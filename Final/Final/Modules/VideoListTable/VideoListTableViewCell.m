@@ -16,6 +16,7 @@
     // 头像样式
     [_avatarButton setClipsToBounds:YES];
     [_avatarButton.imageView setClipsToBounds:YES];
+    [_avatarButton.imageView setContentMode:UIViewContentModeScaleAspectFill];
     _avatarButton.layer.cornerRadius = 25;
     [_avatarButton setBackgroundImage:nil forState:UIControlStateNormal];
     
