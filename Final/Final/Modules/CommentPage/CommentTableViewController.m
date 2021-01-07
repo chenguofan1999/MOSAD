@@ -11,6 +11,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MaterialComponents/MDCFilledTextField.h>
 #import <MaterialTextControls+OutlinedTextFields.h>
+#import <MaterialDialogs.h>
+#import <FTPopOverMenu/FTPopOverMenu.h>
 #import "ReplyTableViewController.h"
 #import "CommentTableViewController.h"
 #import "CommentTableViewCell.h"
@@ -90,6 +92,10 @@
     }];
 }
 
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"loadComments" object:self];
+}
 
 #pragma mark header view
 - (MDCBaseTextField *)commentField
@@ -190,6 +196,9 @@
     [cell.replyButton setTag:indexPath.row];
     [cell.replyButton addTarget:self action:@selector(replyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.moreButton setTag:indexPath.row];
+    [cell.moreButton addTarget:self action:@selector(moreActions:) forControlEvents:UIControlEventTouchUpInside];
+    
     [itemForThisCell addObserver:cell forKeyPath:@"likeNum" options:NSKeyValueObservingOptionNew context:@"likeNum"];
     [itemForThisCell addObserver:cell forKeyPath:@"liked" options:NSKeyValueObservingOptionNew context:@"liked"];
     [itemForThisCell addObserver:cell forKeyPath:@"replyNum" options:NSKeyValueObservingOptionNew context:@"replyNum"];
@@ -251,6 +260,59 @@
     NSInteger i = btn.tag;
     int commentID = [self.commentItems[i] commentID];
     [self.navigationController pushViewController:[[ReplyTableViewController alloc]initWithCommentID:commentID] animated:YES];
+}
+
+#pragma mark 更多选项
+- (void)moreActions:(UIButton *)sender
+{
+    NSInteger i = sender.tag;
+    CommentItem *thisItem = self.commentItems[i];
+    if(thisItem.userItem.userID == [UserInfo sharedUser].userID)
+    {
+        FTPopOverMenuConfiguration *config = [FTPopOverMenuConfiguration defaultConfiguration];
+        config.textColor = [UIColor whiteColor];
+        config.imageSize = CGSizeMake(16, 16);
+        
+        config.ignoreImageOriginalColor = YES;
+        
+        [FTPopOverMenu showForSender:sender
+                       withMenuArray:@[@"DELETE"]
+                          imageArray:@[@"delete@2x"]
+                       configuration:config
+                           doneBlock:^(NSInteger selectedIndex) {
+            switch (selectedIndex) {
+                case 0:
+                    [self deleteComment:thisItem.commentID];
+                    break;
+            }
+        } dismissBlock:nil];
+    }
+}
+
+- (void)deleteComment:(int)commentID
+{
+    MDCAlertController *alertController = [MDCAlertController alertControllerWithTitle:@"DELETE" message:@"Are you sure?"];
+    MDCAlertAction *cancelAction = [MDCAlertAction actionWithTitle:@"Cancel" handler:nil];
+    MDCAlertAction *sureAction = [MDCAlertAction actionWithTitle:@"Sure" handler:^(MDCAlertAction * _Nonnull action) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/comments/%d",commentID];
+        NSDictionary *header = @{
+            @"Authorization":[UserInfo sharedUser].token
+        };
+        
+        [manager DELETE:URL parameters:nil headers:header success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"succeeded to delete");
+            [self loadDataOrderBy:LoadCommentsOrderByTime];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"failed to delete");
+        }];
+    }];
+    [alertController addAction:sureAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark 网络请求

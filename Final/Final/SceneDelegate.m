@@ -6,7 +6,6 @@
 //
 
 #import "SceneDelegate.h"
-#import "TestViewController.h"
 #import "MainTabBarController.h"
 #import "PostContentViewController.h"
 #import "VideoListTableViewController.h"
@@ -56,6 +55,12 @@
 {
     UIWindow* mainwindow = [SceneDelegate mainWindow];
     mainwindow.rootViewController = [MainTabBarController new];
+}
+
++ (void)jumpToLoginPage
+{
+    UIWindow* mainwindow = [SceneDelegate mainWindow];
+    mainwindow.rootViewController = [[LoginPageViewController alloc]init];
 }
 
 - (void)sceneDidDisconnect:(UIScene *)scene {

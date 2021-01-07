@@ -7,7 +7,6 @@
 
 #import <MaterialComponents/MDCFloatingButton.h>
 #import "MainTabBarController.h"
-#import "TestViewController.h"
 #import "LibraryPageViewController.h"
 #import "SubscribingPageViewController.h"
 #import "ExplorePageViewController.h"
@@ -38,8 +37,6 @@
     
     
     [self customizeTabBarAppearance:tabBarController];
-    
-    
     return (self = (MainTabBarController *)tabBarController);
 }
 
@@ -50,9 +47,9 @@
     
 }
 
+
 - (void)customizeTabBarAppearance:(CYLTabBarController *)tabBarController
 {
-//    [tabBarController.tabBar setTintColor:[UIColor darkGrayColor]];
     [tabBarController.tabBar setTintColor:[AppConfig getMainColor]];
     [tabBarController.tabBar setUnselectedItemTintColor:[UIColor darkGrayColor]];
     [tabBarController.tabBar setTranslucent:NO];

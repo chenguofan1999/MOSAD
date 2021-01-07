@@ -13,5 +13,6 @@
 + (UIWindow *)mainWindow;
 + (bool)isIphoneXSerie;
 + (void)jumpToTabBar;
++ (void)jumpToLoginPage;
 @end
 

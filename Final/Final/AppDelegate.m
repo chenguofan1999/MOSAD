@@ -6,7 +6,6 @@
 //
 
 #import "AppDelegate.h"
-#import "TestViewController.h"
 #import "MainTabBarController.h"
 #import "PostContentViewController.h"
 @interface AppDelegate ()

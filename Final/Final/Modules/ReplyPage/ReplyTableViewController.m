@@ -11,6 +11,8 @@
 #import <AFNetworking/AFNetworking.h>
 #import <MaterialComponents/MDCFilledTextField.h>
 #import <MaterialTextControls+OutlinedTextFields.h>
+#import <FTPopOverMenu/FTPopOverMenu.h>
+#import <MaterialDialogs.h>
 #import "ReplyTableViewController.h"
 #import "CommentTableViewCell.h"
 #import "ReplyItem.h"
@@ -186,6 +188,9 @@
     [cell.likeButton setTag:indexPath.row];
     [cell.likeButton addTarget:self action:@selector(likeReplyButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     
+    [cell.moreButton setTag:indexPath.row];
+    [cell.moreButton addTarget:self action:@selector(moreActions:) forControlEvents:UIControlEventTouchUpInside];
+    
     [itemForThisCell addObserver:cell forKeyPath:@"likeNum" options:NSKeyValueObservingOptionNew context:@"likeNum"];
     [itemForThisCell addObserver:cell forKeyPath:@"liked" options:NSKeyValueObservingOptionNew context:@"liked"];
     
@@ -238,6 +243,57 @@
     }
 }
 
+#pragma mark 更多选项
+- (void)moreActions:(UIButton *)sender
+{
+    NSInteger i = sender.tag;
+    ReplyItem *thisItem = self.replyItems[i];
+    if(thisItem.userItem.userID == [UserInfo sharedUser].userID)
+    {
+        FTPopOverMenuConfiguration *config = [FTPopOverMenuConfiguration defaultConfiguration];
+        config.textColor = [UIColor whiteColor];
+        config.imageSize = CGSizeMake(16, 16);
+        config.ignoreImageOriginalColor = YES;
+        
+        [FTPopOverMenu showForSender:sender
+                       withMenuArray:@[@"DELETE"]
+                          imageArray:@[@"delete@2x"]
+                       configuration:config
+                           doneBlock:^(NSInteger selectedIndex) {
+            switch (selectedIndex) {
+                case 0:
+                    [self deleteReply:thisItem.replyID];
+                    break;
+            }
+        } dismissBlock:nil];
+    }
+}
+
+- (void)deleteReply:(int)replyID
+{
+    MDCAlertController *alertController = [MDCAlertController alertControllerWithTitle:@"DELETE" message:@"Are you sure?"];
+    MDCAlertAction *cancelAction = [MDCAlertAction actionWithTitle:@"Cancel" handler:nil];
+    MDCAlertAction *sureAction = [MDCAlertAction actionWithTitle:@"Sure" handler:^(MDCAlertAction * _Nonnull action) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/replies/%d",replyID];
+        NSDictionary *header = @{
+            @"Authorization":[UserInfo sharedUser].token
+        };
+        
+        [manager DELETE:URL parameters:nil headers:header success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"succeeded to delete");
+            [self loadDataOrderBy:LoadRepliesOrderByTime];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"failed to delete");
+        }];
+    }];
+    [alertController addAction:sureAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
 
 #pragma mark 网络请求
 typedef NS_ENUM(NSInteger, LoadReplyMode) {

@@ -8,6 +8,9 @@
 #import "NavedViewController.h"
 #import "SearchPageViewController.h"
 #import <SDWebImage/UIButton+WebCache.h>
+#import <FTPopOverMenu/FTPopOverMenu.h>
+#import <MaterialDialogs.h>
+#import "SceneDelegate.h"
 #import "UserInfo.h"
 #import "PostContentViewController.h"
 @interface NavedViewController ()
@@ -59,7 +62,7 @@
     [userButton.widthAnchor constraintEqualToConstant:d].active = YES;
     [userButton.heightAnchor constraintEqualToConstant:d].active = YES;
     userButton.layer.cornerRadius = d/2;
-    [userButton addTarget:self action:@selector(avatarButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    [userButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     UIBarButtonItem *userButtonItem = [[UIBarButtonItem alloc]initWithCustomView:userButton];
     
     // 右侧按钮：发送
@@ -74,9 +77,23 @@
     [self.navigationController pushViewController:[SearchPageViewController new] animated:NO];
 }
 
-- (void)avatarButtonClicked
+- (void)avatarButtonClicked:(UIButton *)sender
 {
+    FTPopOverMenuConfiguration *config = [FTPopOverMenuConfiguration defaultConfiguration];
+    config.textColor = [UIColor whiteColor];
+    config.ignoreImageOriginalColor = YES;
     
+    [FTPopOverMenu showForSender:sender
+                   withMenuArray:@[@"My Page",@"Setting",@"Log out"]
+                      imageArray:@[@"user-filled@2x",@"gear",@"exit"]
+                   configuration:config
+                       doneBlock:^(NSInteger selectedIndex) {
+        switch (selectedIndex) {
+            case 2:
+                [SceneDelegate jumpToLoginPage];
+                break;
+        }
+    } dismissBlock:nil];
 }
 
 - (void)toPostPage

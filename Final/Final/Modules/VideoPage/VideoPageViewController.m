@@ -17,6 +17,7 @@
 #import <SDWebImage.h>
 #import <AFNetworking/AFNetworking.h>
 #import <MaterialComponents/MDCButton+MaterialTheming.h>
+#import <FTPopOverMenu/FTPopOverMenu.h>
 #import "AppConfig.h"
 #import "TimeTool.h"
 #import "UserInfo.h"
@@ -743,6 +744,9 @@
         NSDictionary *response = (NSDictionary *)responseObject;
         if([response[@"status"] isEqualToString:@"success"])
         {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.commentField setText:@""];
+            });
             [self requestTopComment];
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
@@ -788,14 +792,53 @@
     {
         _moreActionButton = [[UIButton alloc]init];
         [_moreActionButton setImage:[UIImage imageNamed:@"menu@2x.png"] forState:UIControlStateNormal];
-        [_moreActionButton addTarget:self action:@selector(moreActionButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+        [_moreActionButton addTarget:self action:@selector(moreActionButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
     }
     return _moreActionButton;
 }
 
-- (void)moreActionButtonClicked
+- (void)moreActionButtonClicked:(UIButton *)sender
 {
+    if(self.contentItem.userItem.userID == [UserInfo sharedUser].userID)
+    {
+        [FTPopOverMenu showForSender:sender withMenuArray:@[@"DELETE"] doneBlock:^(NSInteger selectedIndex) {
+            switch (selectedIndex) {
+                case 0:
+                    [self deleteContent];
+                    break;
+                    
+            }
+        } dismissBlock:^{
     
+        }];
+    }
+    
+}
+
+- (void)deleteContent
+{
+    MDCAlertController *alertController = [MDCAlertController alertControllerWithTitle:@"DELETE" message:@"Are you sure?"];
+    MDCAlertAction *cancelAction = [MDCAlertAction actionWithTitle:@"Cancel" handler:nil];
+    MDCAlertAction *sureAction = [MDCAlertAction actionWithTitle:@"Yes" handler:^(MDCAlertAction * _Nonnull action) {
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        manager.requestSerializer = [AFJSONRequestSerializer serializer];
+        manager.responseSerializer = [AFJSONResponseSerializer serializer];
+        
+        NSString *URL = [NSString stringWithFormat:@"http://159.75.1.231:5009/contents/%d",self.contentItem.contentID];
+        NSDictionary *header = @{
+            @"Authorization":[UserInfo sharedUser].token
+        };
+        
+        [manager DELETE:URL parameters:nil headers:header success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+            NSLog(@"succeeded to delete");
+            [self.navigationController popViewControllerAnimated:YES];
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+            NSLog(@"failed to delete");
+        }];
+    }];
+    [alertController addAction:sureAction];
+    [alertController addAction:cancelAction];
+    [self presentViewController:alertController animated:YES completion:nil];
 }
 
 #pragma mark TagView
@@ -809,8 +852,6 @@
     }
     return _videoTagView;
 }
-
-
 
 
 #pragma mark tag delegate
@@ -1021,6 +1062,12 @@
     else if([(__bridge NSString *)context isEqualToString:@"comment number changed"])
     {
         [_commentNumLabel setText:[NSString stringWithFormat:@"%d", self.contentItem.commentNum]];
+        if(self.contentItem.commentNum == 0)
+        {
+            [self.commentField setHidden:NO];
+            [self.topCommentLabel setHidden:YES];
+            [_commenterAvatarView sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@", [UserInfo sharedUser].avatarURL]]];
+        }
     }
     else if([(__bridge NSString *)context isEqualToString:@"get top comment"])
     {

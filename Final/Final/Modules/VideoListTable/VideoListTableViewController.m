@@ -31,11 +31,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    // delegate
+    self.tableView.delegate = self;
     
     // 注册
     UINib *nib = [UINib nibWithNibName:@"VideoListTableViewCell" bundle:nil];
@@ -114,8 +111,6 @@
 
 - (void)loadData
 {
-//    NSString *URL = @"http://159.75.1.231:5009/contents";
-    
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
@@ -158,4 +153,25 @@
     _contentNum += 5;
     [self loadData];
 }
+
+#pragma mark delegata
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+//    NSLog(@"%lf",scrollView.contentOffset.y);
+//    CGPoint vel = [scrollView.panGestureRecognizer velocityInView:scrollView];
+    if(scrollView.contentOffset.y > 400)
+    {
+        if([self.customDelegate respondsToSelector:@selector(slideDown)])
+        {
+            [self.customDelegate slideDown];
+        }
+    }
+    else
+    {
+        if([self.customDelegate respondsToSelector:@selector(slideUp)])
+        {
+            [self.customDelegate slideUp];
+        }
+    }
+}
+
 @end

@@ -38,6 +38,11 @@
     self.navigationController.navigationBar.topItem.title = @"";
 }
 
+- (void)dealloc
+{
+    [[UserInfo sharedUser] removeObserver:self forKeyPath:@"userTags"];
+}
+
 - (VideoListTableViewController *)videoListTableViewController
 {
     if(_videoListTableViewController == nil)
