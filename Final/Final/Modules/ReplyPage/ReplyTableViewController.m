@@ -4,8 +4,6 @@
 //
 //  Created by itlab on 1/3/21.
 //
-
-
 #import <SDWebImage/SDWebImage.h>
 #import <SDWebImage/UIButton+WebCache.h>
 #import <AFNetworking/AFNetworking.h>
@@ -74,7 +72,7 @@
     
     // 标题
     UILabel *replyTitleLabel = [[UILabel alloc]init];
-    [replyTitleLabel setText:@"replys"];
+    [replyTitleLabel setText:@"replies"];
     [replyTitleLabel setFont:[UIFont systemFontOfSize:20]];
     UIBarButtonItem *titleItem = [[UIBarButtonItem alloc]initWithCustomView:replyTitleLabel];
     

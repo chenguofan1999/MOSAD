@@ -288,13 +288,13 @@
             [self.queryParams setValue:@"asc" forKey:@"order"];
             break;
         case UserVideoListTableOrderByViewNumDesc:
-            [self.modeButton setImage:[[UIImage imageNamed:@"ascending.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+            [self.modeButton setImage:[[UIImage imageNamed:@"descending.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
             [_modeLabel setText:@"By View"];
             [self.queryParams setValue:@"viewNum" forKey:@"orderBy"];
             [self.queryParams setValue:@"desc" forKey:@"order"];
             break;
         case UserVideoListTableOrderByViewNumAsc:
-            [self.modeButton setImage:[[UIImage imageNamed:@"descending.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
+            [self.modeButton setImage:[[UIImage imageNamed:@"ascending.png"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate] forState:UIControlStateNormal];
             [_modeLabel setText:@"By View"];
             [self.queryParams setValue:@"viewNum" forKey:@"orderBy"];
             [self.queryParams setValue:@"asc" forKey:@"order"];

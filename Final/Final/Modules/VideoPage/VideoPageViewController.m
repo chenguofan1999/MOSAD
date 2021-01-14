@@ -217,6 +217,7 @@
 
 - (void)viewWillAppear:(BOOL)animated
 {
+//    [self.player play];
     NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
     [nc addObserver:self
                selector:@selector(requestTopComment)
@@ -224,10 +225,10 @@
                  object:nil];
 }
 
-- (void)viewWillDisappear:(BOOL)animated
-{
-    [self.player stop];
-}
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    [self.player stop];
+//}
 #pragma mark 导航栏样式
 - (void)setNavBar
 {
