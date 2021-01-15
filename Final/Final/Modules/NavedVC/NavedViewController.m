@@ -14,7 +14,7 @@
 #import "UserInfo.h"
 #import "PostContentViewController.h"
 @interface NavedViewController ()
-
+@property (nonatomic, strong) UIButton *userButton;
 @end
 
 @implementation NavedViewController
@@ -24,7 +24,15 @@
     [self setNavBar];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [_userButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",[UserInfo sharedUser].avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+}
 
+- (void)viewDidAppear:(BOOL)animated
+{
+    [_userButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",[UserInfo sharedUser].avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+}
 
 - (void)setNavBar
 {
@@ -53,23 +61,24 @@
     [searchButtonItem setImageInsets:UIEdgeInsetsMake(0, 30, 0, 0)];
     
     // 右侧按钮：用户
-    UIButton *userButton = [[UIButton alloc]initWithFrame:CGRectZero];
-    [userButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",[UserInfo sharedUser].avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
-    userButton.imageView.contentMode = UIViewContentModeScaleAspectFill; // 头像截取而不缩放
-    userButton.layer.masksToBounds = YES;                               // 头像将只显示在圆圈内
-    userButton.clipsToBounds = YES;
+    _userButton = [[UIButton alloc]initWithFrame:CGRectZero];
+    [_userButton sd_setImageWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://159.75.1.231:5009%@",[UserInfo sharedUser].avatarURL]] forState:UIControlStateNormal placeholderImage:[UIImage imageNamed:@"edvard-munch.png"]];
+    _userButton.imageView.contentMode = UIViewContentModeScaleAspectFill; // 头像截取而不缩放
+    _userButton.layer.masksToBounds = YES;                               // 头像将只显示在圆圈内
+    _userButton.clipsToBounds = YES;
     CGFloat d = 30;
-    [userButton.widthAnchor constraintEqualToConstant:d].active = YES;
-    [userButton.heightAnchor constraintEqualToConstant:d].active = YES;
-    userButton.layer.cornerRadius = d/2;
-    [userButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
-    UIBarButtonItem *userButtonItem = [[UIBarButtonItem alloc]initWithCustomView:userButton];
+    [_userButton.widthAnchor constraintEqualToConstant:d].active = YES;
+    [_userButton.heightAnchor constraintEqualToConstant:d].active = YES;
+    _userButton.layer.cornerRadius = d/2;
+    [_userButton addTarget:self action:@selector(avatarButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
+    UIBarButtonItem *userButtonItem = [[UIBarButtonItem alloc]initWithCustomView:_userButton];
     
     // 右侧按钮：发送
     UIBarButtonItem *postButtonItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(toPostPage)];
     [postButtonItem setTintColor:[UIColor grayColor]];
     
     [self.navigationItem setRightBarButtonItems:@[userButtonItem, postButtonItem, searchButtonItem]];
+    
 }
 
 - (void)toSearchPage
@@ -101,5 +110,6 @@
     [self.navigationController pushViewController:[PostContentViewController new] animated:YES];
     
 }
+
 
 @end

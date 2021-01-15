@@ -22,6 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (UserInfo *)sharedUser;
 + (void)configUser:(NSDictionary *)dict;
++ (void)updateInfo;
 @end
 
 NS_ASSUME_NONNULL_END

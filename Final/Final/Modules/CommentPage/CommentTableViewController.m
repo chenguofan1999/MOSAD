@@ -202,6 +202,15 @@
     [cell.moreButton setTag:indexPath.row];
     [cell.moreButton addTarget:self action:@selector(moreActions:) forControlEvents:UIControlEventTouchUpInside];
     
+    if(itemForThisCell.liked == YES)
+    {
+        [cell.likeButton setImage:[UIImage imageNamed:@"thumbs-up-filled.png"] forState:UIControlStateNormal];
+    }
+    else
+    {
+        [cell.likeButton setImage:[UIImage imageNamed:@"thumbs-up.png"] forState:UIControlStateNormal];
+    }
+    
     [itemForThisCell addObserver:cell forKeyPath:@"likeNum" options:NSKeyValueObservingOptionNew context:@"likeNum"];
     [itemForThisCell addObserver:cell forKeyPath:@"liked" options:NSKeyValueObservingOptionNew context:@"liked"];
     [itemForThisCell addObserver:cell forKeyPath:@"replyNum" options:NSKeyValueObservingOptionNew context:@"replyNum"];

@@ -88,7 +88,8 @@
     }];
     
     [self.followingNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.followerLabel.mas_right).offset(26);
+//        make.left.mas_equalTo(self.followerLabel.mas_right).offset(26);
+        make.centerX.equalTo(self.view).offset(-30);
         make.centerY.equalTo(self.followerLabel);
     }];
     
@@ -98,12 +99,15 @@
     }];
     
     [self.likeNumberLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.followingLabel.mas_right).offset(20);
+        
+//        make.left.mas_equalTo(self.followingLabel.mas_right).offset(20);
+        make.right.mas_equalTo(self.likeLabel.mas_left).offset(-6);
         make.centerY.equalTo(self.followingLabel);
     }];
     
     [self.likeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.mas_equalTo(self.likeNumberLabel.mas_right).offset(6);
+//        make.left.mas_equalTo(self.likeNumberLabel.mas_right).offset(6);
+        make.right.equalTo(self.view).offset(-40);
         make.centerY.equalTo(self.likeNumberLabel);
     }];
     
@@ -118,39 +122,56 @@
     [self.view addSubview:underLine];
     
     [bioTitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.mas_equalTo(self.followingNumberLabel.mas_bottom).offset(20);
-        make.left.equalTo(self.view).offset(15);
+        make.top.mas_equalTo(self.followingNumberLabel.mas_bottom).offset(30);
+        make.left.equalTo(self.view).offset(30);
     }];
     
     [underLine mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bioTitleLabel.mas_bottom).offset(2);
-        make.left.equalTo(self.view).offset(15);
+        make.left.equalTo(self.view).offset(30);
         make.height.mas_equalTo(1);
-        make.right.equalTo(self.view).offset(-15);
+        make.right.equalTo(self.view).offset(-30);
     }];
     
     [self.bioLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bioTitleLabel.mas_bottom).offset(10);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
     }];
     
     [self.textArea mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(bioTitleLabel.mas_bottom).offset(11);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
     }];
     
     [self.submitBioButton mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(self.textArea.mas_bottom).offset(10);
-        make.left.equalTo(self.view).offset(15);
-        make.right.equalTo(self.view).offset(-15);
+        make.left.equalTo(self.view).offset(30);
+        make.right.equalTo(self.view).offset(-30);
         make.height.mas_equalTo(50);
     }];
     
     
     [self loadData];
 }
+
+//- (void)viewWillAppear:(BOOL)animated
+//{
+//    // 阴影
+//    [self.navigationController.navigationBar.layer setShadowColor:[UIColor clearColor].CGColor];
+//    // 线条
+//    [self.navigationController.navigationBar setValue:@(YES) forKeyPath:@"hidesShadow"];
+//}
+//
+//- (void)viewWillDisappear:(BOOL)animated
+//{
+//    // 阴影
+//    [self.navigationController.navigationBar.layer setShadowColor:[UIColor darkGrayColor].CGColor];
+//    // 线条
+//    [self.navigationController.navigationBar setValue:@(NO) forKeyPath:@"hidesShadow"];
+//}
+
 
 
 
@@ -281,7 +302,7 @@
     {
         _textArea = [[MDCOutlinedTextArea alloc]init];
 //        _textArea.textView.delegate = self;
-        [_textArea.label setText:@"Bio"];
+        [_textArea.label setText:@""];
         [_textArea setNormalLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
         [_textArea setFloatingLabelColor:[UIColor grayColor] forState:MDCTextControlStateNormal];
         [_textArea setFloatingLabelColor:[AppConfig getMainColor] forState:MDCTextControlStateEditing];
@@ -372,12 +393,12 @@
                 NSDictionary *response = (NSDictionary *)responseObject;
                 if([response[@"status"] isEqualToString:@"success"])
                 {
-                    NSLog(@"oh yeah");
+                    NSLog(@"unfollow succeeded");
                 }
+                [self loadData];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"unfollow failed");
             }];
-            [self loadData];
         }
         else
         {
@@ -387,15 +408,16 @@
                 NSDictionary *response = (NSDictionary *)responseObject;
                 if([response[@"status"] isEqualToString:@"success"])
                 {
-                    NSLog(@"oh yeah");
+                    NSLog(@"follow succeeded");
                 }
+                [self loadData];
             } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
                 NSLog(@"follow failed");
             }];
-            [self loadData];
         }
     }
 }
+
 
 - (void)editBioAction
 {
@@ -453,6 +475,7 @@
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"successed to upload avatar");
         [self loadData];
+        [UserInfo updateInfo];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to upload avatar");
     }];
@@ -522,8 +545,10 @@
         if([response[@"status"] isEqualToString:@"success"])
         {
             self.userItem = [[UserItem alloc]initWithDict:response[@"data"]];
-            [self updateAllViews];
         }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self updateAllViews];
+        });
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"failed to get user data");
     }];

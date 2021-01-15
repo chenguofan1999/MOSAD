@@ -32,4 +32,23 @@ static UserInfo *userInfo = nil;
     sharedInfo.likeNum = [dict[@"likeNum"] intValue];
 }
 
++ (void)updateInfo
+{
+    NSString *getInfoURL = @"http://159.75.1.231:5009/user";
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFJSONResponseSerializer serializer];
+    NSDictionary *header = @{@"Authorization":[UserInfo sharedUser].token};
+    [manager GET:getInfoURL parameters:nil headers:header progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"%@", responseObject);
+        NSDictionary *response = (NSDictionary *)responseObject;
+        if([response[@"status"] isEqualToString:@"success"])
+        {
+            [UserInfo configUser:response[@"data"]];
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed to get userinfo");
+    }];
+}
+
 @end
